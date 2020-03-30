@@ -10,6 +10,7 @@ class WPEssentialLoader
         self::includes();
         self::autoload();
         self::start();
+        add_action( 'init', [ __CLASS__, 'initialize' ] );
     }
 
     public static function constants ()
@@ -40,17 +41,52 @@ class WPEssentialLoader
         if ( !defined( 'WPE_DIR' ) ) {
             define( 'WPE_DIR', WP_PLUGIN_DIR . '/wpessential' );
         }
+
+        /**
+         * WPEssential Plugin url
+         *
+         * @since  1.0.0
+         */
+        if ( !defined( 'WPE_URL' ) ) {
+            define( 'WPE_URL', WP_PLUGIN_URL . '/wpessential' );
+        }
+
+        /**
+         * WPEssential Plugin dir
+         *
+         * @since  1.0.0
+         */
+        if ( !defined( 'WPE_DIR' ) ) {
+            define( 'WPE_DIR', WP_PLUGIN_DIR . '/wpessential' );
+        }
+
+        /**
+         * WPEssential Emotion React Plugin dir
+         *
+         * @since  1.0.0
+         */
+        if ( !defined( 'WPE_ER_DIR' ) ) {
+            define( 'WPE_ER_DIR', WP_PLUGIN_DIR . '/wpessential-emotion-react' );
+        }
+
+        /**
+         * WPEssential Emotion React Plugin url
+         *
+         * @since  1.0.0
+         */
+        if ( !defined( 'WPE_ER_URL' ) ) {
+            define( 'WPE_ER_URL', WP_PLUGIN_URL . '/wpessential-emotion-react' );
+        }
     }
 
     public static function autoload ()
     {
-        $inc_dir = WPE_DIR . '/inc';
-
         $psr = [
-            'WPEssential\\' => [ $inc_dir ],
+            'WPEssential\Inc\\'    => WPE_DIR . '/inc/',
+            'WPEssential\ER\Inc\\' => WPE_ER_DIR . '/inc/',
         ];
 
-        $class_loader = new \WPEssential\Inc\Utility\WPEssentialClassesLoader;
+        $class_loader = new Utility\WPEssentialClassLoader;
 
         foreach ( $psr as $prefix => $paths ) {
             $class_loader->setPsr4( $prefix, $paths );
@@ -62,13 +98,36 @@ class WPEssentialLoader
 
     public static function includes ()
     {
-        require_once WPE_DIR . '/inc/Utility/WPEssentialClassesLoader.php';
+        require_once WPE_DIR . '/inc/Utility/WPEssentialClassLoader.php';
         require_once WPE_DIR . '/inc/functions.php';
     }
 
     public static function start ()
     {
+        Panel\WPEssentialPanel::constructor();
         do_action( 'wpe' );
+    }
+
+    public static function initialize ()
+    {
+        do_action( 'wpe_init' );
+        self::i18n();
+    }
+
+    public static function i18n ()
+    {
+        load_plugin_textdomain( 'wpessential', false, WPE_DIR . '/language' );
+    }
+
+    public static function options ()
+    {
+        return get_option( WPE_SETTINGS, [] );
+    }
+
+    public static function options_update ( array $data )
+    {
+        $options = wp_parse_args( $data, self::options() );
+        return update_option( WPE_SETTINGS, $options );
     }
 }
 
