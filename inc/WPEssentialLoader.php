@@ -11,6 +11,7 @@ class WPEssentialLoader
         self::autoload();
         self::start();
         add_action( 'init', [ __CLASS__, 'initialize' ] );
+        add_action( 'widgets_init', [ '\WPEssential\Inc\Utility\WPEssentialWidgets', 'constructor' ] );
     }
 
     public static function constants ()
@@ -104,8 +105,9 @@ class WPEssentialLoader
 
     public static function start ()
     {
-        Panel\WPEssentialPanel::constructor();
         do_action( 'wpe' );
+        Panel\WPEssentialPanel::constructor();
+        Utility\WPEssentialWPShortcodes::constructor();
     }
 
     public static function initialize ()

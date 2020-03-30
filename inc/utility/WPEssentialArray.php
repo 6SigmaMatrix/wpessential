@@ -283,6 +283,10 @@ class WPEssentialArray
             return $default;
         }
 
+        if ( !is_array( $array ) || empty( $array ) ) {
+            return $default;
+        }
+
         if ( is_null( $key ) ) {
             return $array;
         }
