@@ -1,8 +1,8 @@
 <?php
 
-namespace WPEssential\Inc\Request;
+namespace WPEssential\Request;
 
-use WPE\Plugins\Emotion\WPE_ER_DB;
+use WPEssential\ER\Utility\WPEssentialERDB;
 
 class WPEssentialEmotaionReact
 {
@@ -21,24 +21,10 @@ class WPEssentialEmotaionReact
         exit;
     }
 
-    public function login_ajax ()
-    {
-        check_ajax_referer( 'er_ajax_nonce', 'security' );
-        $info                    = [];
-        $info[ 'user_login' ]    = wpe_set( $_POST, 'user' );
-        $info[ 'user_password' ] = wpe_set( $_POST, 'pass' );
-        $user_signon             = wp_signon( $info, false );
-        if ( is_wp_error( $user_signon ) ) {
-            wp_send_json_error( $user_signon->get_error_message() );
-        } else {
-            wp_send_json_success( '<div class="alert alert-success">' . esc_html__( 'Login successful, redirecting...', 'wpe-emotion-react' ) . '</div>' );
-        }
-    }
-
     public function reaction_process ()
     {
         check_ajax_referer( 'er_ajax_nonce', 'security' );
 
-        WPE_ER_DB::insert();
+        WPEssentialERDB::insert();
     }
 }

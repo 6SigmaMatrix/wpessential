@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Inc\Panel;
+namespace WPEssential\Panel;
 
 /**
  * WPE_Init.
@@ -23,11 +23,11 @@ class WPEssentialPanel
      */
     public static function constructor ()
     {
-        add_action( 'admin_menu', [ __CLASS__, 'wpe_add_menu_page' ] );
+        add_action( 'admin_menu', [ __CLASS__, 'add_menu_page' ] );
     }
 
 
-    public static function wpe_add_menu_page ()
+    public static function add_menu_page ()
     {
         $page_title = __( 'WPEssential', 'wpessential' );
         add_menu_page( $page_title, $page_title, 'manage_options', 'wpessential', [ __CLASS__, 'wpe_page_view' ], '', 2 );

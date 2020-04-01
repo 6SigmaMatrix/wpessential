@@ -6,7 +6,7 @@ if ( !function_exists( 'wpe_get' ) ) {
         if ( is_object( $var ) ) {
             $var = (array) $var;
         }
-        return \WPEssential\Inc\Utility\WPEssentialArray::get( $var, $key, $def );
+        return \WPEssential\Utility\WPEssentialArray::get( $var, $key, $def );
     }
 
 }
@@ -22,4 +22,11 @@ if ( !function_exists( 'wpe_template_url' ) ) {
         }
     }
 
+}
+
+if ( !function_exists( 'wpe_error' ) ) {
+    function wpe_error ( $error )
+    {
+        return new \WP_Error( '', $error );
+    }
 }

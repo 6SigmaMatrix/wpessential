@@ -1,30 +1,59 @@
 <?php
 
-namespace WPEssential\Inc\Utility;
-
-use WPEssential\Inc\Request;
+namespace WPEssential\Utility;
 
 class WPEssentialEnqueue
 {
+
     public static function constructor ()
     {
-        add_action( 'wpe', [ __CLASS__, 'wpessential' ], 0 );
-        add_action( 'wpe_emotion_react', [ __CLASS__, 'emotionReact', 0 ] );
-        add_action( 'wpe_blog_post', [ __CLASS__, 'blogPost', 0 ] );
+        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'front_end' ], 300 );
+        add_action( 'admin_print_scripts', [ __CLASS__, 'back_end' ], 300 );
     }
 
-    public static function emotionReact ()
+    public static function front_end ()
     {
-        new Request\WPEssentialEmotaionReact();
+        self::localiztion();
+        do_action( 'wpe_enqueue_before' );
+        do_action( 'wpe_enqueue_after' );
     }
 
-    public static function blogPost ()
+    public static function back_end ()
     {
-        new Request\WPEssentialEmotaionReact();
+        self::localiztion();
+        do_action( 'wpe_admin_enqueue_before' );
+        do_action( 'wpe_admin_enqueue_after' );
     }
 
-    public static function wpessential ()
+    public static function localiztion ()
     {
-        new Request\WPEssential();
+        $localization = [
+            'ajaxurl' => admin_url( 'admin-ajax.php' ),
+            'weburl'  => WPE_URL,
+            'nonce'   => wp_create_nonce( 'wpe_request_nonce' ),
+        ];
+        $localization = apply_filters( 'wpe_loco', $localization );
+        wp_localize_script( 'jquery', 'WPEssential', $localization );
     }
+
+    public static function register_script ()
+    {
+        $minify = self::minify_check();
+        $list   = [
+            'crypt_1' => WPE_URL . "/assts/js/crypt.{$minify}",
+            'crypt_2' => WPE_URL . "/assts/js/encryption.{$minify}",
+            'crypt_2' => WPE_URL . "/assts/js/wpessential.{$minify}",
+        ];
+    }
+
+    public static function minify_check ()
+    {
+        if ( WP_DEBUG == true || WPE_DEBUG == true ) {
+            $minify = 'min.js';
+        } else {
+            $minify = 'js';
+        }
+    }
+
+
 }

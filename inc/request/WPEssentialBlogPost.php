@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Inc\Request;
+namespace WPEssential\Request;
 
 class WPEssentialBlogPost
 {

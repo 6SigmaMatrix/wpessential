@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Inc;
+namespace WPEssential;
 
 class WPEssentialLoader
 {
@@ -11,7 +11,7 @@ class WPEssentialLoader
         self::autoload();
         self::start();
         add_action( 'init', [ __CLASS__, 'initialize' ] );
-        add_action( 'widgets_init', [ '\WPEssential\Inc\Utility\WPEssentialWidgets', 'constructor' ] );
+        add_action( 'widgets_init', [ '\WPEssential\Utility\WPEssentialWidgets', 'constructor' ] );
     }
 
     public static function constants ()
@@ -83,8 +83,8 @@ class WPEssentialLoader
     public static function autoload ()
     {
         $psr = [
-            'WPEssential\Inc\\'    => WPE_DIR . '/inc/',
-            'WPEssential\ER\Inc\\' => WPE_ER_DIR . '/inc/',
+            'WPEssential\\'    => WPE_DIR . '/inc/',
+            'WPEssential\ER\\' => WPE_ER_DIR . '/inc/',
         ];
 
         $class_loader = new Utility\WPEssentialClassLoader;
@@ -106,6 +106,7 @@ class WPEssentialLoader
     public static function start ()
     {
         do_action( 'wpe' );
+        Utility\WPEssentialEnqueue::constructor();
         Panel\WPEssentialPanel::constructor();
         Utility\WPEssentialWPShortcodes::constructor();
     }

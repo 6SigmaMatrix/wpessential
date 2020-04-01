@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Inc\Utility;
+namespace WPEssential\Utility;
 
 use ArrayAccess;
 use InvalidArgumentException;

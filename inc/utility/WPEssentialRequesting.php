@@ -1,8 +1,8 @@
 <?php
 
-namespace WPEssential\Inc\Utility;
+namespace WPEssential\Utility;
 
-use WPEssential\Inc\Request;
+use WPEssential\Request;
 
 class WPEssentialRequesting
 {

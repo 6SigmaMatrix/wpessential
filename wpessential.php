@@ -20,7 +20,7 @@
 function wpessential_load ()
 {
     require_once plugin_dir_path( __FILE__ ) . 'inc/WPEssentialLoader.php';
-    \WPEssential\Inc\WPEssentialLoader::constructor();
+    \WPEssential\WPEssentialLoader::constructor();
 }
 
 add_action( 'plugins_loaded', 'wpessential_load', 20 );

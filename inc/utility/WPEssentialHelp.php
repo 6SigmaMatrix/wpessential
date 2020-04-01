@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Inc\Utility;
+namespace WPEssential\Utility;
 
 class WPEssentialHelp
 {
