@@ -7,52 +7,110 @@ class WPEssentialEnqueue
 
     public static function constructor ()
     {
-        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'front_end' ], 300 );
-        add_action( 'admin_print_scripts', [ __CLASS__, 'back_end' ], 300 );
+        add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend' ], 300 );
+        add_action( 'admin_enqueue_scripts', [ __CLASS__, 'backend' ], 200 );
     }
 
-    public static function front_end ()
+    public static function frontend ()
     {
-        self::localiztion();
-        do_action( 'wpe_enqueue_before' );
-        do_action( 'wpe_enqueue_after' );
+        self::localization();
+
+        $list = [
+            'wpessential'
+        ];
+        $list = apply_filters( 'wpe/frontend/css', $list );
+
+        foreach ( $list as $v ) {
+            wp_enqueue_style( $v );
+        }
+
+        $list = [
+            ''
+        ];
+        $list = apply_filters( 'wpe/frontend/js', $list );
+
+        wp_enqueue_script( $list );
     }
 
-    public static function back_end ()
+    public static function backend ()
     {
-        self::localiztion();
-        do_action( 'wpe_admin_enqueue_before' );
-        do_action( 'wpe_admin_enqueue_after' );
+
+        $list = [ 'element-ui', 'wpessential-admin' ];
+        $list = apply_filters( 'wpe/backend/css', $list );
+        foreach ( $list as $v ) {
+            wp_enqueue_style( $v );
+        }
+
+        $list = [ 'vue', 'vue-router', 'axios', 'qs', 'nprogress', 'element-ui', 'element-ui-en', 'wpessential-admin' ];
+        $list = apply_filters( 'wpe/backend/js', $list );
+        wp_enqueue_script( $list );
+
+        self::localization();
+
     }
 
-    public static function localiztion ()
+    public static function localization ()
     {
         $localization = [
-            'ajaxurl' => admin_url( 'admin-ajax.php' ),
-            'weburl'  => WPE_URL,
-            'nonce'   => wp_create_nonce( 'wpe_request_nonce' ),
+            'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+            'weburl'    => WPE_URL,
+            'nonce'     => wp_create_nonce( 'wpe_request_nonce' ),
+            'ajaxshort' => '/wp-admin/admin-ajax.php'
         ];
         $localization = apply_filters( 'wpe_loco', $localization );
         wp_localize_script( 'jquery', 'WPEssential', $localization );
     }
 
-    public static function register_script ()
+    public static function plugins ()
     {
-        $minify = self::minify_check();
-        $list   = [
-            'crypt_1' => WPE_URL . "/assts/js/crypt.{$minify}",
-            'crypt_2' => WPE_URL . "/assts/js/encryption.{$minify}",
-            'crypt_2' => WPE_URL . "/assts/js/wpessential.{$minify}",
+        return [
+            'names'   => [
+                'wpessential',
+                'wpessential-blog-post',
+                'wpessential-team',
+                'wpessential-portfolio',
+                'wpessential-contact',
+                'wpessential-social-kit'
+            ],
+            'plugins' => [
+                'wpessential'            => [
+                    'name'  => 'WPEssential',
+                    'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                    'ver'   => '1.0.0',
+                    'price' => '$30'
+                ],
+                'wpessential-blog-post'  => [
+                    'name'  => 'WPEssential Blog Post',
+                    'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                    'ver'   => '1.0.0',
+                    'price' => '$30'
+                ],
+                'wpessential-team'       => [
+                    'name'  => 'WPEssential Team',
+                    'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                    'ver'   => '1.0.0',
+                    'price' => '$30'
+                ],
+                'wpessential-portfolio'  => [
+                    'name'  => 'WPEssential Portfolio',
+                    'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                    'ver'   => '1.0.0',
+                    'price' => '$30'
+                ],
+                'wpessential-contact'    => [
+                    'name'  => 'WPEssential Contact',
+                    'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                    'ver'   => '1.0.0',
+                    'price' => '$30'
+                ],
+                'wpessential-social-kit' => [
+                    'name'  => 'WPEssential Social Kit',
+                    'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
+                    'ver'   => '1.0.0',
+                    'price' => '$30'
+                ],
+            ]
         ];
-    }
-
-    public static function minify_check ()
-    {
-        if ( WP_DEBUG == true || WPE_DEBUG == true ) {
-            $minify = 'min.js';
-        } else {
-            $minify = 'js';
-        }
     }
 
 

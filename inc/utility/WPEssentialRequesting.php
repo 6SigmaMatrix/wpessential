@@ -2,29 +2,35 @@
 
 namespace WPEssential\Utility;
 
-use WPEssential\Request;
-
 class WPEssentialRequesting
 {
-    public static function constructor ()
+    public function __construct ()
     {
-        add_action( 'wpe', [ __CLASS__, 'wpessential' ], 0 );
-        add_action( 'wpe_emotion_react', [ __CLASS__, 'emotionReact', 0 ] );
-        add_action( 'wpe_blog_post', [ __CLASS__, 'blogPost', 0 ] );
+        add_action( 'wp_ajax_nopriv_auth', [ $this, 'login' ] );
+        add_action( 'wp_ajax_settings_args', [ $this, 'settings_args' ] );
     }
 
-    public static function emotionReact ()
+    public function login ()
     {
-        new Request\WPEssentialEmotaionReact();
+        check_ajax_referer( 'wpe_request_nonce', 'security' );
+
+        $data                    = [];
+        $data[ 'user_login' ]    = sanitize_text_field( wpe_get( $_POST, 'user' ) );
+        $data[ 'user_password' ] = wpe_get( $_POST, 'pass' );
+
+        Utility\WPEssentialAuth::authorized( $data );
     }
 
-    public static function blogPost ()
+    public static function registrar ()
     {
-        new Request\WPEssentialEmotaionReact();
+
     }
 
-    public static function wpessential ()
+    public static function settings_args ()
     {
-        new Request\WPEssential();
+        check_ajax_referer( 'wpe_request_nonce', 'nonce' );
+
+        $settings = apply_filters( 'wpe/settings/args', [] );
+        wp_send_json_success( $settings );
     }
 }

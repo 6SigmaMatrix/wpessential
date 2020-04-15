@@ -23,4 +23,11 @@ function wpessential_load ()
     \WPEssential\WPEssentialLoader::constructor();
 }
 
-add_action( 'plugins_loaded', 'wpessential_load', 20 );
+add_action( 'plugins_loaded', 'wpessential_load' );
+
+function wpessential_activated ()
+{
+    flush_rewrite_rules();
+}
+
+register_activation_hook( __FILE__, 'wpessential_activated' );

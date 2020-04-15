@@ -30,18 +30,16 @@ class WPEssentialPanel
     public static function add_menu_page ()
     {
         $page_title = __( 'WPEssential', 'wpessential' );
-        add_menu_page( $page_title, $page_title, 'manage_options', 'wpessential', [ __CLASS__, 'wpe_page_view' ], '', 2 );
+        add_menu_page( $page_title, $page_title, 'manage_options', 'wpessential', [ __CLASS__, 'page_view' ], '', 2 );
 
         do_action( 'wpe_menu_page' );
     }
 
-    public static function wpe_page_view ()
+    public static function page_view ()
     {
-        /* $file_location = apply_filters( 'WPE_dir_extract', 'welcome@view@view' );
-         $file_location = apply_filters( 'WPE_directory', "{$file_location}.php" );
-         if ( file_exists( "{$file_location}" ) ) {
-             require_once "{$file_location}";
-         }*/
+        ?>
+        <wpe></wpe>
+        <?php
     }
 }
 

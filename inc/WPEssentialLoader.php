@@ -35,6 +35,15 @@ class WPEssentialLoader
         }
 
         /**
+         * Plugin debug
+         *
+         * @since  1.0.0
+         */
+        if ( !defined( 'WPE_DEBUG' ) ) {
+            define( 'WPE_DEBUG', false );
+        }
+
+        /**
          * WPEssential Plugin dir
          *
          * @since  1.0.0
@@ -105,20 +114,18 @@ class WPEssentialLoader
 
     public static function start ()
     {
-        do_action( 'wpe' );
+        new Utility\WPEssentialRequesting();
+        Utility\WPEssentialRegisterAssets::constructor();
         Utility\WPEssentialEnqueue::constructor();
         Panel\WPEssentialPanel::constructor();
         Utility\WPEssentialWPShortcodes::constructor();
+        do_action( 'wpe' );
+
     }
 
     public static function initialize ()
     {
         do_action( 'wpe_init' );
-        self::i18n();
-    }
-
-    public static function i18n ()
-    {
         load_plugin_textdomain( 'wpessential', false, WPE_DIR . '/language' );
     }
 
@@ -130,7 +137,12 @@ class WPEssentialLoader
     public static function options_update ( array $data )
     {
         $options = wp_parse_args( $data, self::options() );
-        return update_option( WPE_SETTINGS, $options );
+        $boolean = (bool) update_option( WPE_SETTINGS, $options );
+        if ( $boolean ) {
+            return true;
+        } else {
+            wp_send_json_error( __( 'Data did not stored. It have an error found in data.', 'wpessential' ) );
+        }
     }
 }
 
