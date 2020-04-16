@@ -2,6 +2,8 @@
 
 namespace WPEssential;
 
+use WPEssential\Builders\WordPress\Utility\WPEssentialWPShortcodes as WPShortcodes;
+
 class WPEssentialLoader
 {
     public static function constructor ()
@@ -118,7 +120,7 @@ class WPEssentialLoader
         Utility\WPEssentialRegisterAssets::constructor();
         Utility\WPEssentialEnqueue::constructor();
         Panel\WPEssentialPanel::constructor();
-        Utility\WPEssentialWPShortcodes::constructor();
+        WPShortcodes::constructor();
         do_action( 'wpe' );
 
     }

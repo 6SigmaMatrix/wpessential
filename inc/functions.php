@@ -15,7 +15,7 @@ if ( !function_exists( 'wpe_template_url' ) ) {
     function wpe_template_url ( $path )
     {
         $find_in_theme = get_theme_file_path( $path );
-        if ( $find_in_theme ) {
+        if ( file_exists( $find_in_theme ) ) {
             return $find_in_theme;
         } else {
             return WP_PLUGIN_DIR . "/{$path}";
@@ -24,9 +24,19 @@ if ( !function_exists( 'wpe_template_url' ) ) {
 
 }
 
-if ( !function_exists( 'wpe_error' ) ) {
-    function wpe_error ( $error )
+if ( !function_exists( 'wpe_send_error' ) ) {
+    function wpe_send_error ( $error )
     {
         return new \WP_Error( '', $error );
+    }
+}
+
+if ( !function_exists( 'wpe_error' ) ) {
+    function wpe_error ( $data )
+    {
+        echo '<pre>';
+        print_r( $data );
+        echo '</pre>';
+        exit;
     }
 }

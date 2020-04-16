@@ -9,6 +9,7 @@ class WPEssentialEnqueue
     {
         add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend' ], 300 );
         add_action( 'admin_enqueue_scripts', [ __CLASS__, 'backend' ], 200 );
+        add_action( 'admin_print_scripts-toplevel_page_wpessential', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
     }
 
     public static function frontend ()
@@ -35,17 +36,13 @@ class WPEssentialEnqueue
     public static function backend ()
     {
 
-        $list = [ 'element-ui', 'wpessential-admin' ];
-        $list = apply_filters( 'wpe/backend/css', $list );
+        $list = apply_filters( 'wpe/backend/css', [] );
         foreach ( $list as $v ) {
             wp_enqueue_style( $v );
         }
 
-        $list = [ 'vue', 'vue-router', 'axios', 'qs', 'nprogress', 'element-ui', 'element-ui-en', 'wpessential-admin' ];
-        $list = apply_filters( 'wpe/backend/js', $list );
+        $list = apply_filters( 'wpe/backend/js', [] );
         wp_enqueue_script( $list );
-
-        self::localization();
 
     }
 
@@ -59,6 +56,19 @@ class WPEssentialEnqueue
         ];
         $localization = apply_filters( 'wpe_loco', $localization );
         wp_localize_script( 'jquery', 'WPEssential', $localization );
+    }
+
+    public static function admin_page_enqueue ()
+    {
+        $list = apply_filters( 'wpe/backend/page/css', [] );
+        foreach ( $list as $v ) {
+            wp_enqueue_style( $v );
+        }
+
+        $list = apply_filters( 'wpe/backend/page/js', [] );
+        wp_enqueue_script( $list );
+
+        self::localization();
     }
 
     public static function plugins ()
