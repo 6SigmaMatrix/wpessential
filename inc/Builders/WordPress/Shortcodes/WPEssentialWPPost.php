@@ -34,16 +34,18 @@ class WPEssentialWPPost implements WPEApply
         self::enqueue();
         $atts = apply_filters( 'wpe/wordpress/shortcodes/post', $atts );
         extract( shortcode_atts( [
-            'p'      => 1,
-            'status' => 'publish'
+            'p'             => 1,
+            'status'        => 'publish',
+            'content_limit' => 15,
+            'title_limit'   => 5,
+            'count'         => 10,
         ], $atts ) );
 
-        /** @var post_ids $p */
         if ( empty( $atts ) ) {
             return __( 'Please add the shortcode attributes to run the output of [WPE_Post].', 'wpessential' );
         }
 
-        include wpe_template_url( 'wpessential/templates/wordpress/wpe-post.php' );
+        include wpe_template_url( 'templates/wordpress/wpe-post.php' );
     }
 
     public static function enqueue ()

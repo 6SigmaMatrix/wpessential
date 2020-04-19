@@ -3,6 +3,7 @@
 namespace WPEssential;
 
 use WPEssential\Builders\WordPress\Utility\WPEssentialWPShortcodes as WPShortcodes;
+use WPEssential\Utility\WPEssentialHelp as Help;
 
 class WPEssentialLoader
 {
@@ -14,6 +15,7 @@ class WPEssentialLoader
         self::start();
         add_action( 'init', [ __CLASS__, 'initialize' ] );
         add_action( 'widgets_init', [ '\WPEssential\Utility\WPEssentialWidgets', 'constructor' ] );
+        add_action( 'after_setup_theme', [ __CLASS__, 'add_support' ], 100 );
     }
 
     public static function constants ()
@@ -116,6 +118,7 @@ class WPEssentialLoader
 
     public static function start ()
     {
+        Help::constructor();
         new Utility\WPEssentialRequesting();
         Utility\WPEssentialRegisterAssets::constructor();
         Utility\WPEssentialEnqueue::constructor();
@@ -146,5 +149,20 @@ class WPEssentialLoader
             wp_send_json_error( __( 'Data did not stored. It have an error found in data.', 'wpessential' ) );
         }
     }
-}
 
+    public static function add_support ()
+    {
+        self::add_sizing();
+    }
+
+    public static function add_sizing ()
+    {
+        $size = [
+            'wpe/570/385' => [ 570, 385 ]
+        ];
+        $size = apply_filters( 'wpe/images/sizing', $size );
+        foreach ( $size as $name => $value ) {
+            add_image_size( $name, $value[ 0 ], $value[ 1 ], true );
+        }
+    }
+}
