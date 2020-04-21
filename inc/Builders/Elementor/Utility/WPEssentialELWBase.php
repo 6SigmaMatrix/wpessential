@@ -32,18 +32,18 @@ class WPEssentialELWBase extends Widget_Base
 	 */
 	public function get_icon ()
 	{
-		return "wpe-icon {$this->get_widget_icon()}";
+		return "wpe-icon {$this->set_widget_icon()}";
 	}
 
 	/**
-	 * Get widget icon.
+	 * Set widget icon.
 	 * Retrieve widget icon.
 	 *
 	 * @return string Widget icon.
 	 * @access protected
 	 * @protected
 	 */
-	protected function get_widget_icon ()
+	protected function set_widget_icon ()
 	{
 		return "";
 	}
