@@ -19,15 +19,15 @@
 
 function wpessential_load ()
 {
-    require_once plugin_dir_path( __FILE__ ) . 'inc/WPEssentialLoader.php';
-    \WPEssential\WPEssentialLoader::constructor();
+	require_once plugin_dir_path( __FILE__ ) . 'inc/WPEssentialLoader.php';
+	\WPEssential\WPEssentialLoader::constructor();
 }
 
-add_action( 'plugins_loaded', 'wpessential_load' );
+add_action( 'plugins_loaded', 'wpessential_load', 200 );
 
 function wpessential_activated ()
 {
-    flush_rewrite_rules();
+	flush_rewrite_rules();
 }
 
 register_activation_hook( __FILE__, 'wpessential_activated' );

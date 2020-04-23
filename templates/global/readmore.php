@@ -9,7 +9,7 @@
     <div class="link-box wpe-pull-right">
         <a class="wpe-a" href="<?php the_permalink(); ?>">
             <span><?php _e( 'Read More', 'wpessential' ); ?></span>
-            <i class="flaticon-login"></i>
+            <i class="far fa-arrow-alt-circle-right"></i>
         </a>
     </div>
 </div>

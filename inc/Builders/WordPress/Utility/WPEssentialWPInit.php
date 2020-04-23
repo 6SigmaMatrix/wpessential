@@ -5,7 +5,7 @@ namespace WPEssential\Builders\WordPress\Utility;
 use WPEssential\Builders\WordPress\Implement\WPEssentialWordPressInterFace as WPEApply;
 use WPEssential\Builders\WordPress\Shortcodes\WPEssentialWPPost as Post;
 
-class WPEssentialWPShortcodes implements WPEApply
+class WPEssentialWPInit implements WPEApply
 {
     public static function constructor ()
     {

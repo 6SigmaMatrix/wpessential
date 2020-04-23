@@ -40,12 +40,60 @@ class WPEssentialELWBase extends Widget_Base
 	 * Retrieve widget icon.
 	 *
 	 * @return string Widget icon.
+	 * @since 1.0.0
 	 * @access protected
 	 * @protected
 	 */
 	protected function set_widget_icon ()
 	{
 		return "";
+	}
+
+	/**
+	 * Get widget categories.
+	 *
+	 * Retrieve the list of categories the icon widget belongs to.
+	 *
+	 * Used to determine where to display the widget in the editor.
+	 *
+	 * @return array Widget categories.
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 */
+	public function get_categories ()
+	{
+		return [ 'wpessential' ];
+	}
+
+	/**
+	 * Get widget keywords.
+	 *
+	 * Retrieve the list of keywords the widget belongs to.
+	 *
+	 * @return array Widget keywords.
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 */
+	public function get_keywords ()
+	{
+		$key_words = wp_parse_args( $this->set_keywords(), [ 'wpessential' ] );
+		return $key_words;
+	}
+
+	/**
+	 * Set widget keywords.
+	 * Retrieve widget keywords.
+	 *
+	 * @return array Widget icon.
+	 * @access protected
+	 * @since 1.0.0
+	 * @protected
+	 */
+	protected function set_keywords ()
+	{
+		return [ '' ];
 	}
 
 	/**

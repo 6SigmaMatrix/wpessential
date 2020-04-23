@@ -15,8 +15,8 @@ class WPEssentialRequesting
         check_ajax_referer( 'wpe_request_nonce', 'security' );
 
         $data                    = [];
-        $data[ 'user_login' ]    = sanitize_text_field( wpe_get( $_POST, 'user' ) );
-        $data[ 'user_password' ] = wpe_get( $_POST, 'pass' );
+        $data[ 'user_login' ]    = sanitize_text_field( wpe_array_get( $_POST, 'user' ) );
+        $data[ 'user_password' ] = wpe_array_get( $_POST, 'pass' );
 
         Utility\WPEssentialAuth::authorized( $data );
     }
