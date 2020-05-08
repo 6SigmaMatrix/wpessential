@@ -101,3 +101,13 @@
 .row-bottom-gap-5:not(:last-child) {
     margin-bottom: 5px;
 }
+
+/*===== wp custom ======*/
+#wpcontent {
+    padding-left: 0;
+}
+
+.update-nag {
+    display: none;
+}
+

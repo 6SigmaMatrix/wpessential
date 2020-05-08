@@ -2247,55 +2247,55 @@ html {
 }
 
 .wpe-mt-0 {
-    margin-top: 0px;
+    margin-top: 0px !important;
 }
 
 .wpe-mb-0 {
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
 }
 
 .wpe-ml-0 {
-    margin-left: 0px;
+    margin-left: 0px !important;
 }
 
 .wpe-mr-0 {
-    margin-right: 0px;
+    margin-right: 0px !important;
 }
 
 .wpe-m-0 {
-    margin: 0px;
+    margin: 0px !important;
 }
 
 .wpe-mt-10 {
-    margin-top: 10px;
+    margin-top: 10px !important;
 }
 
 .wpe-mt-20 {
-    margin-top: 20px;
+    margin-top: 20px !important;
 }
 
 .wpe-mt-30 {
-    margin-top: 30px;
+    margin-top: 30px !important;
 }
 
 .wpe-pt-0 {
-    padding-top: 0px;
+    padding-top: 0px !important;
 }
 
 .wpe-pb-0 {
-    padding-bottom: 0px;
+    padding-bottom: 0px !important;
 }
 
 .wpe-pl-0 {
-    padding-left: 0px;
+    padding-left: 0px !important;
 }
 
 .wpe-pr-0 {
-    padding-right: 0px;
+    padding-right: 0px !important;
 }
 
 .wpe-p-0 {
-    padding: 0px;
+    padding: 0px !important;
 }
 
 .wpe-ul, .wpe-li {
@@ -2326,6 +2326,11 @@ html {
 
 /*======= WPE Columns Style Close ========*/
 /*======= WPE Blog Block One Style Start ========*/
+.entry-content .vc_row {
+    width: unset !important;
+    max-width: unset !important;
+}
+
 .wpe-blog-block-one .inner-box {
     position: relative;
     display: block;

@@ -17,17 +17,11 @@
  * Domain Path: /languages/
  */
 
-function wpessential_load ()
-{
-	require_once plugin_dir_path( __FILE__ ) . 'inc/WPEssentialLoader.php';
-	\WPEssential\WPEssentialLoader::constructor();
-}
+require_once plugin_dir_path( __FILE__ ) . 'install.php';
+require_once plugin_dir_path( __FILE__ ) . 'uninstall.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/constants.php';
+require_once plugin_dir_path( __FILE__ ) . 'inc/Loader.php';
 
-add_action( 'plugins_loaded', 'wpessential_load', 200 );
-
-function wpessential_activated ()
-{
-	flush_rewrite_rules();
-}
-
-register_activation_hook( __FILE__, 'wpessential_activated' );
+register_activation_hook( __FILE__, 'wpe_install' );
+register_deactivation_hook( __FILE__, 'wpe_unsintall' );
+\WPEssential\Loader::constructor();

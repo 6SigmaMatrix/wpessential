@@ -1,19 +1,19 @@
 <?php
 
-use WPEssential\Utility\WPEssentialCollection;
-use WPEssential\Utility\WPEssentialArr;
+use WPEssential\Utility\Collection;
+use WPEssential\Utility\Arr;
 
 /**
  * Create a collection from the given value.
  *
  * @param mixed $value
- * @return WPEssentialCollection
+ * @return Collection
  * @since  1.0.0
  */
 if ( !function_exists( 'wpe_collect' ) ) {
 	function wpe_collect ( $value = null )
 	{
-		return new WPEssentialCollection( $value );
+		return new Collection( $value );
 	}
 }
 
@@ -33,7 +33,7 @@ if ( !function_exists( 'append_config' ) ) {
 			if ( is_numeric( $key ) ) {
 				$start++;
 
-				$array[ $start ] = WPEssentialArr::pull( $array, $key );
+				$array[ $start ] = Arr::pull( $array, $key );
 			}
 		}
 
@@ -53,7 +53,7 @@ if ( !function_exists( 'append_config' ) ) {
 if ( !function_exists( 'wpe_array_add' ) ) {
 	function wpe_array_add ( $array, $key, $value )
 	{
-		return WPEssentialArr::add( $array, $key, $value );
+		return Arr::add( $array, $key, $value );
 	}
 }
 
@@ -67,7 +67,7 @@ if ( !function_exists( 'wpe_array_add' ) ) {
 if ( !function_exists( 'wpe_array_collapse' ) ) {
 	function wpe_array_collapse ( $array )
 	{
-		return WPEssentialArr::collapse( $array );
+		return Arr::collapse( $array );
 	}
 }
 
@@ -81,7 +81,7 @@ if ( !function_exists( 'wpe_array_collapse' ) ) {
 if ( !function_exists( 'wpe_array_divide' ) ) {
 	function wpe_array_divide ( $array )
 	{
-		return WPEssentialArr::divide( $array );
+		return Arr::divide( $array );
 	}
 }
 
@@ -96,7 +96,7 @@ if ( !function_exists( 'wpe_array_divide' ) ) {
 if ( !function_exists( 'wpe_array_dot' ) ) {
 	function wpe_array_dot ( $array, $prepend = '' )
 	{
-		return WPEssentialArr::dot( $array, $prepend );
+		return Arr::dot( $array, $prepend );
 	}
 }
 
@@ -111,7 +111,7 @@ if ( !function_exists( 'wpe_array_dot' ) ) {
 if ( !function_exists( 'wpe_array_except' ) ) {
 	function wpe_array_except ( $array, $keys )
 	{
-		return WPEssentialArr::except( $array, $keys );
+		return Arr::except( $array, $keys );
 	}
 }
 
@@ -127,7 +127,7 @@ if ( !function_exists( 'wpe_array_except' ) ) {
 if ( !function_exists( 'wpe_array_first' ) ) {
 	function wpe_array_first ( $array, callable $callback = null, $default = null )
 	{
-		return WPEssentialArr::first( $array, $callback, $default );
+		return Arr::first( $array, $callback, $default );
 	}
 }
 
@@ -142,7 +142,7 @@ if ( !function_exists( 'wpe_array_first' ) ) {
 if ( !function_exists( 'wpe_array_flatten' ) ) {
 	function wpe_array_flatten ( $array, $depth = INF )
 	{
-		return WPEssentialArr::flatten( $array, $depth );
+		return Arr::flatten( $array, $depth );
 	}
 }
 
@@ -157,7 +157,7 @@ if ( !function_exists( 'wpe_array_flatten' ) ) {
 if ( !function_exists( 'wpe_array_forget' ) ) {
 	function wpe_array_forget ( &$array, $keys )
 	{
-		return WPEssentialArr::forget( $array, $keys );
+		return Arr::forget( $array, $keys );
 	}
 }
 
@@ -173,7 +173,7 @@ if ( !function_exists( 'wpe_array_forget' ) ) {
 if ( !function_exists( 'wpe_array_get' ) ) {
 	function wpe_array_get ( $array, $key, $default = null )
 	{
-		return WPEssentialArr::get( $array, $key, $default );
+		return Arr::get( $array, $key, $default );
 	}
 }
 
@@ -188,7 +188,7 @@ if ( !function_exists( 'wpe_array_get' ) ) {
 if ( !function_exists( 'wpe_array_has' ) ) {
 	function wpe_array_has ( $array, $keys )
 	{
-		return WPEssentialArr::has( $array, $keys );
+		return Arr::has( $array, $keys );
 	}
 }
 
@@ -204,7 +204,7 @@ if ( !function_exists( 'wpe_array_has' ) ) {
 if ( !function_exists( 'wpe_array_last' ) ) {
 	function wpe_array_last ( $array, callable $callback = null, $default = null )
 	{
-		return WPEssentialArr::last( $array, $callback, $default );
+		return Arr::last( $array, $callback, $default );
 	}
 }
 
@@ -219,7 +219,7 @@ if ( !function_exists( 'wpe_array_last' ) ) {
 if ( !function_exists( 'wpe_array_only' ) ) {
 	function wpe_array_only ( $array, $keys )
 	{
-		return WPEssentialArr::only( $array, $keys );
+		return Arr::only( $array, $keys );
 	}
 }
 
@@ -235,7 +235,7 @@ if ( !function_exists( 'wpe_array_only' ) ) {
 if ( !function_exists( 'wpe_array_pluck' ) ) {
 	function wpe_array_pluck ( $array, $value, $key = null )
 	{
-		return WPEssentialArr::pluck( $array, $value, $key );
+		return Arr::pluck( $array, $value, $key );
 	}
 }
 
@@ -251,7 +251,7 @@ if ( !function_exists( 'wpe_array_pluck' ) ) {
 if ( !function_exists( 'wpe_array_prepend' ) ) {
 	function wpe_array_prepend ( $array, $value, $key = null )
 	{
-		return WPEssentialArr::prepend( $array, $value, $key );
+		return Arr::prepend( $array, $value, $key );
 	}
 }
 
@@ -267,7 +267,7 @@ if ( !function_exists( 'wpe_array_prepend' ) ) {
 if ( !function_exists( 'wpe_array_pull' ) ) {
 	function wpe_array_pull ( &$array, $key, $default = null )
 	{
-		return WPEssentialArr::pull( $array, $key, $default );
+		return Arr::pull( $array, $key, $default );
 	}
 }
 
@@ -282,7 +282,7 @@ if ( !function_exists( 'wpe_array_pull' ) ) {
 if ( !function_exists( 'wpe_array_random' ) ) {
 	function wpe_array_random ( $array, $num = null )
 	{
-		return WPEssentialArr::random( $array, $num );
+		return Arr::random( $array, $num );
 	}
 }
 
@@ -300,7 +300,7 @@ if ( !function_exists( 'wpe_array_random' ) ) {
 if ( !function_exists( 'wpe_array_set' ) ) {
 	function wpe_array_set ( &$array, $key, $value )
 	{
-		return WPEssentialArr::set( $array, $key, $value );
+		return Arr::set( $array, $key, $value );
 	}
 }
 
@@ -315,7 +315,7 @@ if ( !function_exists( 'wpe_array_set' ) ) {
 if ( !function_exists( 'wpe_array_sort' ) ) {
 	function wpe_array_sort ( $array, $callback = null )
 	{
-		return WPEssentialArr::sort( $array, $callback );
+		return Arr::sort( $array, $callback );
 	}
 }
 
@@ -329,7 +329,7 @@ if ( !function_exists( 'wpe_array_sort' ) ) {
 if ( !function_exists( 'wpe_array_sort_recursive' ) ) {
 	function wpe_array_sort_recursive ( $array )
 	{
-		return WPEssentialArr::sortRecursive( $array );
+		return Arr::sortRecursive( $array );
 	}
 }
 
@@ -344,7 +344,7 @@ if ( !function_exists( 'wpe_array_sort_recursive' ) ) {
 if ( !function_exists( 'wpe_array_where' ) ) {
 	function wpe_array_where ( $array, callable $callback )
 	{
-		return WPEssentialArr::where( $array, $callback );
+		return Arr::where( $array, $callback );
 	}
 }
 
@@ -358,7 +358,20 @@ if ( !function_exists( 'wpe_array_where' ) ) {
 if ( !function_exists( 'wpe_array_wrap' ) ) {
 	function wpe_array_wrap ( $value )
 	{
-		return WPEssentialArr::wrap( $value );
+		return Arr::wrap( $value );
+	}
+}
+
+/**
+ * Return the default value of the given value.
+ *
+ * @param mixed $value
+ * @return mixed
+ */
+if ( !function_exists( 'wpe_value' ) ) {
+	function wpe_value ( $value )
+	{
+		return $value instanceof Closure ? $value() : $value;
 	}
 }
 
@@ -376,10 +389,12 @@ if ( !function_exists( 'wpe_template_url' ) ) {
 			return $find_in_theme;
 		}
 		$find_in_theme = WPE_DIR . "/{$path}";
-		if ( $find_in_theme ) {
+		if ( file_exists( $find_in_theme ) ) {
 			return $find_in_theme;
 		}
-		return WP_PLUGIN_DIR . "/{$path}";
+		if ( file_exists( $path ) ) {
+			return $path;
+		}
 	}
 
 }
@@ -515,5 +530,21 @@ if ( !function_exists( 'wpe_border_style' ) ) {
 			'inset'  => __( 'Inset', 'tci-uet' ),
 			'outset' => __( 'Outset', 'tci-uet' ),
 		] );
+	}
+}
+
+/**
+ * Get code from file.
+ *
+ * @return string|array
+ * @since  1.0.0
+ */
+if ( !function_exists( 'wpe_file_data' ) ) {
+	function wpe_file_data ( $link )
+	{
+		$file = wp_remote_get( $link );
+		if ( !is_wp_error( $file ) ) {
+			return wpe_array_get( $file, 'body' );
+		}
 	}
 }
