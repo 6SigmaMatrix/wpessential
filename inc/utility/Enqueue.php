@@ -47,8 +47,8 @@ final class Enqueue
 		$post_types = Loader::options();
 		$post_types = wpe_array_get( $post_types, 'plugin_options.allowed_post_types' );
 
-		if ( $hook == 'post.php' || $hook == 'post-new.php' ) {
-			if ( in_array( $post_type, $post_types ) ) {
+		if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
+			if ( is_array( $post_types ) && in_array( $post_type, $post_types ) ) {
 
 				$list = apply_filters( 'wpe/backend/css', [] );
 				$list = array_filter( $list );
@@ -115,7 +115,7 @@ final class Enqueue
 		$list = apply_filters( 'wpe/elementor/editor/after/js', [ 'wpessential-elementor-editor' ] );
 		$list = array_filter( $list );
 		if ( $list ) {
-			wp_enqueue_script( $list);
+			wp_enqueue_script( $list );
 		}
 	}
 

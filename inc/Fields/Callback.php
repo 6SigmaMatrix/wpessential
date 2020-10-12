@@ -15,11 +15,12 @@ use WPEssential\Plugins\Helper\Fields\ShortcodesUltimate;
 use WPEssential\Plugins\Helper\Fields\SiteOrigin;
 use WPEssential\Plugins\Helper\Fields\Themify;
 use WPEssential\Plugins\Helper\Fields\VisualComposer;
+use WPEssential\Plugins\Helper\Fields\WordPress;
 use WPEssential\Plugins\Helper\Fields\WPBakery;
 
 abstract class Callback extends Common
 {
-	use Beaver, Brizy, Divi, Elementor, Gutenberg, KingComposer, ShortcodesUltimate, SiteOrigin, Themify, VisualComposer, WPBakery;
+	use Beaver, Brizy, Divi, Elementor, Gutenberg, KingComposer, ShortcodesUltimate, SiteOrigin, Themify, VisualComposer, WPBakery, WordPress;
 
 	/**
 	 * Set the callback to be used for determining the editor type.
@@ -27,7 +28,7 @@ abstract class Callback extends Common
 	 * @param string $callback
 	 * @return $this
 	 */
-	public function editor ( string $callback )
+	public function editor ( string $callback = 'wordpress' )
 	{
 		$this->editor = $callback;
 
