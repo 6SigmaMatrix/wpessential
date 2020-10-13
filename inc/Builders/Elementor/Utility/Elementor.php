@@ -24,7 +24,9 @@ final class Elementor implements ShortcodeInit
 	public static function registry_widget ()
 	{
 		Loader::editor( 'elementor' );
-		$list = apply_filters( 'wpe/elementor/shortcodes', [] );
+		$list = apply_filters( 'wpe/elementor/shortcodes', [
+			'Post' => '\\WPEssential\\Plugins\\Builders\\Elementor\\Shortcodes\\Post'
+		] );
 		if ( ! $list ) {
 			return;
 		}

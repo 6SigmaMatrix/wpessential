@@ -14,7 +14,9 @@ final class WordPress implements ShortcodeInit
 	public static function registry_widget ()
 	{
 		//global $shortcode_tags;
-		$list = apply_filters( 'wpe/wordpress/shortcodes', [] );
+		$list = apply_filters( 'wpe/wordpress/shortcodes', [
+			'Post' => '\\WPEssential\\Plugins\\Builders\\WordPress\\Shortcodes\\Post',
+		] );
 		$list = array_filter( $list );
 		if ( ! $list ) {
 			return;

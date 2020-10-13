@@ -92,7 +92,7 @@ trait Help
 
 		// Properly format the array.
 		$items = [
-			'' => __( 'Choose', 'wpessential-blog-post' ),
+			'' => __( 'Choose', 'wpessential' ),
 		];
 		foreach ( $posts as $post ) {
 			$items[ $post->ID ] = $post->post_title;
@@ -112,7 +112,7 @@ trait Help
 	public static function get_taxonomies ()
 	{
 		$items = [
-			'' => __( 'Choose', 'wpessential-blog-post' ),
+			'' => __( 'Choose', 'wpessential' ),
 		];
 
 		// Get the taxonomies.
@@ -181,7 +181,7 @@ trait Help
 	public static function get_post_types ()
 	{
 		$items = [
-			'' => __( 'Choose', 'wpessential-blog-post' ),
+			'' => __( 'Choose', 'wpessential' ),
 		];
 
 		// Get the post types.
@@ -211,7 +211,7 @@ trait Help
 	public static function get_terms ( $taxonomies )
 	{
 		$items = [
-			'' => __( 'Choose', 'wpessential-blog-post' ),
+			'' => __( 'Choose', 'wpessential' ),
 		];
 
 		// Get the post types.

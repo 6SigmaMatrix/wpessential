@@ -35,7 +35,6 @@ final class Loader
 
 		add_action( 'plugins_loaded', [ __CLASS__, 'on_plugins_loaded' ], - 1 );
 		add_action( 'plugins_loaded', [ __CLASS__, 'autoload' ], 100 );
-		add_action( 'widgets_init', [ '\\WPEssential\\Plugins\\Widgets\\Utility\\Widgets', 'constructor' ], 1000 );
 		add_action( 'init', [ __CLASS__, 'init' ], 1000 );
 	}
 
