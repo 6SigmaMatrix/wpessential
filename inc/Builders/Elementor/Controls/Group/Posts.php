@@ -7,7 +7,6 @@ namespace WPEssential\Plugins\Builders\Elementor\Controls\Group;
 
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Base;
-use Elementor\Utils as ElementorUtils;
 
 class Posts extends Group_Control_Base
 {
@@ -257,8 +256,8 @@ class Posts extends Group_Control_Base
 		$post__not_in = [];
 		if ( ! empty( $settings[ 'exclude' ] ) ) {
 			if ( in_array( 'current_post', $settings[ 'exclude' ], true ) ) {
-				if ( ElementorUtils::is_ajax() && ! empty( $_REQUEST[ 'post_id' ] ) ) {
-					$post__not_in[] = $_REQUEST[ 'post_id' ];
+				if ( wp_doing_ajax() && ! empty( $_REQUEST[ 'post_id' ] ) ) {
+					$post__not_in[] = sanitize_text_field( $_REQUEST[ 'post_id' ] );
 				} elseif ( is_singular() ) {
 					$post__not_in[] = get_queried_object_id();
 				}

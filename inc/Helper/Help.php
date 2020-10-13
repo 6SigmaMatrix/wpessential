@@ -378,7 +378,7 @@ trait Help
 	}
 
 	/**
-	 * Returns the string with charactor base linkt
+	 * Returns the string with charactor base link
 	 *
 	 * @access public
 	 * @param string $desc
@@ -389,6 +389,37 @@ trait Help
 	public static function trim_char ( string $desc, float $lenght, $indecator )
 	{
 		return mb_strimwidth( $desc, 0, $lenght, $indecator );
+	}
+
+	/**
+	 * Returns the blog post categoies
+	 *
+	 * @access public
+	 * @param string $classes
+	 * @param string $seprator
+	 * @return void
+	 */
+	public static function the_blog_cat ( string $classes = '', $seprator = ',' )
+	{
+		ob_start();
+		the_category( $seprator );
+		$cats = ob_get_clean();
+		echo str_replace( '<a', "<a class='wpe-blog-cats {$classes}'", $cats );
+	}
+
+	/**
+	 * Returns the author link
+	 *
+	 * @access public
+	 * @param string $classes
+	 * @return void
+	 */
+	public static function the_author_link ( string $classes = '' )
+	{
+		ob_start();
+		the_author_posts_link();
+		$link = ob_get_clean();
+		echo str_replace( '<a', "<a class='wpe-author-link {$classes}'", $link );
 	}
 
 	/**

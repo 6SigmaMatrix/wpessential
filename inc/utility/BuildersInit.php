@@ -26,13 +26,5 @@ final class BuildersInit
 		if ( did_action( 'vc_plugins_loaded' ) ) {
 			WPBakery::constructor();
 		}
-
-		if ( class_exists( 'FLBuilder' ) ) {
-			Beaver::constructor();
-		}
-
-		if ( function_exists( 'kc_add_map' ) ) {
-			KingComposer::constructor();
-		}
 	}
 }

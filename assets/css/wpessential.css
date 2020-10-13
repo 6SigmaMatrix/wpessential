@@ -2302,18 +2302,22 @@ html {
     float: right;
 }
 
-.wpe-a {
-    text-decoration: none;
-    transition: all 500ms ease;
-    -moz-transition: all 500ms ease;
-    -webkit-transition: all 500ms ease;
-    -ms-transition: all 500ms ease;
-    -o-transition: all 500ms ease;
-}
-
-.wpe-a:hover {
+.wpe-a, .wpe-a:hover, wpe-a:focus {
     text-decoration: none;
     outline: none;
+}
+
+.wpe-a {
+    color: inherit;
+}
+
+.wpe-figure {
+    margin: 0;
+}
+
+.wpe-img {
+    max-width: 100%;
+    height: auto;
 }
 
 /*======= WPE Columns Style Close ========*/

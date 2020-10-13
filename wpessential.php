@@ -17,10 +17,10 @@
  * Domain Path: /languages/
  */
 
-require_once plugin_dir_path( __FILE__ ) . 'install.php';
-require_once plugin_dir_path( __FILE__ ) . 'uninstall.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/constants.php';
-require_once plugin_dir_path( __FILE__ ) . 'inc/Loader.php';
+require_once plugin_dir_path( __FILE__ ) . 'constants.php';
+require_once WPE_DIR . 'install.php';
+require_once WPE_DIR . 'uninstall.php';
+require_once WPE_DIR . 'inc/Loader.php';
 
 register_activation_hook( __FILE__, 'wpe_install' );
 register_deactivation_hook( __FILE__, 'wpe_unsintall' );

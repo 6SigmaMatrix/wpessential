@@ -3,11 +3,9 @@
 namespace WPEssential\Plugins;
 
 use WPEssential\Plugins\Utility\BuildersInit;
-//use WPEssential\Plugins\Utility\MetaBoxInit;
 use WPEssential\Plugins\Utility\Requesting;
 use WPEssential\Plugins\Utility\RegisterAssets;
 use WPEssential\Plugins\Utility\Enqueue;
-//use WPEssential\Plugins\Panel\Panel;
 
 final class Loader
 {
@@ -58,7 +56,7 @@ final class Loader
 	public static function autoload ()
 	{
 		$psr = [
-			'WPEssential\\Plugins\\' => WPE_DIR . '/inc/'
+			'WPEssential\\Plugins\\' => WPE_DIR . 'inc/'
 		];
 
 		$class_loader = new Libraries\ClassLoader;
@@ -73,8 +71,8 @@ final class Loader
 
 	public static function load_files ()
 	{
-		require_once WPE_DIR . '/inc/functions.php';
-		require_once WPE_DIR . '/inc/Libraries/ClassLoader.php';
+		require_once WPE_DIR . 'inc/functions.php';
+		require_once WPE_DIR . 'inc/Libraries/ClassLoader.php';
 	}
 
 	public static function start ()
@@ -82,15 +80,13 @@ final class Loader
 		Requesting::constructor();
 		RegisterAssets::constructor();
 		Enqueue::constructor();
-		//Panel::constructor();
-		//MetaBoxInit::constructor();
 	}
 
 	public static function init ()
 	{
 		do_action( 'wpessential_init' );
 		BuildersInit::constructor();
-		load_plugin_textdomain( 'wpessential', false, WPE_DIR . '/language' );
+		load_plugin_textdomain( 'wpessential', false, WPE_DIR . 'language' );
 		self::add_image_sizes();
 	}
 

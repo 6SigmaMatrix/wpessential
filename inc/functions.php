@@ -443,7 +443,7 @@ if ( ! function_exists( 'wpe_template_load' ) ) {
 			return $find_in_theme;
 		}
 
-		$find_in_theme = WPE_DIR . "/{$path}";
+		$find_in_theme = WPE_DIR . "{$path}";
 		if ( file_exists( $find_in_theme ) ) {
 			return $find_in_theme;
 		}
@@ -461,7 +461,7 @@ if ( ! function_exists( 'wpe_template_load' ) ) {
  * @return string
  * @since  1.0.0
  */
-if ( ! function_exists( 'wpe_template_dir' ) ) {
+/*if ( ! function_exists( 'wpe_template_dir' ) ) {
 	function wpe_template_dir ( $path )
 	{
 		$dir = apply_filters( 'wpe/template/dir', get_template_directory() . "/{$path}" );
@@ -476,7 +476,7 @@ if ( ! function_exists( 'wpe_template_dir' ) ) {
 			return $dir;
 		}
 	}
-}
+}*/
 
 /**
  * Retrive the file location in plugins.
@@ -487,7 +487,7 @@ if ( ! function_exists( 'wpe_template_dir' ) ) {
 if ( ! function_exists( 'wpe_plugin_template_load' ) ) {
 	function wpe_plugin_template_load ( $path )
 	{
-		$find_in_theme = WPE_DIR . "/{$path}";
+		$find_in_theme = WPE_DIR . "{$path}";
 		if ( file_exists( $find_in_theme ) ) {
 			return $find_in_theme;
 		}
@@ -496,8 +496,8 @@ if ( ! function_exists( 'wpe_plugin_template_load' ) ) {
 			return $path;
 		}
 
-		if ( is_dir( $dir ) ) {
-			return $dir;
+		if ( is_dir( $path ) ) {
+			return $path;
 		}
 	}
 }
@@ -511,7 +511,7 @@ if ( ! function_exists( 'wpe_plugin_template_load' ) ) {
 if ( ! function_exists( 'wpe_plugin_template_dir' ) ) {
 	function wpe_plugin_template_dir ( $path )
 	{
-		$dir = WPE_DIR . "/{$path}";
+		$dir = WPE_DIR . "{$path}";
 		if ( is_dir( $dir ) ) {
 			return $dir;
 		}
@@ -940,7 +940,7 @@ if ( ! function_exists( 'wpe_gen_attr' ) ) {
 		$build_atts = '';
 		$args       = wpe_collect( $args )->filter();
 		foreach ( $args as $key => $value ) {
-			$value = ( is_array( $value ) ) ? urlencode( json_encode( $value ) ) : $value;
+			$value      = ( is_array( $value ) ) ? urlencode( json_encode( $value ) ) : $value;
 			$build_atts .= ' ' . $key . '="' . $value . '"';
 		}
 
@@ -976,5 +976,32 @@ if ( ! function_exists( 'wpe_query_post' ) ) {
 		}
 
 		return $query;
+	}
+}
+
+/**
+ * Returns the blog post categoies
+ *
+ * @param string $classes
+ * @param string $seprator
+ * @return void
+ */
+if ( ! function_exists( 'wpe_the_blog_cat' ) ) {
+	function wpe_the_blog_cat ( $classes = '', $seprator = ',' )
+	{
+		Help::the_blog_cat( $classes, $seprator );
+	}
+}
+
+/**
+ * Returns the author link
+ *
+ * @param string $classes
+ * @return void
+ */
+if ( ! function_exists( 'wpe_the_author_link' ) ) {
+	function wpe_the_author_link ( $classes = '' )
+	{
+		Help::the_author_link( $classes );
 	}
 }

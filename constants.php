@@ -32,7 +32,7 @@ if ( !defined( 'WPE_DEBUG' ) ) {
  * @since  1.0.0
  */
 if ( !defined( 'WPE_DIR' ) ) {
-	define( 'WPE_DIR', WP_PLUGIN_DIR . '/wpessential' );
+	define( 'WPE_DIR', plugin_dir_path( __FILE__) );
 }
 
 /**
@@ -41,16 +41,7 @@ if ( !defined( 'WPE_DIR' ) ) {
  * @since  1.0.0
  */
 if ( !defined( 'WPE_URL' ) ) {
-	define( 'WPE_URL', WP_PLUGIN_URL . '/wpessential' );
-}
-
-/**
- * WPEssential Plugin dir
- *
- * @since  1.0.0
- */
-if ( !defined( 'WPE_DIR' ) ) {
-	define( 'WPE_DIR', WP_PLUGIN_DIR . '/wpessential' );
+	define( 'WPE_URL', plugin_dir_url( __FILE__) );
 }
 
 /**

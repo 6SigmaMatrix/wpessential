@@ -15,12 +15,6 @@ final class Requesting
 		add_action( 'wp_ajax_auth', [ __CLASS__, 'login' ] );
 		//add_action( 'wp_ajax_settings_args', [ __CLASS__, 'settings_args' ] );
 
-		add_action( 'wp_ajax_theme_options', [ '\\WPEssential\\Plugins\\Utility\\ThemeOptionsInit', 'options' ] );
-		add_action( 'wp_ajax_save_options', [ '\\WPEssential\\Plugins\\Utility\\ThemeOptionsInit', 'save' ] );
-
-		add_action( 'wp_ajax_plugin_options', [ '\\WPEssential\\Plugins\\Utility\\PluginOptionsInit', 'options' ] );
-		add_action( 'wp_ajax_plugin_save_options', [ '\\WPEssential\\Plugins\\Utility\\PluginOptionsInit', 'save' ] );
-
 		add_action( 'wp_ajax_get_image_from_url', [ __CLASS__, 'get_image_from_url' ] );
 	}
 

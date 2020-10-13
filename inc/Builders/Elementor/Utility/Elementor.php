@@ -9,6 +9,7 @@ use WPEssential\Plugins\Builders\Elementor\Controls\Group\Query as GroupQuery;
 use WPEssential\Plugins\Builders\Elementor\Controls\Group\Related;
 use WPEssential\Plugins\Builders\Elementor\Controls\Query;
 use WPEssential\Plugins\Implement\ShortcodeInit;
+use WPEssential\Plugins\Loader;
 
 final class Elementor implements ShortcodeInit
 {
@@ -22,6 +23,7 @@ final class Elementor implements ShortcodeInit
 
 	public static function registry_widget ()
 	{
+		Loader::editor( 'elementor' );
 		$list = apply_filters( 'wpe/elementor/shortcodes', [] );
 		if ( ! $list ) {
 			return;
