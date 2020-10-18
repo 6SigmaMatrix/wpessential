@@ -433,24 +433,24 @@ if ( ! function_exists( 'wpe_data_get' ) ) {
 if ( ! function_exists( 'wpe_template_load' ) ) {
 	function wpe_template_load ( $path )
 	{
-		$find_in_theme = apply_filters( 'wpe/template/load', get_theme_file_path( $path ) );
-		if ( file_exists( $find_in_theme ) ) {
-			return $find_in_theme;
+		$find_in = apply_filters( 'wpe/template/load', get_theme_file_path( $path ) );
+		if ( file_exists( $find_in ) ) {
+			return $find_in;
 		}
 
-		$find_in_theme = $path;
-		if ( file_exists( $find_in_theme ) ) {
-			return $find_in_theme;
+		$find_in = $path;
+		if ( file_exists( $find_in ) ) {
+			return $find_in;
 		}
 
-		$find_in_theme = WPE_DIR . "{$path}";
-		if ( file_exists( $find_in_theme ) ) {
-			return $find_in_theme;
+		$find_in = WPE_DIR . "{$path}";
+		if ( file_exists( $find_in ) ) {
+			return $find_in;
 		}
 
-		$find_in_theme = $path;
-		if ( ! file_exists( $find_in_theme ) ) {
-			echo '<h1>' . basename( $find_in_theme ) . ' not found.</h1>';
+		$find_in = $path;
+		if ( ! file_exists( $find_in ) ) {
+			echo '<h1>' . basename( $find_in ) . ' not found.</h1>';
 		}
 	}
 }
@@ -692,6 +692,32 @@ if ( ! function_exists( 'wpe_button_size' ) ) {
 }
 
 /**
+ * Get image id by url.
+ *
+ * @return string|array
+ * @since  1.0.0
+ */
+if ( ! function_exists( 'wpe_get_image_id_by_url' ) ) {
+	function wpe_get_image_id_by_url ( $link )
+	{
+		return Help::get_image_id( $link );
+	}
+}
+
+/**
+ * Returns an array of the attachment's properties.
+ *
+ * @return string|array
+ * @since  1.0.0
+ */
+if ( ! function_exists( 'wpe_get_image_from_url' ) ) {
+	function wpe_get_image_from_url ( $link )
+	{
+		return Help::get_image_from_url( $link );
+	}
+}
+
+/**
  * Get code from file.
  *
  * @return string|array
@@ -756,7 +782,7 @@ if ( ! function_exists( 'wpe_get_taxonomies' ) ) {
 if ( ! function_exists( 'wpe_get_terms' ) ) {
 	function wpe_get_terms ( $args )
 	{
-		return Help::get_terms( $args );
+		return Help::get_terms_list( $args );
 	}
 }
 
@@ -821,6 +847,9 @@ if ( ! function_exists( 'wpe_get_user_meta_keys' ) ) {
 if ( ! function_exists( 'wpe_trim_words' ) ) {
 	function wpe_trim_words ( $desc, $lenght = 55, $indecator = '' )
 	{
+		if ( ! $lenght ) {
+			$lenght = 55;
+		}
 		return Help::trim_words( $desc, $lenght, $indecator );
 	}
 }
@@ -834,6 +863,9 @@ if ( ! function_exists( 'wpe_trim_words' ) ) {
 if ( ! function_exists( 'wpe_trim_char' ) ) {
 	function wpe_trim_char ( $desc, $lenght = 55, $indecator = '' )
 	{
+		if ( ! $lenght ) {
+			$lenght = 55;
+		}
 		return Help::trim_char( $desc, $lenght, $indecator );
 	}
 }
@@ -972,7 +1004,7 @@ if ( ! function_exists( 'wpe_query_post' ) ) {
 	function wpe_query_post ( $query )
 	{
 		if ( ! $query->have_posts() ) {
-			return __( 'No post found', 'wpessential' );
+			echo __( 'No post found', 'wpessential' );
 		}
 
 		return $query;
@@ -1003,5 +1035,70 @@ if ( ! function_exists( 'wpe_the_author_link' ) ) {
 	function wpe_the_author_link ( $classes = '' )
 	{
 		Help::the_author_link( $classes );
+	}
+}
+
+/**
+ * Json,Base 64 encode
+ *
+ * @param mixed $values
+ * @return void
+ */
+if ( ! function_exists( 'wpe_josn_64' ) ) {
+	function wpe_josn_64 ( $values )
+	{
+		return json_encode( $values );
+	}
+}
+
+/**
+ * Json encode
+ *
+ * @param mixed $values
+ * @return void
+ */
+if ( ! function_exists( 'wpe_josn_encode' ) ) {
+	function wpe_josn_encode ( $values )
+	{
+		return json_encode( $values );
+	}
+}
+
+/**
+ * Json decode
+ *
+ * @param mixed $value
+ * @return void
+ */
+if ( ! function_exists( 'wpe_josn_decode' ) ) {
+	function wpe_josn_decode ( $value, $acc = false )
+	{
+		return json_decode( $value, $acc );
+	}
+}
+
+/**
+ * base 64 encode
+ *
+ * @param mixed $values
+ * @return void
+ */
+if ( ! function_exists( 'wpe_base_64_encode' ) ) {
+	function wpe_base_64_encode ( $values )
+	{
+		return base64_encode( $values );
+	}
+}
+
+/**
+ * base 64 decode
+ *
+ * @param mixed $values
+ * @return void
+ */
+if ( ! function_exists( 'wpe_base_64_decode' ) ) {
+	function wpe_base_64_decode ( $values )
+	{
+		return base64_decode( $values );
 	}
 }

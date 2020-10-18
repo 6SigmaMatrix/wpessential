@@ -208,7 +208,7 @@ trait Help
 	 * @param string|array $taxonomies See https://developer.wordpress.org/reference/functions/get_terms/ for details.
 	 * @return array
 	 */
-	public static function get_terms ( $taxonomies )
+	public static function get_terms_list ( $taxonomies )
 	{
 		$items = [
 			'' => __( 'Choose', 'wpessential' ),
