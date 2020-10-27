@@ -77,7 +77,7 @@ final class Enqueue
 		$localization = json_encode( $localization );
 		?>
         <script id="wpessential-localization">
-            var WPEssential = <?php echo $localization; ?>;
+			var WPEssential = <?php echo $localization; ?>;
         </script>
 		<?php
 		//wp_localize_script( 'jquery', 'WPEssential', $localization );
@@ -104,12 +104,18 @@ final class Enqueue
 
 	public static function elementor_editor_after_enqueue ()
 	{
-		$list = apply_filters( 'wpe/elementor/editor/after/css', [] );
+		$list = apply_filters(
+			'wpe/elementor/editor/after/css',
+			[
+				'wpessential-elementor-editor',
+				/*'wpessential-blog-post',
+				'wpessential-blog-post-color',
+				'wpessential-blog-post-res'*/
+			]
+		);
 		$list = array_filter( $list );
 		if ( $list ) {
-			foreach ( $list as $style ) {
-				wp_enqueue_style( $style );
-			}
+			wp_enqueue_style( $list );
 		}
 
 		$list = apply_filters( 'wpe/elementor/editor/after/js', [ 'wpessential-elementor-editor' ] );

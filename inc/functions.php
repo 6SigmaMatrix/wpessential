@@ -741,9 +741,9 @@ if ( ! function_exists( 'wpe_file_data' ) ) {
  * @since  1.0.0
  */
 if ( ! function_exists( 'wpe_get_post' ) ) {
-	function wpe_get_post ( $args )
+	function wpe_get_post ( $args, $is_multiselect = false )
 	{
-		return Help::get_posts( $args );
+		return Help::get_posts( $args, $is_multiselect );
 	}
 }
 
@@ -960,6 +960,28 @@ if ( ! function_exists( 'wpe_array_reduce' ) ) {
 }
 
 /**
+ * Array Attr Generate Data
+ *
+ * @param array $args Define arguments for the re-produce.
+ * @param bool $acc Define argument for accoiative array
+ * @return string
+ * @since  1.0.0
+ */
+if ( ! function_exists( 'wpe_gen_attr_data' ) ) {
+	function wpe_gen_attr_data ( $args, $acc = false )
+	{
+		$build_atts = [];
+		$args       = wpe_collect( $args )->filter();
+		foreach ( $args as $key => $value ) {
+			$value              = ( strpos( $value, '%2' ) ) ? wpe_josn_decode( wpe_url_decode( $value ), $acc ) : $value;
+			$build_atts[ $key ] = $value;
+		}
+
+		return $build_atts;
+	}
+}
+
+/**
  * Array Attr Generate
  *
  * @param array $args Define arguments for the reduce.
@@ -972,7 +994,7 @@ if ( ! function_exists( 'wpe_gen_attr' ) ) {
 		$build_atts = '';
 		$args       = wpe_collect( $args )->filter();
 		foreach ( $args as $key => $value ) {
-			$value      = ( is_array( $value ) ) ? urlencode( json_encode( $value ) ) : $value;
+			$value      = ( is_array( $value ) ) ? wpe_url_encode( wpe_josn_encode( $value ) ) : $value;
 			$build_atts .= ' ' . $key . '="' . $value . '"';
 		}
 
@@ -1100,5 +1122,31 @@ if ( ! function_exists( 'wpe_base_64_decode' ) ) {
 	function wpe_base_64_decode ( $values )
 	{
 		return base64_decode( $values );
+	}
+}
+
+/**
+ * url encode
+ *
+ * @param mixed $values
+ * @return void
+ */
+if ( ! function_exists( 'wpe_url_encode' ) ) {
+	function wpe_url_encode ( $values )
+	{
+		return urlencode( $values );
+	}
+}
+
+/**
+ * url decode
+ *
+ * @param mixed $values
+ * @return void
+ */
+if ( ! function_exists( 'wpe_url_decode' ) ) {
+	function wpe_url_decode ( $values )
+	{
+		return urldecode( $values );
 	}
 }

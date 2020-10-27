@@ -18,6 +18,7 @@ final class Elementor implements ShortcodeInit
 		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
 		add_action( 'elementor/elements/categories_registered', [ __CLASS__, 'register_category' ] );
 		add_action( 'elementor/controls/controls_registered', [ __CLASS__, 'register_controls' ] );
+		self::register_tabs();
 		self::registry_widget();
 	}
 
@@ -39,6 +40,10 @@ final class Elementor implements ShortcodeInit
 	public static function register_category ( $elements_manager )
 	{
 		Categories::constructor( $elements_manager );
+	}
+
+	public static function register_tabs(){
+		Tabs::constructor();
 	}
 
 	public static function register_controls ()

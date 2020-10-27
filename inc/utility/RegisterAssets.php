@@ -44,13 +44,14 @@ final class RegisterAssets
 	{
 		$minify = self::$minify;
 		$list   = [
-			'font-awesome'                => WPE_URL . "assets/css/all{$minify}css",
-			'animate'                     => WPE_URL . "assets/css/animate{$minify}css",
-			'perfect-scrollbar'           => WPE_URL . "assets/css/perfect-scrollbar{$minify}css",
-			'wpessential'                 => WPE_URL . "assets/css/wpessential{$minify}css",
-			'wpessential-blog-post'       => WPE_URL . "assets/css/wpessential-blog-post{$minify}css",
-			'wpessential-blog-post-color' => WPE_URL . "assets/css/wpessential-blog-post-color{$minify}css",
-			'wpessential-blog-post-res'   => WPE_URL . "assets/css/wpessential-blog-post-res{$minify}css",
+			'font-awesome'                 => WPE_URL . "assets/css/all{$minify}css",
+			'animate'                      => WPE_URL . "assets/css/animate{$minify}css",
+			'perfect-scrollbar'            => WPE_URL . "assets/css/perfect-scrollbar{$minify}css",
+			'wpessential'                  => WPE_URL . "assets/css/wpessential{$minify}css",
+			'wpessential-elementor-editor' => WPE_URL . "assets/css/wpessential-elementor-editor{$minify}css",
+			'wpessential-blog-post'        => WPE_URL . "assets/css/wpessential-blog-post{$minify}css",
+			'wpessential-blog-post-color'  => WPE_URL . "assets/css/wpessential-blog-post-color{$minify}css",
+			'wpessential-blog-post-res'    => WPE_URL . "assets/css/wpessential-blog-post-res{$minify}css",
 
 		];
 		$list   = apply_filters( 'wpe/register/css', $list );

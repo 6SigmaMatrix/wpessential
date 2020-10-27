@@ -73,9 +73,10 @@ trait Help
 	 * @static
 	 * @access public
 	 * @param array $args Define arguments for the get_posts function.
+	 * @param bool $is_multiselect
 	 * @return array
 	 */
-	public static function get_posts ( $args )
+	public static function get_posts ( $args, $is_multiselect = false )
 	{
 		if ( is_string( $args ) ) {
 			$args = add_query_arg(
@@ -91,9 +92,12 @@ trait Help
 		$posts = get_posts( $args );
 
 		// Properly format the array.
-		$items = [
-			'' => __( 'Choose', 'wpessential' ),
-		];
+		if ( true !== $is_multiselect ) {
+			$items = [
+				'' => __( 'Choose', 'wpessential' ),
+			];
+		}
+
 		foreach ( $posts as $post ) {
 			$items[ $post->ID ] = $post->post_title;
 		}
@@ -388,7 +392,8 @@ trait Help
 	 */
 	public static function trim_char ( string $desc, float $lenght, $indecator )
 	{
-		return mb_strimwidth( $desc, 0, $lenght, $indecator );
+		$desc = wp_strip_all_tags( $desc );
+		return substr( $desc, 0, $lenght ) . $indecator;
 	}
 
 	/**
