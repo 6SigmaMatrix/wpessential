@@ -70,6 +70,7 @@ final class Loader
 
 	public static function load_files ()
 	{
+		require_once WPE_DIR . 'inc/query-functions.php';
 		require_once WPE_DIR . 'inc/functions.php';
 		require_once WPE_DIR . 'inc/Libraries/ClassLoader.php';
 	}

@@ -91,6 +91,8 @@ trait Help
 		// Get the posts.
 		$posts = get_posts( $args );
 
+		$items = [];
+
 		// Properly format the array.
 		if ( true !== $is_multiselect ) {
 			$items = [

@@ -13,6 +13,8 @@ use WPEssential\Plugins\Loader;
 
 final class Elementor implements ShortcodeInit
 {
+	protected static array $list;
+
 	public static function constructor ()
 	{
 		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
@@ -25,15 +27,32 @@ final class Elementor implements ShortcodeInit
 	public static function registry_widget ()
 	{
 		Loader::editor( 'elementor' );
-		$list = apply_filters( 'wpe/elementor/shortcodes', [] );
-		if ( ! $list ) {
+		self::$list = apply_filters(
+			'wpe/elementor/shortcodes',
+			[
+				'Post' => 'WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost\Post'
+			]
+		);
+		self::register_form_widget();
+
+		if ( ! self::$list ) {
 			return;
 		}
-
-		foreach ( $list as $class_name ) {
+		sort( self::$list );
+		foreach ( self::$list as $class_name ) {
 			if ( class_exists( $class_name ) ) {
 				new $class_name();
 			}
+		}
+	}
+
+	public static function register_form_widget ()
+	{
+		if ( class_exists( 'wpcf7' ) ) {
+			self::$list[ 'ContactForm7' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\ContactForm7';
+		}
+		if ( function_exists( 'load_formidable_forms' ) ) {
+			self::$list[ 'FormidableForm' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\FormidableForm';
 		}
 	}
 
@@ -42,7 +61,8 @@ final class Elementor implements ShortcodeInit
 		Categories::constructor( $elements_manager );
 	}
 
-	public static function register_tabs(){
+	public static function register_tabs ()
+	{
 		Tabs::constructor();
 	}
 
@@ -55,6 +75,7 @@ final class Elementor implements ShortcodeInit
 		$controls_manager->add_group_control( Related::get_type(), new Related() );
 		$controls_manager->register_control( 'query', new Query() );
 	}
+
 
 	public static function register_ajax_actions ( $ajax_manager )
 	{
