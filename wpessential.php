@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WPEssential
- * Description: WPEssential is a main plugin of wpessential all flexible extensions. It is open-source and themes also page builder solution in WordPress. Create any theme, anywhere and make your way. There is no `PHP`, `CSS`, `HTML` and `Javascript` coding knowledge need..
+ * Description: WPEssential is a flexible extension of WordPress. It is open-source and themes also page builder solution in WordPress. Create any theme, anywhere and make your way. There is no `PHP`, `CSS`, `HTML` and `Javascript` coding knowledge need.
  * Plugin URI: https://wp.wpessential.org/plugins/wpessential/
  * Author: WPEssential
  * Version: 1.0.0
