@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\BlogPost\Builders\Elementor\Shortcodes;
+namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost;
 
 use WPEssential\Plugins\Builders\Elementor\Utility\Base;
 use WPEssential\Plugins\Implement\Shortcodes;
@@ -17,8 +17,8 @@ class Post extends Base implements Shortcodes
 	 * @public
 	 */
 	public array $skins_list = [
-		'WPEssential\Plugins\BlogPost\Builders\Elementor\Shortcodes\PostSyle1',
-		'WPEssential\Plugins\BlogPost\Builders\Elementor\Shortcodes\PostSyle2',
+		'WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost\PostSyle1',
+		'WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost\PostSyle2',
 	];
 
 	/**

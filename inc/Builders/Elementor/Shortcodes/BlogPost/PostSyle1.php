@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\BlogPost\Builders\Elementor\Shortcodes;
+namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost;
 
 use Elementor\Skin_Base;
 use WPEssential\Plugins\Implement\Skin;
