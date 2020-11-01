@@ -2,6 +2,7 @@
 
 namespace WPEssential\Plugins;
 
+use WPEssential\Plugins\Themes\Setup;
 use WPEssential\Plugins\Utility\BuildersInit;
 use WPEssential\Plugins\Utility\Requesting;
 use WPEssential\Plugins\Utility\RegisterAssets;
@@ -54,8 +55,11 @@ final class Loader
 
 	public static function autoload ()
 	{
-		$psr = [
-			'WPEssential\\Plugins\\' => WPE_DIR . 'inc/'
+		$theme_name = wp_get_theme();
+		$theme_name = $theme_name->get( 'Name' );
+		$psr        = [
+			'WPEssential\\Plugins\\'                        => WPE_DIR . 'inc/',
+			"WPEssential\\Plugins\\Themes\\{$theme_name}\\" => get_template_directory() . '/inc/',
 		];
 
 		$class_loader = new Libraries\ClassLoader;
@@ -80,6 +84,7 @@ final class Loader
 		Requesting::constructor();
 		RegisterAssets::constructor();
 		Enqueue::constructor();
+		Setup::constructor();
 	}
 
 	public static function init ()
