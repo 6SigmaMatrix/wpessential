@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\Themes;
+namespace WPEssential\Plugins\Theme;
 
 final class Support
 {
@@ -170,7 +170,7 @@ final class Support
 
 	public static function gutanbarg ()
 	{
-		$default = applay_filter(
+		$default = apply_filters(
 			'wpe/themes/support/allow/editor/color/palette',
 			[
 				[
@@ -464,7 +464,7 @@ final class Support
 
 	public static function other ()
 	{
-		$default = apply_filter(
+		$default = apply_filters(
 			'wpe/themes/support/allow/others',
 			[
 				'title-tag',

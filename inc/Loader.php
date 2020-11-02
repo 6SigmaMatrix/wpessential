@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins;
 
-use WPEssential\Plugins\Themes\Setup;
+use WPEssential\Plugins\Theme\Setup;
 use WPEssential\Plugins\Utility\BuildersInit;
 use WPEssential\Plugins\Utility\Requesting;
 use WPEssential\Plugins\Utility\RegisterAssets;
@@ -59,7 +59,7 @@ final class Loader
 		$theme_name = $theme_name->get( 'Name' );
 		$psr        = [
 			'WPEssential\\Plugins\\'                        => WPE_DIR . 'inc/',
-			"WPEssential\\Plugins\\Themes\\{$theme_name}\\" => get_template_directory() . '/inc/',
+			"WPEssential\\Theme\\{$theme_name}\\" => get_template_directory() . '/inc/',
 		];
 
 		$class_loader = new Libraries\ClassLoader;

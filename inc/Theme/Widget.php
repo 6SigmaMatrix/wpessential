@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\Themes;
+namespace WPEssential\Plugins\Theme;
 
 final class Widget
 {
