@@ -33,6 +33,7 @@ final class Enqueue
 		}
 
 		$list = [
+			'jquery',
 			'wpessential'
 		];
 		$list = apply_filters( 'wpe/frontend/js', $list );
@@ -69,18 +70,13 @@ final class Enqueue
 	{
 		$localization = [
 			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
-			'weburl'    => WPE_URL,
+			'web_plug'  => WPE_URL,
 			'nonce'     => wp_create_nonce( 'wpe_request_nonce' ),
-			'ajaxshort' => '/wp-admin/admin-ajax.php'
+			'ajaxshort' => '/wp-admin/admin-ajax.php',
+			'root'      => home_url( '/' ),
 		];
-		$localization = apply_filters( 'wpe_loco', $localization );
-		$localization = json_encode( $localization );
-		?>
-        <script id="wpessential-localization">
-			var WPEssential = <?php echo $localization; ?>;
-        </script>
-		<?php
-		//wp_localize_script( 'jquery', 'WPEssential', $localization );
+		$localization = apply_filters( 'wpe/localization', $localization );
+		wp_localize_script( 'jquery', 'WPEssential', $localization );
 	}
 
 	public static function admin_page_enqueue ()

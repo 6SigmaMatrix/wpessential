@@ -54,6 +54,18 @@ final class Elementor implements ShortcodeInit
 		if ( function_exists( 'load_formidable_forms' ) ) {
 			self::$list[ 'FormidableForm' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\FormidableForm';
 		}
+		if ( function_exists( 'caldera_forms_load' ) ) {
+			self::$list[ 'CalderaForm' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\CalderaForm';
+		}
+		if ( function_exists( 'ninja_forms_three_table_exists' ) ) {
+			self::$list[ 'NinjaForm' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\NinjaForm';
+		}
+		if ( function_exists( 'wpforms' ) ) {
+			self::$list[ 'WPForm' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\WPForm';
+		}
+		if ( function_exists( '_mc4wp_load_plugin' ) ) {
+			self::$list[ 'Mc4Wp' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\Mc4Wp';
+		}
 	}
 
 	public static function register_category ( $elements_manager )

@@ -92,7 +92,6 @@ final class Loader
 		do_action( 'wpessential_init' );
 		BuildersInit::constructor();
 		load_plugin_textdomain( 'wpessential', false, WPE_DIR . 'language' );
-		self::add_image_sizes();
 	}
 
 	public static function options ()
@@ -105,13 +104,5 @@ final class Loader
 		$options = wp_parse_args( $data, self::options() );
 		$boolean = update_option( WPE_SETTINGS, $options );
 		return $boolean;
-	}
-
-	public static function add_image_sizes ()
-	{
-		$size = apply_filters( 'wpe/images/sizing', [] );
-		foreach ( $size as $name => $value ) {
-			add_image_size( $name, $value[ 0 ], $value[ 1 ], true );
-		}
 	}
 }

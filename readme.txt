@@ -7,7 +7,7 @@ Requires at least: 5.5.0
 Tested up to: 5.5
 WC requires at least: 4.0
 WC tested up to: 4.5
-Stable tag: 1.0.0.00001
+Stable tag: 1.0.0.00002
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -21,6 +21,13 @@ WPEssential is a flexible extension of WordPress. Just install the WPEssential p
 == Supported Page Builders ==
 - [WordPress](https://codex.wordpress.org/Shortcode_API/)
 - [Elementor](https://wordpress.org/plugins/elementor/)
+
+== Supported Forms ==
+- [Coldera Form](https://wordpress.org/plugins/caldera-forms/)
+- [WPForms](https://wordpress.org/plugins/wpforms-lite/)
+- [Contact Form 7](https://wordpress.org/plugins/contact-form-7/)
+- [Ninja Form](https://wordpress.org/plugins/ninja-forms/)
+- [MC4WP](https://wordpress.org/plugins/mailchimp-for-wp/)
 
 
 == Installation ==
@@ -38,6 +45,13 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 
 == Changelog ==
+
+= 07/11/2020 1.0.0.00002 =
+- Add Contact Form 7 widget.
+- Add MC4WP widget.
+- Add Coldera Form widget.
+- Add WPForms widget.
+- Add Ninja Form widget.
 
 = 30/10/2020 1.0.0.00001 =
 - Fix Blog post already class exist error

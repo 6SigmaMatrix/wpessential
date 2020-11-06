@@ -25,7 +25,7 @@ class Post extends Base implements Shortcodes
 	 * Set widget keywords.
 	 * Retrieve widget keywords.
 	 *
-	 * @return array Widget icon.
+	 * @return array Widget keywords.
 	 * @access public
 	 * @since 1.0.0
 	 * @public

@@ -23,6 +23,21 @@ class FormidableForm extends Base implements Shortcodes
 	}
 
 	/**
+	 * Whether the reload preview is required or not.
+	 *
+	 * Used to determine whether the reload preview is required.
+	 *
+	 * @return bool Whether the reload preview is required.
+	 * @since 1.0.0
+	 * @access public
+	 *
+	 */
+	public function is_reload_preview_required ()
+	{
+		return true;
+	}
+
+	/**
 	 * Register widget controls.
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
@@ -35,7 +50,7 @@ class FormidableForm extends Base implements Shortcodes
 		$this->start_controls_section(
 			'section_1',
 			[
-				'label' => __( 'Shortcode', 'wpessential-blog-post-pro' )
+				'label' => __( 'Shortcode', 'wpessential' )
 			]
 		);
 

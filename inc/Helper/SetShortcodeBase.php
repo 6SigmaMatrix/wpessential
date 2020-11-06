@@ -54,7 +54,7 @@ trait SetShortcodeBase
 	 */
 	public function set_widget_icon ()
 	{
-		return "";
+		return "fab fa-wikipedia-w";
 	}
 
 	/**
