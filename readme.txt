@@ -7,7 +7,7 @@ Requires at least: 5.5.0
 Tested up to: 5.5
 WC requires at least: 4.0
 WC tested up to: 4.5
-Stable tag: 1.0.0.00002
+Stable tag: 1.0.0.00003
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -29,6 +29,15 @@ WPEssential is a flexible extension of WordPress. Just install the WPEssential p
 - [Ninja Form](https://wordpress.org/plugins/ninja-forms/)
 - [MC4WP](https://wordpress.org/plugins/mailchimp-for-wp/)
 
+== Supported Slider ==
+- [Layer Slider](https://layerslider.kreaturamedia.com/)
+- [Master Slider](https://wordpress.org/plugins/master-slider/)
+- [Revolution Slider](https://codecanyon.net/item/slider-revolution-responsive-wordpress-plugin/2751380?ref=WPEssential)
+- [Smart Slider](https://wordpress.org/plugins/smart-slider-3/)
+
+== Supported WooCommerce ==
+- [WooCommerce](https://wordpress.org/plugins/woocommerce/)
+
 
 == Installation ==
 = Manual installation =
@@ -45,6 +54,18 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 
 == Changelog ==
+
+= 09/11/2020 1.0.0.00003 =
+- Add Layer Slider widget.
+- Add Master Slider widget.
+- Add Revolution Slider widget.
+- Add Smart Slider widget.
+- Add WooCommerce Cart widget.
+- Add WooCommerce Categories widget.
+- Add WooCommerce My Account widget.
+- Add WooCommerce Order Track widget.
+- Add WooCommerce Products widget.
+- Add WooCommerce Product Single widget.
 
 = 07/11/2020 1.0.0.00002 =
 - Add Contact Form 7 widget.

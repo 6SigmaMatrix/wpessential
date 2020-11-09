@@ -34,6 +34,8 @@ final class Elementor implements ShortcodeInit
 			]
 		);
 		self::register_form_widget();
+		self::register_slider_widget();
+		self::register_woo_widget();
 
 		if ( ! self::$list ) {
 			return;
@@ -65,6 +67,34 @@ final class Elementor implements ShortcodeInit
 		}
 		if ( function_exists( '_mc4wp_load_plugin' ) ) {
 			self::$list[ 'Mc4Wp' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms\Mc4Wp';
+		}
+	}
+
+	public static function register_slider_widget ()
+	{
+		if ( class_exists( 'LS_Shortcode' ) ) {
+			self::$list[ 'LayerSlider' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Slider\LayerSlider';
+		}
+		if ( class_exists( 'Master_Slider' ) ) {
+			self::$list[ 'MasterSlider' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Slider\MasterSlider';
+		}
+		if ( class_exists( 'RevSliderFront' ) ) {
+			self::$list[ 'RevolutionSlider' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Slider\RevolutionSlider';
+		}
+		if ( class_exists( 'Master_Slider' ) ) {
+			self::$list[ 'SmartSlider' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\Slider\SmartSlider';
+		}
+	}
+
+	public static function register_woo_widget ()
+	{
+		if ( function_exists( 'WC' ) ) {
+			self::$list[ 'Cart' ]          = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce\Cart';
+			self::$list[ 'Categories' ]    = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce\Categories';
+			self::$list[ 'MyAccount' ]     = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce\MyAccount';
+			self::$list[ 'OrderTrack' ]    = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce\OrderTrack';
+			self::$list[ 'Products' ]      = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce\Products';
+			self::$list[ 'ProductSingle' ] = 'WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce\ProductSingle';
 		}
 	}
 
