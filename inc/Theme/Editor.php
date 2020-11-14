@@ -15,7 +15,7 @@ final class Editor
 	{
 		$range = apply_filters( 'wpe/tiny_mce_editor/font_size', [ 'start' => 0, 'end' => 80 ] );
 		if ( $range && is_array( $range ) ) {
-			$settings[ 'fontsize_formats' ] = implode( 'px ', range( implode( ', ', $range ) ) ) . 'px';
+			$settings[ 'fontsize_formats' ] = implode( 'px ', range( $range[ 'start' ], $range[ 'end' ] ) ) . 'px';
 		}
 		return $settings;
 	}

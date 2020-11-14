@@ -4,9 +4,13 @@ namespace WPEssential\Plugins;
 
 use WPEssential\Plugins\Theme\Setup;
 use WPEssential\Plugins\Utility\BuildersInit;
+use WPEssential\Plugins\Utility\OptionsPannel;
+use WPEssential\Plugins\Utility\RegisterPostStatus;
 use WPEssential\Plugins\Utility\Requesting;
 use WPEssential\Plugins\Utility\RegisterAssets;
 use WPEssential\Plugins\Utility\Enqueue;
+use WPEssential\Plugins\Utility\RestApi;
+use WPEssential\Plugins\Utility\Tgm;
 
 final class Loader
 {
@@ -56,9 +60,9 @@ final class Loader
 	public static function autoload ()
 	{
 		$theme_name = wp_get_theme();
-		$theme_name = $theme_name->get( 'Name' );
+		$theme_name = str_replace( [ ' ', '_', '-' ], '', $theme_name->get( 'Name' ) );
 		$psr        = [
-			'WPEssential\\Plugins\\'                        => WPE_DIR . 'inc/',
+			'WPEssential\\Plugins\\'              => WPE_DIR . 'inc/',
 			"WPEssential\\Theme\\{$theme_name}\\" => get_template_directory() . '/inc/',
 		];
 
@@ -85,13 +89,19 @@ final class Loader
 		RegisterAssets::constructor();
 		Enqueue::constructor();
 		Setup::constructor();
+		if ( defined( 'WPE_TGM' ) && true === WPE_TGM ) {
+			Tgm::constructor();
+		}
+		//RestApi::constructor();
 	}
 
 	public static function init ()
 	{
 		do_action( 'wpessential_init' );
+		load_plugin_textdomain( 'wpessential', false, WPE_DIR . '/language' );
+		RegisterPostStatus::constructor();
 		BuildersInit::constructor();
-		load_plugin_textdomain( 'wpessential', false, WPE_DIR . 'language' );
+		OptionsPannel::constructor();
 	}
 
 	public static function options ()
