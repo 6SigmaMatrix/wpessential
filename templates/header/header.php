@@ -1,3 +1,6 @@
-<?php
-require_once wpe_template_load( 'templates/header/branding/logo.php' );
-require_once wpe_template_load( 'templates/header/branding/menu.php' );
+<header>
+	<?php
+	do_action( 'wpe_header' );
+	?>
+</header>
+

@@ -4,13 +4,11 @@ namespace WPEssential\Plugins;
 
 use WPEssential\Plugins\Theme\Setup;
 use WPEssential\Plugins\Utility\BuildersInit;
-use WPEssential\Plugins\Utility\OptionsPannel;
 use WPEssential\Plugins\Utility\RegisterPostStatus;
 use WPEssential\Plugins\Utility\Requesting;
 use WPEssential\Plugins\Utility\RegisterAssets;
 use WPEssential\Plugins\Utility\Enqueue;
 use WPEssential\Plugins\Utility\RestApi;
-use WPEssential\Plugins\Utility\Tgm;
 
 final class Loader
 {
@@ -89,9 +87,6 @@ final class Loader
 		RegisterAssets::constructor();
 		Enqueue::constructor();
 		Setup::constructor();
-		if ( defined( 'WPE_TGM' ) && true === WPE_TGM ) {
-			Tgm::constructor();
-		}
 		//RestApi::constructor();
 	}
 
@@ -101,7 +96,6 @@ final class Loader
 		load_plugin_textdomain( 'wpessential', false, WPE_DIR . '/language' );
 		RegisterPostStatus::constructor();
 		BuildersInit::constructor();
-		OptionsPannel::constructor();
 	}
 
 	public static function options ()

@@ -1,3 +1,5 @@
-<?php
-require_once wpe_template_load( 'templates/footer/branding/menu.php' );
-require_once wpe_template_load( 'templates/footer/branding/copyright.php' );
+<footer>
+	<?php
+	do_action( 'wpe_footer' );
+	?>
+</footer>
