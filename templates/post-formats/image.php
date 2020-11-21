@@ -1,6 +1,4 @@
 <?php
-/*
- * Copyright (c) 2020. This file is copyright by WPEssential.
- */
-
-
+if ( has_post_thumbnail() ) {
+	the_post_thumbnail( $image_size );
+}

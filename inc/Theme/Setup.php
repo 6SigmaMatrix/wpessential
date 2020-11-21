@@ -7,25 +7,32 @@ use WPEssential\Plugins\Utility\Tgm;
 
 final class Setup
 {
+	private static $theme_space;
+
 	public static function constructor ()
 	{
-		add_action(
-			'wpe_setup_theme',
-			function ()
-			{
-				add_action( 'wp_body_open', 'header_template', 10 );
-				add_action( 'after_setup_theme', [ __CLASS__, 'register' ], 2000 );
-				add_action( 'wp_footer', 'footer_template', 0 );
-			},
-			1000
-		);
+		add_action( 'after_setup_theme', function ()
+		{
+			add_action(
+				'wpe_setup_theme',
+				function ()
+				{
+					self::constants();
+					add_action( 'wp_body_open', 'header_template', 10 );
+					self::register();
+					self::theme_clases();
+					add_action( 'wp_footer', 'footer_template', 0 );
+				},
+				1000
+			);
+		}, 2000 );
 	}
 
 	public static function constants ()
 	{
-		$theme_info  = wp_get_theme();
-		$theme_name  = str_replace( [ ' ', '-' ], '_', $theme_info->get( 'Name' ) );
-		$theme_space = str_replace( [ ' ', '_', '-' ], '', $theme_name );
+		$theme_info        = wp_get_theme();
+		$theme_name        = str_replace( [ ' ', '-' ], '_', $theme_info->get( 'Name' ) );
+		self::$theme_space = str_replace( [ ' ', '_', '-' ], '', $theme_name );
 
 		$theme_constant = apply_filters( 'wpe/theme/constants', [
 			"{$theme_name}_T_VER"      => $theme_info->get( 'Version' ),
@@ -41,11 +48,6 @@ final class Setup
 				defined( $constant ) || define( $constant, $key );
 			}
 		}
-
-		$theme_loader = "\\WPEssential\\Theme\\$theme_space\\Loader";
-		if ( class_exists( $theme_loader ) ) {
-			$theme_loader::constructor();
-		}
 	}
 
 	public static function register ()
@@ -57,8 +59,16 @@ final class Setup
 		Widget::constructor();
 		Editor::constructor();
 		Menus::constructor();
-		self::constants();
 		Tgm::constructor();
 		OptionsPannel::constructor();
+	}
+
+	public static function theme_clases ()
+	{
+		$theme_space = self::$theme_space;
+		$theme_loader = "\\WPEssential\\Theme\\$theme_space\\Loader";
+		if ( class_exists( $theme_loader ) ) {
+			$theme_loader::constructor();
+		}
 	}
 }

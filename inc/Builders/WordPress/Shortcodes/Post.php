@@ -35,7 +35,7 @@ class Post extends Base implements Shortcodes
 			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
 		}
 
-		$style          = '1';
+		$style = '1';
 
 		extract( $atts );
 
@@ -44,7 +44,7 @@ class Post extends Base implements Shortcodes
 		wp_enqueue_style( 'wpessential-blog-post-res' );
 
 		$file_path = apply_filters( "wpe/shortcodes/wpessential_blog_post/template", WPE_DIR );
-		$template  = wpe_template_load( "{$file_path}templates/wpessential-blog-post-style-{$style}.php" );
+		$template  = wpe_template_load( "{$file_path}templates/wpessential-blog-post/style-{$style}.php" );
 
 		ob_start();
 		include $template;

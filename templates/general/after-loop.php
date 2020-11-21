@@ -1,3 +1,3 @@
 </div>
 <?php
-do_action( 'wpe_after_post_loopd' );
+do_action( 'wpe_after_post_loop' );
