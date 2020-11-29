@@ -45,6 +45,15 @@ if ( ! defined( 'WPE_URL' ) ) {
 }
 
 /**
+ * WPEssential Plugin url
+ *
+ * @since  1.0.4
+ */
+if ( ! defined( 'WPE_NONCE' ) ) {
+	define( 'WPE_NONCE', 'wpe_request_nonce' );
+}
+
+/**
  * WPEssential Theme Allow
  *
  * @since  1.0.0.00004

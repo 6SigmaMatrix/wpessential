@@ -15,9 +15,9 @@ final class Images
 		$images = apply_filters(
 			'wpe/register/images/size',
 			[
-				[
+				'wpe_featured_image_1980x9999' => [
 					'name'  => 'wpe_featured_image_1980x9999',
-					'size'  => [ 1980, 9999 ],
+					'size'  => [ 'w' => 1980, 'h' => 9999 ],
 					'croup' => true
 				]
 			]
@@ -25,7 +25,7 @@ final class Images
 
 		if ( $images && is_array( $images ) ) {
 			foreach ( $images as $image ) {
-				add_image_size( $image[ 'name' ], implode( ', ', $image[ 'size' ] ), $image[ 'croup' ] );
+				add_image_size( $image[ 'name' ], $image[ 'size' ][ 'w' ], $image[ 'size' ][ 'h' ], $image[ 'croup' ] );
 			}
 		}
 	}

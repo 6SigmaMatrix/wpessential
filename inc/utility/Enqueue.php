@@ -71,7 +71,7 @@ final class Enqueue
 		$localization = [
 			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
 			'web_plug'  => WPE_URL,
-			'nonce'     => wp_create_nonce( 'wpe_request_nonce' ),
+			'nonce'     => wp_create_nonce( WPE_NONCE ),
 			'ajaxshort' => '/wp-admin/admin-ajax.php',
 			'root'      => home_url( '/' ),
 		];

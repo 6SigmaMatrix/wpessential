@@ -6,6 +6,7 @@ final class Menus
 {
 	public static function constructor ()
 	{
+		self::remove();
 		self::register();
 	}
 

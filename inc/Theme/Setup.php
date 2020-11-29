@@ -11,21 +11,25 @@ final class Setup
 
 	public static function constructor ()
 	{
-		add_action( 'after_setup_theme', function ()
-		{
-			add_action(
-				'wpe_setup_theme',
-				function ()
-				{
-					self::constants();
-					add_action( 'wp_body_open', 'header_template', 10 );
-					self::register();
-					self::theme_clases();
-					add_action( 'wp_footer', 'footer_template', 0 );
-				},
-				1000
-			);
-		}, 2000 );
+		add_action(
+			'wpe_setup_theme',
+			function ()
+			{
+				add_action(
+					'after_setup_theme',
+					function ()
+					{
+						self::constants();
+						add_action( 'wp_body_open', 'header_template', 10 );
+						self::register();
+						self::theme_clases();
+						add_action( 'wp_footer', 'footer_template', 0 );
+					},
+					2000
+				);
+			},
+			1000
+		);
 	}
 
 	public static function constants ()
@@ -56,16 +60,16 @@ final class Setup
 		Support::constructor();
 		Images::constructor();
 		Sidebars::constructor();
-		Widget::constructor();
 		Editor::constructor();
 		Menus::constructor();
 		Tgm::constructor();
 		OptionsPannel::constructor();
+		Widgets::constructor();
 	}
 
 	public static function theme_clases ()
 	{
-		$theme_space = self::$theme_space;
+		$theme_space  = self::$theme_space;
 		$theme_loader = "\\WPEssential\\Theme\\$theme_space\\Loader";
 		if ( class_exists( $theme_loader ) ) {
 			$theme_loader::constructor();
