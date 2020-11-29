@@ -20,10 +20,10 @@ final class Setup
 					function ()
 					{
 						self::constants();
-						add_action( 'wp_body_open', 'header_template', 10 );
-						self::register();
+						add_action( 'wp_body_open', 'wpe_header_template', 10 );
 						self::theme_clases();
-						add_action( 'wp_footer', 'footer_template', 0 );
+						self::register();
+						add_action( 'wp_footer', 'wpe_footer_template', 0 );
 					},
 					2000
 				);

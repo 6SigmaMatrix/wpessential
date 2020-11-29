@@ -1150,3 +1150,48 @@ if ( ! function_exists( 'wpe_url_decode' ) ) {
 		return urldecode( $values );
 	}
 }
+
+/**
+ * unique id
+ *
+ * @param string $values
+ * @return string
+ */
+if ( ! function_exists( 'wpe_unique_id' ) ) {
+	function wpe_unique_id ( $prefix = 'wpe-' )
+	{
+		static $id_counter = 0;
+		if ( function_exists( 'wp_unique_id' ) ) {
+			return wp_unique_id( $prefix );
+		}
+		return $prefix . (string) ++ $id_counter;
+	}
+}
+
+/**
+ * Generate CSS.
+ *
+ * @param string $selector The CSS selector.
+ * @param string $style The CSS style.
+ * @param string $value The CSS value.
+ * @param string $prefix The CSS prefix.
+ * @param string $suffix The CSS suffix.
+ * @param bool $echo Echo the styles.
+ */
+if ( ! function_exists( 'wpe_generate_css' ) ) {
+	function wpe_generate_css ( $selector, $style, $value, $prefix = '', $suffix = '', $echo = true )
+	{
+		$return = '';
+		/*
+		 * Bail early if we have no $selector elements or properties and $value.
+		 */
+		if ( ! $value || ! $selector ) {
+			return;
+		}
+		$return = sprintf( '%s { %s: %s; }', $selector, $style, $prefix . $value . $suffix );
+		if ( $echo ) {
+			echo $return;
+		}
+		return $return;
+	}
+}

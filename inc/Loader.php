@@ -87,6 +87,7 @@ final class Loader
 		Requesting::constructor();
 		RegisterAssets::constructor();
 		Enqueue::constructor();
+		ScriptLoader::constructor();
 		Setup::constructor();
 		//RestApi::constructor();
 	}
