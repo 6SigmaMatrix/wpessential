@@ -11,10 +11,14 @@ if ( ! defined( 'WPE_SETTINGS' ) ) {
 /**
  * Plugin Version
  *
- * @since  1.0.0
+ * @since  1.0.00004
  */
 if ( ! defined( 'WPE_VERSION' ) ) {
-	define( 'WPE_VERSION', '1.0.0' );
+	if ( defined( 'WPE_DEBUG' ) && true === WPE_DEBUG || defined( 'WP_DEBUG' ) && true === WP_DEBUG ) {
+		define( 'WPE_VERSION', time() );
+	} else {
+		define( 'WPE_VERSION', '1.0.0' );
+	}
 }
 
 /**

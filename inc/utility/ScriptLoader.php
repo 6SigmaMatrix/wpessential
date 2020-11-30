@@ -29,7 +29,7 @@ class ScriptLoader
 	 * @param string $handle The script handle.
 	 * @return string Script HTML string.
 	 */
-	public function register ( $tag, $handle )
+	public static function register ( $tag, $handle )
 	{
 		foreach ( self::extra_tags() as $attr ) {
 			if ( ! wp_scripts()->get_data( $handle, $attr ) ) {

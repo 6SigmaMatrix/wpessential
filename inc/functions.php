@@ -456,6 +456,44 @@ if ( ! function_exists( 'wpe_template_load' ) ) {
 }
 
 /**
+ * Retrive|Find the file location in of plugins.
+ *
+ * @return string
+ * @since  1.0.0
+ */
+if ( ! function_exists( 'wpe_plugin_template_load' ) ) {
+	function wpe_plugin_template_load ( $path, $file )
+	{
+		$_file = "templates/{$path}/{$file}";
+
+		$find_in = apply_filters( 'wpe/plugin/template/load', get_theme_file_path( $_file ) );
+		if ( file_exists( $find_in ) ) {
+			return $find_in;
+		}
+
+		$find_in = $_file;
+		if ( file_exists( $find_in ) ) {
+			return $find_in;
+		}
+
+		$find_in = "{$path}templates/{$file}";
+		if ( file_exists( $find_in ) ) {
+			return $find_in;
+		}
+
+		$find_in = WPE_DIR . "{$_file}";
+		if ( file_exists( $find_in ) ) {
+			return $find_in;
+		}
+
+		$find_in = $_file;
+		if ( ! file_exists( $find_in ) ) {
+			echo '<h1>' . basename( $find_in ) . ' not found.</h1>';
+		}
+	}
+}
+
+/**
  * Retrive|Find the dir in themes and plugins.
  *
  * @return string
@@ -477,30 +515,6 @@ if ( ! function_exists( 'wpe_template_load' ) ) {
 		}
 	}
 }*/
-
-/**
- * Retrive the file location in plugins.
- *
- * @return string
- * @since  1.0.0
- */
-if ( ! function_exists( 'wpe_plugin_template_load' ) ) {
-	function wpe_plugin_template_load ( $path )
-	{
-		$find_in_theme = WPE_DIR . "{$path}";
-		if ( file_exists( $find_in_theme ) ) {
-			return $find_in_theme;
-		}
-
-		if ( file_exists( $path ) ) {
-			return $path;
-		}
-
-		if ( is_dir( $path ) ) {
-			return $path;
-		}
-	}
-}
 
 /**
  * Retrive the plugin directory.

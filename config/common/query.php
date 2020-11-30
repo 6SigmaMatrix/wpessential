@@ -49,6 +49,7 @@ return apply_filters(
 		Select::make( __( 'Comment Compare', 'wpessential' ) )
 			  ->options(
 				  [
+					  ''   => __( 'Default', 'wpessential' ),
 					  '='  => __( 'Equal', 'wpessential' ),
 					  '!=' => __( 'Not Equal', 'wpessential' ),
 					  '>'  => __( 'Greater Than', 'wpessential' ),

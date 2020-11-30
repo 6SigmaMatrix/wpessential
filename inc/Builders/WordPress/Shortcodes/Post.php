@@ -39,12 +39,8 @@ class Post extends Base implements Shortcodes
 
 		extract( $atts );
 
-		wp_enqueue_style( 'wpessential-blog-post' );
-		wp_enqueue_style( 'wpessential-blog-post-color' );
-		wp_enqueue_style( 'wpessential-blog-post-res' );
-
-		$file_path = apply_filters( "wpe/shortcodes/wpessential_blog_post/template", WPE_DIR );
-		$template  = wpe_template_load( "{$file_path}templates/wpessential-blog-post/style-{$style}.php" );
+		$file_path = apply_filters( "wpe/shortcodes/wpessential_blog_post/template", 'wpessential-blog-post' );
+		$template  = wpe_plugin_template_load( $file_path, "style-{$style}.php" );
 
 		ob_start();
 		include $template;
