@@ -2,14 +2,6 @@
 
 namespace WPEssential\Plugins;
 
-use WPEssential\Plugins\Theme\Setup;
-use WPEssential\Plugins\Utility\BuildersInit;
-use WPEssential\Plugins\Utility\RegisterPostStatus;
-use WPEssential\Plugins\Utility\Requesting;
-use WPEssential\Plugins\Utility\RegisterAssets;
-use WPEssential\Plugins\Utility\Enqueue;
-use WPEssential\Plugins\Utility\RestApi;
-
 final class Loader
 {
 	/**
@@ -84,20 +76,20 @@ final class Loader
 
 	public static function start ()
 	{
-		Requesting::constructor();
-		RegisterAssets::constructor();
-		Enqueue::constructor();
-		ScriptLoader::constructor();
-		Setup::constructor();
-		//RestApi::constructor();
+		Utility\Requesting::constructor();
+		Utility\RegisterAssets::constructor();
+		Utility\Enqueue::constructor();
+		Utility\ScriptLoader::constructor();
+		Theme\Setup::constructor();
+		//Utility\RestApi::constructor();
 	}
 
 	public static function init ()
 	{
 		do_action( 'wpessential_init' );
 		load_plugin_textdomain( 'wpessential', false, WPE_DIR . '/language' );
-		RegisterPostStatus::constructor();
-		BuildersInit::constructor();
+		Utility\RegisterPostStatus::constructor();
+		Utility\BuildersInit::constructor();
 	}
 
 	public static function options ()
