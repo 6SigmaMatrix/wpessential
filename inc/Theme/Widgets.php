@@ -9,7 +9,7 @@ final class Widgets
 {
 	public static function constructor ()
 	{
-		add_action( 'widgets_init', [ __CLASS__, 'init' ], 1000 );
+		add_action( 'widgets_init', [ __CLASS__, 'init' ] );
 	}
 
 	public static function init ()
@@ -25,7 +25,9 @@ final class Widgets
 		if ( $widgets ) {
 			sort( $widgets );
 			foreach ( $widgets as $widet ) {
-				register_widget( $widet );
+				if ( class_exists( $widet ) ) {
+					register_widget( $widet );
+				}
 			}
 		}
 	}

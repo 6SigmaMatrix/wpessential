@@ -22,7 +22,10 @@ final class Enqueue
 		$list = [
 			'fontawesome',
 			'animate',
-			'wpessential'
+			'wpessential',
+			'wpessential-blog-post',
+			'wpessential-blog-post-res',
+			'wpessential-blog-post-color'
 		];
 		$list = apply_filters( 'wpe/frontend/css', $list );
 		$list = array_filter( $list );

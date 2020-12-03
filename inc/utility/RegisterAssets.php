@@ -54,8 +54,17 @@ final class RegisterAssets
 			'wpessential-blog-post-res'    => WPE_URL . "assets/css/wpessential-blog-post-res{$minify}css",
 
 		];
-		$list   = apply_filters( 'wpe/register/css', $list );
-		$list   = array_filter( $list );
+		/*if ( defined( 'WPE_DEBUG' ) && true === WPE_DEBUG || defined( 'WPE_DEBUG' ) && true === WP_DEBUG ) {
+			$list = wp_parse_args( [
+				'wpessential-blog-post'       => WPE_URL . "assets/css/wpessential-blog-post{$minify}css",
+				'wpessential-blog-post-color' => WPE_URL . "assets/css/wpessential-blog-post-color{$minify}css",
+				'wpessential-blog-post-res'   => WPE_URL . "assets/css/wpessential-blog-post-res{$minify}css",
+			], $list );
+		} else {
+
+		}*/
+		$list = apply_filters( 'wpe/register/css', $list );
+		$list = array_filter( $list );
 		if ( $list ) {
 			foreach ( $list as $k => $v ) {
 				wp_register_style( $k, $v, [], WPE_VERSION, 'all' );
