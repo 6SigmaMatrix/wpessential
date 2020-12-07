@@ -21,7 +21,7 @@ $comments_args = [
 	'title_reply_after'    => '</h3>',
 	'cancel_reply_before'  => ' <small>',
 	'cancel_reply_after'   => '</small>',
-	'submit_button'        => '<button name="wpe-comment-form %1$s" type="submit" id="%2$s" class="%3$s">%4$s</button>',
+	'submit_button'        => '<button name="%1$s" type="submit" id="%2$s" class="wpe-comment-form %3$s">%4$s</button>',
 	'submit_field'         => '<p class="wpe-comment-form form-submit">%1$s %2$s</p>',
 	'label_submit'         => __( 'Send', 'wpessential' ),
 	'title_reply'          => __( 'Leave a Message', 'wpessential' ),

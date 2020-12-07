@@ -1,12 +1,12 @@
 <?php
 
-namespace WPEssential\Plugins\Helper;
+namespace WPEssential\Plugins\Utility;
 
-trait AuthGuard
+class AuthGuard
 {
-	public static function authorized ( array $data )
+	public static function authorized ( array $data, $secure_cookie = '' )
 	{
-		$response = wp_signon( $data, false );
+		$response = wp_signon( $data, $secure_cookie );
 		if ( is_wp_error( $response ) ) {
 			wp_send_json_error( $response->get_error_messages() );
 		}

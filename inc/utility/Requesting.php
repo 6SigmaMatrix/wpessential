@@ -3,11 +3,10 @@
 namespace WPEssential\Plugins\Utility;
 
 use WPEssential\Plugins\Helper\Help;
-use WPEssential\Plugins\Helper\AuthGuard;
 
 final class Requesting
 {
-	use Help, AuthGuard;
+	use Help;
 
 	public static function constructor ()
 	{
@@ -25,7 +24,7 @@ final class Requesting
 		$data                    = [];
 		$data[ 'user_login' ]    = sanitize_text_field( wpe_array_get( $_POST, 'user_login' ) );
 		$data[ 'user_password' ] = sanitize_text_field( wpe_array_get( $_POST, 'user_password' ) );
-		self::authorized( $data );
+		AuthGuard::authorized( $data );
 	}
 
 	public static function registrar ()
