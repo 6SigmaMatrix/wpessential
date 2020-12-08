@@ -4,12 +4,15 @@ add_action( 'wpe_after_loop', 'wpe_after_loop_template' );
 
 add_action( 'wpe_no_posts_found', 'wpe_no_posts_found_template' );
 
+add_action( 'wpe_default_sidebar_before', 'wpe_default_sidebar_before_template' );
 add_action( 'wpe_default_sidebar', 'wpe_default_sidebar_template' );
+add_action( 'wpe_default_sidebar_after', 'wpe_default_sidebar_after_template' );
 
 add_action( 'wpe_footer', 'wpe_footer_sidebar_template', 10 );
 add_action( 'wpe_footer', 'wpe_footer_menu_template', 20 );
 add_action( 'wpe_footer', 'wpe_footer_copyright_template', 30 );
 
+add_action( 'wpe_header', 'wpe_page_loader_template', 0 );
 add_action( 'wpe_header', 'wpe_header_logo_template', 10 );
 add_action( 'wpe_header', 'wpe_header_menu_template', 20 );
 
@@ -62,9 +65,19 @@ function wpe_pagination_template ( $args = [] )
 	require_once wpe_template_load( 'templates/general/pagination.php' );
 }
 
+function wpe_default_sidebar_before_template ()
+{
+	require_once wpe_template_load( 'templates/general/before-sidebar.php' );
+}
+
 function wpe_default_sidebar_template ()
 {
 	require_once wpe_template_load( 'templates/general/default-sidebar.php' );
+}
+
+function wpe_default_sidebar_after_template ()
+{
+	require_once wpe_template_load( 'templates/general/after-sidebar.php' );
 }
 
 function wpe_footer_sidebar_template ()
@@ -85,6 +98,11 @@ function wpe_footer_menu_template ()
 function wpe_footer_copyright_template ()
 {
 	require_once wpe_template_load( 'templates/footer/branding/copyright.php' );
+}
+
+function wpe_page_loader_template ()
+{
+	require_once wpe_template_load( 'templates/header/loader.php' );
 }
 
 function wpe_header_logo_template ()

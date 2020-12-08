@@ -150,8 +150,8 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * has_password (bool) – true for posts with passwords ; false for posts without passwords ; null for all posts with and without passwords (available since version 3.9).
 	 * post_password (string) – show posts with a particular password (available since version 3.9)
 	 * */
-	protected bool    $has_password;
-	protected string  $post_password;
+	protected bool   $has_password;
+	protected string $post_password;
 
 	/*
 	 * Since Version 4.9 Introduced the `$comment_count` parameter. It can be either an Integer or an Array.
@@ -176,13 +176,13 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * page (int) – number of page for a static front page. Show the posts that would normally show up just on page X of a Static Front Page.
 	 * ignore_sticky_posts (boolean) – ignore post stickiness (available since version 3.1, replaced caller_get_posts parameter). false (default): move sticky posts to the start of the set. true: do not move sticky posts to the start of the set.
 	 * */
-	protected bool    $nopaging;
-	protected int     $posts_per_page;
-	protected int     $posts_per_archive_page;
-	protected int     $offset;
-	protected int     $paged;
-	protected int     $page;
-	protected bool    $ignore_sticky_posts;
+	protected bool $nopaging;
+	protected int  $posts_per_page;
+	protected int  $posts_per_archive_page;
+	protected int  $offset;
+	protected int  $paged;
+	protected int  $page;
+	protected bool $ignore_sticky_posts;
 
 	/*
 	 * Sort retrieved posts.
@@ -291,7 +291,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 *
 	 * perm (string) – User permission.
 	 * */
-	protected string  $perm;
+	protected string $perm;
 
 	/*
 	 * Used with the attachments post type.
@@ -333,7 +333,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 */
 	public static function make ( ...$arguments )
 	{
-		return new static( $arguments );
+		return QueryBuilder::constructor( $arguments );
 	}
 
 	/**
@@ -342,7 +342,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * @param array $post_type
 	 */
 
-	public function __construct ( array $post_type )
+	public static function constructor ( array $post_type )
 	{
 		if ( $post_type ) {
 

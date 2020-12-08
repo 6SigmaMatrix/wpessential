@@ -21,7 +21,7 @@ final class Sidebars
 		$sidebars = apply_filters(
 			'wpe/register/sidebars',
 			[
-				[
+				'main-sidebar'   => [
 					'name'          => __( 'WPEssential: Main Sidebar', 'wpessential' ),
 					'id'            => 'sidebar-1',
 					'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'wpessential' ),
@@ -30,7 +30,7 @@ final class Sidebars
 					'before_title'  => '<h2 class="wpe-widget-title">',
 					'after_title'   => '</h2>',
 				],
-				[
+				'footer-sidebar' => [
 					'name'          => __( 'WPEssential: Footer Sidebar', 'wpessential' ),
 					'id'            => 'footer',
 					'description'   => __( 'Widgets in this area will be shown on all posts and pages.', 'wpessential' ),

@@ -1,7 +1,7 @@
 <?php
 wp_nav_menu(
 	[
-		'theme_location'  => 'primery_menu',
+		'theme_location'  => 'primary_menu',
 		'container'       => false,
 		'container_class' => '',
 		'container_id'    => '',
