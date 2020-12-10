@@ -17,9 +17,9 @@ return apply_filters(
 			  ->options(
 				  [
 					  '1' => __( '1', 'wpessential' ),
-					  '2' => __( '2', 'wpessential' ),
-					  '3' => __( '3', 'wpessential' ),
-					  '4' => __( '4', 'wpessential' ),
+					  '6' => __( '2', 'wpessential' ),
+					  '4' => __( '3', 'wpessential' ),
+					  '3' => __( '4', 'wpessential' ),
 				  ]
 			  )
 			  ->toArray(),

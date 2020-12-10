@@ -3,13 +3,10 @@
 namespace WPEssential\Plugins\Query;
 
 use JsonSerializable;
-use phpDocumentor\Reflection\Types\Mixed_;
 use WPEssential\Plugins\Implement\Arrayable;
 
 abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializable
 {
-	protected array $args = [];
-
 	/*
 	 * Show posts associated with certain author.
 	 * https://developer.wordpress.org/reference/classes/wp_query/#author-parameters
@@ -19,10 +16,10 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * author__in (array) – use author id (available since version 3.7).
 	 * author__not_in (array) – use author id (available since version 3.7).
 	 * */
-	protected int    $author;
-	protected string $author_name;
-	protected array  $author__in;
-	protected array  $author__not_in;
+	public $author;
+	public $author_name;
+	public $author__in;
+	public $author__not_in;
 
 	/*
 	 * Show posts associated with certain categories.
@@ -34,11 +31,11 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * category__in (array) – use category id.
 	 * category__not_in (array) – use category id.
 	 * */
-	protected int    $cat;
-	protected string $category_name;
-	protected array  $category__and;
-	protected array  $category__in;
-	protected array  $category__not_in;
+	public $cat;
+	public $category_name;
+	public $category__and;
+	public $category__in;
+	public $category__not_in;
 
 	/*
 	 * Show posts associated with certain tags.
@@ -52,13 +49,13 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * tag_slug__and (array) – use tag slugs.
 	 * tag_slug__in (array) – use tag slugs.
 	 * */
-	protected string $tag;
-	protected int    $tag_id;
-	protected array  $tag__and;
-	protected array  $tag__in;
-	protected array  $tag__not_in;
-	protected array  $tag_slug__and;
-	protected array  $tag_slug__in;
+	public $tag;
+	public $tag_id;
+	public $tag__and;
+	public $tag__in;
+	public $tag__not_in;
+	public $tag_slug__and;
+	public $tag_slug__in;
 
 	/*
 	 * Show posts associated with certain taxonomy.
@@ -75,7 +72,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * Important Note: tax_query takes an array of tax query arguments arrays (it takes an array of arrays).
 	 * This construct allows you to query multiple taxonomies by using the relation parameter in the first (outer) array to describe the boolean relationship between the taxonomy arrays.
 	 * */
-	protected array $tax_query;
+	public $tax_query;
 
 	/*
 	 * Show posts based on a keyword search.
@@ -83,7 +80,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 *
 	 * s (string) – Search keyword.
 	 * */
-	protected string $s;
+	public $s;
 
 	/*
 	 * Display content based on post and page parameters. Remember that default post_type is only set to display posts but not pages.
@@ -100,16 +97,16 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * post__not_in (array) – use post ids. Specify post NOT to retrieve.
 	 * post_name__in (array) – use post slugs. Specify posts to retrieve. (Will be available in version 4.4)
 	 * */
-	protected int    $p;
-	protected string $name;
-	protected int    $page_id;
-	protected string $pagename;
-	protected int    $post_parent;
-	protected array  $post_parent__in;
-	protected array  $post_parent__not_in;
-	protected array  $post__in;
-	protected array  $post__not_in;
-	protected array  $post_name__in;
+	public $p;
+	public $name;
+	public $page_id;
+	public $pagename;
+	public $post_parent;
+	public $post_parent__in;
+	public $post_parent__not_in;
+	public $post__in;
+	public $post__not_in;
+	public $post_name__in;
 
 	/*
 	 * Show posts associated with certain
@@ -124,13 +121,13 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * ‘any‘ – retrieves any type except revisions and types with ‘exclude_from_search’ set to true.
 	 * ** Custom Post Types (e.g. movies)
 	 * */
-	protected array $post_type;
+	public $post_type;
 
 	/*
 	 * Show posts associated with certain
 	 * https://developer.wordpress.org/reference/classes/wp_query/#status-parameters
 	 *
-	 * post_status (string / array) – use post status. Retrieves posts by post status. Default value is ‘publish‘, but if the user is logged in, ‘private‘ is added. Public custom post statuses are also included by default. And if the query is run in an admin context (administration area or AJAX call), protected statuses are added too. By default protected statuses are ‘future‘, ‘draft‘ and ‘pending‘.
+	 * post_status (string / array) – use post status. Retrieves posts by post status. Default value is ‘publish‘, but if the user is logged in, ‘private‘ is added. Public custom post statuses are also included by default. And if the query is run in an admin context (administration area or AJAX call), public statuses are added too. By default public statuses are ‘future‘, ‘draft‘ and ‘pending‘.
 	 * ‘publish‘ – a published post or page.
 	 * ‘pending‘ – post is pending review.
 	 * ‘draft‘ – a post in draft status.
@@ -141,7 +138,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * ‘trash‘ – post is in trashbin (available since version 2.9).
 	 * ‘any‘ – retrieves any status except for ‘inherit’, ‘trash’ and ‘auto-draft’. Custom post statuses with ‘exclude_from_search’ set to true are also excluded.
 	 * */
-	protected array $post_status;
+	public $post_status;
 
 	/*
 	 * Show content based on post and page parameters. Remember that default post_type is only set to display posts but not pages.
@@ -150,8 +147,8 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * has_password (bool) – true for posts with passwords ; false for posts without passwords ; null for all posts with and without passwords (available since version 3.9).
 	 * post_password (string) – show posts with a particular password (available since version 3.9)
 	 * */
-	protected bool   $has_password;
-	protected string $post_password;
+	public $has_password;
+	public $post_password;
 
 	/*
 	 * Since Version 4.9 Introduced the `$comment_count` parameter. It can be either an Integer or an Array.
@@ -162,7 +159,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * 		‘value‘ – The amount of comments your post has to have when comparing
 	 * 		‘compare‘ – The search operator. Possible values are ‘=’, ‘!=’, ‘>’, ‘>=’, ‘<‘, ‘<=’. Default value is ‘=’.
 	 * */
-	protected Mixed_ $comment_count;
+	public $comment_count;
 
 	/*
 	 * Pagination Parameters
@@ -176,13 +173,13 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * page (int) – number of page for a static front page. Show the posts that would normally show up just on page X of a Static Front Page.
 	 * ignore_sticky_posts (boolean) – ignore post stickiness (available since version 3.1, replaced caller_get_posts parameter). false (default): move sticky posts to the start of the set. true: do not move sticky posts to the start of the set.
 	 * */
-	protected bool $nopaging;
-	protected int  $posts_per_page;
-	protected int  $posts_per_archive_page;
-	protected int  $offset;
-	protected int  $paged;
-	protected int  $page;
-	protected bool $ignore_sticky_posts;
+	public $nopaging;
+	public $posts_per_page;
+	public $posts_per_archive_page;
+	public $offset;
+	public $paged;
+	public $page;
+	public $ignore_sticky_posts;
 
 	/*
 	 * Sort retrieved posts.
@@ -211,8 +208,8 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * 		‘post_name__in‘ – Preserve post slug order given in the ‘post_name__in’ array (available since Version 4.6). Note – the value of the order parameter does not change the resulting sort order.
 	 * 		‘post_parent__in‘ -Preserve post parent order given in the ‘post_parent__in’ array (available since Version 4.6). Note – the value of the order parameter does not change the resulting sort order.
 	 * */
-	protected Mixed_ $order;
-	protected Mixed_ $orderby;
+	public $order;
+	public $orderby;
 
 	/*
 	 * Show posts associated with a certain time and date period.
@@ -247,15 +244,15 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * 		column (string) – Posts column to query against. Default: ‘post_date’.
 	 * 		relation (string) – OR or AND, how the sub-arrays should be compared. Default: AND.
 	 * */
-	protected int   $year;
-	protected int   $monthnum;
-	protected int   $w;
-	protected int   $day;
-	protected int   $hour;
-	protected int   $minute;
-	protected int   $second;
-	protected int   $m;
-	protected array $date_query;
+	public $year;
+	public $monthnum;
+	public $w;
+	public $day;
+	public $hour;
+	public $minute;
+	public $second;
+	public $m;
+	public $date_query;
 
 	/*
 	 * Show posts associated with a certain custom field.
@@ -279,11 +276,11 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * Important Note: meta_query takes an array of meta query arguments arrays (it takes an array of arrays) – you can see this in the examples below.
 	 * This construct allows you to query multiple metadatas by using the relation parameter in the first (outer) array to describe the boolean relationship between the meta queries. Accepted arguments are ‘AND’, ‘OR’. The default is ‘AND’.
 	 * */
-	protected string $meta_key;
-	protected string $meta_value;
-	protected string $meta_value_num;
-	protected string $meta_compare;
-	protected array  $meta_query;
+	public $meta_key;
+	public $meta_value;
+	public $meta_value_num;
+	public $meta_compare;
+	public $meta_query;
 
 	/*
 	 * Show posts if user has the appropriate capability
@@ -291,7 +288,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 *
 	 * perm (string) – User permission.
 	 * */
-	protected string $perm;
+	public $perm;
 
 	/*
 	 * Used with the attachments post type.
@@ -299,7 +296,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 *
 	 * post_mime_type (string/array) – Allowed mime types.
 	 * */
-	protected Mixed_ $post_mime_type;
+	public $post_mime_type;
 
 	/*
 	 * Stop the data retrieved from being added to the cache.
@@ -309,9 +306,9 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * update_post_meta_cache (boolean) – Post meta information cache.
 	 * update_post_term_cache (boolean) – Post term information cache.
 	 * */
-	protected bool $cache_results;
-	protected bool $update_post_meta_cache;
-	protected bool $update_post_term_cache;
+	public $cache_results;
+	public $update_post_meta_cache;
+	public $update_post_term_cache;
 
 	/*
 	 * Set return values.
@@ -323,7 +320,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * 		'id=>parent' – Return an array of stdClass objects with ID and post_parent properties.
 	 * Passing anything else will return all fields (default) – an array of post objects.
 	*/
-	protected string $fields;
+	public $fields;
 
 	/**
 	 * Call the class construct.
@@ -333,7 +330,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 */
 	public static function make ( ...$arguments )
 	{
-		return QueryBuilder::constructor( $arguments );
+		return new static( $arguments );
 	}
 
 	/**
@@ -342,11 +339,15 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 * @param array $post_type
 	 */
 
-	public static function constructor ( array $post_type )
+	public function __construct ( $post_type )
 	{
 		if ( $post_type ) {
-
+			$this->post_type( $post_type );
+		} else {
+			$this->post_type( 'post' );
 		}
+
+		return $this;
 
 	}
 
@@ -357,7 +358,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 */
 	public function jsonSerialize ()
 	{
-		return call_user_func( [ $this, $this->args ] );
+		return $this;
 	}
 
 	/**
@@ -367,6 +368,7 @@ abstract class QueryBuilder extends Callback implements Arrayable, JsonSerializa
 	 */
 	public function toArray ()
 	{
-		return call_user_func( [ $this, $this->args ] );
+		$return = (array) $this;
+		return array_filter( $return );
 	}
 }

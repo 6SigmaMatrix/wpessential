@@ -2262,12 +2262,24 @@ html {
     margin-top: 10px !important;
 }
 
+.wpe-mb-10 {
+    margin-bottom: 10px !important;
+}
+
 .wpe-mt-20 {
     margin-top: 20px !important;
 }
 
+.wpe-mb-20 {
+    margin-bottom: 20px !important;
+}
+
 .wpe-mt-30 {
     margin-top: 30px !important;
+}
+
+.wpe-mb-30 {
+    margin-bottom: 30px !important;
 }
 
 .wpe-pt-0 {

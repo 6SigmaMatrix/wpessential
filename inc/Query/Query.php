@@ -6,7 +6,12 @@ class Query extends QueryBuilder
 {
 	public function run ()
 	{
-		$this->args = array_filter( $this->args );
-		return new \WP_Query( $this->args );
+		return new \WP_Query( $this->toArray() );
+	}
+
+	public function related ( array $callback )
+	{
+		$this->post__not_in( $callback );
+		return $this;
 	}
 }

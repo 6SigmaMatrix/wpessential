@@ -20,7 +20,7 @@ final class Enqueue
 	public static function frontend_enqueue ()
 	{
 		$list = [
-			'fontawesome',
+			'font-awesome',
 			'animate',
 			'wpessential',
 			'wpessential-blog-post',
