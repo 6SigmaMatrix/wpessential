@@ -762,6 +762,18 @@ if ( ! function_exists( 'wpe_get_post' ) ) {
 }
 
 /**
+ * Get an array of sidebar list.
+ *
+ * @since  1.0.0
+ */
+if ( ! function_exists( 'wpe_get_sidebar' ) ) {
+	function wpe_get_sidebar ()
+	{
+		return Help::get_sidebar_list();
+	}
+}
+
+/**
  * Get an array of post types.
  *
  * @return array
@@ -1209,3 +1221,4 @@ if ( ! function_exists( 'wpe_generate_css' ) ) {
 		return $return;
 	}
 }
+

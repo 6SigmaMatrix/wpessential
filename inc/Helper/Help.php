@@ -109,6 +109,32 @@ trait Help
 	}
 
 	/**
+	 * Returns the sidebar list
+	 *
+	 * @access public
+	 * @return void
+	 */
+	public static function get_sidebar_list ()
+	{
+		global $wp_registered_sidebars;
+
+		$items = [];
+
+		// Properly format the array.
+		$items = [
+			'' => __( 'Choose', 'wpessential' ),
+		];
+
+		foreach ( $wp_registered_sidebars as $id => $sidebar ) {
+			$items[ $id ] = $sidebar;
+		}
+
+		$items = apply_filters( 'wpe/get/sidebars', $items );
+
+		return $items;
+	}
+
+	/**
 	 * Get an array of publicly-querable taxonomies.
 	 *
 	 * @static
