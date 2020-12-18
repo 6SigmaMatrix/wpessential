@@ -137,7 +137,7 @@ class PostQuery
 
 		$post_type = $this->get_widget_settings( 'post_type' );
 		if ( 'by_id' === $post_type ) {
-			$post_types                      = wpe_get_post();
+			$post_types                      = wpe_get_posts();
 			$this->query_args[ 'post_type' ] = array_keys( $post_types );
 		} else {
 			$this->query_args[ 'post_type' ] = $post_type;

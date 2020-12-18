@@ -62,7 +62,7 @@ return apply_filters(
 		MultiSelect::make( __( 'Post Not In', 'wpessential' ) )
 				   ->desc( __( 'Specify post NOT to retrieve. Use post ids', 'wpessential' ) )
 				   ->options(
-					   wpe_get_post(
+					   wpe_get_posts(
 						   [
 							   'post_type'      => 'post',
 							   'posts_per_page' => - 1

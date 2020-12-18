@@ -10,10 +10,10 @@ return apply_filters(
 	'wpe/shortcode/Wpessential_Post/button',
 	[
 		Select::make( __( 'Button Type' ) )
-			  ->options( wpe_button_type() )
+			  ->options( wpe_info_type() )
 			  ->toArray(),
 		Select::make( __( 'Button Size' ) )
-			  ->options( wpe_button_size() )
+			  ->options( wpe_element_size() )
 			  ->default( 'xs' )
 			  ->toArray(),
 		Text::make( __( 'Button Label' ) )

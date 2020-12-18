@@ -68,10 +68,17 @@ final class Loader
 
 	public static function load_files ()
 	{
-		require_once WPE_DIR . 'inc/functions.php';
+		require_once WPE_DIR . 'inc/Functions/general.php';
+		require_once WPE_DIR . 'inc/Functions/file.php';
+		require_once WPE_DIR . 'inc/Functions/image.php';
+		require_once WPE_DIR . 'inc/Functions/post.php';
+		require_once WPE_DIR . 'inc/Functions/query.php';
+		require_once WPE_DIR . 'inc/Functions/template.php';
+		require_once WPE_DIR . 'inc/Functions/style.php';
+		require_once WPE_DIR . 'inc/Functions/element.php';
+		require_once WPE_DIR . 'inc/Functions/array.php';
+
 		require_once WPE_DIR . 'inc/Libraries/ClassLoader.php';
-		require_once WPE_DIR . 'inc/query-functions.php';
-		require_once WPE_DIR . 'inc/template-functions.php';
 	}
 
 	public static function start ()

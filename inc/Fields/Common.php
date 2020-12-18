@@ -12,12 +12,12 @@ abstract class Common
 	public function button ()
 	{
 		$opt = Select::make( __( 'Button Type' ), "common_{$this->common_key}_botto_type" )
-					 ->options( wpe_button_type() )
+					 ->options( wpe_info_type() )
 					 ->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );
 
 		$opt = Select::make( __( 'Button Size' ), "common_{$this->common_key}_botto_size" )
-					 ->options( wpe_button_size() )
+					 ->options( wpe_element_size() )
 					 ->default( 'xs' )
 					 ->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );

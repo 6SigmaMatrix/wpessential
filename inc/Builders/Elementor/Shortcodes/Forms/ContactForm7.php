@@ -56,7 +56,7 @@ class ContactForm7 extends Base implements Shortcodes
 		);
 
 		$opt = Select::make( __( 'Forms List', 'wpessential' ) )
-					 ->options( wpe_get_post( [ 'post_type' => 'wpcf7_contact_form', 'posts_per_page' => - 1 ] ) )
+					 ->options( wpe_get_posts( [ 'post_type' => 'wpcf7_contact_form', 'posts_per_page' => - 1 ] ) )
 					 ->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );
 
