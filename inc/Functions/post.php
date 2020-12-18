@@ -71,7 +71,7 @@ if ( ! function_exists( 'wpe_get_posts' ) ) {
 			$items[ 'no' ] = __( 'No Post Found', 'wpessential' );
 		}
 
-		return apply_filter( 'wpe/get/posts', $items );
+		return apply_filters( 'wpe/get/posts', $items );
 	}
 }
 
@@ -108,7 +108,7 @@ if ( ! function_exists( 'wpe_get_post_types' ) ) {
 			$items[ 'no' ] = __( 'No Post Type Found', 'wpessential' );
 		}
 
-		return apply_filter( 'wpe/get/post_types', $items );
+		return apply_filters( 'wpe/get/post_types', $items );
 	}
 }
 
@@ -121,7 +121,7 @@ if ( ! function_exists( 'wpe_get_taxonomies' ) ) {
 	 * @param bool $public either get the public or protect post types list.
 	 * @return array
 	 */
-	function wpe_get_taxonomies ( $output = 'objects', $is_multiselect = false, $public = true )
+	function wpe_get_taxonomies ( $output = 'names', $is_multiselect = false, $public = true )
 	{
 		$items = [];
 		if ( ! $is_multiselect ) {
@@ -147,7 +147,7 @@ if ( ! function_exists( 'wpe_get_taxonomies' ) ) {
 			$items[ 'no' ] = __( 'No Taxonomy Found', 'wpessential' );
 		}
 
-		return apply_filter( 'wpe/get/taxonomies', $items );;
+		return apply_filters( 'wpe/get/taxonomies', $items );
 	}
 }
 
@@ -360,7 +360,7 @@ if ( ! function_exists( 'wpe_get_terms' ) ) {
 			$items[ 'no' ] = __( 'No Term Found', 'wpessential' );
 		}
 
-		return apply_filter( 'wpe/get/terms', $items );
+		return apply_filters( 'wpe/get/terms', $items );
 	}
 }
 

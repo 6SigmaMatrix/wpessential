@@ -2,12 +2,8 @@
 
 namespace WPEssential\Plugins\Utility;
 
-use WPEssential\Plugins\Helper\Help;
-
 final class Requesting
 {
-	use Help;
-
 	public static function constructor ()
 	{
 		add_action( 'wp_ajax_nopriv_auth', [ __CLASS__, 'login' ] );
@@ -45,7 +41,7 @@ final class Requesting
 		wpe_ajax_authorized();
 
 		$image_url = sanitize_text_field( wpe_array_get( $_POST, 'user' ) );
-		wpe_error( self::get_image_from_url() );
+		wpe_error( wpe_get_image_from_url() );
 		return;
 	}
 }

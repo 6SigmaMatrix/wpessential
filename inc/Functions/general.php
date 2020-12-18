@@ -32,6 +32,38 @@ if ( ! function_exists( 'wpe_metabox' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wpe_trim_words' ) ) {
+	/**
+	 * Retrive the description, base of words cutting.
+	 *
+	 * @param string $desc desicription.
+	 * @param int $lenght lenght to cut.
+	 * @param string $indecator add the indecator to present the description is cut from there.
+	 * @return string
+	 */
+	function wpe_trim_words ( string $desc, $lenght = 55, $indecator = '' )
+	{
+		return wp_trim_words( $desc, $lenght, $indecator );
+	}
+}
+
+if ( ! function_exists( 'wpe_trim_char' ) ) {
+
+	/**
+	 * Retrive the description, base of charactor cutting.
+	 *
+	 * @param string $desc desicription.
+	 * @param int $lenght lenght to cut.
+	 * @param string $indecator add the indecator to present the description is cut from there.
+	 * @return string
+	 */
+	function wpe_trim_char ( $desc, $lenght = 55, $indecator = '' )
+	{
+		$desc = wp_strip_all_tags( $desc );
+		return substr( $desc, 0, $lenght ) . $indecator;
+	}
+}
+
 if ( ! function_exists( 'wpe_gen_attr_data' ) ) {
 	/**
 	 * Array Attr Generate Data
