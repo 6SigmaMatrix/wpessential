@@ -2,8 +2,8 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-use WPEssential\Plugins\Builders\WordPress\Utility\Base;
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
+use WPEssential\Plugins\Builders\WordPress\Utility\Base;
 
 class Post extends Base implements Shortcodes
 {

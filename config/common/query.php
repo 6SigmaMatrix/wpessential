@@ -16,10 +16,10 @@ return apply_filters(
 			  ->default( 2 )
 			  ->options(
 				  [
-					  '1' => __( '1', 'wpessential' ),
-					  '6' => __( '2', 'wpessential' ),
-					  '4' => __( '3', 'wpessential' ),
-					  '3' => __( '4', 'wpessential' ),
+					  '12' => __( '1', 'wpessential' ),
+					  '6'  => __( '2', 'wpessential' ),
+					  '4'  => __( '3', 'wpessential' ),
+					  '3'  => __( '4', 'wpessential' ),
 				  ]
 			  )
 			  ->toArray(),
