@@ -83,4 +83,4 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Upgrade Notice ==
 Please take a backup of your WordPress database, before the update. Because this time, we have so many burdon of your new work and we are not able to detecte your data missing. But on your server, we did not fond any data missing report on plugin update. Thank in advance.
-Hello
+
