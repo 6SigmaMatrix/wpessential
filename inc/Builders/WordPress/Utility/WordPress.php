@@ -8,6 +8,7 @@ final class WordPress implements ShortcodeInit
 {
 	public static function constructor ()
 	{
+		PageTemplates::constructor();
 		self::registry_widget();
 	}
 

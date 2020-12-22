@@ -3,7 +3,6 @@
 namespace WPEssential\Plugins\Builders\Elementor\Utility;
 
 use Elementor\Plugin;
-
 use WPEssential\Plugins\Builders\Elementor\Controls\Group\Posts;
 use WPEssential\Plugins\Builders\Elementor\Controls\Group\Query as GroupQuery;
 use WPEssential\Plugins\Builders\Elementor\Controls\Group\Related;
@@ -17,6 +16,7 @@ final class Elementor implements ShortcodeInit
 
 	public static function constructor ()
 	{
+		PageTemplates::constructor();
 		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
 		add_action( 'elementor/elements/categories_registered', [ __CLASS__, 'register_category' ] );
 		add_action( 'elementor/controls/controls_registered', [ __CLASS__, 'register_controls' ] );

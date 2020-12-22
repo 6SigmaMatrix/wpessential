@@ -97,6 +97,7 @@ final class Loader
 		load_plugin_textdomain( 'wpessential', false, WPE_DIR . '/language' );
 		Utility\RegisterPostStatus::constructor();
 		Utility\BuildersInit::constructor();
+		Utility\PageTemplates::constructor();
 	}
 
 	public static function options ()

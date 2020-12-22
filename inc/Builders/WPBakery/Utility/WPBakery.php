@@ -12,6 +12,7 @@ final class WPBakery implements ShortcodeInit
 {
 	public static function constructor ()
 	{
+		PageTemplates::constructor();
 		Number::constructor();
 		Heading::constructor();
 		Select::constructor();
