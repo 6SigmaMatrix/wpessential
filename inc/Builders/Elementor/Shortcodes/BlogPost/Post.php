@@ -45,8 +45,6 @@ class Post extends Base implements Shortcodes
 	 */
 	public function _register_controls ()
 	{
-		Loader::editor( 'elementor' );
-
 		$this->start_controls_section(
 			'section_1',
 			[

@@ -151,6 +151,38 @@ if ( ! function_exists( 'wpe_get_taxonomies' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wpe_get_terms' ) ) {
+	/**
+	 * Retrive array of terms from a taxonomy.
+	 *
+	 * @param string|array $args See https://developer.wordpress.org/reference/functions/get_terms/ for details.
+	 * @param bool $slug get list of terms post by slug or id
+	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 * @return array
+	 */
+	function wpe_get_terms ( $args, $slug = false, $is_multiselect = false )
+	{
+		$items = [];
+		if ( ! $is_multiselect ) {
+			$items[] = __( 'Choose', 'wpessential' );
+		}
+
+		// Get the post types.
+		$terms = get_terms( $args );
+		// Build the array.
+		if ( $terms ) {
+			$slug = ( $slug ) ? 'slug' : 'term_id';
+			foreach ( $terms as $term ) {
+				$items[ wpe_array_get( $term, $slug ) ] = wpe_array_get( $term, 'name' );
+			}
+		} else {
+			$items[ 'no' ] = __( 'No Term Found', 'wpessential' );
+		}
+
+		return apply_filters( 'wpe/get/terms', $items );
+	}
+}
+
 if ( ! function_exists( 'wpe_get_page_title' ) ) {
 	/**
 	 * Returns the archive title.
@@ -330,37 +362,6 @@ if ( ! function_exists( 'wpe_get_post_custom_keys_array' ) ) {
 		}
 
 		return apply_filters( 'wpe/get/post/custom/keys', $items );
-	}
-}
-
-if ( ! function_exists( 'wpe_get_terms' ) ) {
-	/**
-	 * Retrive array of terms from a taxonomy.
-	 *
-	 * @param string|array $args See https://developer.wordpress.org/reference/functions/get_terms/ for details.
-	 * @param bool $is_multiselect enable or disable the first option like empty.
-	 * @return array
-	 */
-	function wpe_get_terms ( $args, $is_multiselect = false )
-	{
-		$items = [];
-		if ( ! $is_multiselect ) {
-			$items[] = __( 'Choose', 'wpessential' );
-		}
-
-		// Get the post types.
-		$terms = get_terms( $args );
-
-		// Build the array.
-		if ( $terms ) {
-			foreach ( $terms as $term ) {
-				$items[ $term->term_id ] = $term->name;
-			}
-		} else {
-			$items[ 'no' ] = __( 'No Term Found', 'wpessential' );
-		}
-
-		return apply_filters( 'wpe/get/terms', $items );
 	}
 }
 
