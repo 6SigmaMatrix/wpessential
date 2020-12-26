@@ -1,15 +1,15 @@
 ﻿=== WPEssential ===
 Contributors: WPEssential
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ashadab59@gmail.com&lc=GB&item_name=Donate%20For%20TCI%20Ultimate%20Element%20Themes%20Plugin&currency_code=USD&no_note=0&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest
-Tags: elementor, addons, dynamic tags, woocommerce, custom css, custom-attribues, landing-page, smart slider 3, layer slider, revolutation slider, master slider, page builder, editor, landing page, drag-and-drop, visual editor, wysiwyg, design, maintenance mode, coming soon, under construction, website builder, landing page builder, front-end builder, wpbakery.
+Tags: elementor, addons, dynamic tags, woocommerce, custom css, custom-attribues, landing-page, smart slider 3, layer slider, revolutation slider, master slider, page builder, editor, landing page, drag-and-drop, visual editor, wysiwyg, design, maintenance mode, coming soon, under construction, website builder, landing page builder, front-end builder, wpbakery, beta.
 Requires PHP: 7.4
-Requires at least: 5.5.0
-Tested up to: 5.5
+Requires at least: 5.5
+Tested up to: 5.6
 WC requires at least: 4.0
-WC tested up to: 4.5
-Stable tag: 1.0.0.00003
-License: GPLv3
-License URI: https://www.gnu.org/licenses/gpl-3.0.html
+WC tested up to: 4.8
+Stable tag: 1.0.0.00004
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 WPEssential is a flexible extension of WordPress. It is open-source and themes also page builder solution in WordPress. Create any theme, anywhere and make your way. There is no `PHP`, `CSS`, `HTML` and `Javascript` coding knowledge need.
 
@@ -54,6 +54,11 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 
 == Changelog ==
+
+= 26/12/2020 1.0.0.00004 =
+- Fix WooCommerce error.
+- Compatibility - Theme Development
+- Update - Files And Structure
 
 = 09/11/2020 1.0.0.00003 =
 - Add Layer Slider widget.

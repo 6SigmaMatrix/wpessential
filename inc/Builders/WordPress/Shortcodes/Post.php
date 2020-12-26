@@ -35,9 +35,7 @@ class Post extends Base implements Shortcodes
 			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
 		}
 
-		$style = '1';
-
-		extract( $atts );
+		$style = wpe_array_get( $atts, 'style', '1' );
 
 		$file_path = apply_filters( "wpe/shortcodes/wpessential_blog_post/template", 'wpessential-blog-post' );
 		$template  = wpe_plugin_template_load( $file_path, "style-{$style}.php" );

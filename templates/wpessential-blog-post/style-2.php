@@ -1,6 +1,6 @@
 <?php
 $post = new WP_Query( [
-	'posts_per_page' => $posts_per_page,
+	'posts_per_page' => wpe_array_get( $atts, 'wpe_st_posts_per_page', 3 ),
 	'post_type'      => 'post',
 	'post_status'    => 'publish'
 ] );

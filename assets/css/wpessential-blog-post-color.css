@@ -1,14 +1,9 @@
-.wpe-style2 .wpe-blog-cat,
-.wpe-style3 .wpe-blog-content > a,
-.wpe-style4 .wpe-blog-cat{
+.wpe-style2 .wpe-blog-cat{
     border-color: #235fcb;
 }
 
 .wpe-style1 .wpe-blog-cat,
-.wpe-style1 .wpe-blog-date span,
-.wpe-style3 .wpe-blog-date span,
-.wpe-style3 .wpe-blog-cat,
-.wpe-style4 .wpe-blog-meta > span::before{
+.wpe-style1 .wpe-blog-date span{
     background-color: #235fcb;
 }
 
@@ -20,20 +15,6 @@
 .wpe-style2 .wpe-blog-cat a::before,
 .wpe-style2 .wpe-blog-author a,
 .wpe-style2 .wpe-blog-stat span,
-.wpe-style2 .wpe-blog-content h3:hover,
-.wpe-style3 .wpe-blog-comment,
-.wpe-style3 .wpe-blog-content h3:hover,
-.wpe-style3 .wpe-blog-stat span,
-.wpe-style3 .wpe-blog-content > a,
-.wpe-style4 .wpe-blog-item h3:hover,
-.wpe-style4 .wpe-blog-content > a,
-.wpe-style4 .wpe-blog-cat a,
-.wpe-blog-meta span,
-.wpe-style4 .wpe-blog-author a,
-.wpe-style4 .wpe-blog-stat {
+.wpe-style2 .wpe-blog-content h3:hover{
     color: #235fcb;
-}
-
-.wpe-style3 .wpe-blog-comment svg * {
-    fill: #235fcb !important;
 }

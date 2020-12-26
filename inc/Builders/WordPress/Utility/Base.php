@@ -2,8 +2,8 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Utility;
 
-use WPEssential\Plugins\Helper\GetShortcodeBase;
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
+use WPEssential\Plugins\Helper\GetShortcodeBase;
 use WPEssential\Plugins\Loader;
 
 abstract class Base
