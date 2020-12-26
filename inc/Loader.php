@@ -52,17 +52,14 @@ final class Loader
 		$theme_name = wp_get_theme();
 		$theme_name = str_replace( [ ' ', '_', '-' ], '', $theme_name->get( 'Name' ) );
 		$psr        = [
-			'WPEssential\\Plugins\\'              => WPE_DIR . 'inc/',
 			"WPEssential\\Theme\\{$theme_name}\\" => get_template_directory() . '/inc/',
 		];
 
-		$class_loader = new Libraries\ClassLoader;
+		$class_loader = require WPE_DIR .'vendor/autoload.php';
 
 		foreach ( $psr as $prefix => $paths ) {
-			$class_loader->addNamespace( $prefix, $paths );
+			$class_loader->addPsr4( $prefix, $paths );
 		}
-
-		$class_loader->register();
 
 	}
 
@@ -77,8 +74,6 @@ final class Loader
 		require_once WPE_DIR . 'inc/Functions/style.php';
 		require_once WPE_DIR . 'inc/Functions/element.php';
 		require_once WPE_DIR . 'inc/Functions/array.php';
-
-		require_once WPE_DIR . 'inc/Libraries/ClassLoader.php';
 	}
 
 	public static function start ()
