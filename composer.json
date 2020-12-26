@@ -1,0 +1,57 @@
+{
+	"name": "wpessentila/wpessential",
+	"version": "1.0.0.00004",
+	"type": "library",
+	"description": "WPEssential is a flexible extension of WordPress. Just install the WPEssential plugin form WordPress.org and get start the WordPress theme creating. WPEssential team trying to send the best quality of work and new options or features. It is open-source and themes also page builder solution in WordPress. Create any theme, anywhere and make your way. There is no `PHP`, `CSS`, `HTML` and `Javascript` coding knowledge need.",
+	"keywords": [
+		"elementor",
+		"addons",
+		"dynamic tags",
+		"woocommerce",
+		"custom css",
+		"custom-attribues",
+		"landing-page",
+		"smart slider 3",
+		"layer slider",
+		"revolutation slider",
+		"master slider",
+		"page builder",
+		"editor",
+		"drag-and-drop",
+		"visual editor",
+		"wysiwyg",
+		"design",
+		"maintenance mode",
+		"coming soon",
+		"under construction",
+		"website builder",
+		"landing page builder",
+		"front-end builder",
+		"wpbakery",
+		"beta"
+	],
+	"homepage": "https://wpessential.org/",
+	"require": {
+	},
+	"autoload": {
+		"psr-4": {
+			"WPEssential\\Plugins\\": "inc/"
+		}
+	},
+	"scripts": {
+		"test": [
+			"@phpunit",
+			"@style-check"
+		],
+		"style-check": [
+			"@phpcs",
+			"@phpstan",
+			"@phpmd"
+		],
+		"phpunit": "phpunit --verbose",
+		"phpcs": "php-cs-fixer fix -v --diff --dry-run",
+		"phpstan": "phpstan analyse --configuration phpstan.neon --level 3 src tests",
+		"phpmd": "phpmd src text /phpmd.xml",
+		"phpdoc": "php phpdoc.php"
+	}
+}
