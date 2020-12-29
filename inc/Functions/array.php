@@ -443,3 +443,17 @@ if ( ! function_exists( 'wpe_array_reduce' ) ) {
 		return implode( ',', $return );
 	}
 }
+
+/**
+ * Array Prefix adding
+ *
+ * @param array $array Define array.
+ * @param string $prefix Define prefix.
+ * @return array
+ */
+if ( ! function_exists( 'wpe_array_key_prefix' ) ) {
+	function wpe_array_key_prefix ( $array, $prefix )
+	{
+		return array_combine( array_map( function ( $key ) use ( $prefix ) { return $prefix . $key; }, array_keys( $array ) ), $array );
+	}
+}

@@ -17,6 +17,7 @@ final class WordPress implements ShortcodeInit
 		//global $shortcode_tags;
 		$list = apply_filters( 'wpe/wordpress/shortcodes', [
 			'Post' => '\\WPEssential\\Plugins\\Builders\\WordPress\\Shortcodes\\Post',
+			'Heading' => '\\WPEssential\\Plugins\\Builders\\WordPress\\Shortcodes\\Heading',
 		] );
 		$list = array_filter( $list );
 		if ( ! $list ) {

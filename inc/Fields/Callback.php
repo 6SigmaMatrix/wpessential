@@ -154,17 +154,6 @@ abstract class Callback extends Common
 	}
 
 	/**
-	 * Set the component that should be used by the field.
-	 *
-	 * @param string $type
-	 * @return void
-	 */
-	public static function useType ( string $type )
-	{
-		static::$customType[ get_called_class() ] = $type;
-	}
-
-	/**
 	 * Set the callback to be used for determining the field's key value.
 	 *
 	 * @param string $callback
@@ -280,6 +269,58 @@ abstract class Callback extends Common
 	public function mouseHoverTitle ( string $callback )
 	{
 		$this->mouseHoverTitle = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Add an array of elementor css selectors
+	 *
+	 * @param array $callback
+	 * @return $this
+	 */
+	public function selectors ( array $callback )
+	{
+		$this->selectors = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Add an string of elementor css selectors
+	 *
+	 * @param string $callback
+	 * @return $this
+	 */
+	public function selector ( string $callback )
+	{
+		$this->selector = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Add an array of elementor css selectors
+	 *
+	 * @param array $callback
+	 * @return $this
+	 */
+	public function wrap_selectors ( array $callback )
+	{
+		$this->wrap_selectors = wpe_array_key_prefix( $callback, '{{WRAPPER}} ' );
+
+		return $this;
+	}
+
+	/**
+	 * Add an string of elementor css selectors
+	 *
+	 * @param string $callback
+	 * @return $this
+	 */
+	public function wrap_selector ( string $callback )
+	{
+		$this->wrap_selector = '{{WRAPPER}} ' . $callback;
 
 		return $this;
 	}

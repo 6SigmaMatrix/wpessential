@@ -56,11 +56,42 @@ if ( ! function_exists( 'wpe_element_size' ) ) {
 		return apply_filters(
 			'wpe/size',
 			[
-				'xs' => __( 'Extra Small', 'wpessential' ),
-				'sm' => __( 'Small', 'wpessential' ),
-				'md' => __( 'Medium', 'wpessential' ),
-				'lg' => __( 'Large', 'wpessential' ),
-				'xl' => __( 'Extra Large', 'wpessential' ),
+				'xs'  => __( 'Extra Small', 'wpessential' ),
+				'sm'  => __( 'Small', 'wpessential' ),
+				'md'  => __( 'Medium', 'wpessential' ),
+				'lg'  => __( 'Large', 'wpessential' ),
+				'xl'  => __( 'Extra Large', 'wpessential' ),
+				'xxl' => __( 'Extra Extra Large', 'wpessential' ),
+			]
+		);
+	}
+}
+
+
+if ( ! function_exists( 'wpe_blend_mode' ) ) {
+	/**
+	 * Element blend mode.
+	 *
+	 * @return array
+	 */
+	function wpe_blend_mode ()
+	{
+		return apply_filters(
+			'wpe/blend_mode',
+			[
+				''            => __( 'Normal', 'wpessential' ),
+				'multiply'    => 'Multiply',
+				'screen'      => 'Screen',
+				'overlay'     => 'Overlay',
+				'darken'      => 'Darken',
+				'lighten'     => 'Lighten',
+				'color-dodge' => 'Color Dodge',
+				'saturation'  => 'Saturation',
+				'color'       => 'Color',
+				'difference'  => 'Difference',
+				'exclusion'   => 'Exclusion',
+				'hue'         => 'Hue',
+				'luminosity'  => 'Luminosity',
 			]
 		);
 	}

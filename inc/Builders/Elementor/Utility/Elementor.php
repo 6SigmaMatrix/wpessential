@@ -17,6 +17,7 @@ final class Elementor implements ShortcodeInit
 	public static function constructor ()
 	{
 		PageTemplates::constructor();
+		ElGlobal::constructor();
 		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
 		add_action( 'elementor/elements/categories_registered', [ __CLASS__, 'register_category' ] );
 		add_action( 'elementor/controls/controls_registered', [ __CLASS__, 'register_controls' ] );
@@ -30,7 +31,8 @@ final class Elementor implements ShortcodeInit
 		self::$list = apply_filters(
 			'wpe/elementor/shortcodes',
 			[
-				'Post' => 'WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost\Post'
+				'Post'    => 'WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost\Post',
+				'Heading' => 'WPEssential\Plugins\Builders\Elementor\Shortcodes\WPEssential\Heading'
 			]
 		);
 		self::register_form_widget();

@@ -5,7 +5,6 @@
 
 namespace WPEssential\Plugins\Fields;
 
-use Closure;
 use JsonSerializable;
 use WPEssential\Plugins\Implement\Arrayable;
 use WPEssential\Plugins\Loader;
@@ -151,39 +150,32 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	];
 
 	/**
-	 * The custom components registered for fields.
+	 * Add an array of elementor css selectors
 	 *
 	 * @var array
 	 */
-	public static array $customType = [];
+	public array $selectors;
 
 	/**
-	 * The callback to be used to add the list of categories in filed.
+	 * Add an string of elementor css selectors
 	 *
-	 * @var \Closure
+	 * @var string
 	 */
-	public Closure $categoryCallback;
+	public string $selector;
 
 	/**
-	 * The callback to be used to add the list of single posts in filed.
+	 * Add an array of elementor css selectors
 	 *
-	 * @var \Closure
+	 * @var array
 	 */
-	public Closure $singleCallback;
+	public array $wrap_selectors;
 
 	/**
-	 * The callback to be used to add the list of post types in filed.
+	 * Add an string of elementor css selectors
 	 *
-	 * @var \Closure
+	 * @var string
 	 */
-	public Closure $postTypesCallback;
-
-	/**
-	 * The callback to be used to add the list of taxonomies in filed.
-	 *
-	 * @var \Closure
-	 */
-	public Closure $taxonomyCallback;
+	public string $wrap_selector;
 
 	/**
 	 * Create a new element.

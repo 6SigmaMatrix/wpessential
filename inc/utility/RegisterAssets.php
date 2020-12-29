@@ -26,7 +26,9 @@ final class RegisterAssets
 		$list   = [
 			'crypt_1'                      => WPE_URL . "assets/js/crypt{$minify}js",
 			'crypt_2'                      => WPE_URL . "assets/js/encryption{$minify}js",
+			'fancybox'                     => WPE_URL . "assets/js/jquery.fancybox{$minify}js",
 			'modal'                        => WPE_URL . "assets/js/modal{$minify}js",
+			'waypoints'                    => WPE_URL . "assets/js/jquery.waypoints{$minify}js",
 			'perfect-scrollbar'            => WPE_URL . "assets/js/perfect-scrollbar{$minify}js",
 			'wpessential'                  => WPE_URL . "assets/js/wpessential{$minify}js",
 			'wpessential-elementor-editor' => WPE_URL . "assets/js/wpessential-elementor-editor{$minify}js",
@@ -46,25 +48,18 @@ final class RegisterAssets
 		$list   = [
 			'font-awesome'                 => WPE_URL . "assets/css/all{$minify}css",
 			'animate'                      => WPE_URL . "assets/css/animate{$minify}css",
+			'fancybo'                      => WPE_URL . "assets/css/jquery.fancybo{$minify}css",
 			'perfect-scrollbar'            => WPE_URL . "assets/css/perfect-scrollbar{$minify}css",
+			'slick'                        => WPE_URL . "assets/css/slick{$minify}css",
+			'slick-theme'                  => WPE_URL . "assets/css/slick-theme{$minify}css",
 			'wpessential'                  => WPE_URL . "assets/css/wpessential{$minify}css",
-			'wpessential-elementor-editor' => WPE_URL . "assets/css/wpessential-elementor-editor{$minify}css",
 			'wpessential-blog-post'        => WPE_URL . "assets/css/wpessential-blog-post{$minify}css",
 			'wpessential-blog-post-color'  => WPE_URL . "assets/css/wpessential-blog-post-color{$minify}css",
 			'wpessential-blog-post-res'    => WPE_URL . "assets/css/wpessential-blog-post-res{$minify}css",
-
+			'wpessential-elementor-editor' => WPE_URL . "assets/css/wpessential-elementor-editor{$minify}css",
 		];
-		/*if ( defined( 'WPE_DEBUG' ) && true === WPE_DEBUG || defined( 'WPE_DEBUG' ) && true === WP_DEBUG ) {
-			$list = wp_parse_args( [
-				'wpessential-blog-post'       => WPE_URL . "assets/css/wpessential-blog-post{$minify}css",
-				'wpessential-blog-post-color' => WPE_URL . "assets/css/wpessential-blog-post-color{$minify}css",
-				'wpessential-blog-post-res'   => WPE_URL . "assets/css/wpessential-blog-post-res{$minify}css",
-			], $list );
-		} else {
-
-		}*/
-		$list = apply_filters( 'wpe/register/css', $list );
-		$list = array_filter( $list );
+		$list   = apply_filters( 'wpe/register/css', $list );
+		$list   = array_filter( $list );
 		if ( $list ) {
 			foreach ( $list as $k => $v ) {
 				wp_register_style( $k, $v, [], WPE_VERSION, 'all' );
