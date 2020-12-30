@@ -34,22 +34,22 @@ final class Setup
 
 	public static function constants ()
 	{
-		$theme_info        = wp_get_theme();
-		$theme_name        = str_replace( [ ' ', '-' ], '_', $theme_info->get( 'Name' ) );
-		self::$theme_space = str_replace( [ ' ', '_', '-' ], '', $theme_name );
-
+		$theme_info        = wpe_theme_info();
+		self::$theme_space = $theme_info->NameSpace;
 		$theme_constant = apply_filters( 'wpe/theme/constants', [
-			"{$theme_name}_T_VER"      => $theme_info->get( 'Version' ),
-			"{$theme_name}_T_DIR"      => get_template_directory() . '/',
-			"{$theme_name}_T_FILE_DIR" => get_theme_file_path() . '/',
-			"{$theme_name}_T_URI"      => get_template_directory_uri() . '/',
-			"{$theme_name}_T_FILE_URI" => get_theme_file_uri() . '/'
+			"{$theme_info->UcwordsNameHyphen}_T_VER"      => $theme_info->Version,
+			"{$theme_info->UcwordsNameHyphen}_T_DIR"      => get_template_directory() . '/',
+			"{$theme_info->UcwordsNameHyphen}_T_FILE_DIR" => get_theme_file_path() . '/',
+			"{$theme_info->UcwordsNameHyphen}_T_URI"      => get_template_directory_uri() . '/',
+			"{$theme_info->UcwordsNameHyphen}_T_FILE_URI" => get_theme_file_uri() . '/'
 		] );
+
+		$theme_constant = apply_filters( 'wpe/theme_constant', $theme_constant );
 
 		$theme_constant = array_filter( $theme_constant );
 		if ( $theme_constant && is_array( $theme_constant ) ) {
 			foreach ( $theme_constant as $constant => $key ) {
-				defined( $constant ) || define( $constant, $key );
+				wpe_maybe_define_constant( $constant, $key );
 			}
 		}
 	}

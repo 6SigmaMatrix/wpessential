@@ -4,6 +4,7 @@ namespace WPEssential\Plugins;
 
 final class Loader
 {
+	private static object $theme_info;
 	/**
 	 * The set the editor for shortcodes page builders.
 	 *
@@ -49,13 +50,12 @@ final class Loader
 
 	public static function autoload ()
 	{
-		$theme_name = wp_get_theme();
-		$theme_name = str_replace( [ ' ', '_', '-' ], '', $theme_name->get( 'Name' ) );
+		$theme_info = wpe_theme_info();
 		$psr        = [
-			"WPEssential\\Theme\\{$theme_name}\\" => get_template_directory() . '/inc/',
+			"WPEssential\\Theme\\{$theme_info->NameSpace}\\" => get_template_directory() . '/inc/',
 		];
 
-		$class_loader = require WPE_DIR .'vendor/autoload.php';
+		$class_loader = require WPE_DIR . 'vendor/autoload.php';
 
 		foreach ( $psr as $prefix => $paths ) {
 			$class_loader->addPsr4( $prefix, $paths );

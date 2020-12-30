@@ -48,7 +48,7 @@ final class RegisterAssets
 		$list   = [
 			'font-awesome'                 => WPE_URL . "assets/css/all{$minify}css",
 			'animate'                      => WPE_URL . "assets/css/animate{$minify}css",
-			'fancybo'                      => WPE_URL . "assets/css/jquery.fancybo{$minify}css",
+			'fancybox'                     => WPE_URL . "assets/css/jquery.fancybox{$minify}css",
 			'perfect-scrollbar'            => WPE_URL . "assets/css/perfect-scrollbar{$minify}css",
 			'slick'                        => WPE_URL . "assets/css/slick{$minify}css",
 			'slick-theme'                  => WPE_URL . "assets/css/slick-theme{$minify}css",

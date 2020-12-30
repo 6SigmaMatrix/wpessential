@@ -15,6 +15,8 @@ add_action( 'wpe_footer', 'wpe_footer_copyright_template', 30 );
 add_action( 'wpe_header', 'wpe_page_loader_template', 0 );
 add_action( 'wpe_header', 'wpe_header_logo_template', 10 );
 add_action( 'wpe_header', 'wpe_header_menu_template', 20 );
+add_action( 'wpe_header', 'wpe_header_login_template', 30 );
+add_action( 'wpe_header', 'wpe_header_cart_template', 40 );
 
 add_action( 'wpe_detail_loop', 'wpe_loop_post_before_template', 0 );
 add_action( 'wpe_detail_loop', 'wpe_detail_loop_template' );
@@ -118,6 +120,16 @@ function wpe_header_menu_template ()
 function wpe_header_template ()
 {
 	require_once wpe_template_load( 'templates/header/header.php' );
+}
+
+function wpe_header_login_template ()
+{
+	require_once wpe_template_load( 'templates/header/branding/login.php' );
+}
+
+function wpe_header_cart_template ()
+{
+	require_once wpe_template_load( 'templates/header/branding/cart.php' );
 }
 
 function wpe_blog_loop_template ()
