@@ -65,6 +65,7 @@ final class Loader
 
 	public static function load_files ()
 	{
+		require_once WPE_DIR . 'inc/Functions/api.php';
 		require_once WPE_DIR . 'inc/Functions/general.php';
 		require_once WPE_DIR . 'inc/Functions/file.php';
 		require_once WPE_DIR . 'inc/Functions/image.php';

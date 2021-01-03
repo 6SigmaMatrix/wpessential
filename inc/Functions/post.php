@@ -179,6 +179,7 @@ if ( ! function_exists( 'wpe_get_terms' ) ) {
 			$items[ 'no' ] = __( 'No Term Found', 'wpessential' );
 		}
 
+
 		return apply_filters( 'wpe/get/terms', $items );
 	}
 }

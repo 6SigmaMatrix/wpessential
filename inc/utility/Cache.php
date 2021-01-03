@@ -12,11 +12,6 @@ namespace WPEssential\Plugins\Utility;
  */
 final class Cache
 {
-	public static function constructor ()
-	{
-
-	}
-
 	/**
 	 * Get prefix for use with wp_cache_set. Allows all cache in a group to be invalidated at once.
 	 *
@@ -25,12 +20,13 @@ final class Cache
 	 */
 	public static function get_cache_prefix ( $group )
 	{
-		// Get cache key - uses cache key wc_orders_cache_prefix to invalidate when needed.
-		$prefix = wp_cache_get( 'wpe_' . $group . '_cache_prefix', $group );
+		// Get cache key - uses cache key wpe_cache_prefix to invalidate when needed.
+		$key    = "wpe_{$group}_cache_prefix";
+		$prefix = wp_cache_get( $key, $group );
 
 		if ( false === $prefix ) {
 			$prefix = microtime();
-			wp_cache_set( 'wpe_' . $group . '_cache_prefix', $prefix, $group );
+			wp_cache_set( $key, $prefix, $group );
 		}
 
 		return 'wpe_cache_' . $prefix . '_';
@@ -55,11 +51,6 @@ final class Cache
 	public static function invalidate_cache_group ( $group )
 	{
 		wp_cache_set( 'wpe_' . $group . '_cache_prefix', microtime(), $group );
-	}
-
-	public static function theme_info ()
-	{
-
 	}
 
 }

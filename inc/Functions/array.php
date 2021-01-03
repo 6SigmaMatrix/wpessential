@@ -176,6 +176,10 @@ if ( ! function_exists( 'wpe_array_forget' ) ) {
 if ( ! function_exists( 'wpe_array_get' ) ) {
 	function wpe_array_get ( $array, $key, $default = null )
 	{
+		if ( is_object( $array ) ) {
+			$array = (array) $array;
+		}
+
 		return Arr::get( $array, $key, $default );
 	}
 }
