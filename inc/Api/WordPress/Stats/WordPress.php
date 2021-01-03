@@ -9,7 +9,7 @@ final class WordPress extends StatsReport
 	public static function constructor ( $software = 'wordpress' )
 	{
 		parent::constructor();
-		$_software = "/{$software}/";
+		$_software = "{$software}/";
 		return call_user_func( [ __CLASS__, $software ], $_software );
 	}
 
@@ -23,7 +23,7 @@ final class WordPress extends StatsReport
 			return $content;
 		}
 
-		$content = wp_remote_get( parent::$base . $software . '1.0/' );
+		$content = wp_remote_get( self::$report . $software . '1.0/' );
 		$content = wpe_array_get( $content, 'body' );
 
 		wp_cache_set( $cache_key, $content, 'wordpres-api' );
@@ -41,9 +41,8 @@ final class WordPress extends StatsReport
 			return $content;
 		}
 
-		$content = wp_remote_get( parent::$base . $software . '1.0/' );
+		$content = wp_remote_get( parent::$report . $software . '1.0/' );
 		$content = wpe_array_get( $content, 'body' );
-
 		wp_cache_set( $cache_key, $content, 'wordpres-api' );
 
 		return $content;

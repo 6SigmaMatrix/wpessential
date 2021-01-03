@@ -6,10 +6,10 @@ use WPEssential\Plugins\Api\WordPress\Base;
 
 abstract class StatsReport extends Base
 {
-	static string $base = 'stats/';
+	static string $report;
 
 	public static function constructor ()
 	{
-		self::$base = parent::$base . self::$base;
+		self::$report = self::$base . 'stats/';
 	}
 }

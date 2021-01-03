@@ -24,9 +24,9 @@ if ( ! function_exists( 'wpe_wp_api_json' ) ) {
 	 * @param string $software Enter the sorftware name to get data from wordpress.org (mysql, php, wordpress).
 	 * @return array
 	 */
-	function wpe_wp_api_json ()
+	function wpe_wp_api_json ( $software = 'wordpress' )
 	{
-		$wp = WordPress::constructor( $software = 'wordpress' );
+		$wp = WordPress::constructor( $software );
 		return $wp;
 	}
 }
