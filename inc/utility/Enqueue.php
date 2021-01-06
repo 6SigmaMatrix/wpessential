@@ -84,7 +84,7 @@ final class Enqueue
 
 	public static function admin_page_enqueue ()
 	{
-		$list = apply_filters( 'wpe/backend/page/css', [] );
+		$list = apply_filters( 'wpe/admin_page/css', [] );
 		$list = array_filter( $list );
 		if ( $list ) {
 			foreach ( $list as $style ) {
@@ -92,7 +92,7 @@ final class Enqueue
 			}
 		}
 
-		$list = apply_filters( 'wpe/backend/page/js', [] );
+		$list = apply_filters( 'wpe/admin_page/js', [] );
 		$list = array_filter( $list );
 		if ( $list ) {
 			wp_enqueue_script( [ $list ] );
