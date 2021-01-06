@@ -32,6 +32,7 @@ final class Loader
 		add_action( 'plugins_loaded', [ __CLASS__, 'on_plugins_loaded' ], - 1 );
 		add_action( 'plugins_loaded', [ __CLASS__, 'autoload' ], 100 );
 		add_action( 'init', [ __CLASS__, 'init' ], 1000 );
+		add_action( 'admin_init', [ __CLASS__, 'admin_init' ], 1000 );
 	}
 
 	/**
@@ -77,16 +78,6 @@ final class Loader
 		require_once WPE_DIR . 'inc/Functions/array.php';
 	}
 
-	public static function start ()
-	{
-		Utility\Requesting::constructor();
-		Utility\RegisterAssets::constructor();
-		Utility\Enqueue::constructor();
-		Utility\ScriptLoader::constructor();
-		Theme\Setup::constructor();
-		//Utility\RestApi::constructor();
-	}
-
 	public static function init ()
 	{
 		do_action( 'wpessential_init' );
@@ -94,6 +85,22 @@ final class Loader
 		Utility\RegisterPostStatus::constructor();
 		Utility\BuildersInit::constructor();
 		Utility\PageTemplates::constructor();
+	}
+
+	public static function admin_init ()
+	{
+		do_action( 'wpe_admin_init' );
+	}
+
+	public static function start ()
+	{
+		Utility\AdminMenu::constructor();
+		Utility\Requesting::constructor();
+		Utility\RegisterAssets::constructor();
+		Utility\Enqueue::constructor();
+		Utility\ScriptLoader::constructor();
+		Theme\Setup::constructor();
+		//Utility\RestApi::constructor();
 	}
 
 	public static function options ()
