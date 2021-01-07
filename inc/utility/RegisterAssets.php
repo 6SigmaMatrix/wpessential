@@ -27,6 +27,7 @@ final class RegisterAssets
 			'crypt_1'                      => WPE_URL . "assets/js/crypt{$minify}js",
 			'crypt_2'                      => WPE_URL . "assets/js/encryption{$minify}js",
 			'fancybox'                     => WPE_URL . "assets/js/jquery.fancybox{$minify}js",
+			'slick'                        => WPE_URL . "assets/js/slick{$minify}js",
 			'modal'                        => WPE_URL . "assets/js/modal{$minify}js",
 			'waypoints'                    => WPE_URL . "assets/js/jquery.waypoints{$minify}js",
 			'perfect-scrollbar'            => WPE_URL . "assets/js/perfect-scrollbar{$minify}js",
