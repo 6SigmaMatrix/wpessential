@@ -105,37 +105,37 @@ final class RegisterAssets
 		$list   = [
 			'font-awesome'                 => [
 				'link' => WPE_URL . "assets/css/all{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check( '5.13.0' ),
 			],
 			'element-ui'                   => [
 				'link' => WPE_URL . "assets/css/element-ui{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check( '2.14.1' ),
 			],
 			'animate'                      => [
 				'link' => WPE_URL . "assets/css/animate{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check( '4.1.1' ),
 			],
 			'fancybox'                     => [
 				'link' => WPE_URL . "assets/css/fancybox{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check( '3.5.1' ),
 			],
 			'npropress'                    => [
 				'link' => WPE_URL . "assets/css/npropress{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check( '0.2.0' ),
 			],
 			'perfect-scrollbar'            => [
 				'link' => WPE_URL . "assets/css/perfect-scrollbar{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check( '1.5.0' ),
 			],
 			'slick'                        => [
 				'link' => WPE_URL . "assets/css/slick{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check( '1.8.1' ),
 			],
 			'slick-theme'                  => [
@@ -145,28 +145,28 @@ final class RegisterAssets
 			],
 			'wpessential'                  => [
 				'link' => WPE_URL . "assets/css/wpessential{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check(),
 			],
 			'wpessential-blog-post'        => [
 				'link' => WPE_URL . "assets/css/wpessential-blog-post{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check(),
 			],
 			'wpessential-blog-post-color'  => [
 				'link' => WPE_URL . "assets/css/wpessential-blog-post-color{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check(),
 			],
 			'wpessential-blog-post-res'    => [
 
 				'link' => WPE_URL . "assets/css/wpessential-blog-post-res{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check(),
 			],
 			'wpessential-elementor-editor' => [
 				'link' => WPE_URL . "assets/css/wpessential-elementor-editor{$minify}css",
-				'dep'  => [ '' ],
+				'dep'  => false,
 				'ver'  => self::ver_check(),
 			],
 		];
@@ -191,7 +191,7 @@ final class RegisterAssets
 	public static function ver_check ( $ver = WPE_VERSION )
 	{
 		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG || defined( 'WPE_DEBUG' ) && true === WPE_DEBUG ) {
-			return timer();
+			return time();
 		} else {
 			return $ver;
 		}

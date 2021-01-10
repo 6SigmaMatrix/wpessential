@@ -36,4 +36,9 @@ final class Plugins extends StatsReport
 		$content = wpe_array_get( $content, 'body' );
 		return $content;
 	}
+
+	public static function plugin_info ()
+	{
+
+	}
 }
