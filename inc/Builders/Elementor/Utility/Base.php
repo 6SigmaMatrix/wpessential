@@ -135,6 +135,7 @@ abstract class Base extends Widget_Base
 		$this->add_render_attribute(
 			'_wrapper', 'class', [
 				'elementor-widget',
+				'wpe-widget',
 				$this->get_html_wrapper_class(),
 			]
 		);

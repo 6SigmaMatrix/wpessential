@@ -37,7 +37,7 @@ class Heading extends Base implements Shortcodes
 
 		$style = wpe_array_get( $atts, 'style', '1' );
 
-		$file_path = apply_filters( "wpe/shortcodes/wpessential_pro/template", 'wpessential-pro' );
+		$file_path = apply_filters( "wpe/shortcodes/wpessential_pro/template", 'wpessential' );
 		$template  = wpe_plugin_template_load( $file_path, "style-1.php" );
 
 		ob_start();

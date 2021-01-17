@@ -36,7 +36,7 @@ final class Setup
 	{
 		$theme_info        = wpe_theme_info();
 		self::$theme_space = $theme_info->NameSpace;
-		$theme_constant = apply_filters( 'wpe/theme/constants', [
+		$theme_constant    = apply_filters( 'wpe/theme/constants', [
 			"{$theme_info->UcwordsNameHyphen}_T_VER"      => $theme_info->Version,
 			"{$theme_info->UcwordsNameHyphen}_T_DIR"      => get_template_directory() . '/',
 			"{$theme_info->UcwordsNameHyphen}_T_FILE_DIR" => get_theme_file_path() . '/',
@@ -62,7 +62,9 @@ final class Setup
 		Sidebars::constructor();
 		Editor::constructor();
 		Menus::constructor();
-		Tgm::constructor();
+		if ( defined( 'WPE_TGM' ) && true === WPE_TGM ) {
+			Tgm::constructor();
+		}
 		OptionsPannel::constructor();
 		Widgets::constructor();
 	}

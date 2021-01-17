@@ -6,6 +6,7 @@ use Elementor\Plugin;
 use WPEssential\Plugins\Builders\Elementor\Controls\Group\Posts;
 use WPEssential\Plugins\Builders\Elementor\Controls\Group\Query as GroupQuery;
 use WPEssential\Plugins\Builders\Elementor\Controls\Group\Related;
+use WPEssential\Plugins\Builders\Elementor\Controls\ImageSelect;
 use WPEssential\Plugins\Builders\Elementor\Controls\Query;
 use WPEssential\Plugins\Implement\ShortcodeInit;
 use WPEssential\Plugins\Loader;
@@ -17,7 +18,7 @@ final class Elementor implements ShortcodeInit
 	public static function constructor ()
 	{
 		PageTemplates::constructor();
-		ElGlobal::constructor();
+		//ElGlobal::constructor();
 		add_action( 'elementor/ajax/register_actions', [ __CLASS__, 'register_ajax_actions' ] );
 		add_action( 'elementor/elements/categories_registered', [ __CLASS__, 'register_category' ] );
 		add_action( 'elementor/controls/controls_registered', [ __CLASS__, 'register_controls' ] );
@@ -25,7 +26,7 @@ final class Elementor implements ShortcodeInit
 		self::registry_widget();
 	}
 
-	public static function registry_widget ()
+	public static function registry_widget ( $list = '' )
 	{
 		Loader::editor( 'elementor' );
 		self::$list = apply_filters(
@@ -114,12 +115,12 @@ final class Elementor implements ShortcodeInit
 	{
 		$controls_manager = Plugin::instance()->controls_manager;
 
-		$controls_manager->add_group_control( Posts::get_type(), new Posts() );
+		/*$controls_manager->add_group_control( Posts::get_type(), new Posts() );
 		$controls_manager->add_group_control( GroupQuery::get_type(), new GroupQuery() );
 		$controls_manager->add_group_control( Related::get_type(), new Related() );
-		$controls_manager->register_control( 'query', new Query() );
+		$controls_manager->register_control( 'query', new Query() );*/
+		$controls_manager->register_control( 'image_select', new ImageSelect() );
 	}
-
 
 	public static function register_ajax_actions ( $ajax_manager )
 	{

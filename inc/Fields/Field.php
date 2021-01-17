@@ -154,28 +154,44 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 *
 	 * @var array
 	 */
-	public array $selectors;
+	public array $selectors = [];
 
 	/**
 	 * Add an string of elementor css selectors
 	 *
 	 * @var string
 	 */
-	public string $selector;
+	public string $selector = '';
 
 	/**
 	 * Add an array of elementor css selectors
 	 *
 	 * @var array
 	 */
-	public array $wrap_selectors;
+	public array $wrap_selectors = [];
 
 	/**
 	 * Add an string of elementor css selectors
 	 *
 	 * @var string
 	 */
-	public string $wrap_selector;
+	public string $wrap_selector = '';
+
+	/**
+	 * Add responsive true or false
+	 *
+	 * @var bool
+	 */
+	public bool $responsive = false;
+
+	/**
+	 * Add global true or false
+	 *
+	 * @var array
+	 */
+	public array $global = [
+		'active' => false
+	];
 
 	/**
 	 * Create a new element.
@@ -215,13 +231,19 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 * @param string $id
 	 */
 
-	public function __construct ( string $name, string $id = '' )
+	public function __construct ( string $name = '', string $id = '' )
 	{
 		$this->name = sprintf( __( '%s', 'wpessentil' ), $name );
 		if ( ! $id ) {
 			$id = str_replace( ' ', '_', strtolower( $name ) );
 		}
-		$this->key = WPE_SETTINGS . '_' . $id;
+
+		if ( $id ) {
+			$this->key = WPE_SETTINGS . '_' . $id;
+		}
+
 		$this->editor( Loader::$editor );
+
+		return $this;
 	}
 }

@@ -5,18 +5,18 @@
 
 namespace WPEssential\Plugins\Fields;
 
-use WPEssential\Plugins\Helper\Fields\Beaver;
-use WPEssential\Plugins\Helper\Fields\Brizy;
-use WPEssential\Plugins\Helper\Fields\Divi;
-use WPEssential\Plugins\Helper\Fields\Elementor;
-use WPEssential\Plugins\Helper\Fields\Gutenberg;
-use WPEssential\Plugins\Helper\Fields\KingComposer;
-use WPEssential\Plugins\Helper\Fields\ShortcodesUltimate;
-use WPEssential\Plugins\Helper\Fields\SiteOrigin;
-use WPEssential\Plugins\Helper\Fields\Themify;
-use WPEssential\Plugins\Helper\Fields\VisualComposer;
-use WPEssential\Plugins\Helper\Fields\WordPress;
-use WPEssential\Plugins\Helper\Fields\WPBakery;
+use WPEssential\Plugins\Builders\Helper\Editor\Beaver;
+use WPEssential\Plugins\Builders\Helper\Editor\Brizy;
+use WPEssential\Plugins\Builders\Helper\Editor\Divi;
+use WPEssential\Plugins\Builders\Helper\Editor\Elementor;
+use WPEssential\Plugins\Builders\Helper\Editor\Gutenberg;
+use WPEssential\Plugins\Builders\Helper\Editor\KingComposer;
+use WPEssential\Plugins\Builders\Helper\Editor\ShortcodesUltimate;
+use WPEssential\Plugins\Builders\Helper\Editor\SiteOrigin;
+use WPEssential\Plugins\Builders\Helper\Editor\Themify;
+use WPEssential\Plugins\Builders\Helper\Editor\VisualComposer;
+use WPEssential\Plugins\Builders\Helper\Editor\WordPress;
+use WPEssential\Plugins\Builders\Helper\Editor\WPBakery;
 
 abstract class Callback extends Common
 {
@@ -129,12 +129,12 @@ abstract class Callback extends Common
 	/**
 	 * Set the callback to be used for determining the editor dynamic.
 	 *
-	 * @param array $callback
+	 * @param bool $callback
 	 * @return $this
 	 */
-	public function dynamic ( array $callback )
+	public function dynamic ( bool $callback )
 	{
-		$this->dynamic = $callback;
+		$this->dynamic = [ 'active' => $callback ];
 
 		return $this;
 	}
@@ -321,6 +321,32 @@ abstract class Callback extends Common
 	public function wrap_selector ( string $callback )
 	{
 		$this->wrap_selector = '{{WRAPPER}} ' . $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Add responsive true or false
+	 *
+	 * @param bool $callback
+	 * @return $this
+	 */
+	public function responsive ( bool $callback )
+	{
+		$this->responsive = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Add global true or false
+	 *
+	 * @param bool $callback
+	 * @return $this
+	 */
+	public function global ( bool $callback )
+	{
+		$this->global = [ 'active' => $callback ];
 
 		return $this;
 	}

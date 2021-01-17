@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\Helper\Fields;
+namespace WPEssential\Plugins\Builders\Helper\Editor;
 
 trait WordPress
 {

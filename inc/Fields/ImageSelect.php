@@ -4,31 +4,31 @@ namespace WPEssential\Plugins\Fields;
 
 use WPEssential\Plugins\Implement\Fields;
 
-class Dimensions extends Field implements Fields
+class ImageSelect extends Field implements Fields
 {
 	/**
 	 * The type of the control.
 	 *
 	 * @var string
 	 */
-	public string $type = 'dimensions';
+	public string $type = 'image_select';
 
 	/**
-	 * Which fields to show. Available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom', 'left' ].
+	 * An array of key => value pairs: [ 'key' => 'value', ... ]
 	 *
-	 * @var string
+	 * @var array
 	 */
-	public string $allowed_dimensions;
+	public array $options;
 
 	/**
-	 * Set the callback to be used for determining the field's to show the available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom', 'left' ].
+	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
 	 *
-	 * @param array $callback
+	 * @param $callback
 	 * @return $this
 	 */
-	public function allowed_dimensions ( array $callback )
+	public function options ( $callback )
 	{
-		$this->allowed_dimensions = $callback;
+		$this->options = $callback;
 
 		return $this;
 	}
@@ -41,7 +41,7 @@ class Dimensions extends Field implements Fields
 	public function prepear ()
 	{
 		return [
-			'allowed_dimensions' => 'elementor-animation-',
+			'options'  => $this->options,
 		];
 	}
 

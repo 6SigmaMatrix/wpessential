@@ -9,6 +9,8 @@ use Elementor\Group_Control_Typography;
 use WPEssential\Plugins\Builders\Elementor\Utility\Base;
 use WPEssential\Plugins\Fields\Choose;
 use WPEssential\Plugins\Fields\Color;
+use WPEssential\Plugins\Fields\CTypography;
+use WPEssential\Plugins\Fields\PopoverToggle;
 use WPEssential\Plugins\Fields\Select;
 use WPEssential\Plugins\Fields\Textarea;
 use WPEssential\Plugins\Fields\Url;
@@ -57,14 +59,14 @@ class Heading extends Base implements Shortcodes
 		);
 
 		$opt = Textarea::make( __( 'Title', 'wpessential' ) )
-					 ->dynamic( [ 'active' => true ] )
-					 ->placeholder( __( 'Enter your title', 'wpessential' ) )
-					 ->default( __( 'Add Your Heading Text Here', 'wpessential' ) )
-					 ->toArray();
+					   ->dynamic( true )
+					   ->placeholder( __( 'Enter your title', 'wpessential' ) )
+					   ->default( __( 'Add Your Heading Text Here', 'wpessential' ) )
+					   ->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );
 
 		$opt = Url::make( __( 'Link', 'wpessential' ) )
-				  ->dynamic( [ 'active' => true ] )
+				  ->dynamic( true )
 				  ->default( [ 'url' => '' ] )
 				  ->separator( 'before' )
 				  ->toArray();
@@ -120,6 +122,23 @@ class Heading extends Base implements Shortcodes
 					->wrap_selectors( [ '.wpessential-heading-title' => 'color: {{VALUE}};' ] )
 					->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );
+
+		$this->common_key = 'typography';
+
+		$opt = PopoverToggle::make( __( 'Typography', 'wpessential' ) )
+							->global( true )
+							->toArray();
+		$this->add_control( $opt[ 'id' ], $opt );
+
+		$this->start_popover();
+
+		$opts = CTypography::make( __( 'typography', 'wpessential' ) )->typography();
+		foreach ( $opts as $opt ) {
+			$opt = $opt->toArray();
+			$this->add_control( $opt[ 'id' ], $opt );
+		}
+
+		$this->end_popover();
 
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),

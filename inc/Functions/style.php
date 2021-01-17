@@ -112,3 +112,76 @@ if ( ! function_exists( 'wpe_generate_css' ) ) {
 		return $return;
 	}
 }
+
+if ( ! function_exists( 'wpe_font_weights' ) ) {
+	/**
+	 * Font Weights styles.
+	 *
+	 * @return array
+	 */
+	function wpe_font_weights ()
+	{
+		return apply_filters(
+			'wpe/font/weights',
+			[
+				''       => __( 'Default', 'wpessential' ),
+				'100'    => __( '100', 'wpessential' ),
+				'200'    => __( '200', 'wpessential' ),
+				'300'    => __( '300', 'wpessential' ),
+				'400'    => __( '400', 'wpessential' ),
+				'500'    => __( '500', 'wpessential' ),
+				'600'    => __( '600', 'wpessential' ),
+				'700'    => __( '700', 'wpessential' ),
+				'800'    => __( '800', 'wpessential' ),
+				'900'    => __( '900', 'wpessential' ),
+				'normal' => __( 'Normal', 'wpessential' ),
+				'bold'   => __( 'Bold', 'wpessential' ),
+			]
+		);
+	}
+}
+
+if ( ! function_exists( 'wpe_font_variant_capitals' ) ) {
+	/**
+	 * Font Variant capitals styles.
+	 *
+	 * @return array
+	 */
+	function wpe_font_variant_capitals ()
+	{
+		return apply_filters(
+			'wpe/font/variant/caps',
+			[
+				'normal'          => __( 'Normal Capitals', 'wpessential' ),
+				'small-caps'      => __( 'Small Capitals', 'wpessential' ),
+				'all-small-caps'  => __( 'All Small Capitals', 'wpessential' ),
+				'petite-caps'     => __( 'Petite Capitals', 'wpessential' ),
+				'all-petite-caps' => __( 'All Petite Capitals', 'wpessential' ),
+				'unicase'         => __( 'Unicase Capitals', 'wpessential' ),
+				'titling-caps'    => __( 'Titling Capitals', 'wpessential' ),
+				'initial'         => __( 'Initial Capitals', 'wpessential' ),
+				'inherit'         => __( 'Inherit Capitals', 'wpessential' ),
+				'unset'           => __( 'Unset Capitals', 'wpessential' ),
+			]
+		);
+	}
+}
+
+if ( ! function_exists( 'wpe_font_kerning' ) ) {
+	/**
+	 * Font kerning styles.
+	 *
+	 * @return array
+	 */
+	function wpe_font_kerning ()
+	{
+		return apply_filters(
+			'wpe/font/kerning',
+			[
+				'normal' => __( 'Normal Capitals', 'wpessential' ),
+				'auto'   => __( 'Auto', 'wpessential' ),
+				'none'   => __( 'None', 'wpessential' ),
+			]
+		);
+	}
+}

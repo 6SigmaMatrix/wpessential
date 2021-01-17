@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\Helper\Fields;
+namespace WPEssential\Plugins\Builders\Helper\Editor;
 
 trait Elementor
 {
@@ -19,14 +19,17 @@ trait Elementor
 			'placeholder' => $this->placeholder,
 			'show_label'  => $this->showLabel,
 			'label_block' => $this->labelBlock,
-			//'dynamic'     => $this->dynamic,
+			'dynamic'     => $this->dynamic,
 			'separator'   => $this->separator,
 			'title'       => $this->mouseHoverTitle,
 			'classes'     => implode( ' ', $this->addClasses ),
 			'default'     => $this->defaul,
 			'condition'   => $this->dependent,
 			'conditions'  => $this->dependency,
-			'name'        => $this->key
+			'name'        => $this->key,
+			'responsive'  => $this->responsive,
+			'global'      => $this->global,
+			'range'       => $this->range
 		] );
 	}
 }
