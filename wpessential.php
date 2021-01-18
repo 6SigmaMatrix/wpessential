@@ -12,7 +12,7 @@
  * Description: WPEssential is a flexible extension of WordPress. It is open-source and themes also page builder solution in WordPress. Create any theme, anywhere and make your way. There is no `PHP`, `CSS`, `HTML` and `Javascript` coding knowledge need.
  * Plugin URI: https://wp.wpessential.org/plugins/wpessential/
  * Author: WPEssential
- * Version: 1.0.0.00004
+ * Version: 1.0.0.00005
  * Author URI: https://wpessential.org/
  * Text Domain: wpessential
  * Requires PHP: 7.4
@@ -32,4 +32,4 @@ require_once WPE_DIR . 'inc/Loader.php';
 
 register_activation_hook( __FILE__, 'wpe_install' );
 register_deactivation_hook( __FILE__, 'wpe_unsintall' );
-\WPEssential\Plugins\Loader::constructor();
+WPEssential\Plugins\Loader::constructor();

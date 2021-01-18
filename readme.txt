@@ -55,6 +55,11 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Changelog ==
 
+= 18/01/2021 1.0.0.00005 =
+- Fix errors.
+- Improve Structure
+- Add - Image Select field type in elementor
+
 = 26/12/2020 1.0.0.00004 =
 - Fix WooCommerce error.
 - Compatibility - Theme Development
