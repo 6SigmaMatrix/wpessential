@@ -54,6 +54,11 @@ final class RegisterAssets
 				'dep'  => [ 'jquery', 'vue' ],
 				'ver'  => self::ver_check( '0.2.0' ),
 			],
+			'owl-crousel'                  => [
+				'link' => WPE_URL . "assets/js/owl.crousel{$minify}js",
+				'dep'  => [ 'jquery' ],
+				'ver'  => self::ver_check( '2.3.4' ),
+			],
 			'perfect-scrollbar'            => [
 				'link' => WPE_URL . "assets/js/perfect-scrollbar{$minify}js",
 				'dep'  => [ 'jquery' ],
@@ -81,6 +86,11 @@ final class RegisterAssets
 			],
 			'wpessential'                  => [
 				'link' => WPE_URL . "assets/js/wpessential{$minify}js",
+				'dep'  => [ 'jquery' ],
+				'ver'  => self::ver_check(),
+			],
+			'wpessential-admin'            => [
+				'link' => WPE_URL . "assets/js/wpessential-admin{$minify}js",
 				'dep'  => [ 'jquery' ],
 				'ver'  => self::ver_check(),
 			],
@@ -128,6 +138,11 @@ final class RegisterAssets
 				'dep'  => false,
 				'ver'  => self::ver_check( '0.2.0' ),
 			],
+			'owl-crousel'                  => [
+				'link' => WPE_URL . "assets/css/owl.crousel{$minify}css",
+				'dep'  => false,
+				'ver'  => self::ver_check( '2.3.4' ),
+			],
 			'perfect-scrollbar'            => [
 				'link' => WPE_URL . "assets/css/perfect-scrollbar{$minify}css",
 				'dep'  => false,
@@ -145,6 +160,11 @@ final class RegisterAssets
 			],
 			'wpessential'                  => [
 				'link' => WPE_URL . "assets/css/wpessential{$minify}css",
+				'dep'  => false,
+				'ver'  => self::ver_check(),
+			],
+			'wpessential-admin'            => [
+				'link' => WPE_URL . "assets/css/wpessential-admin{$minify}css",
 				'dep'  => false,
 				'ver'  => self::ver_check(),
 			],

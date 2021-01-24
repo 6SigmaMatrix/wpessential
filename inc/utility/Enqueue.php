@@ -87,15 +87,13 @@ final class Enqueue
 		$list = apply_filters( 'wpe/admin_page/css', [] );
 		$list = array_filter( $list );
 		if ( $list ) {
-			foreach ( $list as $style ) {
-				wp_enqueue_style( $style );
-			}
+			wp_enqueue_style( $list );
 		}
 
 		$list = apply_filters( 'wpe/admin_page/js', [] );
 		$list = array_filter( $list );
 		if ( $list ) {
-			wp_enqueue_script( [ $list ] );
+			wp_enqueue_script( $list );
 		}
 
 		self::localization();
