@@ -24,6 +24,11 @@ final class RegisterAssets
 	{
 		$minify = self::$minify;
 		$list   = [
+			'bootstrap'                    => [
+				'link' => WPE_URL . "assets/js/bootstrap{$minify}js",
+				'dep'  => [ 'jquery' ],
+				'ver'  => self::ver_check( '4.3.1' ),
+			],
 			'crypt_1'                      => [
 				'link' => WPE_URL . "assets/js/crypt{$minify}js",
 				'dep'  => [ 'jquery' ],
@@ -118,15 +123,20 @@ final class RegisterAssets
 				'dep'  => false,
 				'ver'  => self::ver_check( '5.13.0' ),
 			],
-			'element-ui'                   => [
-				'link' => WPE_URL . "assets/css/element-ui{$minify}css",
-				'dep'  => false,
-				'ver'  => self::ver_check( '2.14.1' ),
-			],
 			'animate'                      => [
 				'link' => WPE_URL . "assets/css/animate{$minify}css",
 				'dep'  => false,
 				'ver'  => self::ver_check( '4.1.1' ),
+			],
+			'bootstrap'                    => [
+				'link' => WPE_URL . "assets/css/bootstrap{$minify}css",
+				'dep'  => false,
+				'ver'  => self::ver_check( '4.3.1' ),
+			],
+			'element-ui'                   => [
+				'link' => WPE_URL . "assets/css/element-ui{$minify}css",
+				'dep'  => false,
+				'ver'  => self::ver_check( '2.14.1' ),
 			],
 			'fancybox'                     => [
 				'link' => WPE_URL . "assets/css/fancybox{$minify}css",
