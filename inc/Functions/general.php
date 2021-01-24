@@ -339,3 +339,28 @@ if ( ! function_exists( 'wpe_compare_values' ) ) {
 		return $value1 == $value2;
 	}
 }
+
+if ( ! function_exists( 'wpe_fa5_social_array' ) ) {
+	/**
+	 * wpe font awesome 5 social array
+	 *
+	 * @return array
+	 */
+	function wpe_fa5_social_array ()
+	{
+		$prefix    = WPEssential\Plugins\Utility\Cache::get_cache_prefix( 'fa5-social-profile' );
+		$cache_key = $prefix . 'fa5_social_profile';
+
+		$content = wp_cache_get( $cache_key, 'fa5-social-profile' );
+		if ( $content ) {
+			return $content;
+		}
+
+		$content = wp_remote_get( WPE_URL . 'assets/json/fa5-social-profile.min.json' );
+		$content = wp_remote_retrieve_body( $content );
+		$content = json_decode( $content, true );
+		wp_cache_set( $cache_key, $content, 'fa5-social-profile' );
+
+		return $content;
+	}
+}
