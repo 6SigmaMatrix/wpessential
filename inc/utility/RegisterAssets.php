@@ -59,8 +59,8 @@ final class RegisterAssets
 				'dep'  => [ 'jquery', 'vue' ],
 				'ver'  => self::ver_check( '0.2.0' ),
 			],
-			'owl-crousel'                  => [
-				'link' => WPE_URL . "assets/js/owl.crousel{$minify}js",
+			'owl-carousel'                  => [
+				'link' => WPE_URL . "assets/js/owl.carousel{$minify}js",
 				'dep'  => [ 'jquery' ],
 				'ver'  => self::ver_check( '2.3.4' ),
 			],
@@ -148,8 +148,8 @@ final class RegisterAssets
 				'dep'  => false,
 				'ver'  => self::ver_check( '0.2.0' ),
 			],
-			'owl-crousel'                  => [
-				'link' => WPE_URL . "assets/css/owl.crousel{$minify}css",
+			'owl-carousel'                  => [
+				'link' => WPE_URL . "assets/css/owl.carousel{$minify}css",
 				'dep'  => false,
 				'ver'  => self::ver_check( '2.3.4' ),
 			],

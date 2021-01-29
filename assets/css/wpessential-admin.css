@@ -1,3 +1,7 @@
+#wpcontent {
+  padding-left: 0;
+}
+
 .wpessential-admin {
   margin: 0;
   padding: 0;
@@ -15,8 +19,39 @@
   list-style: none;
 }
 
-.wpe-admin-page {
+.wpessential-admin .wpe-admin-page {
   width: 100%;
   display: block;
+}
+
+.wpessential-admin .wpe-admin-page header {
+  padding: 0;
+}
+
+.wpessential-admin .wpe-admin-page .wpe-home,
+.wpessential-admin .wpe-admin-page .wpe-health-info {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.wpessential-admin .wpe-admin-page .title-section {
+  width: 100%;
+  display: block;
+}
+
+.wpessential-admin .wpe-admin-page .wpe-health-info {
+  width: 100%;
+  display: block;
+  padding: 0 50px;
+}
+
+.wpessential-admin .wpe-admin-page .wpe-health-info .el-collapse-item__header {
+  padding: 0 10px;
+}
+
+.wpessential-admin .wpe-admin-page .wpe-health-info .info-table {
+  width: 100%;
+  display: block;
+  margin-bottom: 2rem;
 }
 

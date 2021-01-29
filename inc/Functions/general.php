@@ -1,6 +1,26 @@
 <?php
 if ( ! function_exists( 'wpe_maybe_define_constant' ) ) {
 	/**
+	 * check or verify the ajex call
+	 *
+	 */
+	function wpe_ajax_authorized ()
+	{
+		$checked = check_ajax_referer( WPE_NONCE, 'nonce' );
+		if ( ! $checked ) {
+			wp_send_json_error(
+				[
+					'title'   => __( 'Error.', 'wpessential' ),
+					'message' => __( 'Ajax authorization is invalide.', 'wpessential' )
+				],
+				401
+			);
+		}
+	}
+}
+
+if ( ! function_exists( 'wpe_maybe_define_constant' ) ) {
+	/**
 	 * Define a constant if it is not already defined.
 	 *
 	 * @param string $name Constant name.

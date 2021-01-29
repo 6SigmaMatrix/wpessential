@@ -2,6 +2,8 @@
 
 namespace WPEssential\Plugins;
 
+use WPEssential\Plugins\Admin\Admin;
+
 final class Loader
 {
 	private static object $theme_info;
@@ -94,7 +96,7 @@ final class Loader
 
 	public static function start ()
 	{
-		Utility\AdminMenu::constructor();
+		Admin::constructor();
 		Utility\Requesting::constructor();
 		Utility\RegisterAssets::constructor();
 		Utility\Enqueue::constructor();

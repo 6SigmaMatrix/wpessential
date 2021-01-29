@@ -6,11 +6,23 @@ final class Requesting
 {
 	public static function constructor ()
 	{
-		add_action( 'wp_ajax_nopriv_auth', [ __CLASS__, 'login' ] );
-		add_action( 'wp_ajax_auth', [ __CLASS__, 'login' ] );
+		self::global();
+		self::private();
+
 		//add_action( 'wp_ajax_settings_args', [ __CLASS__, 'settings_args' ] );
 
 		add_action( 'wp_ajax_get_image_from_url', [ __CLASS__, 'get_image_from_url' ] );
+	}
+
+	public static function global ()
+	{
+		add_action( 'wp_ajax_nopriv_auth', [ __CLASS__, 'login' ] );
+	}
+
+	public static function private ()
+	{
+		add_action( 'wp_ajax_auth', [ __CLASS__, 'login' ] );
+		add_action( 'wp_ajax_wpe_admin_health_info', [ 'WPEssential\Plugins\Admin\HealthInfo', 'constructor' ] );
 	}
 
 	public static function login ()
