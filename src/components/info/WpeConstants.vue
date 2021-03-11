@@ -45,12 +45,12 @@ export default {
         get_data () {
             this.ajax_loader = true;
             $.ajax( {
-                url: WPEssential.ajaxurl,
+                url: this.$WPEssential.ajaxurl,
                 type: "POST",
                 data: {
                     action: "wpe_admin_health_info",
                     subaction: "constants",
-                    nonce: WPEssential.nonce,
+                    nonce: this.$WPEssential.nonce,
                 },
                 success: ( res ) => {
                     this.toggle_data = res.data;

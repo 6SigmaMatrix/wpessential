@@ -1,5 +1,5 @@
 <?php do_action( 'wpe_before_comment_list' ); ?>
-    <<?php echo apply_filters( 'wpe/comment/list/tag', 'ol' ); ?> class="<?php echo apply_filters( 'wpe/comment/list/classes', 'comment-list' ); ?>">
+    <<?php echo apply_filters( 'wpe/comment/list/tag', 'ol' ); ?> class="wpe-comment-list <?php echo apply_filters( 'wpe/comment/list/classes', 'comment-list' ); ?>">
 <?php
 wp_list_comments(
 	apply_filters(

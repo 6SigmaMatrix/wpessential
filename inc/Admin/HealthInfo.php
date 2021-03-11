@@ -18,7 +18,7 @@ final class HealthInfo
 	public static function constants ()
 	{
 		$undefined = __( 'Undefined', 'wpessential' );
-		$list      = apply_filters( 'wpe/admin/health_info/constants', [
+		$list      = [
 			'plugins' => [
 				'title'         => __( 'Plugins', 'wpessential' ),
 				'column_labels' => [
@@ -75,8 +75,9 @@ final class HealthInfo
 				]
 			],
 			'themes'  => []
-		] );
+		];
 		$list      = array_filter( $list );
+		$list      = apply_filters( 'wpe/register/admin_pages/health_info/constants', $list );
 
 		wp_send_json_success( [
 			'title' => __( 'Constatns', 'wpessential' ),
@@ -87,7 +88,6 @@ final class HealthInfo
 
 	public static function active_plugins ()
 	{
-
 		$_active_plugins = (array) get_option( 'active_plugins', [] );
 
 		if ( is_multisite() ) {
@@ -114,7 +114,7 @@ final class HealthInfo
 			}
 		}
 
-		wp_send_json_success( apply_filters( 'wpe/admin/health_info/plugins', [
+		wp_send_json_success( apply_filters( 'wpe/register/admin_pages/health_info/plugins', [
 				'title' => __( 'Active Plugins', 'wpessential' ),
 				'desc'  => __( 'Here are the active plugins info listed below.', 'wpessential' ),
 				'list'  => [

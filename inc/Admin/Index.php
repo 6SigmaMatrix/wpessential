@@ -6,13 +6,13 @@ final class Index
 {
 	public static function constructor ()
 	{
-		add_action( 'wpe/register/menu_pages', [ __CLASS__, 'register' ] );
+		add_action( 'wpe/register/admin_pages/main_nav', [ __CLASS__, 'register' ] );
 	}
 
 	public static function register ( $list )
 	{
 		$menu_args = [
-			apply_filters( 'wpe/register/menu_pages/index',
+			apply_filters( 'wpe/register/admin_pages/index',
 				[
 					'page_title' => __( 'WPEssential', 'wpessential' ),
 					'menu_title' => __( 'WPEssential', 'wpessential' ),

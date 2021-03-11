@@ -31,8 +31,6 @@
 		"beta"
 	],
 	"homepage": "https://wpessential.org/",
-	"require": {
-	},
 	"autoload": {
 		"psr-4": {
 			"WPEssential\\Plugins\\": "inc/"

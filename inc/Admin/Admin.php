@@ -15,7 +15,7 @@ final class Admin
 
 	public static function register_menu ()
 	{
-		$menu_args = apply_filters( 'wpe/register/menu_pages', [] );
+		$menu_args = apply_filters( 'wpe/register/admin_pages/main_nav', [] );
 		$menu_args = array_filter( $menu_args );
 		if ( $menu_args && is_array( $menu_args ) ) {
 			foreach ( $menu_args as $menu ) {
@@ -23,7 +23,7 @@ final class Admin
 			}
 		}
 
-		$menu_args = apply_filters( 'wpe/register/submenu_pages', [] );
+		$menu_args = apply_filters( 'wpe/register/admin_pages/submenu_nav', [] );
 		$menu_args = array_filter( $menu_args );
 		if ( $menu_args && is_array( $menu_args ) ) {
 			foreach ( $menu_args as $menu ) {
@@ -37,6 +37,7 @@ final class Admin
 	public static function pages ()
 	{
 		Index::constructor();
+		Options::constructor();
 	}
 
 	public static function add_menu_pages ( $page_title, $menu_title, $manage_options, $menu_slug = 'wpessential', $callback = '', $icon = '', $position = null )
@@ -53,7 +54,7 @@ final class Admin
 
 	public static function health_info ()
 	{
-		$list = apply_filters( 'wpe/admin/health_info', HealthInfo::constructor() );
+		$list = apply_filters( 'wpe/register/admin_pages/health_info', HealthInfo::constructor() );
 		$list = array_filter( $list );
 		return $list;
 	}
@@ -78,27 +79,40 @@ final class Admin
 		} else {
 			$time_msg = __( 'Good Evening', 'wpessential' );
 		}
-		return wp_parse_args(
-			[
-				'admin_pages' => [
-					'home'   => [
-						'menu_title' => __( 'Home', 'wpessential' ),
-						'page_title' => sprintf( __( '%s %s', 'wpessential' ), $time_msg, ucwords( str_replace( [ '_', '-' ], ' ', get_bloginfo( 'name' ) ) ) ),
-						'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
-						'ver_bag'    => [
-							'ver'   => WPE_VERSION,
-							'title' => __( 'Verstion', 'wpessential' )
-						],
-						'path'       => '/'
+
+		$admin_pages = [
+			'admin_pages' => [
+				'home'          => [
+					'menu_title' => __( 'Home', 'wpessential' ),
+					'page_title' => sprintf( __( '%s %s', 'wpessential' ), $time_msg, ucwords( str_replace( [ '_', '-' ], ' ', get_bloginfo( 'name' ) ) ) ),
+					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
+					'ver_bag'    => [
+						'ver'   => WPE_VERSION,
+						'title' => __( 'Verstion', 'wpessential' )
 					],
-					'health' => [
-						'menu_title' => __( 'Health', 'wpessential' ),
-						'page_title' => __( 'Health Check And Info', 'wpessential' ),
-						'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
-						'path'       => '/health-info'
-					]
+					'path'       => '/',
+					'component'  => 'index'
+				],
+				'health'        => [
+					'menu_title' => __( 'Health', 'wpessential' ),
+					'page_title' => __( 'Health Check And Info', 'wpessential' ),
+					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
+					'path'       => '/health-info',
+					'component'  => 'health'
+				],
+				'theme_options' => [
+					'menu_title' => __( 'Theme options', 'wpessential' ),
+					'page_title' => __( 'Theme Options', 'wpessential' ),
+					'page_desc'  => __( 'Theme customization options.', 'wpessential' ),
+					'path'       => '/theme',
+					'component'  => 'options'
 				]
-			],
+			]
+		];
+		$admin_pages = apply_filters( 'wpe/register/admin_pages/routes_info', $admin_pages );
+
+		return wp_parse_args(
+			$admin_pages,
 			$list
 		);
 	}

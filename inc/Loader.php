@@ -96,7 +96,7 @@ final class Loader
 
 	public static function start ()
 	{
-		Admin::constructor();
+		//Admin::constructor();
 		Utility\Requesting::constructor();
 		Utility\RegisterAssets::constructor();
 		Utility\Enqueue::constructor();

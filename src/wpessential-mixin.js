@@ -25,6 +25,11 @@ const WpessentialMixin = {
         }
     },
     methods: {
+        wpe_get_route_id () {
+            let current_path = this.$router.currentRoute.path;
+            current_path = current_path.replace( '/', '' );
+            return current_path;
+        },
         wpe_error ( data ) {
             console.log( data );
         },

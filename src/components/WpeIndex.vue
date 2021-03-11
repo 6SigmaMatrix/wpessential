@@ -21,6 +21,7 @@ export default {
         return {}
     },
     mounted () {
+        this.$WPEssential.options_routes = {};
         this.page_loader= false;
     }
 }

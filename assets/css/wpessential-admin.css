@@ -2,6 +2,10 @@
   padding-left: 0;
 }
 
+#wpcontent .notice {
+  display: none !important;
+}
+
 .wpessential-admin {
   margin: 0;
   padding: 0;

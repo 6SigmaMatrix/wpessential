@@ -3,6 +3,7 @@
 namespace WPEssential\Plugins\Builders\WordPress\Utility;
 
 use WPEssential\Plugins\Implement\ShortcodeInit;
+use WPEssential\Plugins\Loader;
 
 final class WordPress implements ShortcodeInit
 {
@@ -15,6 +16,7 @@ final class WordPress implements ShortcodeInit
 	public static function registry_widget ( $list = '' )
 	{
 		//global $shortcode_tags;
+		Loader::editor( 'wordpress' );
 		$list = apply_filters( 'wpe/wordpress/shortcodes', [
 			'Post'    => '\\WPEssential\\Plugins\\Builders\\WordPress\\Shortcodes\\Post',
 			'Heading' => '\\WPEssential\\Plugins\\Builders\\WordPress\\Shortcodes\\Heading',

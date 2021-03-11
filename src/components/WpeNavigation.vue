@@ -1,6 +1,6 @@
 <template>
     <el-header>
-        <el-menu default-active="/home" class="el-menu-demo" mode="horizontal" :router="true">
+        <el-menu default-active="/theme-options" class="el-menu-demo" mode="horizontal" :router="true">
             <template v-for="page in $WPEssential.admin_pages">
                 <el-menu-item :index="page.path">{{ page.menu_title }}</el-menu-item>
             </template>
@@ -8,7 +8,7 @@
     </el-header>
 </template>
 <script>
-import Mixin from '../wpessential-mixin.js';
+import Mixin from '../wpessential-mixin';
 
 export default {
     mixins: [ Mixin ],
