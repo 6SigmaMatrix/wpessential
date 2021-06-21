@@ -9,5 +9,5 @@ class Url extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'url';
+	public $type = 'url';
 }

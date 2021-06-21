@@ -9,5 +9,5 @@ class Media extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'media';
+	public $type = 'media';
 }

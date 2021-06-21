@@ -12,7 +12,7 @@ final class ElGlobal
 
 	public static function run ( $object, $args )
 	{
-		wpe_error( $object);
+		wpe_error( $object );
 	}
 
 }

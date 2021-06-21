@@ -44,15 +44,6 @@ class RelatedQuery extends PostQuery
 		return $query;
 	}
 
-	protected function get_fallback_query ( $original_query )
-	{
-		$this->set_fallback_query_args();
-		$this->set_fallback_arg_by_settings( 'posts_per_page', $original_query->query_vars[ 'posts_per_page' ] );
-		$this->fallback_args = apply_filters( 'wpessneital/query/fallback_query_args', $this->fallback_args, $this->widget );
-
-		return new \WP_Query( $this->fallback_args );
-	}
-
 	private function is_valid_fallback ()
 	{
 		$related_callback = $this->get_widget_settings( 'related_fallback' );
@@ -73,6 +64,47 @@ class RelatedQuery extends PostQuery
 		}
 
 		return $valid;
+	}
+
+	protected function get_fallback_query ( $original_query )
+	{
+		$this->set_fallback_query_args();
+		$this->set_fallback_arg_by_settings( 'posts_per_page', $original_query->query_vars[ 'posts_per_page' ] );
+		$this->fallback_args = apply_filters( 'wpessneital/query/fallback_query_args', $this->fallback_args, $this->widget );
+
+		return new \WP_Query( $this->fallback_args );
+	}
+
+	protected function set_fallback_query_args ()
+	{
+		$this->set_fallback_arg_by_settings( 'ignore_sticky_posts', true );
+		$this->set_fallback_arg_by_settings( 'post_status', 'publish' );
+
+		$post_types = TCI_Utils::get_public_post_types();
+		$post_types = array_keys( $post_types );
+
+		$this->set_fallback_arg_by_settings( 'post_type', $post_types );
+
+		if ( 'fallback_by_id' === $this->get_widget_settings( 'related_fallback' ) ) {
+			$this->set_fallback_arg_by_settings( 'post__in', [ 0 ], 'fallback_ids' );
+			$this->set_fallback_arg_by_settings( 'orderby', 'rand' );
+		} else { //recent posts
+			$this->set_fallback_arg_by_settings( 'orderby', 'date' );
+			$this->set_fallback_arg_by_settings( 'order', 'DESC' );
+		}
+	}
+
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 * @param string $control_name
+	 */
+	private function set_fallback_arg_by_settings ( $key, $value, $control_name = '' )
+	{
+		if ( empty( $this->fallback_args[ $key ] ) ) {
+			$settings                    = $this->widget->get_settings();
+			$this->fallback_args[ $key ] = ( '' === $control_name || empty( $settings[ $this->prefix . $control_name ] ) ) ? $value : $settings[ $this->prefix . $control_name ];
+		}
 	}
 
 	protected function set_common_args ()
@@ -124,38 +156,6 @@ class RelatedQuery extends PostQuery
 	{
 		if ( $this->get_widget_settings( 'include_authors' ) ) {
 			$this->query_args[ 'author__in' ] = get_post_field( 'post_author', $this->related_post_id );
-		}
-	}
-
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 * @param string $control_name
-	 */
-	private function set_fallback_arg_by_settings ( $key, $value, $control_name = '' )
-	{
-		if ( empty( $this->fallback_args[ $key ] ) ) {
-			$settings                    = $this->widget->get_settings();
-			$this->fallback_args[ $key ] = ( '' === $control_name || empty( $settings[ $this->prefix . $control_name ] ) ) ? $value : $settings[ $this->prefix . $control_name ];
-		}
-	}
-
-	protected function set_fallback_query_args ()
-	{
-		$this->set_fallback_arg_by_settings( 'ignore_sticky_posts', true );
-		$this->set_fallback_arg_by_settings( 'post_status', 'publish' );
-
-		$post_types = TCI_Utils::get_public_post_types();
-		$post_types = array_keys( $post_types );
-
-		$this->set_fallback_arg_by_settings( 'post_type', $post_types );
-
-		if ( 'fallback_by_id' === $this->get_widget_settings( 'related_fallback' ) ) {
-			$this->set_fallback_arg_by_settings( 'post__in', [ 0 ], 'fallback_ids' );
-			$this->set_fallback_arg_by_settings( 'orderby', 'rand' );
-		} else { //recent posts
-			$this->set_fallback_arg_by_settings( 'orderby', 'date' );
-			$this->set_fallback_arg_by_settings( 'order', 'DESC' );
 		}
 	}
 }

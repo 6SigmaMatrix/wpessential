@@ -11,14 +11,14 @@ class Dimensions extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'dimensions';
+	public $type = 'dimensions';
 
 	/**
 	 * Which fields to show. Available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom', 'left' ].
 	 *
 	 * @var string
 	 */
-	public string $allowed_dimensions;
+	public $allowed_dimensions;
 
 	/**
 	 * Set the callback to be used for determining the field's to show the available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom', 'left' ].

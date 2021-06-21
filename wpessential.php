@@ -15,9 +15,9 @@
  * Version: 1.0.0.00006
  * Author URI: https://wpessential.org/
  * Text Domain: wpessential
- * Requires PHP: 7.4
+ * Requires PHP: 7.3
  * Requires at least: 5.5
- * Tested up to: 5.6
+ * Tested up to: 5.7
  * WC requires at least: 4.0
  * WC tested up to: 4.8
  * License: GPL v2 or later

@@ -11,14 +11,14 @@ class RgbaColor extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'color';
+	public $type = 'color';
 
 	/**
 	 * Whether to allow alpha channel.
 	 *
 	 * @var bool
 	 */
-	public bool $alpha = true;
+	public $alpha = true;
 
 	/**
 	 * Prepare the field's.

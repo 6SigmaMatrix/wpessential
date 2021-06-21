@@ -4,7 +4,7 @@ namespace WPEssential\Plugins\Api\WordPress;
 
 final class SecretKeyGen extends Base
 {
-	private static string $branch = 'secret-key/';
+	private static $branch = 'secret-key/';
 
 	public static function constructor ( $ver = 'last' )
 	{

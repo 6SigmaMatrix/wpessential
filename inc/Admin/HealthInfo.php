@@ -13,6 +13,8 @@ final class HealthInfo
 		if ( $request ) {
 			return call_user_func( [ __CLASS__, $request ] );
 		}
+
+		wp_die( sprintf( __( 'The method is not define at class name %s and method name is %s.', 'wpessential' ), get_class( self::class ), $request ) );
 	}
 
 	public static function constants ()
@@ -104,7 +106,7 @@ final class HealthInfo
 				foreach ( $plugin_data as $k => $v ) {
 					$plugin_info[] = [
 						'first'  => $k,
-						'second' => ( $v ) ? $v : __( 'Undefined', 'wpeseential' )
+						'second' => $v ? $v : __( 'Undefined', 'wpeseential' )
 					];
 				}
 				$active_plugins[ $plugin_name ] = [

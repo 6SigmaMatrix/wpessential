@@ -51,6 +51,131 @@ class Posts extends Group_Control_Base
 		return $element;
 	}
 
+	public function get_query_args ( $control_id_prefix, $settings )
+	{
+
+		$defaults = [
+			$control_id_prefix . '_post_type' => 'post',
+			$control_id_prefix . '_posts_ids' => [],
+			'orderby'                         => 'date',
+			'order'                           => 'desc',
+			'posts_per_page'                  => 3,
+			'offset'                          => 0,
+		];
+
+		$settings = wp_parse_args( $settings, $defaults );
+
+		$post_type = $settings[ $control_id_prefix . '_post_type' ];
+
+		if ( 'current_query' === $post_type ) {
+			$current_query_vars = $GLOBALS[ 'wp_query' ]->query_vars;
+
+			/**
+			 * Current query variables.
+			 *
+			 * Filters the query variables for the current query.
+			 *
+			 * @param array $current_query_vars Current query variables.
+			 * @since 1.0.0
+			 *
+			 */
+			$current_query_vars = apply_filters( 'wpessential/query_control/get_query_args/current_query', $current_query_vars );
+
+			return $current_query_vars;
+		}
+
+		return $this->build_query_args( $settings, $control_id_prefix );
+	}
+
+	protected function build_query_args ( $settings, $control_id_prefix )
+	{
+
+		$prefix = $control_id_prefix . '_';
+
+		$post_type = $settings[ $prefix . 'post_type' ];
+
+		$query_args = [
+			'orderby'             => $settings[ 'orderby' ],
+			'order'               => $settings[ 'order' ],
+			'ignore_sticky_posts' => 1,
+			'post_status'         => 'publish', // Hide drafts/private posts for admins
+		];
+
+		if ( 'by_id' === $post_type ) {
+			$post_types = wpe_get_post_type_list();//TCI_Utils::get_public_post_types();
+
+			$query_args[ 'post_type' ]      = array_keys( $post_types );
+			$query_args[ 'posts_per_page' ] = - 1;
+
+			$query_args[ 'post__in' ] = $settings[ $prefix . 'posts_ids' ];
+
+			if ( empty( $query_args[ 'post__in' ] ) ) {
+				// If no selection - return an empty query
+				$query_args[ 'post__in' ] = [ 0 ];
+			}
+		} else {
+			$query_args[ 'post_type' ]      = $post_type;
+			$query_args[ 'posts_per_page' ] = $settings[ 'posts_per_page' ];
+			$query_args[ 'tax_query' ]      = [];
+
+			$query_args = $this->fix_offset( $query_args, $settings );
+
+			$taxonomies = get_object_taxonomies( $post_type, 'objects' );
+
+			foreach ( $taxonomies as $object ) {
+				$setting_key = $prefix . $object->name . '_ids';
+
+				if ( ! empty( $settings[ $setting_key ] ) ) {
+					$query_args[ 'tax_query' ][] = [
+						'taxonomy' => $object->name,
+						'field'    => 'term_id',
+						'terms'    => $settings[ $setting_key ],
+					];
+				}
+			}
+		}
+
+		if ( ! empty( $settings[ $prefix . 'authors' ] ) ) {
+			$query_args[ 'author__in' ] = $settings[ $prefix . 'authors' ];
+		}
+
+		$post__not_in = [];
+		if ( ! empty( $settings[ 'exclude' ] ) ) {
+			if ( in_array( 'current_post', $settings[ 'exclude' ], true ) ) {
+				if ( wp_doing_ajax() && ! empty( $_REQUEST[ 'post_id' ] ) ) {
+					$post__not_in[] = sanitize_text_field( $_REQUEST[ 'post_id' ] );
+				} elseif ( is_singular() ) {
+					$post__not_in[] = get_queried_object_id();
+				}
+			}
+
+			if ( in_array( 'manual_selection', $settings[ 'exclude' ], true ) && ! empty( $settings[ 'exclude_ids' ] ) ) {
+				$post__not_in = array_merge( $post__not_in, $settings[ 'exclude_ids' ] );
+			}
+		}
+
+		if ( ! empty( $settings[ 'avoid_duplicates' ] ) && 'yes' === $settings[ 'avoid_duplicates' ] ) {
+			$post__not_in = array_merge( $post__not_in, Query::$displayed_ids );
+		}
+
+		$query_args[ 'post__not_in' ] = $post__not_in;
+
+		return $query_args;
+	}
+
+	protected function fix_offset ( $query_args, $settings, $prefix = '' )
+	{
+		if ( 0 < $settings[ $prefix . 'offset' ] ) {
+			/**
+			 * Due to a WordPress bug, the offset will be set later, in $this->fix_query_offset()
+			 * @see https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
+			 */
+			$query_args[ 'offset_to_fix' ] = $settings[ $prefix . 'offset' ];
+		}
+
+		return $query_args;
+	}
+
 	protected function init_fields ()
 	{
 		$fields = [];
@@ -186,130 +311,5 @@ class Posts extends Group_Control_Base
 		return [
 			'popover' => false,
 		];
-	}
-
-	protected function fix_offset ( $query_args, $settings, $prefix = '' )
-	{
-		if ( 0 < $settings[ $prefix . 'offset' ] ) {
-			/**
-			 * Due to a WordPress bug, the offset will be set later, in $this->fix_query_offset()
-			 * @see https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
-			 */
-			$query_args[ 'offset_to_fix' ] = $settings[ $prefix . 'offset' ];
-		}
-
-		return $query_args;
-	}
-
-	protected function build_query_args ( $settings, $control_id_prefix )
-	{
-
-		$prefix = $control_id_prefix . '_';
-
-		$post_type = $settings[ $prefix . 'post_type' ];
-
-		$query_args = [
-			'orderby'             => $settings[ 'orderby' ],
-			'order'               => $settings[ 'order' ],
-			'ignore_sticky_posts' => 1,
-			'post_status'         => 'publish', // Hide drafts/private posts for admins
-		];
-
-		if ( 'by_id' === $post_type ) {
-			$post_types = wpe_get_post_type_list();//TCI_Utils::get_public_post_types();
-
-			$query_args[ 'post_type' ]      = array_keys( $post_types );
-			$query_args[ 'posts_per_page' ] = - 1;
-
-			$query_args[ 'post__in' ] = $settings[ $prefix . 'posts_ids' ];
-
-			if ( empty( $query_args[ 'post__in' ] ) ) {
-				// If no selection - return an empty query
-				$query_args[ 'post__in' ] = [ 0 ];
-			}
-		} else {
-			$query_args[ 'post_type' ]      = $post_type;
-			$query_args[ 'posts_per_page' ] = $settings[ 'posts_per_page' ];
-			$query_args[ 'tax_query' ]      = [];
-
-			$query_args = $this->fix_offset( $query_args, $settings );
-
-			$taxonomies = get_object_taxonomies( $post_type, 'objects' );
-
-			foreach ( $taxonomies as $object ) {
-				$setting_key = $prefix . $object->name . '_ids';
-
-				if ( ! empty( $settings[ $setting_key ] ) ) {
-					$query_args[ 'tax_query' ][] = [
-						'taxonomy' => $object->name,
-						'field'    => 'term_id',
-						'terms'    => $settings[ $setting_key ],
-					];
-				}
-			}
-		}
-
-		if ( ! empty( $settings[ $prefix . 'authors' ] ) ) {
-			$query_args[ 'author__in' ] = $settings[ $prefix . 'authors' ];
-		}
-
-		$post__not_in = [];
-		if ( ! empty( $settings[ 'exclude' ] ) ) {
-			if ( in_array( 'current_post', $settings[ 'exclude' ], true ) ) {
-				if ( wp_doing_ajax() && ! empty( $_REQUEST[ 'post_id' ] ) ) {
-					$post__not_in[] = sanitize_text_field( $_REQUEST[ 'post_id' ] );
-				} elseif ( is_singular() ) {
-					$post__not_in[] = get_queried_object_id();
-				}
-			}
-
-			if ( in_array( 'manual_selection', $settings[ 'exclude' ], true ) && ! empty( $settings[ 'exclude_ids' ] ) ) {
-				$post__not_in = array_merge( $post__not_in, $settings[ 'exclude_ids' ] );
-			}
-		}
-
-		if ( ! empty( $settings[ 'avoid_duplicates' ] ) && 'yes' === $settings[ 'avoid_duplicates' ] ) {
-			$post__not_in = array_merge( $post__not_in, Query::$displayed_ids );
-		}
-
-		$query_args[ 'post__not_in' ] = $post__not_in;
-
-		return $query_args;
-	}
-
-	public function get_query_args ( $control_id_prefix, $settings )
-	{
-
-		$defaults = [
-			$control_id_prefix . '_post_type' => 'post',
-			$control_id_prefix . '_posts_ids' => [],
-			'orderby'                         => 'date',
-			'order'                           => 'desc',
-			'posts_per_page'                  => 3,
-			'offset'                          => 0,
-		];
-
-		$settings = wp_parse_args( $settings, $defaults );
-
-		$post_type = $settings[ $control_id_prefix . '_post_type' ];
-
-		if ( 'current_query' === $post_type ) {
-			$current_query_vars = $GLOBALS[ 'wp_query' ]->query_vars;
-
-			/**
-			 * Current query variables.
-			 *
-			 * Filters the query variables for the current query.
-			 *
-			 * @param array $current_query_vars Current query variables.
-			 * @since 1.0.0
-			 *
-			 */
-			$current_query_vars = apply_filters( 'wpessential/query_control/get_query_args/current_query', $current_query_vars );
-
-			return $current_query_vars;
-		}
-
-		return $this->build_query_args( $settings, $control_id_prefix );
 	}
 }

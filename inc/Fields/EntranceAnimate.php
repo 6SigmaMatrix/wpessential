@@ -11,7 +11,7 @@ class EntranceAnimate extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'animation';
+	public $type = 'animation';
 
 	/**
 	 * Prepare the field's.

@@ -9,5 +9,5 @@ class Deprecated extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'deprecated_notice';
+	public $type = 'deprecated_notice';
 }

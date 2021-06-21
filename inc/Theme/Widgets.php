@@ -18,6 +18,17 @@ final class Widgets
 		self::register();
 	}
 
+	public static function remove ()
+	{
+		$widgets = apply_filters( 'wpe/remove/widgets', [] );
+		$widgets = array_filter( $widgets );
+		if ( $widgets ) {
+			foreach ( $widgets as $widet ) {
+				unregister_widget( $widet );
+			}
+		}
+	}
+
 	public static function register ()
 	{
 		$widgets = apply_filters( 'wpe/register/widgets', [] );
@@ -28,17 +39,6 @@ final class Widgets
 				if ( class_exists( $widet ) ) {
 					register_widget( $widet );
 				}
-			}
-		}
-	}
-
-	public static function remove ()
-	{
-		$widgets = apply_filters( 'wpe/remove/widgets', [] );
-		$widgets = array_filter( $widgets );
-		if ( $widgets ) {
-			foreach ( $widgets as $widet ) {
-				unregister_widget( $widet );
 			}
 		}
 	}

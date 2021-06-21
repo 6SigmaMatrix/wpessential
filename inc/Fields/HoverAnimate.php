@@ -11,7 +11,7 @@ class HoverAnimate extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'hover_animation';
+	public $type = 'hover_animation';
 
 	/**
 	 * Prepare the field's.

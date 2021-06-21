@@ -11,14 +11,14 @@ class Text extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'text';
+	public $type = 'text';
 
 	/**
 	 * The field's input type. The input field type. Available values are all HTML5 supported types.
 	 *
 	 * @var string
 	 */
-	public string $inputType = 'text';
+	public $inputType = 'text';
 
 	/**
 	 * Set the callback to be used for determining the field's input type value.

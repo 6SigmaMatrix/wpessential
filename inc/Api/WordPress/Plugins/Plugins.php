@@ -6,7 +6,7 @@ use WPEssential\Plugins\Api\WordPress\Base;
 
 abstract class Plugins extends Base
 {
-	static string $report;
+	static $report;
 
 	public static function constructor ()
 	{

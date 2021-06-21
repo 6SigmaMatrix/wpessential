@@ -11,7 +11,7 @@ class ExitAnimate extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'exit_animation';
+	public $type = 'exit_animation';
 
 	/**
 	 * Prepare the field's.

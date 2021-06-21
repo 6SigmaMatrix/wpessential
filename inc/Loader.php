@@ -6,13 +6,13 @@ use WPEssential\Plugins\Admin\Admin;
 
 final class Loader
 {
-	private static object $theme_info;
+	private static $theme_info;
 	/**
 	 * The set the editor for shortcodes page builders.
 	 *
 	 * @var string
 	 */
-	public static string $editor;
+	public static $editor;
 
 	/**
 	 * Set the callback to be used for determining the editor type for shortcodes page builders.

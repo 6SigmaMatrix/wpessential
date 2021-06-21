@@ -7,7 +7,7 @@ namespace WPEssential\Plugins\Api\WordPress\Plugins;
 
 final class PluginInfo extends Plugins
 {
-	protected static string $sub_branch = '1.0/';
+	protected static $sub_branch = '1.0/';
 
 	public static function constructor ( string $slug = 'wpessential', string $type = 'in_array' )
 	{

@@ -11,14 +11,14 @@ class Textarea extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'textarea';
+	public $type = 'textarea';
 
 	/**
 	 * The field's input rows.
 	 *
 	 * @var float
 	 */
-	public float $rows = 5;
+	public $rows = 5;
 
 	/**
 	 * Set the callback to be used for determining the field's input type value.

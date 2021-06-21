@@ -11,28 +11,28 @@ class Number extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'number';
+	public $type = 'number';
 
 	/**
 	 * The minimum number (only affects the spinners, the user can still type a lower value).
 	 *
 	 * @var string
 	 */
-	public string $min = '';
+	public $min = '';
 
 	/**
 	 * The maximum number (only affects the spinners, the user can still type a higher value).
 	 *
 	 * @var string
 	 */
-	public string $max = '';
+	public $max = '';
 
 	/**
 	 * The intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
 	 *
 	 * @var string
 	 */
-	public string $step = '';
+	public $step = '';
 
 	/**
 	 * Set the minimum number (only affects the spinners, the user can still type a lower value).

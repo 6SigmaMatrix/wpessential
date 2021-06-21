@@ -27,13 +27,6 @@ class Query extends Group_Control_Base
 		static::$fields = $this->init_fields_by_name( $args[ 'name' ] );
 	}
 
-	protected function init_fields ()
-	{
-		$args = $this->get_args();
-
-		return $this->init_fields_by_name( $args[ 'name' ] );
-	}
-
 	/**
 	 * Build the group-controls array
 	 * Note: this method completely overrides any settings done in Group_Control_Posts
@@ -479,30 +472,11 @@ class Query extends Group_Control_Base
 		];
 	}
 
-	private function filter_by_presets ( $presets, $fields )
+	protected function init_fields ()
 	{
+		$args = $this->get_args();
 
-		if ( in_array( 'full', $presets, true ) ) {
-			return $fields;
-		}
-
-		$control_ids = [];
-		foreach ( static::$presets as $key => $preset ) {
-			$control_ids = array_merge( $control_ids, $preset );
-		}
-
-		foreach ( $presets as $preset ) {
-			if ( array_key_exists( $preset, static::$presets ) ) {
-				$control_ids = array_diff( $control_ids, static::$presets[ $preset ] );
-			}
-		}
-
-		foreach ( $control_ids as $remove ) {
-			unset( $fields[ $remove ] );
-		}
-
-		return $fields;
-
+		return $this->init_fields_by_name( $args[ 'name' ] );
 	}
 
 	protected function prepare_fields ( $fields )
@@ -527,6 +501,32 @@ class Query extends Group_Control_Base
 
 		//skip parent, go directly to grandparent
 		return Group_Control_Base::prepare_fields( $fields );
+	}
+
+	private function filter_by_presets ( $presets, $fields )
+	{
+
+		if ( in_array( 'full', $presets, true ) ) {
+			return $fields;
+		}
+
+		$control_ids = [];
+		foreach ( static::$presets as $key => $preset ) {
+			$control_ids = array_merge( $control_ids, $preset );
+		}
+
+		foreach ( $presets as $preset ) {
+			if ( array_key_exists( $preset, static::$presets ) ) {
+				$control_ids = array_diff( $control_ids, static::$presets[ $preset ] );
+			}
+		}
+
+		foreach ( $control_ids as $remove ) {
+			unset( $fields[ $remove ] );
+		}
+
+		return $fields;
+
 	}
 
 	protected function get_child_default_args ()

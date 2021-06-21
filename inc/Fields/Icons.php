@@ -11,7 +11,7 @@ class Icons extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'icons';
+	public $type = 'icons';
 
 	/**
 	 * Prepare the field's.

@@ -9,6 +9,6 @@ class Wysiwyg extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'wysiwyg';
+	public $type = 'wysiwyg';
 
 }

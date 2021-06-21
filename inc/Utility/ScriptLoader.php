@@ -13,11 +13,6 @@ class ScriptLoader
 		add_filter( 'script_loader_tag', [ __CLASS__, 'register' ], 10, 2 );
 	}
 
-	public static function extra_tags ()
-	{
-		return apply_filters( 'wpe/register/script/extra/tags', [ 'async', 'defer' ] );
-	}
-
 	/**
 	 * Adds async/defer attributes to enqueued / registered scripts.
 	 *
@@ -43,5 +38,10 @@ class ScriptLoader
 			break;
 		}
 		return $tag;
+	}
+
+	public static function extra_tags ()
+	{
+		return apply_filters( 'wpe/register/script/extra/tags', [ 'async', 'defer' ] );
 	}
 }

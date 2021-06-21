@@ -9,6 +9,6 @@ class Divider extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'divider';
+	public $type = 'divider';
 
 }

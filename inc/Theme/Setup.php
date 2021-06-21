@@ -54,6 +54,15 @@ final class Setup
 		}
 	}
 
+	public static function theme_clases ()
+	{
+		$theme_space  = self::$theme_space;
+		$theme_loader = "\\WPEssential\\Theme\\$theme_space\\Loader";
+		if ( class_exists( $theme_loader ) ) {
+			$theme_loader::constructor();
+		}
+	}
+
 	public static function register ()
 	{
 		do_action( 'wpe_before_theme_setup' );
@@ -67,14 +76,5 @@ final class Setup
 		}
 		OptionsPannel::constructor();
 		Widgets::constructor();
-	}
-
-	public static function theme_clases ()
-	{
-		$theme_space  = self::$theme_space;
-		$theme_loader = "\\WPEssential\\Theme\\$theme_space\\Loader";
-		if ( class_exists( $theme_loader ) ) {
-			$theme_loader::constructor();
-		}
 	}
 }

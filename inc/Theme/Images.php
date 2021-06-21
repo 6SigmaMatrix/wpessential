@@ -10,6 +10,16 @@ final class Images
 		self::register();
 	}
 
+	public static function remove ()
+	{
+		$images = apply_filters( 'wpe/remove/images/size', [] );
+		if ( $images ) {
+			foreach ( $images as $image ) {
+				remove_image_size( $image );
+			}
+		}
+	}
+
 	public static function register ()
 	{
 		$images = apply_filters(
@@ -26,16 +36,6 @@ final class Images
 		if ( $images && is_array( $images ) ) {
 			foreach ( $images as $image ) {
 				add_image_size( $image[ 'name' ], $image[ 'size' ][ 'w' ], $image[ 'size' ][ 'h' ], $image[ 'croup' ] );
-			}
-		}
-	}
-
-	public static function remove ()
-	{
-		$images = apply_filters( 'wpe/remove/images/size', [] );
-		if ( $images ) {
-			foreach ( $images as $image ) {
-				remove_image_size( $image );
 			}
 		}
 	}

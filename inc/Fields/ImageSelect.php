@@ -11,14 +11,14 @@ class ImageSelect extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'image_select';
+	public $type = 'image_select';
 
 	/**
 	 * An array of key => value pairs: [ 'key' => 'value', ... ]
 	 *
 	 * @var array
 	 */
-	public array $options;
+	public $options;
 
 	/**
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
@@ -41,7 +41,7 @@ class ImageSelect extends Field implements Fields
 	public function prepear ()
 	{
 		return [
-			'options'  => $this->options,
+			'options' => $this->options,
 		];
 	}
 

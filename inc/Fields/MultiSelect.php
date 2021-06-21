@@ -11,21 +11,21 @@ class MultiSelect extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'select2';
+	public $type = 'select2';
 
 	/**
 	 * An array of key => value pairs: [ 'key' => 'value', ... ]
 	 *
 	 * @var array
 	 */
-	public array $options;
+	public $options;
 
 	/**
 	 * Whether to allow multiple value selection.
 	 *
 	 * @var bool
 	 */
-	public bool $multiple = true;
+	public $multiple = true;
 
 	/**
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].

@@ -25,7 +25,7 @@ class Heading extends Base implements Shortcodes
 	 * @access public
 	 * @public
 	 */
-	public array $skins_list = [];
+	public $skins_list = [];
 
 	/**
 	 * Set widget keywords.

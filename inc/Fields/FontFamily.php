@@ -9,6 +9,6 @@ class FontFamily extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'font';
+	public $type = 'font';
 
 }

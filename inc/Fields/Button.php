@@ -11,28 +11,28 @@ class Button extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'button';
+	public $type = 'button';
 
 	/**
 	 * The button type. Available values are default and success.
 	 *
 	 * @var string
 	 */
-	public string $buttonType = 'success';
+	public $buttonType = 'success';
 
 	/**
 	 * The button text.
 	 *
 	 * @var string
 	 */
-	public string $buttonText = '';
+	public $buttonText = '';
 
 	/**
 	 * The event the button will trigger. The event will be triggered via elementor.channels.editor.on( event ).
 	 *
 	 * @var string
 	 */
-	public string $buttonEvent = '';
+	public $buttonEvent = '';
 
 	/**
 	 * Set the button type. Available values are default and success.

@@ -4,7 +4,7 @@ namespace WPEssential\Plugins\Utility;
 
 final class RegisterAssets
 {
-	public static string $minify;
+	public static $minify;
 
 	public static function constructor ()
 	{
@@ -12,6 +12,15 @@ final class RegisterAssets
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'init' ], 0 );
 		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'init' ], 0 );
 		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'init' ], 0 );
+	}
+
+	public static function minify_check ()
+	{
+		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG || defined( 'WPE_DEBUG' ) && true === WPE_DEBUG ) {
+			return '.';
+		} else {
+			return '.min.';
+		}
 	}
 
 	public static function init ()
@@ -59,7 +68,7 @@ final class RegisterAssets
 				'dep'  => [ 'jquery', 'vue' ],
 				'ver'  => self::ver_check( '0.2.0' ),
 			],
-			'owl-carousel'                  => [
+			'owl-carousel'                 => [
 				'link' => WPE_URL . "assets/js/owl.carousel{$minify}js",
 				'dep'  => [ 'jquery' ],
 				'ver'  => self::ver_check( '2.3.4' ),
@@ -114,6 +123,15 @@ final class RegisterAssets
 		}
 	}
 
+	public static function ver_check ( $ver = WPE_VERSION )
+	{
+		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG || defined( 'WPE_DEBUG' ) && true === WPE_DEBUG ) {
+			return time();
+		} else {
+			return $ver;
+		}
+	}
+
 	public static function register_style ()
 	{
 		$minify = self::$minify;
@@ -148,7 +166,7 @@ final class RegisterAssets
 				'dep'  => false,
 				'ver'  => self::ver_check( '0.2.0' ),
 			],
-			'owl-carousel'                  => [
+			'owl-carousel'                 => [
 				'link' => WPE_URL . "assets/css/owl.carousel{$minify}css",
 				'dep'  => false,
 				'ver'  => self::ver_check( '2.3.4' ),
@@ -206,24 +224,6 @@ final class RegisterAssets
 			foreach ( $list as $k => $v ) {
 				wp_register_style( $k, wpe_array_get( $v, 'link' ), wpe_array_get( $v, 'dep' ), wpe_array_get( $v, 'ver' ), 'all' );
 			}
-		}
-	}
-
-	public static function minify_check ()
-	{
-		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG || defined( 'WPE_DEBUG' ) && true === WPE_DEBUG ) {
-			return '.';
-		} else {
-			return '.min.';
-		}
-	}
-
-	public static function ver_check ( $ver = WPE_VERSION )
-	{
-		if ( defined( 'WP_DEBUG' ) && true === WP_DEBUG || defined( 'WPE_DEBUG' ) && true === WPE_DEBUG ) {
-			return time();
-		} else {
-			return $ver;
 		}
 	}
 }

@@ -9,5 +9,5 @@ class WpWidget extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'wp_widget';
+	public $type = 'wp_widget';
 }

@@ -12,7 +12,7 @@ abstract class Common
 {
 	//use CButton, CTypography;
 
-	public string $common_key = '';
+	public $common_key = '';
 	//public array  $selector   = [];
 
 }

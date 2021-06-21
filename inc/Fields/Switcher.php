@@ -11,28 +11,28 @@ class Switcher extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'switcher';
+	public $type = 'switcher';
 
 	/**
 	 * The label for the “unchecked” state.
 	 *
 	 * @var string
 	 */
-	public string $labelOn = 'on';
+	public $labelOn = 'on';
 
 	/**
 	 * The label for the “checked” state.
 	 *
 	 * @var string
 	 */
-	public string $labelOff = 'off';
+	public $labelOff = 'off';
 
 	/**
 	 * The value returned when checked.
 	 *
 	 * @var string
 	 */
-	public string $returnValue = 'yes';
+	public $returnValue = 'yes';
 
 	/**
 	 * Set the callback to be used for determining the field's “unchecked” state.

@@ -9,5 +9,5 @@ class Section extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'section';
+	public $type = 'section';
 }

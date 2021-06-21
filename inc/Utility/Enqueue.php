@@ -69,19 +69,6 @@ final class Enqueue
 
 	}
 
-	public static function localization ()
-	{
-		$localization = [
-			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
-			'web_plug'  => WPE_URL,
-			'nonce'     => wp_create_nonce( WPE_NONCE ),
-			'ajaxshort' => '/wp-admin/admin-ajax.php',
-			'root'      => home_url( '/' ),
-		];
-		$localization = apply_filters( 'wpe/localization', $localization );
-		wp_localize_script( 'jquery', 'WPEssential', $localization );
-	}
-
 	public static function admin_page_enqueue ()
 	{
 		$list = apply_filters( 'wpe/admin_page/css', [] );
@@ -97,6 +84,19 @@ final class Enqueue
 		}
 
 		self::localization();
+	}
+
+	public static function localization ()
+	{
+		$localization = [
+			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
+			'web_plug'  => WPE_URL,
+			'nonce'     => wp_create_nonce( WPE_NONCE ),
+			'ajaxshort' => '/wp-admin/admin-ajax.php',
+			'root'      => home_url( '/' ),
+		];
+		$localization = apply_filters( 'wpe/localization', $localization );
+		wp_localize_script( 'jquery', 'WPEssential', $localization );
 	}
 
 	public static function elementor_editor_after_enqueue ()

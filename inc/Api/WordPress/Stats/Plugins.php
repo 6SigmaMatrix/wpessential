@@ -4,7 +4,7 @@ namespace WPEssential\Plugins\Api\WordPress\Stats;
 
 final class Plugins extends StatsReport
 {
-	protected static string $sub_branch = 'plugin/1.0/';
+	protected static $sub_branch = 'plugin/1.0/';
 
 	public static function constructor ( string $slug = 'wpessential', string $type = 'plugin', string $days = '', $callback = '' )
 	{

@@ -10,6 +10,27 @@ final class Tgm
 		add_action( 'tgmpa_register', [ __CLASS__, 'plugin_list' ] );
 	}
 
+	public static function plugin_list ()
+	{
+		$plugin_list = [
+			'exmaple' => [
+				'name'               => 'TGM Example Plugin', // The plugin name.
+				'slug'               => 'tgm-example-plugin', // The plugin slug (typically the folder name).
+				'source'             => dirname( __FILE__ ) . '/lib/plugins/tgm-example-plugin.zip', // The plugin source.
+				'required'           => true,
+				'version'            => '1.0.0',
+				'force_activation'   => false,
+				'force_deactivation' => false,
+				'external_url'       => '',
+				'is_callable'        => '',
+			],
+		];
+
+		$plugin_list = apply_filters( 'wpe/register/plugins', $plugin_list );
+
+		tgmpa( $plugin_list, self::config() );
+	}
+
 	private static function config ()
 	{
 		$config = [
@@ -102,26 +123,5 @@ final class Tgm
 			*/
 		];
 		return apply_filters( 'wpe/tgm/config', $config );
-	}
-
-	public static function plugin_list ()
-	{
-		$plugin_list = [
-			'exmaple' => [
-				'name'               => 'TGM Example Plugin', // The plugin name.
-				'slug'               => 'tgm-example-plugin', // The plugin slug (typically the folder name).
-				'source'             => dirname( __FILE__ ) . '/lib/plugins/tgm-example-plugin.zip', // The plugin source.
-				'required'           => true,
-				'version'            => '1.0.0',
-				'force_activation'   => false,
-				'force_deactivation' => false,
-				'external_url'       => '',
-				'is_callable'        => '',
-			],
-		];
-
-		$plugin_list = apply_filters( 'wpe/register/plugins', $plugin_list );
-
-		tgmpa( $plugin_list, self::config() );
 	}
 }

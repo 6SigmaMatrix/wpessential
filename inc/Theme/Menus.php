@@ -10,6 +10,17 @@ final class Menus
 		self::register();
 	}
 
+	public static function remove ()
+	{
+		$menus = apply_filters( 'wpe/remove/menu', [] );
+		$menus = array_filter( $menus );
+		if ( $menus && is_array( $menus ) ) {
+			foreach ( $menus as $menu ) {
+				unregister_nav_menu( $menu );
+			}
+		}
+	}
+
 	public static function register ()
 	{
 		$menus = apply_filters(
@@ -23,17 +34,6 @@ final class Menus
 		$menus = array_filter( $menus );
 		if ( $menus && is_array( $menus ) ) {
 			register_nav_menus( $menus );
-		}
-	}
-
-	public static function remove ()
-	{
-		$menus = apply_filters( 'wpe/remove/menu', [] );
-		$menus = array_filter( $menus );
-		if ( $menus && is_array( $menus ) ) {
-			foreach ( $menus as $menu ) {
-				unregister_nav_menu( $menu );
-			}
 		}
 	}
 }

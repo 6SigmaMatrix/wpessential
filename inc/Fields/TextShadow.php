@@ -2,8 +2,6 @@
 
 namespace WPEssential\Plugins\Fields;
 
-use WPEssential\Plugins\Implement\Fields;
-
 class TextShadow extends Field
 {
 	/**
@@ -11,5 +9,5 @@ class TextShadow extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'text_shadow';
+	public $type = 'text_shadow';
 }

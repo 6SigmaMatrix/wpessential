@@ -5,8 +5,6 @@
 
 namespace WPEssential\Plugins\Helper;
 
-use WPEssential\Plugins\Helper\SetShortcodeBase;
-
 trait GetShortcodeBase
 {
 	use SetShortcodeBase;

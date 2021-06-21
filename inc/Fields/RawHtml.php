@@ -11,21 +11,21 @@ class RawHtml extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'raw_html';
+	public $type = 'raw_html';
 
 	/**
 	 * The field's input data.
 	 *
 	 * @var string
 	 */
-	public string $data = '';
+	public $data = '';
 
 	/**
 	 * The field's content classes.
 	 *
 	 * @var string
 	 */
-	public string $contentClasses = 'wpe-panel-notes';
+	public $contentClasses = 'wpe-panel-notes';
 
 	/**
 	 * Set the callback to be used for determining the field's input data.

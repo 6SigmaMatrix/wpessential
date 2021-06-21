@@ -4,9 +4,9 @@ namespace WPEssential\Plugins\Utility;
 
 final class PageTemplates
 {
-	protected static string $plugin_slug;
+	protected static $plugin_slug;
 
-	protected static array $templates = [];
+	protected static $templates = [];
 
 	public static function constructor ()
 	{

@@ -15,20 +15,7 @@ trait SetShortcodeBase
 	 * @access public
 	 * @public
 	 */
-	public array $skins_list = [];
-
-	/**
-	 * Set widget name.
-	 * Retrieve widget name.
-	 *
-	 * @return string Widget name.
-	 * @access public
-	 * @public
-	 */
-	public function set_name ()
-	{
-		return substr( strrchr( get_class( $this ), "\\" ), 1 );
-	}
+	public $skins_list = [];
 
 	/**
 	 * Set widget title.
@@ -41,6 +28,19 @@ trait SetShortcodeBase
 	public function set_title ()
 	{
 		return sprintf( __( '%s', 'wpessential' ), preg_replace( '/(?<!\ )[A-Z]/', ' $0', $this->set_name() ) );
+	}
+
+	/**
+	 * Set widget name.
+	 * Retrieve widget name.
+	 *
+	 * @return string Widget name.
+	 * @access public
+	 * @public
+	 */
+	public function set_name ()
+	{
+		return substr( strrchr( get_class( $this ), "\\" ), 1 );
 	}
 
 	/**

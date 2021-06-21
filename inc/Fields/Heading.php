@@ -9,6 +9,6 @@ class Heading extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'heading';
+	public $type = 'heading';
 
 }

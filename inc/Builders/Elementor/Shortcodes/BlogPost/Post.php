@@ -3,8 +3,8 @@
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost;
 
 use WPEssential\Plugins\Builders\Elementor\Utility\Base;
-use WPEssential\Plugins\Implement\Shortcodes;
 use WPEssential\Plugins\Fields\Number;
+use WPEssential\Plugins\Implement\Shortcodes;
 
 class Post extends Base implements Shortcodes
 {
@@ -15,7 +15,7 @@ class Post extends Base implements Shortcodes
 	 * @access public
 	 * @public
 	 */
-	public array $skins_list = [
+	public $skins_list = [
 		'WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost\PostSyle1',
 		'WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost\PostSyle2',
 	];
@@ -52,11 +52,11 @@ class Post extends Base implements Shortcodes
 		);
 
 		$opt = Number::make( __( 'Posts Per Page', 'wpessential-blog-post' ) )
-						  ->min( 1 )
-						  ->step( 1 )
-						  ->desc( __( 'Enter the number of post to display on frontend.', 'wpessential-blog-post' ) )
-						  ->default( 4 )
-						  ->toArray();
+					 ->min( 1 )
+					 ->step( 1 )
+					 ->desc( __( 'Enter the number of post to display on frontend.', 'wpessential-blog-post' ) )
+					 ->default( 4 )
+					 ->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );
 
 		$this->end_controls_section();

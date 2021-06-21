@@ -11,21 +11,21 @@ class Choose extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'choose';
+	public $type = 'choose';
 
 	/**
 	 * An array of key => value pairs: [ 'key' => 'value', ... ]
 	 *
 	 * @var array
 	 */
-	public array $options;
+	public $options;
 
 	/**
 	 * Whether to allow toggle / unset the selection.
 	 *
 	 * @var bool
 	 */
-	public bool $toggle = true;
+	public $toggle = true;
 
 	/**
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].

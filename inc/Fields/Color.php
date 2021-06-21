@@ -11,14 +11,14 @@ class Color extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'color';
+	public $type = 'color';
 
 	/**
 	 * Whether to allow alpha channel.
 	 *
 	 * @var bool
 	 */
-	public bool $alpha = false;
+	public $alpha = false;
 
 	/**
 	 * Prepare the field's.

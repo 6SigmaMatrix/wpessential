@@ -11,21 +11,21 @@ class Code extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'code';
+	public $type = 'code';
 
 	/**
 	 * The field's input rows.
 	 *
 	 * @var float
 	 */
-	public float $rows = 10;
+	public $rows = 10;
 
 	/**
 	 * The field's input language.
 	 *
 	 * @var string
 	 */
-	public string $language = 'html';
+	public $language = 'html';
 
 	/**
 	 * Set the callback to be used for determining the field's input type value.

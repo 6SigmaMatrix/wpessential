@@ -19,7 +19,7 @@ final class WPBakery implements ShortcodeInit
 		self::registry_widget();
 	}
 
-	public static function registry_widget ()
+	public static function registry_widget ( $list = '' )
 	{
 		Loader::editor( 'wpbakery' );
 		$elements = apply_filters( 'wpe/wpbakery/shortcodes', [] );

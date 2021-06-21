@@ -11,21 +11,21 @@ class Repeater extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'repeater';
+	public $type = 'repeater';
 
 	/**
 	 * Add the fields.
 	 *
 	 * @var array
 	 */
-	public array $fields;
+	public $fields;
 
 	/**
 	 * Add the field title.
 	 *
 	 * @var string
 	 */
-	public string $titleField = '';
+	public $titleField = '';
 
 	/**
 	 * Add the fields.

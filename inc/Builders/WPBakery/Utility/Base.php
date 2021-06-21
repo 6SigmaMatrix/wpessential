@@ -10,12 +10,12 @@ abstract class Base
 {
 	use GetShortcodeBase;
 
-	public array   $controls         = [];
-	public bool    $settingsOnCreate = true;
-	public         $adminEnqueueJs   = '';
-	public         $adminEnqueueCss  = '';
-	public string  $JsView           = '';
-	private array  $skin_opt         = [];
+	public  $controls         = [];
+	public  $settingsOnCreate = true;
+	public  $adminEnqueueJs   = '';
+	public  $adminEnqueueCss  = '';
+	public  $JsView           = '';
+	private $skin_opt         = [];
 
 	public function __construct ()
 	{
@@ -48,6 +48,20 @@ abstract class Base
 				'params'                  => $this->controls,
 			]
 		);
+	}
+
+	public function _register_controls ()
+	{
+	}
+
+	public function skin_controls ()
+	{
+		$opt            = Select::make( __( 'Skin', 'wpessential' ) )
+								->key( 'style' )
+								->options( $this->skin_opt )
+								->default( '0' )
+								->toArray();
+		$this->controls = wp_parse_args( $this->controls, [ $opt ] );
 	}
 
 	/**
@@ -126,22 +140,8 @@ abstract class Base
 		$this->controls[] = $args;
 	}
 
-	public function _register_controls ()
-	{
-	}
-
 	public function add_skin ( $object )
 	{
 		$this->skin_opt[ $object->get_id() ] = $object->get_title();
-	}
-
-	public function skin_controls ()
-	{
-		$opt            = Select::make( __( 'Skin', 'wpessential' ) )
-								->key( 'style' )
-								->options( $this->skin_opt )
-								->default( '0' )
-								->toArray();
-		$this->controls = wp_parse_args( $this->controls, [ $opt ] );
 	}
 }

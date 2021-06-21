@@ -9,6 +9,6 @@ class Hidden extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'hidden';
+	public $type = 'hidden';
 
 }

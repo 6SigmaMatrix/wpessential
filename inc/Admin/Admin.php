@@ -13,6 +13,12 @@ final class Admin
 		add_filter( 'wpe/admin_page/js', [ __CLASS__, 'js' ], 10 );
 	}
 
+	public static function pages ()
+	{
+		Index::constructor();
+		Options::constructor();
+	}
+
 	public static function register_menu ()
 	{
 		$menu_args = apply_filters( 'wpe/register/admin_pages/main_nav', [] );
@@ -32,12 +38,6 @@ final class Admin
 		}
 
 		add_filter( 'wpe/localization', [ __CLASS__, 'localization' ], 10 );
-	}
-
-	public static function pages ()
-	{
-		Index::constructor();
-		Options::constructor();
 	}
 
 	public static function add_menu_pages ( $page_title, $menu_title, $manage_options, $menu_slug = 'wpessential', $callback = '', $icon = '', $position = null )

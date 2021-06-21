@@ -3,17 +3,13 @@
 namespace WPEssential\Plugins\Builders\Elementor\Utility;
 
 use Elementor\Plugin;
-use WPEssential\Plugins\Builders\Elementor\Controls\Group\Posts;
-use WPEssential\Plugins\Builders\Elementor\Controls\Group\Query as GroupQuery;
-use WPEssential\Plugins\Builders\Elementor\Controls\Group\Related;
 use WPEssential\Plugins\Builders\Elementor\Controls\ImageSelect;
-use WPEssential\Plugins\Builders\Elementor\Controls\Query;
 use WPEssential\Plugins\Implement\ShortcodeInit;
 use WPEssential\Plugins\Loader;
 
 final class Elementor implements ShortcodeInit
 {
-	protected static array $list;
+	protected static $list;
 
 	public static function constructor ()
 	{
@@ -24,6 +20,11 @@ final class Elementor implements ShortcodeInit
 		add_action( 'elementor/controls/controls_registered', [ __CLASS__, 'register_controls' ] );
 		self::register_tabs();
 		self::registry_widget();
+	}
+
+	public static function register_tabs ()
+	{
+		Tabs::constructor();
 	}
 
 	public static function registry_widget ( $list = '' )
@@ -104,11 +105,6 @@ final class Elementor implements ShortcodeInit
 	public static function register_category ( $elements_manager )
 	{
 		Categories::constructor( $elements_manager );
-	}
-
-	public static function register_tabs ()
-	{
-		Tabs::constructor();
 	}
 
 	public static function register_controls ()

@@ -11,14 +11,14 @@ class Select extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'select';
+	public $type = 'select';
 
 	/**
 	 * An array of key => value pairs: [ 'key' => 'value', ... ]
 	 *
 	 * @var array
 	 */
-	public array $options;
+	public $options;
 
 	/**
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].

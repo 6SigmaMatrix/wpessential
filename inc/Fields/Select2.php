@@ -11,14 +11,14 @@ class Select2 extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'select2';
+	public $type = 'select2';
 
 	/**
 	 * An array of key => value pairs: [ 'key' => 'value', ... ]
 	 *
 	 * @var array
 	 */
-	public array $options;
+	public $options;
 
 	/**
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].

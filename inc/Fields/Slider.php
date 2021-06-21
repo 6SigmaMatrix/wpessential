@@ -11,7 +11,7 @@ class Slider extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'slider';
+	public $type = 'slider';
 
 	/**
 	 * Prepare the field's.

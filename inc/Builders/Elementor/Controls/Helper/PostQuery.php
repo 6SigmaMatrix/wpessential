@@ -34,6 +34,20 @@ class PostQuery
 		$this->widget_settings = wp_parse_args( $settings, $defaults );
 	}
 
+	protected function get_query_defaults ()
+	{
+		$defaults = [
+			$this->prefix . 'post_type'      => 'post',
+			$this->prefix . 'posts_ids'      => [],
+			$this->prefix . 'orderby'        => 'date',
+			$this->prefix . 'order'          => 'desc',
+			$this->prefix . 'offset'         => 0,
+			$this->prefix . 'posts_per_page' => 3,
+		];
+
+		return $defaults;
+	}
+
 	/**
 	 * 1) build query args
 	 * 2) invoke callback to fine-tune query-args
@@ -68,20 +82,6 @@ class PostQuery
 		Query::add_to_avoid_list( wp_list_pluck( $query->posts, 'ID' ) );
 
 		return $query;
-	}
-
-	protected function get_query_defaults ()
-	{
-		$defaults = [
-			$this->prefix . 'post_type'      => 'post',
-			$this->prefix . 'posts_ids'      => [],
-			$this->prefix . 'orderby'        => 'date',
-			$this->prefix . 'order'          => 'desc',
-			$this->prefix . 'offset'         => 0,
-			$this->prefix . 'posts_per_page' => 3,
-		];
-
-		return $defaults;
 	}
 
 	public function get_query_args ()
@@ -124,11 +124,15 @@ class PostQuery
 		return $this->query_args;
 	}
 
-	protected function set_pagination_args ()
+	/**\
+	 * @param string $control_name
+	 *
+	 * @return mixed|null
+	 */
+	protected function get_widget_settings ( $control_name )
 	{
-		$this->set_query_arg( 'posts_per_page', $this->get_widget_settings( 'posts_per_page' ) );
-		$sticky_post = $this->get_widget_settings( 'ignore_sticky_posts' ) ? true : false;
-		$this->set_query_arg( 'ignore_sticky_posts', $sticky_post );
+		$control_name = $this->prefix . $control_name;
+		return isset( $this->widget_settings[ $control_name ] ) ? $this->widget_settings[ $control_name ] : null;
 	}
 
 	protected function set_common_args ()
@@ -142,6 +146,33 @@ class PostQuery
 		} else {
 			$this->query_args[ 'post_type' ] = $post_type;
 		}
+	}
+
+	protected function set_order_args ()
+	{
+		$order = $this->get_widget_settings( 'order' );
+		if ( ! empty( $order ) ) {
+			$this->set_query_arg( 'orderby', $this->get_widget_settings( 'orderby' ) );
+			$this->set_query_arg( 'order', $this->get_widget_settings( 'order' ) );
+		}
+	}
+
+	/**
+	 * @param string $key
+	 * @param mixed $value
+	 */
+	protected function set_query_arg ( $key, $value )
+	{
+		if ( ! isset( $this->query_args[ $key ] ) ) {
+			$this->query_args[ $key ] = $value;
+		}
+	}
+
+	protected function set_pagination_args ()
+	{
+		$this->set_query_arg( 'posts_per_page', $this->get_widget_settings( 'posts_per_page' ) );
+		$sticky_post = $this->get_widget_settings( 'ignore_sticky_posts' ) ? true : false;
+		$this->set_query_arg( 'ignore_sticky_posts', $sticky_post );
 	}
 
 	protected function set_post_include_args ()
@@ -183,6 +214,17 @@ class PostQuery
 		$this->set_query_arg( 'post__not_in', $post__not_in );
 	}
 
+	/**
+	 * @param string $value
+	 * @param string|array $maybe_array
+	 *
+	 * @return bool
+	 */
+	protected function maybe_in_array ( $value, $maybe_array )
+	{
+		return is_string( $maybe_array ) ? $value === $maybe_array : in_array( $value, $maybe_array, true );
+	}
+
 	protected function set_avoid_duplicates ()
 	{
 		if ( 'yes' === $this->get_widget_settings( 'avoid_duplicates' ) ) {
@@ -207,11 +249,6 @@ class PostQuery
 	protected function build_terms_query_include ( $control_id )
 	{
 		$this->build_terms_query( 'include', $control_id );
-	}
-
-	protected function build_terms_query_exclude ( $control_id )
-	{
-		$this->build_terms_query( 'exclude', $control_id, true );
 	}
 
 	protected function build_terms_query ( $tab_id, $control_id, $exclude = false )
@@ -245,6 +282,11 @@ class PostQuery
 		}
 	}
 
+	protected function build_terms_query_exclude ( $control_id )
+	{
+		$this->build_terms_query( 'exclude', $control_id, true );
+	}
+
 	protected function set_author_args ()
 	{
 
@@ -259,15 +301,6 @@ class PostQuery
 			if ( empty( $this->query_args[ 'author__in' ] ) ) {
 				$this->set_query_arg( 'author__not_in', $exclude_authors );
 			}
-		}
-	}
-
-	protected function set_order_args ()
-	{
-		$order = $this->get_widget_settings( 'order' );
-		if ( ! empty( $order ) ) {
-			$this->set_query_arg( 'orderby', $this->get_widget_settings( 'orderby' ) );
-			$this->set_query_arg( 'order', $this->get_widget_settings( 'order' ) );
 		}
 	}
 
@@ -308,39 +341,6 @@ class PostQuery
 
 			$this->set_query_arg( 'date_query', $date_query );
 		}
-	}
-
-	/**\
-	 * @param string $control_name
-	 *
-	 * @return mixed|null
-	 */
-	protected function get_widget_settings ( $control_name )
-	{
-		$control_name = $this->prefix . $control_name;
-		return isset( $this->widget_settings[ $control_name ] ) ? $this->widget_settings[ $control_name ] : null;
-	}
-
-	/**
-	 * @param string $key
-	 * @param mixed $value
-	 */
-	protected function set_query_arg ( $key, $value )
-	{
-		if ( ! isset( $this->query_args[ $key ] ) ) {
-			$this->query_args[ $key ] = $value;
-		}
-	}
-
-	/**
-	 * @param string $value
-	 * @param string|array $maybe_array
-	 *
-	 * @return bool
-	 */
-	protected function maybe_in_array ( $value, $maybe_array )
-	{
-		return is_string( $maybe_array ) ? $value === $maybe_array : in_array( $value, $maybe_array, true );
 	}
 
 	/**

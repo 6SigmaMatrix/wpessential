@@ -11,7 +11,7 @@ class Date extends Field implements Fields
 	 *
 	 * @var string
 	 */
-	public string $type = 'date_time';
+	public $type = 'date_time';
 
 	/**
 	 * Prepare the field's.

@@ -16,35 +16,35 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 *
 	 * @var string
 	 */
-	public string $editor = '';
+	public $editor = '';
 
 	/**
 	 * The add the filed id to database for save the data.
 	 *
 	 * @var string
 	 */
-	public string $key = '';
+	public $key = '';
 
 	/**
 	 * The displayable name of the field.
 	 *
 	 * @var string
 	 */
-	public string $name = '';
+	public $name = '';
 
 	/**
 	 * The description of the field.
 	 *
 	 * @var string
 	 */
-	public string $description = '';
+	public $description = '';
 
 	/**
 	 * The placeholder of the field.
 	 *
 	 * @var string
 	 */
-	public string $placeholder = '';
+	public $placeholder = '';
 
 	/**
 	 * The default field's value.
@@ -65,70 +65,70 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 *
 	 * @var bool
 	 */
-	public bool $adminLabel = false;
+	public $adminLabel = false;
 
 	/**
 	 * Use it to divide your params within groups (tabs) in WPBakery
 	 *
 	 * @var string
 	 */
-	public string $group = '';
+	public $group = '';
 
 	/**
 	 * Indicates if the field should be showing the labels
 	 *
 	 * @var bool
 	 */
-	public bool $showLabel = true;
+	public $showLabel = true;
 
 	/**
 	 * Indicates if the field should be showing the mouse hover title
 	 *
 	 * @var string
 	 */
-	public string $mouseHoverTitle = '';
+	public $mouseHoverTitle = '';
 
 	/**
 	 * Indicates if the field should be showing the label like block display.
 	 *
 	 * @var bool
 	 */
-	public bool $labelBlock = false;
+	public $labelBlock = false;
 
 	/**
 	 * The add the filed dependency to editor.
 	 *
 	 * @var array
 	 */
-	public array $dependent = [];
+	public $dependent = [];
 
 	/**
 	 * The add the filed dependency to editor.
 	 *
 	 * @var array
 	 */
-	public array $dependency = [];
+	public $dependency = [];
 
 	/**
 	 * Indicates if the field should be add the classes in editor.
 	 *
 	 * @var array
 	 */
-	public array $addClasses = [ 'wpe-editor-panel-options' ];
+	public $addClasses = [ 'wpe-editor-panel-options' ];
 
 	/**
 	 * Indicates if the field should be add the separator default/before/ofter/none the field type.
 	 *
 	 * @var string
 	 */
-	public string $separator = 'none';
+	public $separator = 'none';
 
 	/**
 	 * An array of available CSS units like px, em, rem, %, deg and vh.
 	 *
 	 * @var array
 	 */
-	public array $sizeUnit = [ 'px' ];
+	public $sizeUnit = [ 'px' ];
 
 	/**
 	 * An array of ranges for each register size.
@@ -138,14 +138,14 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 *
 	 * @var array
 	 */
-	public array $range = [];
+	public $range = [];
 
 	/**
 	 * Indicates if the field should be allow to add the dynamic tag options list.
 	 *
 	 * @var array
 	 */
-	public array $dynamic = [
+	public $dynamic = [
 		'active' => false
 	];
 
@@ -154,44 +154,67 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 *
 	 * @var array
 	 */
-	public array $selectors = [];
+	public $selectors = [];
 
 	/**
 	 * Add an string of elementor css selectors
 	 *
 	 * @var string
 	 */
-	public string $selector = '';
+	public $selector = '';
 
 	/**
 	 * Add an array of elementor css selectors
 	 *
 	 * @var array
 	 */
-	public array $wrap_selectors = [];
+	public $wrap_selectors = [];
 
 	/**
 	 * Add an string of elementor css selectors
 	 *
 	 * @var string
 	 */
-	public string $wrap_selector = '';
+	public $wrap_selector = '';
 
 	/**
 	 * Add responsive true or false
 	 *
 	 * @var bool
 	 */
-	public bool $responsive = false;
+	public $responsive = false;
 
 	/**
 	 * Add global true or false
 	 *
 	 * @var array
 	 */
-	public array $global = [
+	public $global = [
 		'active' => false
 	];
+
+	/**
+	 * Create a new field.
+	 *
+	 * @param string $name
+	 * @param string $id
+	 */
+
+	public function __construct ( string $name = '', string $id = '' )
+	{
+		$this->name = sprintf( __( '%s', 'wpessentil' ), $name );
+		if ( ! $id ) {
+			$id = str_replace( ' ', '_', strtolower( $name ) );
+		}
+
+		if ( $id ) {
+			$this->key = WPE_SETTINGS . '_' . $id;
+		}
+
+		$this->editor( Loader::$editor );
+
+		return $this;
+	}
 
 	/**
 	 * Create a new element.
@@ -222,28 +245,5 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	public function toArray ()
 	{
 		return call_user_func( [ $this, $this->editor ] );
-	}
-
-	/**
-	 * Create a new field.
-	 *
-	 * @param string $name
-	 * @param string $id
-	 */
-
-	public function __construct ( string $name = '', string $id = '' )
-	{
-		$this->name = sprintf( __( '%s', 'wpessentil' ), $name );
-		if ( ! $id ) {
-			$id = str_replace( ' ', '_', strtolower( $name ) );
-		}
-
-		if ( $id ) {
-			$this->key = WPE_SETTINGS . '_' . $id;
-		}
-
-		$this->editor( Loader::$editor );
-
-		return $this;
 	}
 }

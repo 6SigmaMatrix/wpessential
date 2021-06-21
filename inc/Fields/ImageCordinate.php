@@ -9,5 +9,5 @@ class ImageCordinate extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'image_dimensions';
+	public $type = 'image_dimensions';
 }

@@ -4,16 +4,16 @@ namespace WPEssential\Plugins\Fields;
 
 class CTypography extends Field
 {
-	public static function make ( ...$arguments )
-	{
-		return new static( ...$arguments );
-	}
-
 	public function __construct ( string $key = '', string $selector = '' )
 	{
 		$this->common_key = $key;
 
 		return $this;
+	}
+
+	public static function make ( ...$arguments )
+	{
+		return new static( ...$arguments );
 	}
 
 	public function typography ()
@@ -52,10 +52,10 @@ class CTypography extends Field
 		//->selectors( $this->selector );
 	}
 
-	public function font_weight ()
+	public function font_kerning ()
 	{
-		return Select::make( __( 'Weight' ), "common_{$this->common_key}_font_weight" )
-					 ->options( wpe_font_weights() );
+		return Select::make( __( 'Kerning' ), "common_{$this->common_key}_font_kerning" )
+					 ->options( wpe_font_kerning() );
 		//->selectors( $this->selector );
 	}
 
@@ -66,10 +66,10 @@ class CTypography extends Field
 		//->selectors( $this->selector );
 	}
 
-	public function font_kerning ()
+	public function font_weight ()
 	{
-		return Select::make( __( 'Kerning' ), "common_{$this->common_key}_font_kerning" )
-					 ->options( wpe_font_kerning() );
+		return Select::make( __( 'Weight' ), "common_{$this->common_key}_font_weight" )
+					 ->options( wpe_font_weights() );
 		//->selectors( $this->selector );
 	}
 }

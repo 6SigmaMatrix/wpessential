@@ -3,7 +3,6 @@
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce;
 
 use WPEssential\Plugins\Builders\Elementor\Utility\Base;
-use WPEssential\Plugins\Fields\RawHtml;
 use WPEssential\Plugins\Fields\Text;
 use WPEssential\Plugins\Implement\Shortcodes;
 

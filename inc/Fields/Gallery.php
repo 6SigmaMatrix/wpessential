@@ -9,5 +9,5 @@ class Gallery extends Field
 	 *
 	 * @var string
 	 */
-	public string $type = 'gallery';
+	public $type = 'gallery';
 }
