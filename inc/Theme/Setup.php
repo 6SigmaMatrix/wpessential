@@ -2,9 +2,6 @@
 
 namespace WPEssential\Plugins\Theme;
 
-use WPEssential\Plugins\Utility\OptionsPannel;
-use WPEssential\Plugins\Utility\Tgm;
-
 final class Setup
 {
 	private static $theme_space;
@@ -22,6 +19,7 @@ final class Setup
 						self::constants();
 						add_action( 'wp_body_open', 'wpe_header_template', 10 );
 						self::theme_clases();
+						self::attach_actions();
 						self::register();
 						add_action( 'wp_footer', 'wpe_footer_template', 0 );
 					},
@@ -66,15 +64,29 @@ final class Setup
 	public static function register ()
 	{
 		do_action( 'wpe_before_theme_setup' );
-		Support::constructor();
-		Images::constructor();
-		Sidebars::constructor();
-		Editor::constructor();
-		Menus::constructor();
-		if ( defined( 'WPE_TGM' ) && true === WPE_TGM ) {
-			Tgm::constructor();
+	}
+
+	public static function attach_actions ()
+	{
+		$action_list = apply_filters( 'wpe/theme/after_setup/hooks', [
+			'Support'       => [ 'callback' => [ 'WPEssential\Plugins\Theme\Support', 'constructor' ], 'priority' => 10 ],
+			'Images'        => [ 'callback' => [ 'WPEssential\Plugins\Theme\Images', 'constructor' ], 'priority' => 20 ],
+			'Sidebars'      => [ 'callback' => [ 'WPEssential\Plugins\Theme\Sidebars', 'constructor' ], 'priority' => 30 ],
+			'Editor'        => [ 'callback' => [ 'WPEssential\Plugins\Theme\Editor', 'constructor' ], 'priority' => 40 ],
+			'Menus'         => [ 'callback' => [ 'WPEssential\Plugins\Theme\Menus', 'constructor' ], 'priority' => 50 ],
+			'Tgm'           => [ 'callback' => [ 'WPEssential\Plugins\Utility\Tgm', 'constructor' ], 'priority' => 60 ],
+			'OptionsPannel' => [ 'callback' => [ 'WPEssential\Plugins\Utility\OptionsPannel', 'constructor' ], 'priority' => 70 ],
+			'Widgets'       => [ 'callback' => [ 'WPEssential\Plugins\Theme\Widgets', 'constructor' ], 'priority' => 80 ]
+		] );
+
+		$action_list = array_filter( $action_list );
+		if ( ! empty( $action_list ) && $action_list ) {
+			foreach ( $action_list as $key => $action ) {
+				if ( ! wpe_array_get( $action, 'callback' ) && ! wpe_array_get( $action, 'priority' ) ) {
+					wp_die( __( "(wpe/theme/after_setup/hooks) => {$key} have no callback or priority", 'wpessential' ) );
+				}
+				add_action( 'wpe_before_theme_setup', wpe_array_get( $action, 'callback' ), wpe_array_get( $action, 'priority' ) );
+			}
 		}
-		OptionsPannel::constructor();
-		Widgets::constructor();
 	}
 }

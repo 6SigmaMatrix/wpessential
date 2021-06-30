@@ -2,12 +2,12 @@
 Contributors: WPEssential
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ashadab59@gmail.com&lc=GB&item_name=Donate%20For%20TCI%20Ultimate%20Element%20Themes%20Plugin&currency_code=USD&no_note=0&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest
 Tags: elementor, addons, dynamic tags, woocommerce, custom css, custom-attribues, landing-page, smart slider 3, layer slider, revolutation slider, master slider, page builder, editor, landing page, drag-and-drop, visual editor, wysiwyg, design, maintenance mode, coming soon, under construction, website builder, landing page builder, front-end builder, wpbakery
-Requires PHP: 7.4
+Requires PHP: 7.3
 Requires at least: 5.5
-Tested up to: 5.6
+Tested up to: 5.7
 WC requires at least: 4.0
-WC tested up to: 4.8
-Stable tag: 1.0.0.00006
+WC tested up to: 5.0
+Stable tag: 1.0.0.00008
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,14 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 
 == Changelog ==
+
+= 30/06/2021 1.0.0.00008 =
+- Modify the hooks.
+
+= 23/06/2021 1.0.0.00007 =
+- Add new libraries.
+- Fix PHP errors.
+- Add compatibility with PHP 7.3.
 
 = 18/01/2021 1.0.0.00006 =
 - Fix errors.

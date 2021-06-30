@@ -2,8 +2,6 @@
 
 namespace WPEssential\Plugins;
 
-use WPEssential\Plugins\Admin\Admin;
-
 final class Loader
 {
 	private static $theme_info;
