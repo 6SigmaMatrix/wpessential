@@ -2,17 +2,15 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce;
 
-use WPEssential\Plugins\Builders\Elementor\Utility\Base;
 use WPEssential\Plugins\Fields\Text;
-use WPEssential\Plugins\Implement\Shortcodes;
 
-class ProductSingle extends Base implements Shortcodes
+class ProductSingle extends WCCategory
 {
 	/**
 	 * Set widget keywords.
 	 * Retrieve widget keywords.
 	 *
-	 * @return array Widget icon.
+	 * @return array Widget keywords.
 	 * @access public
 	 * @since 1.0.0
 	 * @public
@@ -20,21 +18,6 @@ class ProductSingle extends Base implements Shortcodes
 	public function set_keywords ()
 	{
 		return [ 'productsingle', 'woocommerce product single', 'woocommerce' ];
-	}
-
-	/**
-	 * Whether the reload preview is required or not.
-	 *
-	 * Used to determine whether the reload preview is required.
-	 *
-	 * @return bool Whether the reload preview is required.
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 */
-	public function is_reload_preview_required ()
-	{
-		return true;
 	}
 
 	/**

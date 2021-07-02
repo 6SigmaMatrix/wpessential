@@ -27,8 +27,20 @@ class Categories
 		return apply_filters(
 			'wpe/elementor/categories',
 			[
-				'wpessential' => [
-					'title' => __( 'WPEssential', 'plugin-name' ),
+				'wpessential'    => [
+					'title' => __( 'WPEssential', 'wpessential' ),
+					'icon'  => 'wpe-icons wpe',
+				],
+				'wpessential-wc' => [
+					'title' => __( 'WPEssential WC', 'wpessential' ),
+					'icon'  => 'wpe-icons wpe',
+				],
+				'wpessential-form' => [
+					'title' => __( 'WPEssential Form', 'wpessential' ),
+					'icon'  => 'wpe-icons wpe',
+				],
+				'wpessential-slider' => [
+					'title' => __( 'WPEssential Slider', 'wpessential' ),
 					'icon'  => 'wpe-icons wpe',
 				]
 			]

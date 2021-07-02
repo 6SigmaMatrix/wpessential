@@ -2,11 +2,9 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms;
 
-use WPEssential\Plugins\Builders\Elementor\Utility\Base;
 use WPEssential\Plugins\Fields\Select;
-use WPEssential\Plugins\Implement\Shortcodes;
 
-class Mc4Wp extends Base implements Shortcodes
+class Mc4Wp extends FormCategory
 {
 	/**
 	 * Set widget keywords.
@@ -20,21 +18,6 @@ class Mc4Wp extends Base implements Shortcodes
 	public function set_keywords ()
 	{
 		return [ 'newsletter form', 'newsletter', 'form' ];
-	}
-
-	/**
-	 * Whether the reload preview is required or not.
-	 *
-	 * Used to determine whether the reload preview is required.
-	 *
-	 * @return bool Whether the reload preview is required.
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 */
-	public function is_reload_preview_required ()
-	{
-		return true;
 	}
 
 	/**

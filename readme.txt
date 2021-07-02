@@ -7,7 +7,7 @@ Requires at least: 5.5
 Tested up to: 5.7
 WC requires at least: 4.0
 WC tested up to: 5.0
-Stable tag: 1.0.0.00008
+Stable tag: 1.0.0.00009
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,12 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 
 == Changelog ==
+
+= 02/07/2021 1.0.0.00009 =
+- Fix elementor builder errors.
+- Enhance the WooCommerce elementor shortcodes
+- Enhance the Slider elementor shortcodes
+- Enhance the Forms elementor shortcodes
 
 = 30/06/2021 1.0.0.00008 =
 - Modify the hooks.
