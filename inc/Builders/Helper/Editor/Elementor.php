@@ -29,7 +29,9 @@ trait Elementor
 			'name'        => $this->key,
 			'responsive'  => $this->responsive,
 			'global'      => $this->global,
-			'range'       => $this->range
+			'range'       => $this->range,
+			'selectors'   => $this->wrap_selectors,
+			'selector'    => $this->wrap_selector
 		] );
 	}
 }

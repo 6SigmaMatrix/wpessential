@@ -13,7 +13,9 @@ final class Support
 		self::formats();
 		self::thumbnails();
 		self::excerpt();
-		self::woocommerce();
+		if ( function_exists( 'WC' ) ) {
+			self::woocommerce();
+		}
 		self::gutanbarg();
 		self::starter_content();
 		self::other();
@@ -33,7 +35,7 @@ final class Support
 				'script'
 			]
 		);
-		if ( $default && is_array( $default ) ) {
+		if ( ! empty( $default ) ) {
 			add_theme_support( 'html5', $default );
 		}
 	}
@@ -59,7 +61,7 @@ final class Support
 				'video-active-callback'  => 'is_front_page',
 			]
 		);
-		if ( $defaults && is_array( $defaults ) ) {
+		if ( ! empty( $defaults ) ) {
 			add_theme_support( 'custom-header', $defaults );
 		}
 	}
@@ -76,7 +78,7 @@ final class Support
 				'header-text' => [ 'site-title', 'site-description' ],
 			]
 		);
-		if ( $default && is_array( $default ) ) {
+		if ( ! empty( $default ) ) {
 			add_theme_support( 'custom-logo', $default );
 		}
 	}
@@ -99,7 +101,7 @@ final class Support
 				'admin-preview-callback' => '',
 			]
 		);
-		if ( $defaults && is_array( $defaults ) ) {
+		if ( ! empty( $defaults ) ) {
 			add_theme_support( 'custom-background', $defaults );
 		}
 	}
@@ -120,12 +122,12 @@ final class Support
 				'chat',
 			]
 		);
-		if ( $allow_fotmates && is_array( $allow_fotmates ) ) {
+		if ( ! empty( $allow_fotmates ) ) {
 			add_theme_support( 'post-formats', $allow_fotmates );
 		}
 
 		$allwo_post_type_to_post_format = apply_filters( 'wpe/themes/support/allow/post_types/formats', [ 'post' ] );
-		if ( $allwo_post_type_to_post_format && is_array( $allwo_post_type_to_post_format ) ) {
+		if ( ! empty( $allwo_post_type_to_post_format ) ) {
 			foreach ( $allwo_post_type_to_post_format as $post_type ) {
 				add_post_type_support( $post_type, 'post-formats' );
 			}
@@ -135,7 +137,7 @@ final class Support
 	public static function thumbnails ()
 	{
 		$allow_post_types = apply_filters( 'wpe/themes/support/allow/post_types/thumbnails', [] );
-		if ( $allow_post_types && is_array( $allow_post_types ) ) {
+		if ( ! empty( $allow_post_types ) ) {
 			add_theme_support( 'post-thumbnails', $allow_post_types );
 			return;
 		}
@@ -146,7 +148,7 @@ final class Support
 	public static function excerpt ()
 	{
 		$allow_excerpt = apply_filters( 'wpe/themes/support/allow/post_types/excerpt', [ 'post' ] );
-		if ( $allow_excerpt && is_array( $allow_excerpt ) ) {
+		if ( ! empty( $allow_excerpt ) ) {
 			foreach ( $allow_excerpt as $post_type ) {
 				add_post_type_support( $post_type, 'excerpt' );
 			}
@@ -161,7 +163,7 @@ final class Support
 			'wc-product-gallery-slider',
 			'woocommerce'
 		] );
-		if ( $allow_woo && is_array( $allow_woo ) ) {
+		if ( ! empty( $allow_woo ) ) {
 			foreach ( $allow_woo as $woo ) {
 				add_theme_support( $woo );
 			}
@@ -195,7 +197,7 @@ final class Support
 				],
 			]
 		);
-		if ( $default && is_array( $default ) ) {
+		if ( ! empty( $default ) ) {
 			add_theme_support( 'editor-color-palette', $default );
 		}
 
@@ -231,7 +233,7 @@ final class Support
 				],
 			]
 		);
-		if ( $default && is_array( $default ) ) {
+		if ( ! empty( $default ) ) {
 			add_theme_support( 'editor-gradient-presets', $default );
 		}
 
@@ -260,7 +262,7 @@ final class Support
 				]
 			]
 		);
-		if ( $default && is_array( $default ) ) {
+		if ( ! empty( $default ) ) {
 			add_theme_support( 'editor-font-sizes', $default );
 		}
 
@@ -457,7 +459,7 @@ final class Support
 			],
 		];
 		$starter_content = apply_filters( 'wpe/themes/support/allow/starter_content', $starter_content );
-		if ( $starter_content && is_array( $starter_content ) ) {
+		if ( ! empty( $starter_content ) ) {
 			add_theme_support( 'starter-content', $starter_content );
 		}
 	}
@@ -475,7 +477,7 @@ final class Support
 			]
 		);
 
-		if ( $default && is_array( $default ) ) {
+		if ( ! empty( $default ) ) {
 			foreach ( $default as $set ) {
 				add_theme_support( $set );
 			}

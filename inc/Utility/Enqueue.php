@@ -2,7 +2,9 @@
 
 namespace WPEssential\Plugins\Utility;
 
+use WPEssential\Plugins\Admin\Settings;
 use WPEssential\Plugins\Loader;
+use WPEssential\Plugins\Panel\Config;
 
 final class Enqueue
 {
@@ -11,9 +13,14 @@ final class Enqueue
 	{
 		add_action( 'wp_head', [ __CLASS__, 'localization' ], 0 );
 		add_action( 'admin_head', [ __CLASS__, 'localization' ], 0 );
-		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 300 );
-		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'backend_enqueue' ], 300, 1 );
+		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 11 );
+
+		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'backend_enqueue' ], 1000, 1 );
+
 		add_action( 'admin_print_scripts-toplevel_page_wpessential', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
+		add_action( 'admin_print_scripts-post.php', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
+		add_action( 'admin_print_scripts-post-new.php', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
+
 		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'elementor_editor_after_enqueue' ], 1000 );
 	}
 
@@ -48,7 +55,7 @@ final class Enqueue
 	{
 		global $post_type;
 
-		$post_types = Loader::options();
+		$post_types = Settings::get_values();
 		$post_types = wpe_array_get( $post_types, 'plugin_options.allowed_post_types' );
 
 		if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
@@ -71,31 +78,33 @@ final class Enqueue
 
 	public static function admin_page_enqueue ()
 	{
-		$list = apply_filters( 'wpe/admin_page/css', [] );
+		$list = apply_filters( 'wpe/admin_page/css', [ 'google-font-poppins', 'wpessential', 'element-ui', 'nprogress', 'wpessential-admin' ] );
 		$list = array_filter( $list );
 		if ( $list ) {
 			wp_enqueue_style( $list );
 		}
 
-		$list = apply_filters( 'wpe/admin_page/js', [] );
+		$list = apply_filters( 'wpe/admin_page/js', [ 'vue', 'vue-router', 'vuex', 'element-ui', 'nprogress', 'wpessential-admin' ] );
 		$list = array_filter( $list );
 		if ( $list ) {
 			wp_enqueue_script( $list );
 		}
 
-		self::localization();
+		self::localization( Config::init() );
 	}
 
-	public static function localization ()
+	public static function localization ( $extend = [] )
 	{
 		$localization = [
-			'ajaxurl'   => admin_url( 'admin-ajax.php' ),
-			'web_plug'  => WPE_URL,
-			'nonce'     => wp_create_nonce( WPE_NONCE ),
-			'ajaxshort' => '/wp-admin/admin-ajax.php',
-			'root'      => home_url( '/' ),
+			'ajaxurl'        => admin_url( 'admin-ajax.php' ),
+			'web_plug'       => WPE_URL,
+			'nonce'          => wp_create_nonce( WPE_NONCE ),
+			'ajaxshort'      => '/wp-admin/admin-ajax.php',
+			'root'           => home_url( '/' ),
+			'ajaxurl_prefix' => WPE_AJAX_PREFIX,
 		];
-		$localization = apply_filters( 'wpe/localization', $localization );
+
+		$localization = apply_filters( 'wpe/localization', wp_parse_args( $extend, $localization ) );
 		wp_localize_script( 'jquery', 'WPEssential', $localization );
 	}
 

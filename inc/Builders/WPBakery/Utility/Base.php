@@ -29,8 +29,8 @@ abstract class Base
 
 	public function shortcode ()
 	{
-		$this->_register_controls();
-		$this->_register_skins();
+		$this->register_controls();
+		$this->register_skins();
 		$this->skin_controls();
 		$this->controls = apply_filters( "wpe/wpbakery/shortcodes_atts/{$this->get_base_name()}", $this->controls );
 		vc_map(
@@ -50,7 +50,7 @@ abstract class Base
 		);
 	}
 
-	public function _register_controls ()
+	public function register_controls ()
 	{
 	}
 

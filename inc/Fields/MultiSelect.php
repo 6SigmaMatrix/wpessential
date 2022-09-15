@@ -2,44 +2,8 @@
 
 namespace WPEssential\Plugins\Fields;
 
-use WPEssential\Plugins\Implement\Fields;
-
-class MultiSelect extends Field implements Fields
+class MultiSelect extends Select2
 {
-	/**
-	 * The type of the control.
-	 *
-	 * @var string
-	 */
-	public $type = 'select2';
-
-	/**
-	 * An array of key => value pairs: [ 'key' => 'value', ... ]
-	 *
-	 * @var array
-	 */
-	public $options;
-
-	/**
-	 * Whether to allow multiple value selection.
-	 *
-	 * @var bool
-	 */
-	public $multiple = true;
-
-	/**
-	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
-	 *
-	 * @param $callback
-	 * @return $this
-	 */
-	public function options ( $callback )
-	{
-		$this->options = $callback;
-
-		return $this;
-	}
-
 	/**
 	 * Prepare the field's.
 	 *
@@ -48,8 +12,8 @@ class MultiSelect extends Field implements Fields
 	public function prepear ()
 	{
 		return [
-			'options'  => $this->options,
-			'multiple' => $this->multiple
+			'multiple' => $this->multiple,
+			'options'  => $this->options
 		];
 	}
 
@@ -72,5 +36,4 @@ class MultiSelect extends Field implements Fields
 	{
 		return wp_parse_args( $this->prepear(), parent::toArray() );
 	}
-
 }

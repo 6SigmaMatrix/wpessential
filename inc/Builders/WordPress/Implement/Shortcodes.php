@@ -13,7 +13,7 @@ interface Shortcodes
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function _register_controls ();
+	public function register_controls ();
 
 	/**
 	 * Render widget output on the frontend.

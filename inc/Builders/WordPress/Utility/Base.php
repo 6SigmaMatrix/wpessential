@@ -3,12 +3,13 @@
 namespace WPEssential\Plugins\Builders\WordPress\Utility;
 
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
+use WPEssential\Plugins\Helper\ElementRender;
 use WPEssential\Plugins\Helper\GetShortcodeBase;
 use WPEssential\Plugins\Loader;
 
 abstract class Base
 {
-	use GetShortcodeBase;
+	use GetShortcodeBase, ElementRender;
 
 	public function __construct ()
 	{
@@ -31,18 +32,18 @@ abstract class Base
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function _wpe_output ( $atts, $content = null, $tag )
+	public function _wpe_output ( $atts, $content = null )
 	{
 		switch ( Loader::$editor ) {
 			case 'wpbakery':
-				$atts = $this->wpbakery_atts( $atts, $tag );
+				$atts = $this->wpbakery_atts( $atts );
 				break;
 			default:
 				$atts = $atts;
 		}
 
 		$this->atts = apply_filters( "wpe/shortcodes/{$this->get_base_name()}_atts", $atts );
-		return call_user_func( [ $this, 'rendering' ] );
+		return $this->rendering();
 	}
 
 	public function wpbakery_atts ( $atts, $tag )

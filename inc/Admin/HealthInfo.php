@@ -2,23 +2,11 @@
 
 namespace WPEssential\Plugins\Admin;
 
-final class HealthInfo
+class HealthInfo
 {
-	public static function constructor ()
-	{
-		wpe_ajax_authorized();
-
-		$request = sanitize_text_field( wpe_array_get( $_REQUEST, 'subaction' ) );
-
-		if ( $request ) {
-			return call_user_func( [ __CLASS__, $request ] );
-		}
-
-		wp_die( sprintf( __( 'The method is not define at class name %s and method name is %s.', 'wpessential' ), get_class( self::class ), $request ) );
-	}
-
 	public static function constants ()
 	{
+		wpe_ajax_authorized();
 		$undefined = __( 'Undefined', 'wpessential' );
 		$list      = [
 			'plugins' => [
@@ -90,6 +78,8 @@ final class HealthInfo
 
 	public static function active_plugins ()
 	{
+		wpe_ajax_authorized();
+
 		$_active_plugins = (array) get_option( 'active_plugins', [] );
 
 		if ( is_multisite() ) {
@@ -134,13 +124,16 @@ final class HealthInfo
 		) );
 	}
 
-	public static function wpe_used_hooks ()
+	public static function used_hooks ()
 	{
+
+		wpe_ajax_authorized();
+
 		global $wp_filter;
 
 		$filters = [];
 		foreach ( $wp_filter as $key => $value ) {
-			if ( 'wpe' === substr( $key, 0, 3 ) ) {
+			if ( strpos( $key, 'wpe' ) === 0 ) {
 				$filters[] = [ 'filter' => $key ];
 			}
 		}

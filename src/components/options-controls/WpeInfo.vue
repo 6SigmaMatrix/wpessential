@@ -3,32 +3,21 @@
   -->
 
 <template>
-    <transition name="fade">
-        <el-row :gutter="15" type="flex">
-            <el-col class="wpessential-field" :span="24">
-                <el-alert v-bind="attr" class="wpessential-form-info" :name="field.id" :description="description" :title="title"></el-alert>
-            </el-col>
-        </el-row>
-    </transition>
+	<div class="wpe-input-field">
+		<el-alert
+			:description="(field.subtitle)? field.subtitle:'' +' '+ (field.description)? field.description:''"
+			:name="field.id"
+			:title="field.title"
+			class="wpe-form info"
+			v-bind="field.settings">
+		</el-alert>
+	</div>
 </template>
 
 <script>
+import FormMixin from "../FormMixin";
 
-    import {WpeMixins} from "../mixins";
-
-    export default {
-        mixins: [WpeMixins],
-        data() {
-            return {
-                description: '',
-                title: ''
-            }
-        },
-        mounted() {
-            this.field_args_check();
-            this.description = this.field.desc;
-            this.title = this.field.heading;
-            this.attributes();
-        }
-    }
+export default {
+	mixins: [ FormMixin ]
+};
 </script>

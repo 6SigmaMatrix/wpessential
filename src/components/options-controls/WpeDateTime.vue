@@ -3,28 +3,15 @@
   -->
 
 <template>
-    <transition name="fade">
-        <el-row :gutter="15" type="flex">
-            <wpe-heading v-if="field.heading" :heading="field.heading" :subtitle="field.subtitle"></wpe-heading>
-            <el-col class="wpessential-field" :span="v_if_single(field.help,13,16 )">
-                <el-date-picker @change="select_change" v-bind="attr" class="wpessential-form-datetime" v-model="value"></el-date-picker>
-                <div class="wpessential-field-desc el-col el-col-24" v-if="field.desc">{{field.desc}}</div>
-            </el-col>
-            <wpe-help v-if="field.help" :help="field.help"></wpe-help>
-        </el-row>
-    </transition>
+	<div class="wpe-input-field">
+		<el-date-picker v-model="value" :appendToBody="false" class="wpe-form datetime" popper-class="datetime-picker" v-bind="field.settings"></el-date-picker>
+	</div>
 </template>
 
 <script>
+import FormMixin from "../FormMixin";
 
-    import {WpeMixins} from "../mixins";
-
-    export default {
-        mixins: [WpeMixins],
-        mounted() {
-            this.get_value();
-            this.field_args_check();
-            this.attributes();
-        }
-    }
+export default {
+	mixins: [ FormMixin ]
+};
 </script>

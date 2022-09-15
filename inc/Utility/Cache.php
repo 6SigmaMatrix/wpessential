@@ -5,9 +5,9 @@ namespace WPEssential\Plugins\Utility;
 /**
  * Object Cache API
  *
- * @link https://codex.wordpress.org/Class_Reference/WP_Object_Cache
+ * @link       https://codex.wordpress.org/Class_Reference/WP_Object_Cache
  *
- * @package WordPress
+ * @package    WordPress
  * @subpackage Cache
  */
 final class Cache
@@ -16,6 +16,7 @@ final class Cache
 	 * Get prefix for use with wp_cache_set. Allows all cache in a group to be invalidated at once.
 	 *
 	 * @param string $group Group of cache to get.
+	 *
 	 * @return string
 	 */
 	public static function get_cache_prefix ( $group )
@@ -46,6 +47,7 @@ final class Cache
 	 * Invalidate cache group.
 	 *
 	 * @param string $group Group of cache to clear.
+	 *
 	 * @since 3.9.0
 	 */
 	public static function invalidate_cache_group ( $group )

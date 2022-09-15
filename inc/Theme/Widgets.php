@@ -21,8 +21,7 @@ final class Widgets
 	public static function remove ()
 	{
 		$widgets = apply_filters( 'wpe/remove/widgets', [] );
-		$widgets = array_filter( $widgets );
-		if ( $widgets ) {
+		if ( ! empty( $widgets ) ) {
 			foreach ( $widgets as $widet ) {
 				unregister_widget( $widet );
 			}
@@ -32,8 +31,7 @@ final class Widgets
 	public static function register ()
 	{
 		$widgets = apply_filters( 'wpe/register/widgets', [] );
-		$widgets = array_filter( $widgets );
-		if ( $widgets ) {
+		if ( ! empty( $widgets ) ) {
 			sort( $widgets );
 			foreach ( $widgets as $widet ) {
 				if ( class_exists( $widet ) ) {
@@ -43,4 +41,3 @@ final class Widgets
 		}
 	}
 }
-

@@ -1,0 +1,17 @@
+<?php
+do_action( "wpe_setup_theme" );
+
+function [attach_theme_prefix]_header_hook ()
+{
+	$id = get_the_ID();
+	if ( is_page( $id ) ) {
+		$type = 'page';
+	} else {
+		$type = 'article';
+	}
+	?>
+	<?php
+}
+
+add_action( 'wp_head', '[attach_theme_prefix]_header_hook' );
+?>

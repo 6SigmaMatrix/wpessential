@@ -2,17 +2,8 @@
 
 namespace WPEssential\Plugins\Fields;
 
-use WPEssential\Plugins\Implement\Fields;
-
-class RgbaColor extends Field implements Fields
+class RgbaColor extends Color
 {
-	/**
-	 * The type of the control.
-	 *
-	 * @var string
-	 */
-	public $type = 'color';
-
 	/**
 	 * Whether to allow alpha channel.
 	 *
@@ -27,6 +18,14 @@ class RgbaColor extends Field implements Fields
 	 */
 	public function prepear ()
 	{
+		if ( 'Panel' === $this->editor ) {
+			return [
+				'settings' => [
+					'show-alpha' => $this->alpha
+				]
+			];
+		}
+
 		return [
 			'alpha' => $this->alpha,
 		];
@@ -49,7 +48,14 @@ class RgbaColor extends Field implements Fields
 	 */
 	public function toArray ()
 	{
-		return wp_parse_args( $this->prepear(), parent::toArray() );
+		if ( 'Panel' === $this->editor ) {
+			$prepear               = $this->prepear();
+			$prepear[ 'settings' ] = wp_parse_args( $this->prepear()[ 'settings' ], parent::toArray()[ 'settings' ] );
+		} else {
+			$prepear = $this->prepear();
+		}
+
+		return wp_parse_args( $prepear, parent::toArray() );
 	}
 
 }

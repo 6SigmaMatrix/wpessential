@@ -13,7 +13,7 @@ final class Images
 	public static function remove ()
 	{
 		$images = apply_filters( 'wpe/remove/images/size', [] );
-		if ( $images ) {
+		if ( ! empty( $images ) ) {
 			foreach ( $images as $image ) {
 				remove_image_size( $image );
 			}
@@ -33,11 +33,10 @@ final class Images
 			]
 		);
 
-		if ( $images && is_array( $images ) ) {
+		if ( ! empty( $images ) ) {
 			foreach ( $images as $image ) {
 				add_image_size( $image[ 'name' ], $image[ 'size' ][ 'w' ], $image[ 'size' ][ 'h' ], $image[ 'croup' ] );
 			}
 		}
 	}
 }
-

@@ -14,22 +14,13 @@ class Color extends Field implements Fields
 	public $type = 'color';
 
 	/**
-	 * Whether to allow alpha channel.
-	 *
-	 * @var bool
-	 */
-	public $alpha = false;
-
-	/**
 	 * Prepare the field's.
 	 *
 	 * @return array
 	 */
 	public function prepear ()
 	{
-		return [
-			'alpha' => $this->alpha,
-		];
+		return [];
 	}
 
 	/**

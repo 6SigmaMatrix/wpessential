@@ -13,8 +13,7 @@ final class Menus
 	public static function remove ()
 	{
 		$menus = apply_filters( 'wpe/remove/menu', [] );
-		$menus = array_filter( $menus );
-		if ( $menus && is_array( $menus ) ) {
+		if ( ! empty( $menus ) ) {
 			foreach ( $menus as $menu ) {
 				unregister_nav_menu( $menu );
 			}
@@ -31,8 +30,7 @@ final class Menus
 			]
 		);
 
-		$menus = array_filter( $menus );
-		if ( $menus && is_array( $menus ) ) {
+		if ( ! empty( $menus ) ) {
 			register_nav_menus( $menus );
 		}
 	}

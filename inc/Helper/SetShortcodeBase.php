@@ -48,7 +48,7 @@ trait SetShortcodeBase
 	 * Retrieve widget icon.
 	 *
 	 * @return string Widget icon.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 * @public
 	 */
@@ -65,7 +65,7 @@ trait SetShortcodeBase
 	 * Used to determine where to display the widget in the editor.
 	 *
 	 * @return array Widget categories.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -82,7 +82,7 @@ trait SetShortcodeBase
 	 * Used to determine where to display the widget in the editor.
 	 *
 	 * @return string Widget category.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -97,7 +97,7 @@ trait SetShortcodeBase
 	 *
 	 * @return array Widget keywords.
 	 * @access public
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @public
 	 */
 	public function set_keywords ()
@@ -111,7 +111,7 @@ trait SetShortcodeBase
 	 *
 	 * @return array Widget description.
 	 * @access public
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @public
 	 */
 	public function set_desc ()
@@ -125,7 +125,7 @@ trait SetShortcodeBase
 	 *
 	 * @return array Widget classes.
 	 * @access public
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @public
 	 */
 	public function set_classes ()
@@ -139,7 +139,7 @@ trait SetShortcodeBase
 	 * Retrieve the list of skings the widget belongs to.
 	 *
 	 * @return void.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */

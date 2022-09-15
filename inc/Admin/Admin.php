@@ -2,54 +2,27 @@
 
 namespace WPEssential\Plugins\Admin;
 
+use WPEssential\Plugins\Admin\ImportExport\WithMediaExport;
+use WPEssential\Plugins\Api\Wpessential\Auth;
+
 final class Admin
 {
 	public static function constructor ()
 	{
-		self::pages();
+		self::run();
 
-		add_action( 'admin_menu', [ __CLASS__, 'register_menu' ] );
-		add_filter( 'wpe/admin_page/css', [ __CLASS__, 'css' ], 10 );
-		add_filter( 'wpe/admin_page/js', [ __CLASS__, 'js' ], 10 );
+		add_action( 'admin_print_scripts-toplevel_page_wpessential', function ()
+		{
+			add_filter( 'wpe/localization', [ __CLASS__, 'localization' ], 13 );
+		}, );
+
+		WithMediaExport::constructor();
 	}
 
-	public static function pages ()
+	public static function run ()
 	{
 		Index::constructor();
-		Options::constructor();
-	}
-
-	public static function register_menu ()
-	{
-		$menu_args = apply_filters( 'wpe/register/admin_pages/main_nav', [] );
-		$menu_args = array_filter( $menu_args );
-		if ( $menu_args && is_array( $menu_args ) ) {
-			foreach ( $menu_args as $menu ) {
-				call_user_func_array( [ __CLASS__, 'add_menu_pages' ], $menu );
-			}
-		}
-
-		$menu_args = apply_filters( 'wpe/register/admin_pages/submenu_nav', [] );
-		$menu_args = array_filter( $menu_args );
-		if ( $menu_args && is_array( $menu_args ) ) {
-			foreach ( $menu_args as $menu ) {
-				call_user_func_array( [ __CLASS__, 'add_submenu_pages' ], $menu );
-			}
-		}
-
-		add_filter( 'wpe/localization', [ __CLASS__, 'localization' ], 10 );
-	}
-
-	public static function add_menu_pages ( $page_title, $menu_title, $manage_options, $menu_slug = 'wpessential', $callback = '', $icon = '', $position = null )
-	{
-		add_menu_page( $page_title, $menu_title, $manage_options, $menu_slug, $callback, $icon, $position );
-		do_action( 'wpe_menu_page' );
-	}
-
-	public static function add_submenu_pages ( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $callback = '', $position = null )
-	{
-		add_submenu_page( $parent_slug, $page_title, $menu_title, $capability, $menu_slug, $callback, $position );
-		do_action( 'wpe_submenu_page' );
+		MetaBox::constructor();
 	}
 
 	public static function health_info ()
@@ -57,16 +30,6 @@ final class Admin
 		$list = apply_filters( 'wpe/register/admin_pages/health_info', HealthInfo::constructor() );
 		$list = array_filter( $list );
 		return $list;
-	}
-
-	public static function css ( $list )
-	{
-		return wp_parse_args( [ 'wpessential', 'element-ui', 'nprogress', 'wpessential-admin' ], $list );
-	}
-
-	public static function js ( $list )
-	{
-		return wp_parse_args( [ 'vue', 'vue-router', 'element-ui', 'nprogress', 'wpessential-admin' ], $list );
 	}
 
 	public static function localization ( $list )
@@ -80,37 +43,98 @@ final class Admin
 			$time_msg = __( 'Good Evening', 'wpessential' );
 		}
 
-		$admin_pages = [
-			'admin_pages' => [
-				'home'          => [
-					'menu_title' => __( 'Home', 'wpessential' ),
-					'page_title' => sprintf( __( '%s %s', 'wpessential' ), $time_msg, ucwords( str_replace( [ '_', '-' ], ' ', get_bloginfo( 'name' ) ) ) ),
-					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
-					'ver_bag'    => [
-						'ver'   => WPE_VERSION,
-						'title' => __( 'Verstion', 'wpessential' )
-					],
-					'path'       => '/',
-					'component'  => 'index'
-				],
-				'health'        => [
-					'menu_title' => __( 'Health', 'wpessential' ),
-					'page_title' => __( 'Health Check And Info', 'wpessential' ),
-					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
-					'path'       => '/health-info',
-					'component'  => 'health'
-				],
-				'theme_options' => [
-					'menu_title' => __( 'Theme options', 'wpessential' ),
-					'page_title' => __( 'Theme Options', 'wpessential' ),
-					'page_desc'  => __( 'Theme customization options.', 'wpessential' ),
-					'path'       => '/theme',
-					'component'  => 'options'
+		//License::remove_info();
+		$token_info   = License::token();
+		$token_verify = Auth::authorized_token( $token_info );
+		$token_verify = wpe_josn_decode( $token_verify, true );
+		if ( wpe_array_get( $token_info, 'token' ) && wpe_array_get( $token_verify, 'user' ) ) {
+			$admin_pages = [
+				'admin_pages' => [
+					'home_page'      => apply_filters( 'wpe/register/admin_pages/routes_info/redirect', [
+						'route' => apply_filters( 'wpe/register/admin_pages/routes_info/redirect/route', [
+							'path'     => '/',
+							'redirect' => '/home'
+						] ),
+					] ),
+					'home'           => apply_filters( 'wpe/register/admin_pages/routes_info/home', [
+						'menu_title' => __( 'Home', 'wpessential' ),
+						'page_title' => sprintf( __( '%s %s', 'wpessential' ), $time_msg, ucwords( str_replace( [ '_', '-' ], ' ', get_bloginfo( 'name' ) ) ) ),
+						'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
+						'ver_bag'    => [
+							'ver'   => WPE_VERSION,
+							'title' => __( 'Version', 'wpessential' )
+						],
+						'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/home/route', [
+							'path'      => '/home',
+							'component' => [ 'template' => '<wpe-home></wpe-home>' ],
+							'name'      => 'home'
+						] ),
+					] ),
+					'health'         => apply_filters( 'wpe/register/admin_pages/routes_info/health', [
+						'menu_title' => __( 'Health', 'wpessential' ),
+						'page_title' => __( 'Health Check And Info', 'wpessential' ),
+						'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
+						'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/health/route', [
+							'path'      => '/health-info',
+							'component' => [ 'template' => '<wpe-health></wpe-health>' ],
+							'name'      => 'health'
+						] ),
+					] ),
+					'theme_options'  => apply_filters( 'wpe/register/admin_pages/routes_info/theme_options', [
+						'menu_title' => __( 'Theme options', 'wpessential' ),
+						'page_title' => __( 'Theme Options', 'wpessential' ),
+						'page_desc'  => __( 'Theme customization options.', 'wpessential' ),
+						'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/theme_options/route', [
+							'path'      => '/theme',
+							'component' => [ 'template' => '<wpe-options></wpe-options>' ],
+							'name'      => 'theme'
+						] ),
+					] ),
+					'plugin_options' => apply_filters( 'wpe/register/admin_pages/routes_info/plugin_options', [
+						'menu_title' => __( 'Plugin options', 'wpessential' ),
+						'page_title' => __( 'Plugin Options', 'wpessential' ),
+						'page_desc'  => __( 'Plugin customization options.', 'wpessential' ),
+						'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/plugin_options/route', [
+							'path'      => '/plugin',
+							'component' => [ 'template' => '<wpe-options></wpe-options>' ],
+							'name'      => 'plugin'
+						] ),
+					] ),
+					'extensions'     => apply_filters( 'wpe/register/admin_pages/routes_info/extension_options', [
+						'menu_title' => __( 'Extension', 'wpessential' ),
+						'page_title' => __( 'WPE Extensions', 'wpessential' ),
+						'page_desc'  => __( 'Extend your WordPress experience with 58,257 plugins.', 'wpessential' ),
+						'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/extension_options/route', [
+							'path'      => '/extensions',
+							'component' => [ 'template' => '<wpe-extensions></wpe-extensions>' ],
+							'name'      => 'extensions'
+						] ),
+					] )
 				]
-			]
-		];
-		$admin_pages = apply_filters( 'wpe/register/admin_pages/routes_info', $admin_pages );
-
+			];
+			$admin_pages = apply_filters( 'wpe/register/admin_pages/routes_info', $admin_pages );
+			$admin_pages = wp_parse_args( Options::init(), $admin_pages );
+			$admin_pages = wp_parse_args( Extension::init(), $admin_pages );
+		} else {
+			$admin_pages = [
+				'admin_pages' => [
+					'home_page' => apply_filters( 'wpe/register/admin_pages/routes_info/redirect', [
+						'route' => apply_filters( 'wpe/register/admin_pages/routes_info/redirect/route', [
+							'path'     => '/',
+							'redirect' => '/home'
+						] ),
+					] ),
+					'login'     => apply_filters( 'wpe/register/admin_pages/routes_info/license', [
+						'menu_title' => __( 'License', 'wpessential' ),
+						'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/license/route', [
+							'path'      => '/home',
+							'component' => [ 'template' => '<wpe-auth></wpe-auth>' ],
+							'name'      => 'license'
+						] ),
+					] )
+				]
+			];
+		}
 		return wp_parse_args(
 			$admin_pages,
 			$list

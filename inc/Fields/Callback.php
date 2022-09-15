@@ -26,7 +26,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor type.
 	 *
 	 * @param string $callback
-	 * @return $this
+	 * @return Callback
 	 */
 	public function editor ( string $callback = 'wordpress' )
 	{
@@ -39,7 +39,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor dependency.
 	 *
 	 * @param array $callback
-	 * @return $this
+	 * @return Callback
 	 */
 	public function dependent ( array $callback )
 	{
@@ -52,7 +52,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor dependency.
 	 *
 	 * @param array $callback
-	 * @return $this
+	 * @return Callback
 	 */
 	public function dependency ( array $callback )
 	{
@@ -65,7 +65,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor panel classes.
 	 *
 	 * @param string $callback
-	 * @return $this
+	 * @return Callback
 	 */
 	public function addClasses ( string $callback )
 	{
@@ -78,7 +78,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor separator.
 	 *
 	 * @param string $callback
-	 * @return $this
+	 * @return Callback
 	 */
 	public function separator ( string $callback )
 	{
@@ -91,7 +91,7 @@ abstract class Callback extends Common
 	 * Set the HTML tag name where Visual Composer will store attribute value in WPBakery Page Builder edit mode. Default: hidden input
 	 *
 	 * @param string $callback
-	 * @return $this
+	 * @return Callback
 	 */
 	public function holder ( string $callback )
 	{
@@ -104,11 +104,24 @@ abstract class Callback extends Common
 	 * Set the params within groups (tabs)
 	 *
 	 * @param string $callback
-	 * @return $this
+	 * @return Callback
 	 */
 	public function group ( string $callback )
 	{
 		$this->group = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the field size
+	 *
+	 * @param string $callback
+	 * @return $this
+	 */
+	public function field_size ( string $callback )
+	{
+		$this->field_size = $callback;
 
 		return $this;
 	}
@@ -146,10 +159,6 @@ abstract class Callback extends Common
 	 */
 	public function type ()
 	{
-		if ( isset( static::$customType[ get_class( $this ) ] ) ) {
-			return static::$customType[ get_class( $this ) ];
-		}
-
 		return $this->type;
 	}
 
@@ -180,6 +189,19 @@ abstract class Callback extends Common
 	}
 
 	/**
+	 * Set the callback to be used for determining the field's short description value.
+	 *
+	 * @param string $callback
+	 * @return $this
+	 */
+	public function subtitle ( string $callback )
+	{
+		$this->subtitle = $callback;
+
+		return $this;
+	}
+
+	/**
 	 * Set the callback to be used for determining the field's placeholder value.
 	 *
 	 * @param string $callback
@@ -188,6 +210,214 @@ abstract class Callback extends Common
 	public function placeholder ( string $callback )
 	{
 		$this->placeholder = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the minimum number (only affects the spinners, the user can still type a lower value).
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function min ( $callback )
+	{
+		$this->min = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the maximum number (only affects the spinners, the user can still type a higher value).
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function max ( $callback )
+	{
+		$this->max = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function step ( $callback )
+	{
+		$this->step = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The clearable of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function clearable ( $callback )
+	{
+		$this->clearable = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The filterable of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function filterable ( $callback )
+	{
+		$this->filterable = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The reserve_keyword of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function reserve_keyword ( $callback )
+	{
+		$this->reserve_keyword = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The multiple of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function multiple ( $callback )
+	{
+		$this->multiple = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The multiple limit of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function multiple_limit ( $callback )
+	{
+		$this->multiple_limit = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The predefine color.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function predefine ( $callback )
+	{
+		$this->predefine = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function options ( $callback )
+	{
+		$this->options = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The note icon of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function note_icon ( $callback )
+	{
+		$this->note_icon = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The note title of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function note_title ( $callback )
+	{
+		$this->note_title = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The note description of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function note_desc ( $callback )
+	{
+		$this->note_desc = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The word limit show of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function word_limit_show ( $callback )
+	{
+		$this->word_limit_show = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The readonly of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function readonly ( $callback )
+	{
+		$this->readonly = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * The disabled of the field.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function disabled ( $callback )
+	{
+		$this->disabled = $callback;
 
 		return $this;
 	}
@@ -256,6 +486,123 @@ abstract class Callback extends Common
 	public function default ( $callback )
 	{
 		$this->defaul = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the callback to be used for determining the field's input type value.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function rows ( $callback )
+	{
+		$this->rows = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the field type style like strictly or not.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function step_strictly ( $callback )
+	{
+		$this->step_strictly = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the field autocomplete option enalbe.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function autocomplete ( $callback )
+	{
+		$this->autocomplete = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the field controls position.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function controls_position ( $callback )
+	{
+		$this->controls_position = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the field controls.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function controls ( $callback )
+	{
+		$this->controls = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the field maxlength.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function maxlength ( $callback )
+	{
+		$this->maxlength = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the field minlength.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function minlength ( $callback )
+	{
+		$this->minlength = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the callback to be used for determining the field's input max row value.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function max_rows ( $callback )
+	{
+		$this->max_rows = $callback;
+
+		return $this;
+	}
+
+	/**
+	 * Set the callback to be used for determining the field's input min row value.
+	 *
+	 * @param $callback
+	 * @return $this
+	 */
+	public function min_rows ( $callback )
+	{
+		$this->min_rows = $callback;
 
 		return $this;
 	}

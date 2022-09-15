@@ -3,41 +3,25 @@
   -->
 
 <template>
-    <transition name="fade">
-        <el-row :gutter="15" type="flex">
-            <wpe-heading v-if="field.heading" :heading="field.heading" :subtitle="field.subtitle"></wpe-heading>
-            <el-col class="wpessential-field" :span="v_if_single(field.help,13,16 )">
-                <el-radio-group @change="select_change" v-bind="attr" class="wpessential-form-button-set" v-model="value" v-if="field.options">
-                    <el-radio-button v-for="option in data" :key="option.key" :label="field.id+'_'+option.key" :name="field.id+'_'+option.key">
-                        {{option.label}}
-                    </el-radio-button>
-                </el-radio-group>
-                <div class="wpessential-field-desc el-col el-col-24" v-if="field.desc">{{field.desc}}</div>
-            </el-col>
-            <wpe-help v-if="field.help" :help="field.help"></wpe-help>
-        </el-row>
-    </transition>
+	<div class="wpe-input-field">
+		<!--        <el-radio-group @change="select_change" v-bind="attr" class="wpessential-form-button-set" v-model="value" v-if="field.options">
+					<el-radio-button v-for="option in data" :key="option.key" :label="field.id+'_'+option.key" :name="field.id+'_'+option.key">
+						{{ option.label }}
+					</el-radio-button>
+				</el-radio-group>-->
+		<el-radio-group v-if="field.options" v-model="value" class="wpe-form button-set" v-bind="field.settings">
+			<el-radio-button v-for="option in data" :key="option.key" :label="field.id+'_'+option.key" :name="field.id+'_'+option.key">
+				{{ option.label }}
+			</el-radio-button>
+		</el-radio-group>
+	</div>
 </template>
 
 <script>
 
-    import {WpeMixins} from "../mixins";
+import FormMixin from "../FormMixin";
 
-    export default {
-        mixins: [WpeMixins],
-        data() {
-            return {
-                data: [],
-            }
-        },
-        mounted() {
-            jQuery.each(this.field.options, (key, label) => {
-                this.data.push({key: key, label: label});
-            });
-            this.get_value();
-            this.field_args_check();
-            this.value = this.field.id + '_' + this.value;
-            this.attributes();
-        }
-    }
+export default {
+	mixins: [ FormMixin ]
+};
 </script>

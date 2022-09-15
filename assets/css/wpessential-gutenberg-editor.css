@@ -1,0 +1,24 @@
+.wpe-duplicate-post .components-button.is-tertiary {
+	color: #ffffff;
+	background-color: #007cba;
+	border: 1px solid #007cba;
+	text-decoration: none;
+	border-radius: 3px;
+	padding: 5px 10px 8px;
+	font-weight: bold;
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+}
+
+.wpe-duplicate-post .components-button.is-tertiary:hover {
+	border-color: #0071a1;
+	color: #ffffff;
+	background-color: #0071a1;
+	transition: all 0.3s ease;
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	-ms-transition: all 0.3s ease;
+
+}

@@ -20,8 +20,9 @@ class ScriptLoader
 	 *
 	 * @link https://core.trac.wordpress.org/ticket/12009
 	 *
-	 * @param string $tag The script tag.
+	 * @param string $tag    The script tag.
 	 * @param string $handle The script handle.
+	 *
 	 * @return string Script HTML string.
 	 */
 	public static function register ( $tag, $handle )

@@ -49,12 +49,12 @@ class Heading extends Base implements Shortcodes
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function _register_controls ()
+	public function register_controls ()
 	{
 		$this->start_controls_section(
 			'section_1',
 			[
-				'label' => __( 'Post Settings', 'wpessential-blog-post' )
+				'label' => __( 'Heading Settings', 'wpessential' )
 			]
 		);
 
@@ -103,7 +103,7 @@ class Heading extends Base implements Shortcodes
 							 'icon'  => 'eicon-text-align-justify',
 						 ],
 					 ] )
-					 ->wrap_selectors( [ '' => 'text-align: {{VALUE}};' ] )
+					 ->wrap_selectors( [ '.wpe-heading-title' => 'text-align: {{VALUE}};' ] )
 					 ->default( '' )
 					 ->toArray();
 		$this->add_responsive_control( $opt[ 'id' ], $opt );
@@ -119,7 +119,7 @@ class Heading extends Base implements Shortcodes
 		);
 
 		$opt = Color::make( __( 'Text Color', 'wpessential' ) )
-					->wrap_selectors( [ '.wpessential-heading-title' => 'color: {{VALUE}};' ] )
+					->wrap_selectors( [ '.wpe-heading-title, .wpe-heading-title > a' => 'color: {{VALUE}};' ] )
 					->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );
 
@@ -147,7 +147,7 @@ class Heading extends Base implements Shortcodes
 				'global'   => [
 					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
 				],
-				'selector' => '{{WRAPPER}} .wpessential-heading-title',
+				'selector' => '{{WRAPPER}} .wpe-heading-title',
 			]
 		);
 
@@ -155,13 +155,13 @@ class Heading extends Base implements Shortcodes
 			Group_Control_Text_Shadow::get_type(),
 			[
 				'name'     => 'text_shadow',
-				'selector' => '{{WRAPPER}} .elementor-heading-title',
+				'selector' => '{{WRAPPER}} .wpe-heading-title',
 			]
 		);
 
 		$opt = Select::make( __( 'Blend Mode', 'wpessential' ) )
 					 ->options( wpe_blend_mode() )
-					 ->wrap_selectors( [ '.wpessential-heading-title' => 'mix-blend-mode: {{VALUE}}' ] )
+					 ->wrap_selectors( [ '.wpe-heading-title' => 'mix-blend-mode: {{VALUE}}' ] )
 					 ->toArray();
 		$this->add_control( $opt[ 'id' ], $opt );
 

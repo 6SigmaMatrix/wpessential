@@ -1,46 +1,14 @@
 <?php
-if ( ! function_exists( 'wpe_get_sidebar' ) ) {
-	/**
-	 * Retrive the array of sidebar list.
-	 *
-	 * @param bool $is_multiselect enable or disable the first option like empty.
-	 * @return array
-	 */
-	function wpe_get_sidebar ( $is_multiselect = false )
-	{
-		global $wp_registered_sidebars;
-
-		$items = [];
-
-		// Properly format the array.
-		if ( ! $is_multiselect ) {
-			$items[] = __( 'Choose', 'wpessential' );
-		}
-
-		// Build the array.
-		if ( $wp_registered_sidebars ) {
-			foreach ( $wp_registered_sidebars as $id => $sidebar ) {
-				$items[ $id ] = $sidebar;
-			}
-		} else {
-			$items[ 'no' ] = __( 'No Sidebar Found', 'wpessential' );
-		}
-
-		$items = apply_filters( 'wpe/get/sidebars', $items );
-
-		return $items;
-	}
-}
-
 if ( ! function_exists( 'wpe_get_posts' ) ) {
 	/**
-	 * Retrive the array of posts.
+	 * Retrieve the array of posts.
 	 *
-	 * @param array $args Define arguments for the get_posts function.
-	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 * @param array $args  Define arguments for the get_posts function.
+	 * @param bool  $empty get list first item as empty
+	 *
 	 * @return array
 	 */
-	function wpe_get_posts ( $args = null, $is_multiselect = false )
+	function wpe_get_posts ( $args = [], $empty = false )
 	{
 		if ( is_string( $args ) ) {
 			$args = add_query_arg(
@@ -58,7 +26,7 @@ if ( ! function_exists( 'wpe_get_posts' ) ) {
 		$items = [];
 
 		// Properly format the array.
-		if ( ! $is_multiselect ) {
+		if ( $empty ) {
 			$items[] = __( 'Choose', 'wpessential' );
 		}
 
@@ -77,27 +45,26 @@ if ( ! function_exists( 'wpe_get_posts' ) ) {
 
 if ( ! function_exists( 'wpe_get_post_types' ) ) {
 	/**
-	 * Retrive the array of post types.
+	 * Retrieve the array of post types.
 	 *
+	 * @param array  $args   Define arguments for the get_post_types function.
 	 * @param string $output get the output like object or name etc.
-	 * @param bool $is_multiselect enable or disable the first option like empty.
-	 * @param bool $public either get the public or protect post types list.
+	 * @param bool   $empty  get list first item as empty
+	 * @param bool   $public either get the public or protect post types list.
+	 *
 	 * @return array
 	 */
-	function wpe_get_post_types ( $output = 'objects', $is_multiselect = false, $public = true )
+	function wpe_get_post_types ( $args = [], $output = 'objects', $empty = false, $public = true )
 	{
 		$items = [];
-		if ( ! $is_multiselect ) {
+		if ( $empty ) {
 			$items[] = __( 'Choose', 'wpessential' );
 		}
 
+		$args = wp_parse_args( $args, [ 'public' => $public ] );
+
 		// Get the post types.
-		$post_types = get_post_types(
-			[
-				'public' => $public,
-			],
-			$output
-		);
+		$post_types = get_post_types( $args, $output );
 
 		// Build the array.
 		if ( $post_types ) {
@@ -114,27 +81,26 @@ if ( ! function_exists( 'wpe_get_post_types' ) ) {
 
 if ( ! function_exists( 'wpe_get_taxonomies' ) ) {
 	/**
-	 * Retrive the array of publicly taxonomies.
+	 * Retrieve the array of publicly taxonomies.
 	 *
+	 * @param array  $args   Define arguments for the get_posts function.
 	 * @param string $output get the output like object or name etc.
-	 * @param bool $is_multiselect enable or disable the first option like empty.
-	 * @param bool $public either get the public or protect post types list.
+	 * @param bool   $empty  get list first item as empty
+	 * @param bool   $public either get the public or protect post types list.
+	 *
 	 * @return array
 	 */
-	function wpe_get_taxonomies ( $output = 'names', $is_multiselect = false, $public = true )
+	function wpe_get_taxonomies ( $args = [], $output = 'names', $empty = false, $public = true )
 	{
 		$items = [];
-		if ( ! $is_multiselect ) {
+		if ( $empty ) {
 			$items[] = __( 'Choose', 'wpessential' );
 		}
 
+		$args = wp_parse_args( $args, [ 'public' => $public ] );
+
 		// Get the taxonomies.
-		$taxonomies = get_taxonomies(
-			[
-				'public' => $public,
-			],
-			$output
-		);
+		$taxonomies = get_taxonomies( $args, $output );
 
 		// Build the array.
 		if ( $taxonomies ) {
@@ -153,17 +119,18 @@ if ( ! function_exists( 'wpe_get_taxonomies' ) ) {
 
 if ( ! function_exists( 'wpe_get_terms' ) ) {
 	/**
-	 * Retrive array of terms from a taxonomy.
+	 * Retrieve array of terms from a taxonomy.
 	 *
-	 * @param string|array $args See https://developer.wordpress.org/reference/functions/get_terms/ for details.
-	 * @param bool $slug get list of terms post by slug or id
-	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 * @param string|array $args  See https://developer.wordpress.org/reference/functions/get_terms/ for details.
+	 * @param bool         $empty get list first item as empty
+	 * @param bool         $slug  get list of terms post by slug or id
+	 *
 	 * @return array
 	 */
-	function wpe_get_terms ( $args, $slug = false, $is_multiselect = false )
+	function wpe_get_terms ( $args = [], $empty = false, $slug = false )
 	{
 		$items = [];
-		if ( ! $is_multiselect ) {
+		if ( $empty ) {
 			$items[] = __( 'Choose', 'wpessential' );
 		}
 
@@ -184,11 +151,113 @@ if ( ! function_exists( 'wpe_get_terms' ) ) {
 	}
 }
 
+if ( ! function_exists( 'wpe_get_categories' ) ) {
+	/**
+	 * Retrieve array of terms from a taxonomy.
+	 *
+	 * @param string|array $args  See https://developer.wordpress.org/reference/functions/get_terms/ for details.
+	 * @param bool         $empty get list first item as empty
+	 * @param bool         $slug  get list of terms post by slug or id
+	 *
+	 * @return array
+	 */
+	function wpe_get_categories ( $args = [], $empty = false, $slug = false )
+	{
+		$items = [];
+		if ( $empty ) {
+			$items[] = __( 'Choose', 'wpessential' );
+		}
+
+		// Get the post types.
+		$terms = get_categories( $args );
+		// Build the array.
+		if ( $terms ) {
+			$slug = ( $slug ) ? 'slug' : 'term_id';
+			foreach ( $terms as $term ) {
+				$items[ wpe_array_get( $term, $slug ) ] = wpe_array_get( $term, 'name' );
+			}
+		} else {
+			$items[ 'no' ] = __( 'No Term Found', 'wpessential' );
+		}
+
+
+		return apply_filters( 'wpe/get/categories', $items );
+	}
+}
+
+if ( ! function_exists( 'wpe_get_users' ) ) {
+	/**
+	 * Retrieve array of register users.
+	 *
+	 * @param array $args  See https://developer.wordpress.org/reference/functions/get_users/ for details.
+	 * @param bool  $empty get list first item as empty
+	 * @param bool  $slug  get list of terms post by slug or id
+	 *
+	 * @return array
+	 */
+	function wpe_get_users ( $args = [], $empty = false, $slug = false )
+	{
+		$items = [];
+		if ( $empty ) {
+			$items[] = __( 'Choose', 'wpessential' );
+		}
+
+		// Get the post.
+		$users = get_users( $args );
+
+		// Build the array.
+		if ( $users ) {
+			$slug = ( $slug ) ? 'user_email' : 'ID';
+			foreach ( $users as $user ) {
+				$items[ wpe_array_get( $user, $slug ) ] = wpe_array_get( $user, 'display_name' );
+			}
+		} else {
+			$items[ 'no' ] = __( 'No Term Found', 'wpessential' );
+		}
+
+
+		return apply_filters( 'wpe/get/categories', $items );
+	}
+}
+
+if ( ! function_exists( 'wpe_get_nav_menus' ) ) {
+	/**
+	 * Returns an array of navigation menus.
+	 *
+	 * @param array  $args        See https://developer.wordpress.org/reference/functions/wp_get_nav_menus/ for details.
+	 * @param string $value_field The value to be stored in options. Accepted values: id|slug.
+	 * @param bool   $empty       get list first item as empty
+	 *
+	 * @return array
+	 */
+	function wpe_get_nav_menus ( $args = [], $value_field = 'id', $empty = false )
+	{
+		$nav_menus = wp_get_nav_menus( $args );
+
+		$items = [];
+		if ( $empty ) {
+			$items[] = __( 'Choose', 'wpessential' );
+		}
+
+		// Build the array.
+		if ( $nav_menus ) {
+			foreach ( $nav_menus as $menu ) {
+				$items[ 'slug' === $value_field ? $menu->slug : $menu->term_id ] = $menu->name;
+			}
+		} else {
+			$items[ 'no' ] = __( 'No Menu Found', 'wpessential' );
+		}
+
+		return $items;
+	}
+}
+
 if ( ! function_exists( 'wpe_get_page_title' ) ) {
 	/**
 	 * Returns the archive title.
 	 *
 	 * @param bool $include_context allow to add the page or post or archive identity.
+	 *
 	 * @return array
 	 */
 	function wpe_get_page_title ( bool $include_context = true )
@@ -324,7 +393,7 @@ if ( ! function_exists( 'wpe_get_the_archive_url' ) ) {
 
 if ( ! function_exists( 'wpe_get_user_meta_keys' ) ) {
 	/**
-	 * Retrive the array of current user meta keys.
+	 * Retrieve the array of current user meta keys.
 	 *
 	 * @return array
 	 */
@@ -336,9 +405,10 @@ if ( ! function_exists( 'wpe_get_user_meta_keys' ) ) {
 
 if ( ! function_exists( 'wpe_get_post_custom_keys_array' ) ) {
 	/**
-	 * Retrive the array of publicly taxonomies.
+	 * Retrieve the array of publicly taxonomies.
 	 *
 	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 *
 	 * @return array
 	 */
 	function wpe_get_post_custom_keys_array ( bool $is_multiselect = false )
@@ -366,15 +436,16 @@ if ( ! function_exists( 'wpe_get_post_custom_keys_array' ) ) {
 	}
 }
 
-if ( ! function_exists( 'wpe_register_post_type' ) ) {
+if ( ! function_exists( 'wpe_add_post_type' ) ) {
 	/**
 	 * Register post type
 	 *
 	 * @param string $name Define the post type name.
-	 * @param array $args Define arguments for the post type.
+	 * @param array  $args Define arguments for the post type.
+	 *
 	 * @return void
 	 */
-	function wpe_register_post_type ( string $name, array $args )
+	function wpe_add_post_type ( string $name, array $args )
 	{
 		$name = "wpe_{$name}";
 		$args = apply_filters( "wpe/post_type/{$name}/args", $args );
@@ -382,16 +453,17 @@ if ( ! function_exists( 'wpe_register_post_type' ) ) {
 	}
 }
 
-if ( ! function_exists( 'wpe_register_taxonomy' ) ) {
+if ( ! function_exists( 'wpe_add_taxonomy' ) ) {
 	/**
 	 * Register taxonomy
 	 *
-	 * @param string $name Define the taxonomy name.
+	 * @param string $name      Define the taxonomy name.
 	 * @param string $post_type Define the post type name.
-	 * @param array $args Define arguments for the taxonomy.
+	 * @param array  $args      Define arguments for the taxonomy.
+	 *
 	 * @return void
 	 */
-	function wpe_register_taxonomy ( string $name, string $post_type, array $args )
+	function wpe_add_taxonomy ( string $name, string $post_type, array $args )
 	{
 		$name = "wpe_{$name}";
 		$args = apply_filters( "wpe/taxonomy/{$name}/args", $args );
@@ -405,6 +477,7 @@ if ( ! function_exists( 'wpe_the_blog_cat' ) ) {
 	 *
 	 * @param string $classes classes to add.
 	 * @param string $seprator
+	 *
 	 * @return void
 	 */
 	function wpe_the_blog_cat ( $classes = '', $seprator = ',' )
@@ -421,6 +494,7 @@ if ( ! function_exists( 'wpe_the_author_link' ) ) {
 	 * Print the author link
 	 *
 	 * @param string $classes classes to add
+	 *
 	 * @return void
 	 */
 	function wpe_the_author_link ( $classes = '' )
@@ -429,35 +503,5 @@ if ( ! function_exists( 'wpe_the_author_link' ) ) {
 		the_author_posts_link();
 		$link = ob_get_clean();
 		echo str_replace( '<a', "<a class='wpe-author-link {$classes}'", $link );
-	}
-}
-
-if ( ! function_exists( 'wpe_get_nav_menus' ) ) {
-	/**
-	 * Returns an array of navigation menus.
-	 *
-	 * @param string $value_field The value to be stored in options. Accepted values: id|slug.
-	 * @param bool $is_multiselect enable or disable the first option like empty.
-	 * @return array
-	 */
-	function wpe_get_nav_menus ( $value_field = 'id', $is_multiselect = false )
-	{
-		$nav_menus = wp_get_nav_menus();
-
-		$items = [];
-		if ( ! $is_multiselect ) {
-			$items[] = __( 'Choose', 'wpessential' );
-		}
-
-		// Build the array.
-		if ( $nav_menus ) {
-			foreach ( $nav_menus as $menu ) {
-				$items[ 'slug' === $value_field ? $menu->slug : $menu->term_id ] = $menu->name;
-			}
-		} else {
-			$items[ 'no' ] = __( 'No Menu Found', 'wpessential' );
-		}
-
-		return $items;
 	}
 }

@@ -60,6 +60,18 @@ class Code extends Field implements Fields
 	 */
 	public function prepear ()
 	{
+		if ( 'Panel' === $this->editor ) {
+			wp_enqueue_code_editor( [ 'type' => $this->language, 'theme' => 'monokai' ] );
+			return [
+				/*'settings' => [
+					'codemirror' => [
+						'mode' => $this->language,
+					],
+					'theme' => 'monokai'
+				]*/
+			];
+		}
+
 		return [
 			'rows'     => $this->rows,
 			'language' => $this->language,
@@ -83,7 +95,13 @@ class Code extends Field implements Fields
 	 */
 	public function toArray ()
 	{
-		return wp_parse_args( $this->prepear(), parent::toArray() );
-	}
+		if ( 'Panel' === $this->editor ) {
+			$prepear               = $this->prepear();
+			$prepear[ 'settings' ] = wp_parse_args( wpe_array_get( $prepear, 'settings' ), parent::toArray()[ 'settings' ] );
+		} else {
+			$prepear = $this->prepear();
+		}
 
+		return wp_parse_args( $prepear, parent::toArray() );
+	}
 }

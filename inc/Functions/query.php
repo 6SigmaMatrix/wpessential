@@ -1,12 +1,13 @@
 <?php
 if ( ! function_exists( 'wpe_slide_table_select' ) ) {
 	/**
-	 * Retrive the data from table.
+	 * Retrieve the data from table.
 	 *
 	 * @param string $table name of table to get the data.
+	 *
 	 * @return array
 	 */
-	function wpe_slide_table_select ( string $table )
+	function wpe_slide_table_select ( $table )
 	{
 		global $wpdb;
 
@@ -16,9 +17,10 @@ if ( ! function_exists( 'wpe_slide_table_select' ) ) {
 
 if ( ! function_exists( 'wpe_formidable_table_query' ) ) {
 	/**
-	 * Retrive the array of posts.
+	 * Retrieve the array of posts.
 	 *
 	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 *
 	 * @return array
 	 */
 	function wpe_formidable_table_query ( $is_multiselect = false )
@@ -46,9 +48,10 @@ if ( ! function_exists( 'wpe_formidable_table_query' ) ) {
 
 if ( ! function_exists( 'wpe_caldera_table_query' ) ) {
 	/**
-	 * Retrive the array of posts.
+	 * Retrieve the array of posts.
 	 *
 	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 *
 	 * @return array
 	 */
 	function wpe_caldera_table_query ( $is_multiselect = false )
@@ -76,9 +79,10 @@ if ( ! function_exists( 'wpe_caldera_table_query' ) ) {
 
 if ( ! function_exists( 'wpe_ninja_table_query' ) ) {
 	/**
-	 * Retrive the array of posts.
+	 * Retrieve the array of posts.
 	 *
 	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 *
 	 * @return array
 	 */
 	function wpe_ninja_table_query ( $is_multiselect = false )
@@ -106,9 +110,10 @@ if ( ! function_exists( 'wpe_ninja_table_query' ) ) {
 
 if ( ! function_exists( 'wpe_layer_slider_table_query' ) ) {
 	/**
-	 * Retrive the array of posts.
+	 * Retrieve the array of posts.
 	 *
 	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 *
 	 * @return array
 	 */
 	function wpe_layer_slider_table_query ( $is_multiselect = false )
@@ -136,9 +141,10 @@ if ( ! function_exists( 'wpe_layer_slider_table_query' ) ) {
 
 if ( ! function_exists( 'wpe_rev_slider_table_query' ) ) {
 	/**
-	 * Retrive the array of posts.
+	 * Retrieve the array of posts.
 	 *
 	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 *
 	 * @return array
 	 */
 	function wpe_rev_slider_table_query ( $is_multiselect = false )
@@ -166,9 +172,10 @@ if ( ! function_exists( 'wpe_rev_slider_table_query' ) ) {
 
 if ( ! function_exists( 'wpe_smart_slider_table_query' ) ) {
 	/**
-	 * Retrive the array of posts.
+	 * Retrieve the array of posts.
 	 *
 	 * @param bool $is_multiselect enable or disable the first option like empty.
+	 *
 	 * @return array
 	 */
 	function wpe_smart_slider_table_query ( $is_multiselect = false )

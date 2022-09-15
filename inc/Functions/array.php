@@ -10,6 +10,7 @@ use WPEssential\Plugins\Libraries\Collection;
  * Create a collection from the given value.
  *
  * @param mixed $value
+ *
  * @return Collection
  * @since  1.0.0
  */
@@ -24,11 +25,12 @@ if ( ! function_exists( 'wpe_collect' ) ) {
  * Assign high numeric IDs to a config item to force appending.
  *
  * @param array $array
+ *
  * @return array
  * @since  1.0.0
  */
-if ( ! function_exists( 'append_config' ) ) {
-	function append_config ( array $array )
+if ( ! function_exists( 'wpe_append_config' ) ) {
+	function wpe_append_config ( array $array )
 	{
 		$start = 9999;
 
@@ -47,9 +49,10 @@ if ( ! function_exists( 'append_config' ) ) {
 /**
  * Add an element to an array using "dot" notation if it doesn't exist.
  *
- * @param array $array
+ * @param array  $array
  * @param string $key
- * @param mixed $value
+ * @param mixed  $value
+ *
  * @return array
  * @since  1.0.0
  */
@@ -64,6 +67,7 @@ if ( ! function_exists( 'wpe_array_add' ) ) {
  * Collapse an array of arrays into a single array.
  *
  * @param array $array
+ *
  * @return array
  * @since  1.0.0
  */
@@ -78,6 +82,7 @@ if ( ! function_exists( 'wpe_array_collapse' ) ) {
  * Divide an array into two arrays. One with keys and the other with values.
  *
  * @param array $array
+ *
  * @return array
  * @since  1.0.0
  */
@@ -91,8 +96,9 @@ if ( ! function_exists( 'wpe_array_divide' ) ) {
 /**
  * Flatten a multi-dimensional associative array with dots.
  *
- * @param array $array
+ * @param array  $array
  * @param string $prepend
+ *
  * @return array
  * @since  1.0.0
  */
@@ -106,8 +112,9 @@ if ( ! function_exists( 'wpe_array_dot' ) ) {
 /**
  * Get all of the given array except for a specified array of keys.
  *
- * @param array $array
+ * @param array        $array
  * @param array|string $keys
+ *
  * @return array
  * @since  1.0.0
  */
@@ -121,9 +128,10 @@ if ( ! function_exists( 'wpe_array_except' ) ) {
 /**
  * Return the first element in an array passing a given truth test.
  *
- * @param array $array
+ * @param array         $array
  * @param callable|null $callback
- * @param mixed $default
+ * @param mixed         $default
+ *
  * @return mixed
  * @since  1.0.0
  */
@@ -138,7 +146,8 @@ if ( ! function_exists( 'wpe_array_first' ) ) {
  * Flatten a multi-dimensional array into a single level.
  *
  * @param array $array
- * @param int $depth
+ * @param int   $depth
+ *
  * @return array
  * @since  1.0.0
  */
@@ -152,8 +161,9 @@ if ( ! function_exists( 'wpe_array_flatten' ) ) {
 /**
  * Remove one or many array items from a given array using "dot" notation.
  *
- * @param array $array
+ * @param array        $array
  * @param array|string $keys
+ *
  * @return void
  * @since  1.0.0
  */
@@ -168,8 +178,9 @@ if ( ! function_exists( 'wpe_array_forget' ) ) {
  * Get an item from an array using "dot" notation.
  *
  * @param \ArrayAccess|array $array
- * @param string $key
- * @param mixed $default
+ * @param string             $key
+ * @param mixed              $default
+ *
  * @return mixed
  * @since  1.0.0
  */
@@ -185,10 +196,32 @@ if ( ! function_exists( 'wpe_array_get' ) ) {
 }
 
 /**
+ * Get an item from an array using "dot" notation.
+ *
+ * @param \ArrayAccess|array $array
+ * @param string             $key
+ * @param mixed              $default
+ *
+ * @return mixed
+ * @since  1.0.0
+ */
+if ( ! function_exists( 'wpe_sh_get_attr' ) ) {
+	function wpe_sh_get_attr ( $array, $key, $default = null )
+	{
+		if ( is_object( $array ) ) {
+			$array = (array) $array;
+		}
+
+		return Arr::get( $array, "wpe_st_{$key}", $default );
+	}
+}
+
+/**
  * Check if an item or items exist in an array using "dot" notation.
  *
  * @param \ArrayAccess|array $array
- * @param string|array $keys
+ * @param string|array       $keys
+ *
  * @return bool
  * @since  1.0.0
  */
@@ -202,9 +235,10 @@ if ( ! function_exists( 'wpe_array_has' ) ) {
 /**
  * Return the last element in an array passing a given truth test.
  *
- * @param array $array
+ * @param array         $array
  * @param callable|null $callback
- * @param mixed $default
+ * @param mixed         $default
+ *
  * @return mixed
  * @since  1.0.0
  */
@@ -218,8 +252,9 @@ if ( ! function_exists( 'wpe_array_last' ) ) {
 /**
  * Get a subset of the items from the given array.
  *
- * @param array $array
+ * @param array        $array
  * @param array|string $keys
+ *
  * @return array
  * @since  1.0.0
  */
@@ -233,9 +268,10 @@ if ( ! function_exists( 'wpe_array_only' ) ) {
 /**
  * Pluck an array of values from an array.
  *
- * @param array $array
- * @param string|array $value
+ * @param array             $array
+ * @param string|array      $value
  * @param string|array|null $key
+ *
  * @return array
  * @since  1.0.0
  */
@@ -252,6 +288,7 @@ if ( ! function_exists( 'wpe_array_pluck' ) ) {
  * @param array $array
  * @param mixed $value
  * @param mixed $key
+ *
  * @return array
  * @since  1.0.0
  */
@@ -265,9 +302,10 @@ if ( ! function_exists( 'wpe_array_prepend' ) ) {
 /**
  * Get a value from the array, and remove it.
  *
- * @param array $array
+ * @param array  $array
  * @param string $key
- * @param mixed $default
+ * @param mixed  $default
+ *
  * @return mixed
  * @since  1.0.0
  */
@@ -281,8 +319,9 @@ if ( ! function_exists( 'wpe_array_pull' ) ) {
 /**
  * Get a random value from an array.
  *
- * @param array $array
+ * @param array    $array
  * @param int|null $num
+ *
  * @return mixed
  * @since  1.0.0
  */
@@ -298,9 +337,10 @@ if ( ! function_exists( 'wpe_array_random' ) ) {
  *
  * If no key is given to the method, the entire array will be replaced.
  *
- * @param array $array
+ * @param array  $array
  * @param string $key
- * @param mixed $value
+ * @param mixed  $value
+ *
  * @return array
  * @since  1.0.0
  */
@@ -314,8 +354,9 @@ if ( ! function_exists( 'wpe_array_set' ) ) {
 /**
  * Sort the array by the given callback or attribute name.
  *
- * @param array $array
+ * @param array                $array
  * @param callable|string|null $callback
+ *
  * @return array
  * @since  1.0.0
  */
@@ -330,6 +371,7 @@ if ( ! function_exists( 'wpe_array_sort' ) ) {
  * Recursively sort an array by keys and values.
  *
  * @param array $array
+ *
  * @return array
  * @since  1.0.0
  */
@@ -343,8 +385,9 @@ if ( ! function_exists( 'wpe_array_sort_recursive' ) ) {
 /**
  * Filter the array using the given callback.
  *
- * @param array $array
+ * @param array    $array
  * @param callable $callback
+ *
  * @return array
  * @since  1.0.0
  */
@@ -359,6 +402,7 @@ if ( ! function_exists( 'wpe_array_where' ) ) {
  * If the given value is not an array, wrap it in one.
  *
  * @param mixed $value
+ *
  * @return array
  * @since  1.0.0
  */
@@ -373,6 +417,7 @@ if ( ! function_exists( 'wpe_array_wrap' ) ) {
  * Return the default value of the given value.
  *
  * @param mixed $value
+ *
  * @return mixed
  */
 if ( ! function_exists( 'wpe_value' ) ) {
@@ -385,9 +430,10 @@ if ( ! function_exists( 'wpe_value' ) ) {
 /**
  * Get an item from an array or object using "dot" notation.
  *
- * @param mixed $target
+ * @param mixed            $target
  * @param string|array|int $key
- * @param mixed $default
+ * @param mixed            $default
+ *
  * @return mixed
  */
 if ( ! function_exists( 'wpe_data_get' ) ) {
@@ -433,6 +479,7 @@ if ( ! function_exists( 'wpe_data_get' ) ) {
  * Array Reduce
  *
  * @param array $args Define arguments for the reduce.
+ *
  * @return string
  * @since  1.0.0
  */
@@ -451,13 +498,28 @@ if ( ! function_exists( 'wpe_array_reduce' ) ) {
 /**
  * Array Prefix adding
  *
- * @param array $array Define array.
+ * @param array  $array  Define array.
  * @param string $prefix Define prefix.
+ *
  * @return array
  */
 if ( ! function_exists( 'wpe_array_key_prefix' ) ) {
 	function wpe_array_key_prefix ( $array, $prefix )
 	{
 		return array_combine( array_map( function ( $key ) use ( $prefix ) { return $prefix . $key; }, array_keys( $array ) ), $array );
+	}
+}
+
+/**
+ * Array filter true and false
+ *
+ * @param array $var Define item.
+ *
+ * @return array
+ */
+if ( ! function_exists( 'wpe_array_filter_false' ) ) {
+	function wpe_array_filter_false ( $var )
+	{
+		return ( $var !== null && $var === false && $var !== '' );
 	}
 }

@@ -89,11 +89,12 @@ if ( ! function_exists( 'wpe_generate_css' ) ) {
 	 * Print|Generate CSS.
 	 *
 	 * @param string $selector The CSS selector.
-	 * @param string $style The CSS style.
-	 * @param string $value The CSS value.
-	 * @param string $prefix The CSS prefix.
-	 * @param string $suffix The CSS suffix.
-	 * @param bool $echo Echo the styles.
+	 * @param string $style    The CSS style.
+	 * @param string $value    The CSS value.
+	 * @param string $prefix   The CSS prefix.
+	 * @param string $suffix   The CSS suffix.
+	 * @param bool   $echo     Echo the styles.
+	 *
 	 * @return string|void
 	 */
 	function wpe_generate_css ( string $selector, string $style, string $value, $prefix = '', $suffix = '', $echo = true )

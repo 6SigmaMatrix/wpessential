@@ -2,17 +2,8 @@
 
 namespace WPEssential\Plugins\Fields;
 
-use WPEssential\Plugins\Implement\Fields;
-
-class DateTime extends Field implements Fields
+class DateTime extends Date
 {
-	/**
-	 * The type of the control.
-	 *
-	 * @var string
-	 */
-	public $type = 'date_time';
-
 	/**
 	 * Prepare the field's.
 	 *

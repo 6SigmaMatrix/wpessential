@@ -4,6 +4,7 @@ if ( ! function_exists( 'wpe_get_image_from_url' ) ) {
 	 * Returns an array of the attachment's properties.
 	 *
 	 * @param string $url URL to the image.
+	 *
 	 * @return array
 	 */
 	function wpe_get_image_from_url ( string $url )
@@ -26,8 +27,10 @@ if ( ! function_exists( 'wpe_get_image_id_by_url' ) ) {
 	 *
 	 * @static
 	 * @access public
-	 * @see https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+	 * @see    https://pippinsplugins.com/retrieve-attachment-id-from-image-url/
+	 *
 	 * @param string $url URL to the image.
+	 *
 	 * @return int|string Numeric ID of the attachement.
 	 */
 	function wpe_get_image_id_by_url ( string $url )

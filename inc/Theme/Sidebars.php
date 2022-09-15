@@ -19,7 +19,7 @@ final class Sidebars
 	public static function remove ()
 	{
 		$sidebars = apply_filters( 'wpe/remove/sidebars', [ '' ] );
-		if ( $sidebars && is_array( $sidebars ) ) {
+		if ( ! empty( $sidebars ) ) {
 			foreach ( $sidebars as $sidebar ) {
 				unregister_sidebar( $sidebar );
 			}
@@ -52,11 +52,10 @@ final class Sidebars
 			]
 		);
 
-		if ( $sidebars && is_array( $sidebars ) ) {
+		if ( ! empty( $sidebars ) ) {
 			foreach ( $sidebars as $sidebar ) {
 				register_sidebar( $sidebar );
 			}
 		}
 	}
 }
-

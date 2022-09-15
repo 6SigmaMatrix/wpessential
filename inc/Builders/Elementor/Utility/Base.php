@@ -3,12 +3,13 @@
 namespace WPEssential\Plugins\Builders\Elementor\Utility;
 
 use Elementor\Widget_Base;
+use WPEssential\Plugins\Helper\ElementRender;
 use WPEssential\Plugins\Helper\GetShortcodeBase;
 use WPEssential\Plugins\Implement\Shortcodes;
 
 abstract class Base extends Widget_Base
 {
-	use GetShortcodeBase;
+	use GetShortcodeBase, ElementRender;
 
 	public function __construct ( $data = [], $args = null )
 	{
@@ -24,7 +25,7 @@ abstract class Base extends Widget_Base
 	public function shortcode ()
 	{
 		$widget = get_class( $this );
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type( new $widget() );
+		\Elementor\Plugin::instance()->widgets_manager->register( new $widget() );
 	}
 
 	/**
@@ -130,7 +131,7 @@ abstract class Base extends Widget_Base
 	 */
 	protected function _add_render_attributes ()
 	{
-		parent::_add_render_attributes();
+		parent::add_render_attributes();
 
 		$this->add_render_attribute(
 			'_wrapper', 'class', [

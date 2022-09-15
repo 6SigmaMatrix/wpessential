@@ -12,8 +12,8 @@ add_action( 'wpe_footer', 'wpe_footer_sidebar_template', 10 );
 add_action( 'wpe_footer', 'wpe_footer_menu_template', 20 );
 add_action( 'wpe_footer', 'wpe_footer_copyright_template', 30 );
 
-add_action( 'wpe_header', 'wpe_page_loader_template', 0 );
-add_action( 'wpe_header', 'wpe_header_logo_template', 10 );
+add_action( 'wpe_before_header', 'wpe_loader_template' );
+add_action( 'wpe_header', 'wpe_header_logo_template' );
 add_action( 'wpe_header', 'wpe_header_menu_template', 20 );
 add_action( 'wpe_header', 'wpe_header_login_template', 30 );
 add_action( 'wpe_header', 'wpe_header_cart_template', 40 );
@@ -39,12 +39,12 @@ add_action( 'wpe_comments', 'wpe_comments' );
 
 function wpe_before_loop_template ()
 {
-	require_once wpe_template_load( 'templates/general/before-loop.php' );
+	include wpe_template_load( 'templates/general/before-loop.php' );
 }
 
 function wpe_no_posts_found_template ()
 {
-	require_once wpe_template_load( 'templates/general/no-posts-found.php' );
+	include wpe_template_load( 'templates/general/no-posts-found.php' );
 }
 
 function wpe_loop_post_before_template ()
@@ -59,77 +59,77 @@ function wpe_loop_post_after_template ()
 
 function wpe_after_loop_template ()
 {
-	require_once wpe_template_load( 'templates/general/after-loop.php' );
+	include wpe_template_load( 'templates/general/after-loop.php' );
 }
 
 function wpe_pagination_template ( $args = [] )
 {
-	require_once wpe_template_load( 'templates/general/pagination.php' );
+	include wpe_template_load( 'templates/general/pagination.php' );
 }
 
 function wpe_default_sidebar_before_template ()
 {
-	require_once wpe_template_load( 'templates/general/before-sidebar.php' );
+	include wpe_template_load( 'templates/general/before-sidebar.php' );
 }
 
 function wpe_default_sidebar_template ()
 {
-	require_once wpe_template_load( 'templates/general/default-sidebar.php' );
+	include wpe_template_load( 'templates/general/default-sidebar.php' );
 }
 
 function wpe_default_sidebar_after_template ()
 {
-	require_once wpe_template_load( 'templates/general/after-sidebar.php' );
+	include wpe_template_load( 'templates/general/after-sidebar.php' );
 }
 
 function wpe_footer_sidebar_template ()
 {
-	require_once wpe_template_load( 'templates/footer/footer-sidebar.php' );
+	include wpe_template_load( 'templates/footer/footer-sidebar.php' );
 }
 
 function wpe_footer_template ()
 {
-	require_once wpe_template_load( 'templates/footer/footer.php' );
+	include wpe_template_load( 'templates/footer/footer.php' );
 }
 
 function wpe_footer_menu_template ()
 {
-	require_once wpe_template_load( 'templates/footer/branding/menu.php' );
+	include wpe_template_load( 'templates/footer/branding/menu.php' );
 }
 
 function wpe_footer_copyright_template ()
 {
-	require_once wpe_template_load( 'templates/footer/branding/copyright.php' );
+	include wpe_template_load( 'templates/footer/branding/copyright.php' );
 }
 
-function wpe_page_loader_template ()
+function wpe_loader_template ()
 {
-	require_once wpe_template_load( 'templates/header/loader.php' );
+	include wpe_template_load( 'templates/general/site-loader.php' );
 }
 
 function wpe_header_logo_template ()
 {
-	require_once wpe_template_load( 'templates/header/branding/logo.php' );
+	include wpe_template_load( 'templates/header/branding/logo.php' );
 }
 
 function wpe_header_menu_template ()
 {
-	require_once wpe_template_load( 'templates/header/branding/menu.php' );
+	include wpe_template_load( 'templates/header/branding/menu.php' );
 }
 
 function wpe_header_template ()
 {
-	require_once wpe_template_load( 'templates/header/header.php' );
+	include wpe_template_load( 'templates/header/header.php' );
 }
 
 function wpe_header_login_template ()
 {
-	require_once wpe_template_load( 'templates/header/branding/login.php' );
+	include wpe_template_load( 'templates/header/branding/login.php' );
 }
 
 function wpe_header_cart_template ()
 {
-	require_once wpe_template_load( 'templates/header/branding/cart.php' );
+	include wpe_template_load( 'templates/header/branding/cart.php' );
 }
 
 function wpe_blog_loop_template ()
@@ -198,30 +198,30 @@ function wpe_post_format_template ( $format, $image_size = '' )
 
 function wpe_comment_title ()
 {
-	require_once wpe_template_load( 'templates/comment/title.php' );
+	include wpe_template_load( 'templates/comment/title.php' );
 }
 
 function wpe_comment_list ()
 {
-	require_once wpe_template_load( 'templates/comment/list.php' );
+	include wpe_template_load( 'templates/comment/list.php' );
 }
 
 function wpe_comment_form ()
 {
-	require_once wpe_template_load( 'templates/comment/form.php' );
+	include wpe_template_load( 'templates/comment/form.php' );
 }
 
 function wpe_comments ()
 {
-	require_once wpe_template_load( 'templates/comment/comments.php' );
+	include wpe_template_load( 'templates/comment/comments.php' );
 }
 
 function wpe_comments_close ()
 {
-	require_once wpe_template_load( 'templates/comment/close.php' );
+	include wpe_template_load( 'templates/comment/close.php' );
 }
 
 function wpe_comments_pagination ()
 {
-	require_once wpe_template_load( 'templates/comment/pagination.php' );
+	include wpe_template_load( 'templates/comment/pagination.php' );
 }

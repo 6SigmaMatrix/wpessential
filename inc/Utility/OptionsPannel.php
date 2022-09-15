@@ -6,7 +6,9 @@ final class OptionsPannel
 {
 	public static function constructor ()
 	{
-		self::init();
+		if ( defined( 'WPE_KIRI' ) && true === WPE_KIRI ) {
+			self::init();
+		}
 	}
 
 	private static function init ()

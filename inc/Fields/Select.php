@@ -14,26 +14,6 @@ class Select extends Field implements Fields
 	public $type = 'select';
 
 	/**
-	 * An array of key => value pairs: [ 'key' => 'value', ... ]
-	 *
-	 * @var array
-	 */
-	public $options;
-
-	/**
-	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
-	 *
-	 * @param $callback
-	 * @return $this
-	 */
-	public function options ( $callback )
-	{
-		$this->options = $callback;
-
-		return $this;
-	}
-
-	/**
 	 * Prepare the field's.
 	 *
 	 * @return array

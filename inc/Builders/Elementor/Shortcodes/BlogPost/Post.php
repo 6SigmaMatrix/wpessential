@@ -42,7 +42,7 @@ class Post extends Base implements Shortcodes
 	 * @since 1.0.0
 	 * @access public
 	 */
-	public function _register_controls ()
+	public function register_controls ()
 	{
 		$this->start_controls_section(
 			'section_1',

@@ -14,66 +14,6 @@ class Number extends Field implements Fields
 	public $type = 'number';
 
 	/**
-	 * The minimum number (only affects the spinners, the user can still type a lower value).
-	 *
-	 * @var string
-	 */
-	public $min = '';
-
-	/**
-	 * The maximum number (only affects the spinners, the user can still type a higher value).
-	 *
-	 * @var string
-	 */
-	public $max = '';
-
-	/**
-	 * The intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
-	 *
-	 * @var string
-	 */
-	public $step = '';
-
-	/**
-	 * Set the minimum number (only affects the spinners, the user can still type a lower value).
-	 *
-	 * @param $callback
-	 * @return $this
-	 */
-	public function min ( $callback )
-	{
-		$this->min = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * Set the maximum number (only affects the spinners, the user can still type a higher value).
-	 *
-	 * @param $callback
-	 * @return $this
-	 */
-	public function max ( $callback )
-	{
-		$this->max = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * Set the intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
-	 *
-	 * @param $callback
-	 * @return $this
-	 */
-	public function step ( $callback )
-	{
-		$this->step = $callback;
-
-		return $this;
-	}
-
-	/**
 	 * Prepare the field's.
 	 *
 	 * @return array

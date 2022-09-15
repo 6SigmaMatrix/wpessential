@@ -1,0 +1,46 @@
+<?php
+
+namespace [attach_name_space]\Utility;
+
+final class Images
+{
+	public static function constructor ()
+	{
+		add_filter( 'wpe/register/images/size', [ __CLASS__, 'register' ], 1000 );
+		add_filter( 'wpe/remove/images/size', [ __CLASS__, 'remove' ], 1000 );
+	}
+
+	public static function register ( $list )
+	{
+		return wp_parse_args(
+			[
+				'[attach_theme_prefix]_blog_image_711x400'  => [
+					'name'  => '[attach_theme_prefix]_blog_image_711x400',
+					'size'  => [
+						'w' => 711,
+						'h' => 400
+					],
+					'croup' => true
+				]
+			],
+			$list
+		);
+	}
+
+	public static function remove ( $list )
+    {
+        return wp_parse_args(
+            [
+                '[attach_theme_prefix]_blog_image_711x400'  => [
+                    'name'  => '[attach_theme_prefix]_blog_image_711x400',
+                    'size'  => [
+                        'w' => 711,
+                        'h' => 400
+                    ],
+                    'croup' => true
+                ]
+            ],
+            $list
+        );
+    }
+}

@@ -14,26 +14,6 @@ class Textarea extends Field implements Fields
 	public $type = 'textarea';
 
 	/**
-	 * The field's input rows.
-	 *
-	 * @var float
-	 */
-	public $rows = 5;
-
-	/**
-	 * Set the callback to be used for determining the field's input type value.
-	 *
-	 * @param $callback
-	 * @return $this
-	 */
-	public function rows ( $callback )
-	{
-		$this->rows = $callback;
-
-		return $this;
-	}
-
-	/**
 	 * Prepare the field's.
 	 *
 	 * @return array

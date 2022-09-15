@@ -23,6 +23,65 @@ trait GetShortcodeBase
 	}
 
 	/**
+	 * Get widget categories.
+	 *
+	 * Retrieve the list of categories the icon widget belongs to.
+	 *
+	 * Used to determine where to display the widget in the editor.
+	 *
+	 * @return array Widget categories.
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 */
+	public function get_categories ()
+	{
+		return $this->set_categories();
+	}
+
+	/**
+	 * Get HTML wrapper class.
+	 * Retrieve the widget container class. Can be used to override the
+	 * container class for specific widgets.
+	 *
+	 * @return string
+	 * @access public
+	 * @public
+	 */
+	public function get_html_wrapper_class ()
+	{
+		return $this->set_html_wrapper_class();
+	}
+
+	/**
+	 * Get widget icon.
+	 * Retrieve widget icon.
+	 *
+	 * @return string Widget icon.
+	 * @access public
+	 * @public
+	 */
+	public function get_icon ()
+	{
+		return "wpe-icon {$this->set_widget_icon()}";
+	}
+
+	/**
+	 * Get widget keywords.
+	 *
+	 * Retrieve the list of keywords the widget belongs to.
+	 *
+	 * @return array Widget keywords.
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 */
+	public function get_keywords ()
+	{
+		return wp_parse_args( $this->set_keywords(), [ 'wpessential' ] );
+	}
+
+	/**
 	 * Get widget name.
 	 * Retrieve widget name.
 	 *
@@ -49,33 +108,18 @@ trait GetShortcodeBase
 	}
 
 	/**
-	 * Get widget icon.
-	 * Retrieve widget icon.
+	 * Get widget keywords.
 	 *
-	 * @return string Widget icon.
-	 * @access public
-	 * @public
-	 */
-	public function get_icon ()
-	{
-		return "wpe-icon {$this->set_widget_icon()}";
-	}
-
-	/**
-	 * Get widget categories.
+	 * Retrieve the list of keywords the widget belongs to.
 	 *
-	 * Retrieve the list of categories the icon widget belongs to.
-	 *
-	 * Used to determine where to display the widget in the editor.
-	 *
-	 * @return array Widget categories.
-	 * @since 1.0.0
+	 * @return array Widget keywords.
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
-	public function get_categories ()
+	public function register_skins ()
 	{
-		return $this->set_categories();
+		$this->set_skins();
 	}
 
 	/**
@@ -86,7 +130,7 @@ trait GetShortcodeBase
 	 * Used to determine where to display the widget in the editor.
 	 *
 	 * @return string Widget category.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -96,27 +140,12 @@ trait GetShortcodeBase
 	}
 
 	/**
-	 * Get widget keywords.
-	 *
-	 * Retrieve the list of keywords the widget belongs to.
-	 *
-	 * @return array Widget keywords.
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 */
-	public function get_keywords ()
-	{
-		return wp_parse_args( $this->set_keywords(), [ 'wpessential' ] );
-	}
-
-	/**
 	 * Get widget description.
 	 *
 	 * Retrieve the description of the widget.
 	 *
 	 * @return array Widget description.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -131,41 +160,12 @@ trait GetShortcodeBase
 	 * Retrieve the classes of the widget.
 	 *
 	 * @return array Widget classes.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
 	public function get_classes ()
 	{
 		return wp_parse_args( $this->set_classes(), [ 'wpessential' ] );
-	}
-
-	/**
-	 * Get widget keywords.
-	 *
-	 * Retrieve the list of keywords the widget belongs to.
-	 *
-	 * @return array Widget keywords.
-	 * @since 1.0.0
-	 * @access public
-	 *
-	 */
-	public function _register_skins ()
-	{
-		$this->set_skins();
-	}
-
-	/**
-	 * Get HTML wrapper class.
-	 * Retrieve the widget container class. Can be used to override the
-	 * container class for specific widgets.
-	 *
-	 * @return string
-	 * @access public
-	 * @public
-	 */
-	public function get_html_wrapper_class ()
-	{
-		return $this->set_html_wrapper_class();
 	}
 }

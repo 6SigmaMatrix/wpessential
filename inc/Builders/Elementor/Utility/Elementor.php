@@ -115,7 +115,7 @@ final class Elementor implements ShortcodeInit
 		$controls_manager->add_group_control( GroupQuery::get_type(), new GroupQuery() );
 		$controls_manager->add_group_control( Related::get_type(), new Related() );
 		$controls_manager->register_control( 'query', new Query() );*/
-		$controls_manager->register_control( 'image_select', new ImageSelect() );
+		$controls_manager->register( 'image_select', new ImageSelect() );
 	}
 
 	public static function register_ajax_actions ( $ajax_manager )

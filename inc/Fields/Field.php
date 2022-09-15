@@ -40,11 +40,130 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	public $description = '';
 
 	/**
+	 * The short description of the field.
+	 *
+	 * @var string
+	 */
+	public $subtitle = '';
+
+	/**
+	 * The readonly of the field.
+	 *
+	 * @var string
+	 */
+	public $readonly = '';
+
+	/**
 	 * The placeholder of the field.
 	 *
 	 * @var string
 	 */
 	public $placeholder = '';
+
+	/**
+	 * The minimum number (only affects the spinners, the user can still type a lower value).
+	 *
+	 * @var string
+	 */
+	public $min = '';
+
+	/**
+	 * The maximum number (only affects the spinners, the user can still type a higher value).
+	 *
+	 * @var string
+	 */
+	public $max = '';
+
+	/**
+	 * The intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
+	 *
+	 * @var string
+	 */
+	public $step = '';
+
+	/**
+	 * Indicate the field type style like strictly or not.
+	 *
+	 * @var string
+	 */
+	public $step_strictly = '';
+
+	/**
+	 * Indicate the field controls.
+	 *
+	 * @var bool
+	 */
+	public $controls = true;
+
+	/**
+	 * Indicate the field controls.
+	 *
+	 * @var string
+	 */
+	public $autocomplete = '';
+
+	/**
+	 * Indicate the field fallible.
+	 *
+	 * @var bool
+	 */
+	public $filterable = false;
+
+	/**
+	 * An array of key => value pairs: [ 'key' => 'value', ... ]
+	 *
+	 * @var array
+	 */
+	public $options;
+
+	/**
+	 * An reserve keyword
+	 *
+	 * @var array
+	 */
+	public $reserve_keyword = false;
+
+	/**
+	 * Whether to allow multiple value selection.
+	 *
+	 * @var bool
+	 */
+	public $multiple = true;
+
+	/**
+	 * Whether to allow multiple limit value selection.
+	 *
+	 * @var number
+	 */
+	public $multiple_limit;
+
+	/**
+	 * Whether to allow predefine color.
+	 *
+	 * @var array
+	 */
+	public $predefine = [];
+
+	/**
+	 * Indicate the field controls. (right, left, top, bottom)
+	 *
+	 * @var string
+	 */
+	public $controls_position = '';
+
+	/**
+	 * Indicate the field maxlength.
+	 *
+	 * @var string
+	 */
+	public $maxlength = '';
+
+	/**
+	 * Indicate the field maxlength.
+	 *
+	 * @var string
+	 */
+	public $minlength = '';
 
 	/**
 	 * The default field's value.
@@ -94,6 +213,48 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 * @var bool
 	 */
 	public $labelBlock = false;
+
+	/**
+	 * Indicates if the field should be disabled.
+	 *
+	 * @var bool
+	 */
+	public $disabled = false;
+
+	/**
+	 * Indicates if the field should be clearable.
+	 *
+	 * @var bool
+	 */
+	public $clearable = false;
+
+	/**
+	 * Indicates if the field should be note icon.
+	 *
+	 * @var string
+	 */
+	public $note_icon = 'el-icon-warning';
+
+	/**
+	 * Indicates if the field should be note title.
+	 *
+	 * @var string
+	 */
+	public $note_title = '';
+
+	/**
+	 * Indicates if the field should be note description.
+	 *
+	 * @var string
+	 */
+	public $note_desc = '';
+
+	/**
+	 * Indicates if the field should be word limit show.
+	 *
+	 * @var bool
+	 */
+	public $word_limit_show = false;
 
 	/**
 	 * The add the filed dependency to editor.
@@ -178,6 +339,13 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	public $wrap_selector = '';
 
 	/**
+	 * Indicates if the field should be allowed to add the size. (small, medium, large)
+	 *
+	 * @var string
+	 */
+	public $field_size = '';
+
+	/**
 	 * Add responsive true or false
 	 *
 	 * @var bool
@@ -192,6 +360,27 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	public $global = [
 		'active' => false
 	];
+
+	/**
+	 * The field's input rows.
+	 *
+	 * @var float
+	 */
+	public $rows = 5;
+
+	/**
+	 * The field's input minimum rows.
+	 *
+	 * @var float
+	 */
+	public $min_rows = 2;
+
+	/**
+	 * The field's input maximum rows.
+	 *
+	 * @var float
+	 */
+	public $max_rows = 5;
 
 	/**
 	 * Create a new field.

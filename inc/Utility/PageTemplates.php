@@ -45,7 +45,7 @@ final class PageTemplates
 	 *
 	 * @param mixed $template
 	 *
-	 * @return void
+	 * @return string
 	 */
 	public static function view_template ( $template )
 	{
@@ -67,11 +67,9 @@ final class PageTemplates
 		$files = array_filter( $files );
 		if ( $files && is_array( $files ) ) {
 			foreach ( $files as $file ) {
-				$file = $file . get_post_meta( $post->ID, '_wp_page_template', true );
+				$file .= get_post_meta( $post->ID, '_wp_page_template', true );
 				if ( file_exists( $file ) ) {
 					return $file;
-				} else {
-					echo $file;
 				}
 			}
 		}
@@ -116,4 +114,3 @@ final class PageTemplates
 
 	}
 }
-
