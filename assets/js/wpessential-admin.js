@@ -2923,23 +2923,6 @@ var render = function() {
               ),
               _vm._v(" "),
               _c(
-                "el-button",
-                {
-                  ref: "btn",
-                  staticClass: "tab-collaps el-tabs__item",
-                  staticStyle: { display: "none" },
-                  attrs: { icon: "el-icon-caret-left", size: "mini" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      return _vm.collapse_class($event)
-                    }
-                  }
-                },
-                [_vm._v("\n\t\t\t\tCollapse menu\n\t\t\t")]
-              ),
-              _vm._v(" "),
-              _c(
                 "el-tabs",
                 {
                   ref: "tabs",
@@ -3137,6 +3120,23 @@ var render = function() {
                   )
                 ],
                 2
+              ),
+              _vm._v(" "),
+              _c(
+                "el-button",
+                {
+                  ref: "btn",
+                  staticClass: "tab-collaps el-tabs__item",
+                  staticStyle: { display: "none" },
+                  attrs: { icon: "el-icon-caret-left", size: "mini" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.collapse_class($event)
+                    }
+                  }
+                },
+                [_vm._v("\n\t\t\t\tCollapse menu\n\t\t\t")]
               )
             ],
             1
@@ -7742,12 +7742,12 @@ var store = new Vuex.Store({
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_WpeHealth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/WpeHealth */ "./src/components/WpeHealth.vue");
-/* harmony import */ var _components_WpeHome__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/WpeHome */ "./src/components/WpeHome.vue");
-/* harmony import */ var _components_WpeNavigation__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/WpeNavigation */ "./src/components/WpeNavigation.vue");
-/* harmony import */ var _components_WpeOptions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/WpeOptions */ "./src/components/WpeOptions.vue");
-/* harmony import */ var _components_WpeExtensions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/WpeExtensions */ "./src/components/WpeExtensions.vue");
-/* harmony import */ var _components_WpeAuth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/WpeAuth */ "./src/components/WpeAuth.vue");
+/* harmony import */ var _components_WpeAuth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/WpeAuth */ "./src/components/WpeAuth.vue");
+/* harmony import */ var _components_WpeExtensions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/WpeExtensions */ "./src/components/WpeExtensions.vue");
+/* harmony import */ var _components_WpeHealth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/WpeHealth */ "./src/components/WpeHealth.vue");
+/* harmony import */ var _components_WpeHome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/WpeHome */ "./src/components/WpeHome.vue");
+/* harmony import */ var _components_WpeNavigation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/WpeNavigation */ "./src/components/WpeNavigation.vue");
+/* harmony import */ var _components_WpeOptions__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/WpeOptions */ "./src/components/WpeOptions.vue");
 /* harmony import */ var _store_options__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./store/options */ "./src/store/options.js");
 
 
@@ -7765,17 +7765,18 @@ Vue.prototype.$WPE_AJAX_PREFIX = WPEssential.ajaxurl_prefix;
 var router = typeof VueRouter === 'function' ? new VueRouter({
   mode: 'hash'
 }) : '';
-Vue.component('wpe-home', _components_WpeHome__WEBPACK_IMPORTED_MODULE_1__["default"]);
-Vue.component('wpe-health', _components_WpeHealth__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.component('wpe-options', _components_WpeOptions__WEBPACK_IMPORTED_MODULE_3__["default"]);
-Vue.component('wpe-extensions', _components_WpeExtensions__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('wpe-auth', _components_WpeAuth__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('wpe-home', _components_WpeHome__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.component('wpe-health', _components_WpeHealth__WEBPACK_IMPORTED_MODULE_2__["default"]);
+Vue.component('wpe-options', _components_WpeOptions__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('wpe-extensions', _components_WpeExtensions__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Vue.component('wpe-auth', _components_WpeAuth__WEBPACK_IMPORTED_MODULE_0__["default"]);
+console.log(Vue);
 var app = new Vue({
   store: _store_options__WEBPACK_IMPORTED_MODULE_6__["store"],
   router: router,
   el: '#wpessential-admin',
   components: {
-    WpeNavigation: _components_WpeNavigation__WEBPACK_IMPORTED_MODULE_2__["default"]
+    WpeNavigation: _components_WpeNavigation__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   mounted: function mounted() {
     this.append_routes();

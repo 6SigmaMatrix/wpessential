@@ -124,7 +124,7 @@ final class Loader
 
 	public static function admin_init ()
 	{
-		do_action( 'wpe_admin_init' );
+		do_action( 'wpessential_admin_init' );
 	}
 }
 

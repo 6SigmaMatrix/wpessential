@@ -1,9 +1,9 @@
+import WpeAuth from "./components/WpeAuth";
+import WpeExtensions from "./components/WpeExtensions";
 import WpeHealth from "./components/WpeHealth";
 import WpeHome from "./components/WpeHome";
 import WpeNavigation from "./components/WpeNavigation";
 import WpeOptions from "./components/WpeOptions";
-import WpeExtensions from "./components/WpeExtensions";
-import WpeAuth from "./components/WpeAuth";
 import { store } from "./store/options";
 
 //const ElementUI = window.ELEMENT;
@@ -21,6 +21,8 @@ Vue.component( 'wpe-health', WpeHealth );
 Vue.component( 'wpe-options', WpeOptions );
 Vue.component( 'wpe-extensions', WpeExtensions );
 Vue.component( 'wpe-auth', WpeAuth );
+
+console.log( Vue );
 
 const app = new Vue( {
 	store     : store,

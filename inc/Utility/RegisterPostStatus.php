@@ -4,6 +4,9 @@ namespace WPEssential\Plugins\Utility;
 
 final class RegisterPostStatus
 {
+	private static $quick_script;
+	private static $edit_script;
+
 	public static function constructor ()
 	{
 		self::status_list();
@@ -29,7 +32,31 @@ final class RegisterPostStatus
 						]
 					)
 				);
+
+				self::$quick_script .= "$( 'select[name=\"_status\"]' ).append( '<option value=\"{$k}\">{$v}</option>' );";
+				self::$edit_script  .= "$( 'select[name=\"post_status\"]' ).append( '<option value=\"{$k}\">{$v}</option>' );";
 			}
+
+			self::in_status_html();
 		}
+	}
+
+	private static function in_status_html ()
+	{
+		add_action( 'admin_footer-edit.php', [ __CLASS__, 'add_in_edit_screen' ] );
+		add_action( 'admin_footer-post.php', [ __CLASS__, 'add_in_edit_screen' ] );
+		add_action( 'admin_footer-post-new.php', [ __CLASS__, 'add_in_quick_screen' ] );
+	}
+
+	public static function add_in_quick_screen ()
+	{
+		$quick_script = self::$quick_script;
+		echo "<script>jQuery(document).ready(function($){{$quick_script}});</script>";
+	}
+
+	public static function add_in_edit_screen ()
+	{
+		$edit_script = self::$edit_script;
+		echo "<script>jQuery(document).ready(function($){{$edit_script}});</script>";
 	}
 }

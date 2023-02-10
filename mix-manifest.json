@@ -1,6 +1,6 @@
 {
-    "/assets/js/wpessential-admin.js": "/assets/js/wpessential-admin.js?id=853a4cb6868dc4f56fed",
-    "/assets/css/wpessential-admin.css": "/assets/css/wpessential-admin.css?id=cd1a1795733227aff841",
-    "/assets/js/wpessential-admin.js.map": "/assets/js/wpessential-admin.js.map?id=e10135d74f626df6c991",
-    "/assets/css/wpessential-admin.css.map": "/assets/css/wpessential-admin.css.map?id=a75cc92c9b1f42f52dec"
+    "/src/wpessential-admin.min.js": "/src/wpessential-admin.min.js",
+    "/assets/js/wpessential-admin.min.js": "/assets/js/wpessential-admin.min.js",
+    "/src/wpessential-admin.min.scss": "/src/wpessential-admin.min.scss",
+    "/assets/css/wpessential-admin.min.css": "/assets/css/wpessential-admin.min.css"
 }

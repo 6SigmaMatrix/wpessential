@@ -87,6 +87,7 @@ final class Setup
 			'Widgets'       => [ 'callback' => [ 'WPEssential\Plugins\Theme\Widgets', 'constructor' ], 'priority' => 30 ],
 			'Images'        => [ 'callback' => [ 'WPEssential\Plugins\Theme\Images', 'constructor' ], 'priority' => 40 ],
 			'Menus'         => [ 'callback' => [ 'WPEssential\Plugins\Theme\Menus', 'constructor' ], 'priority' => 50 ],
+			'Tgm'           => [ 'callback' => [ 'WPEssential\Plugins\Utility\Tgm', 'constructor' ], 'priority' => 60 ],
 			'OptionsPannel' => [ 'callback' => [ 'WPEssential\Plugins\Utility\OptionsPannel', 'constructor' ], 'priority' => 70 ],
 		] );
 

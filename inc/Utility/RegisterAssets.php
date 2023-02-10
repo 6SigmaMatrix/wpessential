@@ -55,6 +55,11 @@ final class RegisterAssets
 				'dep'  => [ 'jquery', 'vue' ],
 				'ver'  => self::ver( '2.15.7' ),
 			],
+			'element-ui-en'                => [
+				'link' => WPE_URL . "assets/js/element-ui-en{$minify}js",
+				'dep'  => [ 'vue' ],
+				'ver'  => self::ver( '2.15.7' ),
+			],
 			'fancybox'                     => [
 				'link' => WPE_URL . "assets/js/fancybox{$minify}js",
 				'dep'  => [ 'jquery' ],
@@ -235,7 +240,7 @@ final class RegisterAssets
 				'ver'  => self::ver(),
 			]
 		];
-		
+
 		$code_editor_themes = glob( WPE_DIR . 'assets/css/code-editor-themes/*.css' );
 		if ( $code_editor_themes && is_array( $code_editor_themes ) ) {
 			foreach ( $code_editor_themes as $theme ) {

@@ -1,4 +1,5 @@
-@keyframes blink {
+@charset "UTF-8";
+@-webkit-keyframes "blink" {
 	from {
 		opacity: 1;
 	}
@@ -7,32 +8,16 @@
 	}
 }
 
-$color-1: #1b1d35;
-$color-2: #ffffff;
-$color-3: #787b95;
-$color-4: #e3e2fb;
-$color-5: #4743de;
-$color-6: #645ffb;
-$color-7: #f0f0f1;
-$color-8: #fbfbfb;
-$color-9: #f2f0ee;
-$color-10: #00c4b6;
-$color-11: #5d5a5a;
-$color-12: #999999;
-$color-13: #232323;
-$color-14: #eeeeee;
-$color-15: #1c1e37;
-$color-16: #f7f7f7;
-$color-17: #69696a;
-$color-18: #5852da;
-$color-19: #f6f6f6;
-$color-20: #f2f3f8;
-$field-button-shadow: 0rem 0rem 0.9375rem 0.3125rem rgb(0 0 0 / 20%);
-$field-shadow: 0 0 1.5rem rgb(0 0 0 / 8%);
-$gradient-1: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 99%, rgba(0, 0, 0, 0.09) 100%);
-$w-100: 100%;
-$font-name: Poppins, sans-serif;
+@keyframes "blink" {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
 
+/*# sourceMappingURL=wpessential-admin.css.map*/
 #wpcontent {
 	padding-left: 0;
 
@@ -46,11 +31,11 @@ $font-name: Poppins, sans-serif;
 }
 
 .wpessential-admin {
-	font-family: $font-name;
+	font-family: Poppins, sans-serif;
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
-	background-color: $color-9;
+	background-color: #f2f0ee;
 
 	.el-backtop {
 		z-index: 1002;
@@ -58,17 +43,17 @@ $font-name: Poppins, sans-serif;
 
 	p {
 		font-size: 0.8125rem;
-		color: $color-12;
+		color: #999999;
 	}
 
 	label {
 		font-size: 0.9375rem;
-		color: $color-13;
+		color: #232323;
 		font-weight: 600;
 	}
 
 	img {
-		max-width: $w-100;
+		max-width: 100%;
 	}
 
 	ul {
@@ -79,7 +64,7 @@ $font-name: Poppins, sans-serif;
 
 	.wpe-admin-page {
 		display: block;
-		width: $w-100;
+		width: 100%;
 
 		header {
 			padding: 0;
@@ -87,19 +72,37 @@ $font-name: Poppins, sans-serif;
 
 		.title-section {
 			display: block;
-			width: $w-100;
+			width: 100%;
 		}
 
-		.wpe-home, .wpe-health-info {
+		.wpe-home {
 			padding-left: 1rem;
 			padding-right: 1rem;
+		}
+
+		.wpe-health-info {
+			padding-left: 1rem;
+			padding-right: 1rem;
+			display: block;
+			padding: 0 3.125rem;
+			width: 100%;
+
+			.el-collapse-item__header {
+				padding: 0 0.625rem;
+			}
+
+			.info-table {
+				display: block;
+				margin-bottom: 2rem;
+				width: 100%;
+			}
 		}
 
 		.wpe-login {
 			width: 40%;
 			margin: 80px auto;
 			display: block;
-			background-color: $color-2;
+			background-color: #ffffff;
 			border-radius: 10px;
 			padding: 50px;
 
@@ -109,28 +112,12 @@ $font-name: Poppins, sans-serif;
 			}
 		}
 
-		.wpe-health-info {
-			display: block;
-			padding: 0 3.125rem;
-			width: $w-100;
-
-			.el-collapse-item__header {
-				padding: 0 0.625rem;
-			}
-
-			.info-table {
-				display: block;
-				margin-bottom: 2rem;
-				width: $w-100;
-			}
-		}
-
 		.wpe-theme-options {
 			padding: 2.5rem 1.25rem;
 		}
 
 		.wpe-extension-search {
-			background: $color-20 url("../images/wpe-hero-bg.png") no-repeat scroll center;
+			background: #f2f3f8 url("../images/wpe-hero-bg.png") no-repeat scroll center;
 			background-size: cover;
 			padding: 4.0625rem 0;
 
@@ -173,13 +160,39 @@ $font-name: Poppins, sans-serif;
 						height: unset;
 						width: 100%;
 						border: none;
-						box-shadow: 0 0 0.9375rem 0.3125rem rgb(0 0 0 / 10%);
+						box-shadow: 0 0 0.9375rem 0.3125rem rgba(0, 0, 0, 0.1);
 						border-radius: 0.3125rem;
 					}
 
-					.el-input input:focus + .el-input__prefix {
-						i {
-							display: none;
+					.el-input {
+						input {
+							&:focus {
+								+ {
+									.el-input__prefix {
+										i {
+											display: none;
+										}
+									}
+								}
+							}
+						}
+
+						.el-input__prefix {
+							i {
+								position: absolute;
+								width: 0.0625rem;
+								height: 23%;
+								background-color: gray;
+								left: 0.6875rem;
+								top: 39%;
+								-webkit-animation-name: blink;
+								animation-name: blink;
+								-webkit-animation-duration: 800ms;
+								animation-duration: 800ms;
+								-webkit-animation-iteration-count: infinite;
+								animation-iteration-count: infinite;
+								opacity: 1;
+							}
 						}
 					}
 
@@ -188,31 +201,13 @@ $font-name: Poppins, sans-serif;
 						font-weight: bold;
 						font-size: 1.125rem;
 					}
-
-					.el-input .el-input__prefix {
-						i {
-							position: absolute;
-							width: 0.0625rem;
-							height: 23%;
-							background-color: gray;
-							left: 0.6875rem;
-							top: 39%;
-							-webkit-animation-name: blink;
-							animation-name: blink;
-							-webkit-animation-duration: 800ms;
-							animation-duration: 800ms;
-							-webkit-animation-iteration-count: infinite;
-							animation-iteration-count: infinite;
-							opacity: 1;
-						}
-					}
 				}
 			}
 		}
 
 		.wpe-extension-list {
 			padding: 4.375rem;
-			background-color: $color-2;
+			background-color: #ffffff;
 
 			.extension-wrapper {
 				max-width: 73.4375rem;
@@ -227,34 +222,27 @@ $font-name: Poppins, sans-serif;
 				flex-flow: column;
 
 				sup.el-badge__content {
-					top: 1.125rem;
-					right: 0.625rem;
+					top: 15px;
 					padding: 0;
 					background: transparent;
 					z-index: 999;
-					border: unset;
-					transform: rotate(42deg);
+					border: 1px solid #fff;
+					left: 15px;
+					transform: translate(0);
+					font-weight: 400;
+					width: 40px;
+					text-transform: uppercase;
+					border-radius: 3px;
+					background-color: #67c23a;
+					font-size: 11px;
 				}
 
 				.el-card {
-					box-shadow: 0 0.3125rem 0.9375rem 0.3125rem rgb(0 0 0 / 10%) !important;
+					box-shadow: 0 0.3125rem 0.9375rem 0.3125rem rgba(0, 0, 0, 0.1) !important;
 					border: unset;
 					border-radius: 0.625rem;
 					overflow: hidden !important;
 					position: relative;
-
-					&:after {
-						top: 0;
-						right: 0;
-						position: absolute;
-						border-right: 4.375rem solid #689cfd;
-						content: "";
-						border-bottom: 4.375rem solid transparent;
-						border-top: 0;
-						border-left: 0;
-						background: transparent;
-						z-index: 9;
-					}
 				}
 
 				.el-card__body {
@@ -268,8 +256,8 @@ $font-name: Poppins, sans-serif;
 				flex: 10 0 100%;
 				flex-flow: column;
 				padding: 1.5625rem;
-				align-items: start;
-				background-color: $color-2;
+				align-items: flex-start;
+				background-color: #ffffff;
 
 				.el-rate {
 					margin-bottom: 1.25rem;
@@ -308,7 +296,7 @@ $font-name: Poppins, sans-serif;
 					width: 100%;
 					flex: 10 0 100%;
 					flex-wrap: nowrap;
-					align-items: start;
+					align-items: flex-start;
 					padding: 1.25rem 1.25rem;
 					background-color: #f2f3f8;
 
@@ -318,20 +306,20 @@ $font-name: Poppins, sans-serif;
 						display: flex;
 						flex-flow: column;
 						font-size: 0.875rem;
-					}
 
-					ul.wpe-item-info > li {
-						width: 100%;
-						padding: 0.625rem 0;
-						color: #545454;
-					}
+						> li {
+							width: 100%;
+							padding: 0.625rem 0;
+							color: #545454;
 
-					ul.wpe-item-info > li:first-child {
-						padding-top: 0;
-					}
+							&:first-child {
+								padding-top: 0;
+							}
 
-					ul.wpe-item-info > li:last-child {
-						padding-bottom: 0;
+							&:last-child {
+								padding-bottom: 0;
+							}
+						}
 					}
 				}
 
@@ -357,7 +345,7 @@ $font-name: Poppins, sans-serif;
 }
 
 .wpe-options-form {
-	background-color: $color-1;
+	background-color: #1b1d35;
 
 	.theme-options-header {
 		display: flex;
@@ -365,7 +353,7 @@ $font-name: Poppins, sans-serif;
 		flex-wrap: wrap;
 		height: 6.875rem;
 		padding: 1.5625rem 2.5rem 1.25rem 2.5rem;
-		background-color: $color-18;
+		background-color: #0455a5;
 
 		.theme-info {
 			flex: 1 0 0;
@@ -378,7 +366,7 @@ $font-name: Poppins, sans-serif;
 			.el-badge.theme-name {
 				font-size: 1.5rem;
 				font-weight: bold;
-				color: $color-2;
+				color: #ffffff;
 			}
 
 			sup.el-badge__content {
@@ -389,42 +377,65 @@ $font-name: Poppins, sans-serif;
 				height: 1.875rem;
 				margin: 0;
 				font-size: 0.75rem;
-				background-color: $color-6;
+				background-color: #645ffb;
 				right: -0.625rem;
 
 				&:before {
 					content: "";
-					border-bottom: 0.3125rem solid $color-6;
+					border-bottom: 0.3125rem solid #645ffb;
 					border-right: 0.3125rem solid transparent;
 					left: -0.125rem;
 					position: absolute;
 					z-index: 999;
 					border-top: 0.3125rem solid transparent;
-					border-left: 0.3125rem solid $color-6;
+					border-left: 0.3125rem solid #645ffb;
 					top: 0.9375rem;
 					transform: rotate(23deg);
 				}
 			}
 		}
-	}
 
-	.theme-options-header .action,
-	.theme-options-footer .action {
-		flex: 2 0 0;
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: flex-end;
-		width: 100%;
-		align-items: center;
+		.action {
+			flex: 2 0 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			width: 100%;
+			align-items: center;
+		}
+
+		.el-button {
+			color: #ffffff;
+			background-color: #0455a5;
+			border-radius: 3.125rem;
+			padding: 1.125rem 1.875rem;
+			border: 2px solid #c5c5c5;
+			transition: all 0.3s linear;
+
+			&:hover {
+				background: #f58220;
+				color: #ffffff;
+				border-color: #f58220;
+			}
+		}
 	}
 
 	.theme-options-footer {
+		.action {
+			flex: 2 0 0;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: flex-end;
+			width: 100%;
+			align-items: center;
+		}
+
 		position: absolute;
 		bottom: 0;
 		height: 6.875rem;
 		width: 100%;
 		z-index: 999;
-		background: $color-2;
+		background: #ffffff;
 		left: 0;
 		padding: 0 2.188rem;
 		display: flex;
@@ -445,60 +456,66 @@ $font-name: Poppins, sans-serif;
 				line-height: 2.1875rem;
 				text-align: center;
 				border-radius: 100%;
-				background-color: $color-4;
-				color: $color-11;
-			}
+				background-color: #e3e2fb;
+				color: #5d5a5a;
 
-			> a:first-child {
-				margin-left: 0;
-			}
+				&:first-child {
+					margin-left: 0;
+				}
 
-			> a:nth-child(5) {
-				margin-left: 0;
-				margin-top: -0.9375rem;
-			}
+				&:nth-child(5) {
+					margin-left: 0;
+					margin-top: -0.9375rem;
+				}
 
-			> a:hover {
-				background: $color-6;
-				color: $color-2;
+				&:hover {
+					background: #645ffb;
+					color: #ffffff;
+				}
 			}
 		}
-	}
 
-	.theme-options-footer .el-button,
-	.theme-options-header .el-button {
-		color: $color-2;
-		background-color: $color-6;
-		background-image: $gradient-1;
-		border-radius: 3.125rem;
-		padding: 1.125rem 1.875rem;
-		border: unset;
+		.el-button {
+			color: #ffffff;
+			background-color: #0455a5;
+			border-radius: 3.125rem;
+			padding: 1.125rem 1.875rem;
+			border: 2px solid #c5c5c5;
+			transition: all 0.3s linear;
+
+			&:hover {
+				background: #f58220;
+				color: #ffffff;
+				border-color: #f58220;
+			}
+		}
 	}
 
 	.wpe-options-tabs-wrapper {
 		display: flex;
 		flex-wrap: wrap;
-		width: $w-100;
+		width: 100%;
 
 		.el-tabs__header.is-left {
-			.el-button.tab-collapes {
-				z-index: 999;
-				margin: 0;
-				background: $color-10;
-
-				> i {
-					color: $color-2;
-					font-weight: bold;
-				}
-			}
-
 			margin: 0;
 			flex: 0 0 16.563rem;
 			max-width: 16.563rem;
 			min-height: 100vh;
 			height: auto;
 			float: unset;
-			border-right: 0.125rem solid $color-5;
+			border-right: 0.125rem solid #f58220;
+			background-color: #1b1d35;
+
+			.el-button.tab-collapes {
+				z-index: 999;
+				margin: 0;
+				background: #00c4b6;
+
+				> i {
+					color: #ffffff;
+					font-weight: bold;
+				}
+			}
 
 			.el-tabs__nav-wrap {
 				overflow: visible;
@@ -519,7 +536,7 @@ $font-name: Poppins, sans-serif;
 			.el-tabs__nav {
 				text-align: left;
 				width: 16.563rem;
-				color: $color-2;
+				color: #ffffff;
 
 				.el-tabs__active-bar.is-left {
 					display: none;
@@ -529,13 +546,10 @@ $font-name: Poppins, sans-serif;
 					background: transparent;
 					border: inherit;
 					font-size: 0.875rem;
-				}
-
-				.el-tabs__item, .tab-collaps.el-tabs__item {
 					padding: 1.25rem 1.563rem;
 					height: 4.063rem;
 					line-height: 1.563rem;
-					width: $w-100;
+					width: 100%;
 					text-align: inherit;
 					color: inherit;
 
@@ -545,16 +559,18 @@ $font-name: Poppins, sans-serif;
 						bottom: 0;
 						left: 9%;
 						width: 82%;
-						height: $w-100;
-						border-bottom: 0.063rem solid $color-3;
+						height: 100%;
+						border-bottom: 0.063rem solid #787b95;
 					}
 
-					&:last-child:after {
-						display: none;
+					&:last-child {
+						&:after {
+							display: none;
+						}
 					}
 
 					i {
-						color: $color-3;
+						color: #787b95;
 						font-size: inherit;
 					}
 
@@ -573,7 +589,76 @@ $font-name: Poppins, sans-serif;
 
 						span.title {
 							font-size: inherit;
-							width: $w-100;
+							width: 100%;
+							display: block;
+							clear: both;
+							padding-left: 1.563rem;
+
+							span {
+								float: right;
+
+								span {
+									line-height: 1.563rem;
+
+									button.el-button {
+										padding: 0;
+										margin: 0;
+										width: unset;
+										height: unset;
+										background: transparent;
+										border: unset;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				.el-tabs__item {
+					padding: 1.25rem 1.563rem;
+					height: 4.063rem;
+					line-height: 1.563rem;
+					width: 100%;
+					text-align: inherit;
+					color: inherit;
+
+					&:after {
+						content: "";
+						position: absolute;
+						bottom: 0;
+						left: 9%;
+						width: 82%;
+						height: 100%;
+						border-bottom: 0.063rem solid #787b95;
+					}
+
+					&:last-child {
+						&:after {
+							display: none;
+						}
+					}
+
+					i {
+						color: #787b95;
+						font-size: inherit;
+					}
+
+					.label {
+						font-size: 0.875rem;
+						position: relative;
+						z-index: 999;
+
+						> i {
+							margin-right: 0.625rem;
+							position: absolute;
+							top: 50%;
+							left: 0;
+							line-height: 0;
+						}
+
+						span.title {
+							font-size: inherit;
+							width: 100%;
 							display: block;
 							clear: both;
 							padding-left: 1.563rem;
@@ -599,15 +684,14 @@ $font-name: Poppins, sans-serif;
 				}
 
 				.el-tabs__item.is-active {
-					color: $color-2;
-					background-color: $color-6;
-					background-image: $gradient-1;
+					color: #ffffff;
+					background-color: #f58220;
 
 					&:before {
 						content: "";
 						right: 0;
 						border-top: 0.938rem solid transparent;
-						border-right: 0.938rem solid $color-8;
+						border-right: 0.938rem solid #fbfbfb;
 						border-bottom: 0.938rem solid transparent;
 						position: absolute;
 						top: 50%;
@@ -615,10 +699,12 @@ $font-name: Poppins, sans-serif;
 						z-index: 999;
 					}
 
-					&:after {display: none;}
+					&:after {
+						display: none;
+					}
 
 					i {
-						color: $color-2;
+						color: #ffffff;
 					}
 				}
 			}
@@ -626,13 +712,13 @@ $font-name: Poppins, sans-serif;
 
 		.el-tabs__content {
 			padding: 3.125rem;
-			background-color: $color-8;
+			background-color: #fbfbfb;
 			z-index: 999;
 			flex: 1 0 0;
 
 			.tab-title {
 				padding: 1.25rem;
-				background: $color-4;
+				background: #e3e2fb;
 
 				h3 {
 					margin: 0;
@@ -647,17 +733,19 @@ $font-name: Poppins, sans-serif;
 				padding: 1.25rem;
 
 				.el-form-item.fullwidth {
-					.field-title,
+					.field-title {
+						width: 100%;
+						flex: unset !important;
+						clear: both;
+						display: block;
+						margin-bottom: 1.25rem;
+					}
+
 					.field {
 						width: 100%;
 						flex: unset !important;
 						clear: both;
 						display: block;
-					}
-
-					.field-title {
-						margin-bottom: 1.25rem;
-
 					}
 				}
 			}
@@ -706,64 +794,80 @@ $font-name: Poppins, sans-serif;
 					}
 
 					.el-divider {
-						background-color: $color-4;
+						background-color: #e3e2fb;
 					}
 
 					.wpe-form {
-						.el-input__inner, .el-textarea__inner {
-							color: $color-12;
+						.el-input__inner {
+							color: #999999;
 							padding: 1.25rem 1.875rem !important;
 							font-size: 0.75rem;
 							border-radius: 3.125rem !important;
-							border-color: $color-14 !important;
-							background-color: $color-2;
-							box-shadow: $field-shadow
-						}
-
-						.el-input__inner {
+							border-color: #eeeeee !important;
+							background-color: #ffffff;
+							box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.08);
 							height: 3.125rem !important;
 							line-height: 3.125rem !important;
 						}
 
-						/*----------Wysiwyg field style----------------*/
-						&.wysiwyg-editor {width: 100%}
+						.el-textarea__inner {
+							color: #999999;
+							padding: 1.25rem 1.875rem !important;
+							font-size: 0.75rem;
+							border-radius: 3.125rem !important;
+							border-color: #eeeeee !important;
+							background-color: #ffffff;
+							box-shadow: 0 0 1.5rem rgba(0, 0, 0, 0.08);
+						}
 
-						/*----------Number field style----------------*/
-						.el-input-number__decrease,
+						.el-input-number__decrease {
+							width: 2.5rem !important;
+							height: 2.5rem !important;
+							border-radius: 100%;
+							line-height: 2.5rem;
+							text-align: center;
+							background: #1c1e37;
+							border: unset;
+							font-size: 0.8125rem !important;
+							color: #ffffff;
+							box-shadow: 0rem 0rem 0.9375rem 0.3125rem rgba(0, 0, 0, 0.2);
+							left: -0.9375rem;
+							top: 0.3125rem;
+							background-color: #f58220;
+
+							&:hover {
+								background: #5852da;
+								background-color: #1b1d35;
+							}
+						}
+
 						.el-input-number__increase {
 							width: 2.5rem !important;
 							height: 2.5rem !important;
 							border-radius: 100%;
 							line-height: 2.5rem;
 							text-align: center;
-							background: $color-15;
+							background: #1c1e37;
 							border: unset;
 							font-size: 0.8125rem !important;
-							color: $color-2;
-							box-shadow: $field-button-shadow;
-						}
+							color: #ffffff;
+							box-shadow: 0rem 0rem 0.9375rem 0.3125rem rgba(0, 0, 0, 0.2);
+							right: -0.9375rem;
+							top: 0.3125rem;
+							background-color: #0455a5;
 
-						.el-input-number__decrease:hover,
-						.el-input-number__increase:hover,
-						&:hover .el-input__suffix {
-							background: $color-18;
-
-							:hover & i {
-								color: $color-2;
+							&:hover {
+								background: #5852da;
+								background-color: #1b1d35;
 							}
 						}
 
-						.el-input-number__decrease {
-							left: -0.9375rem;
-							top: 0.3125rem;
+						&:hover {
+							.el-input__suffix {
+								background: #5852da;
+							}
 						}
 
-						.el-input-number__increase {
-							right: -0.9375rem;
-							top: 0.3125rem;
-						}
-
-						/*----------select field style----------------*/
 						.el-input__suffix {
 							width: 2.75rem;
 							height: 2.75rem;
@@ -775,158 +879,207 @@ $font-name: Poppins, sans-serif;
 							line-height: 2.8125rem;
 
 							i {
-								color: $color-17;
+								color: #69696a;
+							}
+						}
+					}
+
+					.wpe-form.wysiwyg-editor {
+						width: 100%;
+					}
+
+					.wpe-form.el-radio-group.select-image {
+						label {
+							border-radius: 0.625rem;
+							display: inline-block;
+							position: relative;
+							margin: 0 0.625rem 0 0;
+							border: 0.3125rem solid #e3e2fb;
+							width: 5.625rem;
+							height: 5.625rem;
+							text-align: center;
+
+							&:hover {
+								border-color: #0455a5;
+							}
+
+							span.el-radio__input {
+								position: absolute;
+								width: 100%;
+								height: 100%;
+								left: 0;
+								top: 0;
+								display: unset;
+								opacity: 0;
+							}
+
+							span.el-radio__label {
+								display: block;
+								width: 100%;
+								padding: 0;
+								border: 0.1875rem solid #ffffff;
+								height: 100%;
+								overflow: hidden;
+								border-radius: 0.3125rem;
 							}
 						}
 
-						/*----------image select field style----------------*/
-						&.el-radio-group.select-image {
-							label {
-								border-radius: 0.625rem;
-								display: inline-block;
-								position: relative;
-								margin: 0 0.625rem 0 0;
-								border: 0.3125rem solid $color-4;
-								width: 5.625rem;
-								height: 5.625rem;
-								text-align: center;
-
-								&:hover, &.is-checked {
-									border-color: $color-6;
-								}
-
-								span.el-radio__input {
-									position: absolute;
-									width: 100%;
-									height: 100%;
-									left: 0;
-									top: 0;
-									display: unset;
-									opacity: 0;
-								}
-
-								span.el-radio__label {
-									display: block;
-									width: 100%;
-									padding: 0;
-									border: 0.1875rem solid $color-2;
-									height: 100%;
-									overflow: hidden;
-									border-radius: 0.3125rem;
-								}
-							}
+						label.is-checked {
+							border-color: #0455a5;
 						}
+					}
 
-						/*----------color picker field style----------------*/
-						&.el-color-picker {
-							.el-color-picker__trigger {
-								width: 2.8125rem;
-								height: 2.8125rem;
-								background: #fff;
-								border: unset;
-								box-shadow: $field-button-shadow;
+					.wpe-form.el-color-picker {
+						.el-color-picker__trigger {
+							width: 2.8125rem;
+							height: 2.8125rem;
+							background: #fff;
+							border: unset;
+							box-shadow: 0rem 0rem 0.9375rem 0.3125rem rgba(0, 0, 0, 0.2);
+							border-radius: 100%;
+							overflow: hidden;
+							padding: 0.0625rem;
+
+							.el-color-picker__color {
 								border-radius: 100%;
 								overflow: hidden;
-								padding: 0.0625rem;
+								border-color: #eeeeee;
+							}
 
-								.el-color-picker__color {
-									border-radius: 100%;
-									overflow: hidden;
-									border-color: $color-14;
-								}
+							.el-color-picker__icon {
+								display: none;
+							}
+						}
+					}
 
-								.el-color-picker__icon {
-									display: none;
+					.wpe-form.media {
+						.image {
+							max-width: 100%;
+							position: relative;
+							display: block;
+							width: 9.375rem;
+
+							button.el-button {
+								position: absolute;
+								top: -5%;
+								right: -5%;
+								padding: 0.3125rem;
+								font-size: 0.625rem;
+								display: none;
+							}
+
+							&:hover {
+								button {
+									display: block;
 								}
 							}
 						}
+					}
 
-						/*----------mudia field style----------------*/
-						&.media {
-							.image {
-								max-width: 100%;
-								position: relative;
-								display: block;
-								width: 9.375rem;
+					.wpe-form.datetime {
+						.datetime-picker {
+							border: unset;
+							background: transparent;
+							box-shadow: unset;
+						}
 
-								button.el-button {
-									position: absolute;
-									top: -5%;
-									right: -5%;
-									padding: 0.3125rem;
-									font-size: 0.625rem;
-									display: none;
-								}
+						.el-picker-panel__body-wrapper {
+							border-top-right-radius: 1.25rem;
+							border-top-left-radius: 1.25rem;
+							overflow: hidden;
+							background: #fff;
+							border: 0.0625rem solid #E4E7ED;
+							box-shadow: 0 0.125rem 0.75rem 0 rgba(0, 0, 0, 0.1);
+						}
 
-								&:hover {
-									button {
-										display: block;
-									}
-								}
+						.el-date-picker__header {
+							background-color: #5852da;
+							background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 99%, rgba(0, 0, 0, 0.09) 100%);
+							margin: 0;
+							padding: 0.9375rem;
+
+							.el-date-picker__header-label {
+								color: #ffffff;
+							}
+
+							button.el-picker-panel__icon-btn.el-date-picker__prev-btn {
+								width: 2.1875rem;
+								height: 2.1875rem;
+								border-radius: 100%;
+								margin: 0 0.3125rem 0 0;
+								padding: 0;
+								background-color: #645ffb;
+								background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 99%, rgba(0, 0, 0, 0.09) 100%);
+								color: #ffffff;
+							}
+
+							button.el-picker-panel__icon-btn.el-date-picker__next-btn {
+								width: 2.1875rem;
+								height: 2.1875rem;
+								border-radius: 100%;
+								margin: 0 0.3125rem 0 0;
+								padding: 0;
+								background-color: #645ffb;
+								background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 42%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.1) 99%, rgba(0, 0, 0, 0.09) 100%);
+								color: #ffffff;
 							}
 						}
 
-						/*----------date time picker field style----------------*/
-						&.datetime {
-							.datetime-picker {
-								border: unset;
-								background: transparent;
-								box-shadow: unset;
-							}
-
-							.el-picker-panel__body-wrapper {
-								border-top-right-radius: 1.25rem;
-								border-top-left-radius: 1.25rem;
+						.el-input__suffix-inner {
+							> .el-input__icon {
 								overflow: hidden;
-								background: #fff;
-								border: 0.0625rem solid #E4E7ED;
-								box-shadow: 0 0.125rem 0.75rem 0 rgb(0 0 0 / 10%);
-							}
 
-							.el-date-picker__header {
-								background-color: $color-18;
-								background-image: $gradient-1;
-								margin: 0;
-								padding: 0.9375rem;
-
-								.el-date-picker__header-label {
-									color: $color-2;
-								}
-
-								button.el-picker-panel__icon-btn.el-date-picker__prev-btn,
-								button.el-picker-panel__icon-btn.el-date-picker__next-btn {
-									width: 2.1875rem;
-									height: 2.1875rem;
-									border-radius: 100%;
-									margin: 0 0.3125rem 0 0;
-									padding: 0;
-									background-color: $color-6;
-									background-image: $gradient-1;
-									color: $color-2;
+								&:after {
+									content: "\E6E1";
+									font-family: "element-icons";
+									transition: transform 0.3s;
+									transform: rotateZ(180deg);
+									cursor: pointer;
+									font-style: normal;
+									width: 100%;
+									text-align: center;
+									line-height: 2.8125rem;
 								}
 							}
 
-							.el-input__suffix-inner {
-								> .el-input__icon {
-									overflow: hidden;
+							> .el-input__icon.el-icon-circle-close {
+								line-height: 2.8125rem;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}
 
-									&.el-icon-circle-close {
-										line-height: 2.8125rem;
+&:hover {
+	.wpe-options-form {
+		.wpe-options-tabs-wrapper {
+			.el-tabs__content {
+				.el-form-item__content {
+					.field {
+						.wpe-form {
+							.el-input-number__decrease {
+								&:hover {
+									i {
+										color: #ffffff;
 									}
+								}
+							}
 
-									&:after {
-										content: "\e6e1";
-										font-family: "element-icons";
-										-webkit-transition: -webkit-transform .3s;
-										transition: -webkit-transform .3s;
-										transition: transform .3s;
-										-webkit-transform: rotateZ(180deg);
-										transform: rotateZ(180deg);
-										cursor: pointer;
-										font-style: normal;
-										width: 100%;
-										text-align: center;
-										line-height: 2.8125rem;
+							.el-input-number__increase {
+								&:hover {
+									i {
+										color: #ffffff;
+									}
+								}
+							}
+
+							&:hover {
+								.el-input__suffix {
+									i {
+										color: #ffffff;
 									}
 								}
 							}
@@ -973,6 +1126,219 @@ $font-name: Poppins, sans-serif;
 					padding: 1.875rem 0.625rem;
 				}
 			}
+		}
+	}
+}
+
+.CodeMirror {
+	background: #1b1d35;
+	border-radius: 5px;
+}
+
+.el-select {
+	> .el-input {
+		&:hover {
+			.el-input__prefix {
+				background-color: #0455a5 !important;
+			}
+
+			.el-input__suffix {
+				background-color: #0455a5 !important;
+			}
+		}
+	}
+}
+
+.wpe-input-field {
+	.el-input {
+		&:hover {
+			.el-input__prefix {
+				background-color: #0455a5 !important;
+			}
+
+			.el-input__count-inner {
+				background-color: transparent;
+				color: #fff;
+			}
+		}
+	}
+
+	> .el-input {
+		&:hover {
+			.el-input__suffix {
+				background-color: #0455a5 !important;
+			}
+		}
+	}
+}
+
+.el-select__tags {
+	max-width: 160px !important;
+}
+
+.wp-media-buttons {
+	.insert-media {
+		padding: 5px 16px;
+		border-radius: 50rem;
+		border: 0;
+		color: #fff;
+		background-color: #1b1d35;
+
+		&:hover {
+			color: #fff;
+			background-color: #0455a5;
+		}
+	}
+}
+
+div.mce-toolbar-grp {
+	border-bottom: 0;
+	background: #e3e2fb;
+}
+
+.html-active {
+	.switch-html {
+		background: #e3e2fb;
+
+		&:hover {
+			background: #d1d0f4;
+		}
+	}
+}
+
+.tmce-active {
+	.switch-tmce {
+		background: #e3e2fb;
+
+		&:hover {
+			background: #d1d0f4;
+		}
+	}
+}
+
+.mce-btn {
+	button {
+		&:hover {
+			background-color: transparent !important;
+		}
+	}
+}
+
+.mce-toolbar {
+	.mce-btn-group {
+		.mce-btn.mce-active {
+			background: transparent;
+			border-color: #50575e;
+			box-shadow: none;
+		}
+
+		.mce-btn {
+			&:active {
+				background: transparent;
+				border-color: #50575e;
+				box-shadow: none;
+			}
+		}
+	}
+}
+
+.qt-dfw.active {
+	background: transparent;
+	border-color: #50575e;
+	box-shadow: none;
+}
+
+.el-backtop {
+	background-color: #1b1d35;
+	color: #fff;
+
+	&:hover {
+		background-color: #0455a5;
+		color: #fff;
+	}
+}
+
+.wpe-form.media {
+	button {
+		background: #1b1d35;
+		border-color: #1b1d35;
+		color: #fff;
+
+		&:hover {
+			background-color: #0455a5;
+		}
+	}
+}
+
+.CodeMirror.cm-s-default {
+	background-color: #1b1d35;
+
+	.CodeMirror-gutters {
+		border-right: 0;
+		background-color: #0455a5;
+	}
+
+	.CodeMirror-linenumber {
+		color: #fff;
+	}
+
+	.CodeMirror-line {
+		background-color: #292d61;
+		color: #fff;
+	}
+}
+
+.CodeMirror-linenumber {
+	padding: 0 5px !important;
+	font-family: Roboto;
+	text-align: center !important;
+}
+
+.wpe-form.url {
+	input {
+		&:focus {
+			background-color: #e4ebf7 !important;
+		}
+	}
+}
+
+.wpe-form.text {
+	input {
+		&:focus {
+			background-color: #e4ebf7 !important;
+		}
+	}
+}
+
+.wpe-form.select {
+	.el-input.is-focus {
+		input {
+			background-color: #e4ebf7 !important;
+		}
+	}
+}
+
+.wpe-form.el-input--prefix {
+	.el-input__prefix {
+		width: 2.75rem;
+		height: 2.75rem;
+		background: #f7f7f7;
+		border-radius: 100%;
+		text-align: center;
+		right: 0.1875rem;
+		top: 0.1875rem;
+		line-height: 2.8125rem;
+	}
+}
+
+.el-select-dropdown__item.selected {
+	color: #1b1d35;
+}
+
+@media (max-width: 992px) {
+	.extension-wrapper {
+		.el-col-md-8 {
+			width: 50%;
 		}
 	}
 }

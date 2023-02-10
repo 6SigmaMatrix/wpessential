@@ -7,9 +7,6 @@
 					<wpe-theme-info :info="theme_info"></wpe-theme-info>
 					<wpe-actions></wpe-actions>
 				</div>
-				<el-button ref="btn" class="tab-collaps el-tabs__item" icon="el-icon-caret-left" size="mini" style="display: none" v-on:click.prevent="collapse_class">
-					Collapse menu
-				</el-button>
 				<el-tabs ref="tabs" :class="collapse? 'panel-collapse':''" class="wpe-options-tabs-wrapper" tab-position="left">
 					<el-tab-pane v-for="(tabs, index) in controls" :key="index" :class="tabs.children?'has-children':''" class="wpe-options-tab">
 						<div slot="label" class="label">
@@ -56,6 +53,9 @@
 						<wpe-actions></wpe-actions>
 					</div>
 				</el-tabs>
+				<el-button ref="btn" class="tab-collaps el-tabs__item" icon="el-icon-caret-left" size="mini" style="display: none" v-on:click.prevent="collapse_class">
+					Collapse menu
+				</el-button>
 
 				<!--<template v-else>
 					<wpe-form :fields="tabs.fields"></wpe-form>
