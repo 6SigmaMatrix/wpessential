@@ -3,7 +3,6 @@
 namespace WPEssential\Plugins\Admin;
 
 use WPEssential\Plugins\Admin\ImportExport\WithMediaExport;
-use WPEssential\Plugins\Api\Wpessential\Auth;
 
 final class Admin
 {
@@ -23,7 +22,6 @@ final class Admin
 	{
 		Index::constructor();
 		MetaBox::constructor();
-		
 	}
 
 	public static function health_info ()
@@ -88,7 +86,7 @@ final class Admin
 					'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/theme_options/route', [
 						'path'      => '/theme',
 						'component' => [ 'template' => '<wpe-options></wpe-options>' ],
-						'name'      => 'theme'
+						'name'      => 'theme_options'
 					] ),
 				] ),
 				'plugin_options' => apply_filters( 'wpe/register/admin_pages/routes_info/plugin_options', [
@@ -98,7 +96,7 @@ final class Admin
 					'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/plugin_options/route', [
 						'path'      => '/plugin',
 						'component' => [ 'template' => '<wpe-options></wpe-options>' ],
-						'name'      => 'plugin'
+						'name'      => 'plugin_options'
 					] ),
 				] ),
 				'extensions'     => apply_filters( 'wpe/register/admin_pages/routes_info/extension_options', [

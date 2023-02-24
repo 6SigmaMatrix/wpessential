@@ -4,7 +4,6 @@ namespace WPEssential\Plugins;
 
 use WPEssential\Plugins\Admin\Admin;
 use WPEssential\Plugins\Admin\RegisterMenus;
-use WPEssential\Plugins\Admin\Settings;
 use WPEssential\Plugins\Requesting\RequestingInit;
 use WPEssential\Plugins\Theme\Setup;
 use WPEssential\Plugins\Utility\BuildersInit;
@@ -88,7 +87,6 @@ final class Loader
 		Enqueue::constructor();
 		RegisterMenus::constructor();
 		Admin::constructor();
-		Settings::constructor();
 		RequestingInit::constructor();
 		ScriptLoader::constructor();
 		Setup::constructor();

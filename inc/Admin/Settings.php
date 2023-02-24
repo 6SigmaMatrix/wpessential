@@ -14,11 +14,18 @@ class Settings
 	public static function default ( $options )
 	{
 		if ( is_array( $options ) && count( $options ) >= 1 ) {
+			$x = 0;
 			foreach ( $options as $fields ) {
-				foreach ( $fields as $field ) {
-					$key                     = wpe_array_get( $field, 'id' );
-					self::$opt_array[ $key ] = wpe_array_get( self::get_values(), $key, wpe_array_get( $field, 'defined', '' ) );
+				$y = 0;
+				foreach ( $fields[ 'fields' ] as $field ) {
+					$key                                   = wpe_array_get( $field, 'id' );
+					$value                                 = wpe_array_get( self::get_values(), $key );
+					self::$opt_array[ $key ]               = $value;
+					$fields[ 'fields' ][ $y ][ 'defined' ] = $value;
+					$y ++;
 				}
+				$options[ $x ] = $fields;
+				$x ++;
 			}
 		}
 
@@ -30,7 +37,7 @@ class Settings
 	public static function set_values ()
 	{
 		$options = self::get_values();
-		$options = wp_parse_args( $options, self::$opt_array );
+		$options = wp_parse_args( self::$opt_array, $options );
 		update_option( 'wpe_settings', $options );
 	}
 

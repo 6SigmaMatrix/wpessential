@@ -35,6 +35,7 @@ const FormMixin = {
 		},
 		defined_value ( data )
 		{
+			this.wpe_error( data );
 			this.$store.commit( 'update_value', data );
 		}
 	}

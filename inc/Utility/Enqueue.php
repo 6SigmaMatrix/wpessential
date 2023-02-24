@@ -78,7 +78,7 @@ final class Enqueue
 
 	public static function admin_page_enqueue ()
 	{
-		$list = apply_filters( 'wpe/admin_page/css', [ 'google-font-poppins', 'wpessential', 'element-ui', 'nprogress', 'wpessential-admin' ] );
+		$list = apply_filters( 'wpe/admin_page/css', [ 'google-font-poppins', 'wpessential', 'element-ui', 'element-ui-en', 'nprogress', 'wpessential-admin' ] );
 		$list = array_filter( $list );
 		if ( $list ) {
 			wp_enqueue_style( $list );

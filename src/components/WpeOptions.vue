@@ -1,8 +1,8 @@
 <template>
 	<div v-loading="page_loader" class="wpe-theme-options">
-		<wpe-page-title v-if="$WPEssential.admin_pages && $WPEssential.admin_pages.theme_options" :title="$WPEssential.admin_pages.theme_options.page_title" :description="$WPEssential.admin_pages.theme_options.page_desc"></wpe-page-title>
+		<wpe-page-title :description="page_title.description" :title="page_title.title"></wpe-page-title>
 		<section v-loading="form_loader">
-			<el-form ref="form" :model="form" :rules="form_rules" class="wpe-options-form" v-bind="form_args">
+			<el-form ref="form" :model="form" :rules="form_rules" class="wpe-options-form" v-bind="$WPE_OPT_ARGS">
 				<div class="theme-options-header">
 					<wpe-theme-info :info="theme_info"></wpe-theme-info>
 					<wpe-actions></wpe-actions>
@@ -49,7 +49,7 @@
 					</el-tab-pane>
 
 					<div class="theme-options-footer">
-						<wpe-share v-if="global_tabs_args.footer_share" :icons="global_tabs_args.footer_share"></wpe-share>
+						<wpe-share v-if="$WPE_OPT_TABS_ARGS.footer_share" :icons="$WPE_OPT_TABS_ARGS.footer_share"></wpe-share>
 						<wpe-actions></wpe-actions>
 					</div>
 				</el-tabs>
@@ -85,13 +85,15 @@ export default {
 	data ()
 	{
 		return {
-			form_loader     : false,
-			collapse        : false,
-			form_args       : this.$WPEssential.global_options_args,
-			global_tabs_args: this.$WPEssential.global_tabs_args,
-			tabs_count      : 0,
-			controls        : {},
-			theme_info      : {}
+			form_loader: false,
+			collapse   : false,
+			tabs_count : 0,
+			controls   : {},
+			theme_info : {},
+			page_title : {
+				title      : '',
+				description: ''
+			}
 		};
 	},
 	mounted ()
@@ -119,9 +121,19 @@ export default {
 		},
 		render_panel ()
 		{
+			this.render_page_title();
 			this.render_tab();
 			this.insert_btn();
 			this.theme_info = this.$WPEssential.theme_info;
+		},
+		render_page_title ()
+		{
+			if ( this.$WPEssential.admin_pages && this.$route.name ) {
+				this.page_title = {
+					title      : this.$WPEssential.admin_pages[ this.$route.name ].page_title,
+					description: this.$WPEssential.admin_pages[ this.$route.name ].page_desc
+				};
+			}
 		},
 		render_tab ()
 		{
@@ -142,6 +154,9 @@ export default {
 				{
 					list.fields.forEach( item =>
 					{
+						if ( item.id === 'wpe_st_image_export' ) {
+							this.wpe_error( item );
+						}
 						let data = { key: item.id, value: item.defined || '' };
 						this.defined_value( data );
 					} );

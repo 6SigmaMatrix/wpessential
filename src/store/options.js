@@ -13,7 +13,6 @@ export const store = new Vuex.Store( {
 		update_value ( state, data )
 		{
 			let { key, value } = data;
-			console.log( data, key );
 			state.form[ key ] = value;
 		}
 	},

@@ -1,6 +1,4 @@
 {
-    "/src/wpessential-admin.min.js": "/src/wpessential-admin.min.js",
-    "/assets/js/wpessential-admin.min.js": "/assets/js/wpessential-admin.min.js",
-    "/src/wpessential-admin.min.scss": "/src/wpessential-admin.min.scss",
-    "/assets/css/wpessential-admin.min.css": "/assets/css/wpessential-admin.min.css"
+    "/assets/js/wpessential-admin.js": "/assets/js/wpessential-admin.js?id=267eff5b74d945e1fcd6",
+    "/assets/js/wpessential-admin.js.map": "/assets/js/wpessential-admin.js.map?id=3b2f729419261e071886"
 }

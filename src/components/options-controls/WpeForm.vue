@@ -37,7 +37,7 @@ import WpeRadio from "./WpeRadio";
 import WpeSelect from "./WpeSelect";
 import WpeSlider from "./WpeSlider";
 import WpeTime from "./WpeTime";
-import WpeToggle from "./WpeToggle";
+//import WpeToggle from "./WpeToggle";
 import WpeTransfer from "./WpeTransfer";
 
 export default {
@@ -63,7 +63,7 @@ export default {
 		WpeSelect,
 		WpeSlider,
 		WpeTime,
-		WpeToggle,
+		//WpeToggle,
 		WpeTransfer
 	}
 };

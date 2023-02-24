@@ -12,13 +12,15 @@
 	</div>
 </template>
 <script>
+import FormMixin from '../FormMixin';
 
 export default {
+	mixins : [ FormMixin ],
 	name   : "wpe-actions",
 	methods: {
 		reset_all_settings ()
 		{
-			//this.form_loader = true;
+			this.form_loader = true;
 			$.ajax( {
 				url    : this.$WPE_AJAX_URL,
 				type   : "POST",
@@ -59,6 +61,7 @@ export default {
 		},
 		save_settings ()
 		{
+			console.log( this.form );
 			this.form_loader = true;
 			$.ajax( {
 				url    : this.$WPE_AJAX_URL,
