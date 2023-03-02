@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Requesting;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Loader;
 use WPEssential\Plugins\Panel\Fields\Select;
 

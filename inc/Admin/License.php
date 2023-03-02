@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Admin;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
 

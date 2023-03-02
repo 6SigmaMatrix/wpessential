@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Implement;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 interface Skin
 {
 	public function get_id ();

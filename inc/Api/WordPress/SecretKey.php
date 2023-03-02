@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Api\WordPress;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class SecretKey extends WordPress
 {
 	/**

@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Helper;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 trait GetShortcodeBase
 {
 	use SetShortcodeBase;

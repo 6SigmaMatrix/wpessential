@@ -2,6 +2,9 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 final class PageTemplates
 {

@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Choose extends Field implements Fields
@@ -31,6 +35,7 @@ class Choose extends Field implements Fields
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function options ( $callback )
@@ -44,6 +49,7 @@ class Choose extends Field implements Fields
 	 * Set the callback to be used for determining the field's allow toggle / unset the selection.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function toggle ( $callback )

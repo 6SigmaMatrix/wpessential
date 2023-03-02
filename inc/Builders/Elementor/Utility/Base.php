@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Widget_Base;
 use WPEssential\Plugins\Helper\ElementRender;
 use WPEssential\Plugins\Helper\GetShortcodeBase;
@@ -34,7 +38,7 @@ abstract class Base extends Widget_Base
 	 * Retrieve the ID of the current skin.
 	 *
 	 * @return string Current skin.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -53,8 +57,9 @@ abstract class Base extends Widget_Base
 	 * `start_controls_section()` and `end_controls_section()`.
 	 *
 	 * @param string $section_id Section ID.
-	 * @param array $args Section arguments Optional.
-	 * @since 1.0.0
+	 * @param array  $args       Section arguments Optional.
+	 *
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -77,7 +82,7 @@ abstract class Base extends Widget_Base
 	 * An internal method that is used to add a skin control to the widget.
 	 * Added at the top of the controls section.
 	 *
-	 * @since 2.0.0
+	 * @since  2.0.0
 	 * @access private
 	 */
 	public function register_skin_control ()
@@ -126,7 +131,7 @@ abstract class Base extends Widget_Base
 	 *
 	 * Used to add attributes to the current widget wrapper HTML tag.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access protected
 	 */
 	protected function _add_render_attributes ()

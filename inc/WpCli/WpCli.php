@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\WpCli;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WP_CLI;
 
 abstract class WpCli extends WP_CLI

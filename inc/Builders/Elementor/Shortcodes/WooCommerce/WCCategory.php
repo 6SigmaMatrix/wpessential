@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Builders\Elementor\Utility\Base;
 use WPEssential\Plugins\Implement\Shortcodes;
 
@@ -15,7 +19,7 @@ class WCCategory extends Base implements Shortcodes
 	 * Used to determine where to display the widget in the editor.
 	 *
 	 * @return array Widget categories.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -30,7 +34,7 @@ class WCCategory extends Base implements Shortcodes
 	 * Used to determine whether the reload preview is required.
 	 *
 	 * @return bool Whether the reload preview is required.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 *
 	 */
@@ -44,7 +48,7 @@ class WCCategory extends Base implements Shortcodes
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_controls ()
@@ -56,7 +60,7 @@ class WCCategory extends Base implements Shortcodes
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function render ()

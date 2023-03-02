@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Controls;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Control_Select2;
 
 class Query extends Control_Select2
@@ -17,6 +21,7 @@ class Query extends Control_Select2
 
 	/**
 	 * 'query' can be used for passing query args in the structure and format used by WP_Query.
+	 *
 	 * @return array
 	 */
 	protected function get_default_settings ()

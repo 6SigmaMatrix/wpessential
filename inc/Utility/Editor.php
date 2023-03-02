@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Libraries\Fonts\Google\GoogleFonts;
 
 final class Editor

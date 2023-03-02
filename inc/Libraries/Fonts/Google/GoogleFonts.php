@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Libraries\Fonts\Google;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class GoogleFonts
 {
 	public static    $font_url;
@@ -58,7 +62,7 @@ final class GoogleFonts
 		foreach ( self::$fonts_names as $item ) {
 			$links[ str_replace( ' ', '-', $item ) ] = self::get_font_link( $item . ':' . implode( ',', $this->variants() ) );
 		}
-		
+
 		return $links;
 	}
 

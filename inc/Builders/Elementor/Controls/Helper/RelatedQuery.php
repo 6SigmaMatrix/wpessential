@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Controls\Helper;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Widget_Base;
 
 class RelatedQuery extends PostQuery
@@ -13,9 +17,9 @@ class RelatedQuery extends PostQuery
 	 * Elementor_Post_Query constructor.
 	 *
 	 * @param Widget_Base $widget
-	 * @param string $group_query_name
-	 * @param array $query_args
-	 * @param array $fallback_args
+	 * @param string      $group_query_name
+	 * @param array       $query_args
+	 * @param array       $fallback_args
 	 */
 	public function __construct ( $widget, $group_query_name, $query_args = [], $fallback_args = [] )
 	{
@@ -96,7 +100,7 @@ class RelatedQuery extends PostQuery
 
 	/**
 	 * @param string $key
-	 * @param mixed $value
+	 * @param mixed  $value
 	 * @param string $control_name
 	 */
 	private function set_fallback_arg_by_settings ( $key, $value, $control_name = '' )

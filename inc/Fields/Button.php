@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Button extends Field implements Fields
@@ -38,6 +42,7 @@ class Button extends Field implements Fields
 	 * Set the button type. Available values are default and success.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function buttonType ( $callback )
@@ -51,6 +56,7 @@ class Button extends Field implements Fields
 	 * Set the button text.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function buttonText ( $callback )
@@ -64,6 +70,7 @@ class Button extends Field implements Fields
 	 * Set event the button will trigger. The event will be triggered via elementor.channels.editor.on( event ).
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function buttonEvent ( $callback )

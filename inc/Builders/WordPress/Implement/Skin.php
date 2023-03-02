@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Implement;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 interface Skin
 {
 	public function get_id ();
@@ -13,7 +17,7 @@ interface Skin
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_control_view ( $args );

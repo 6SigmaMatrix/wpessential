@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Builders\Elementor\Utility\Elementor;
 use WPEssential\Plugins\Builders\WordPress\Utility\WordPress;
 

@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Requesting;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class HealthInfo extends \WPEssential\Plugins\Admin\HealthInfo
 {
 	public static function constructor ()

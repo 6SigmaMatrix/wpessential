@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Theme;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class Images
 {
 	public static function constructor ()

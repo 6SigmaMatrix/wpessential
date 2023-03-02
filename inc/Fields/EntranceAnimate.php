@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class EntranceAnimate extends Field implements Fields

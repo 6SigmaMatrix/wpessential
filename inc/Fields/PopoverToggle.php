@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class PopoverToggle extends Field implements Fields
@@ -38,6 +42,7 @@ class PopoverToggle extends Field implements Fields
 	 * Set the callback to be used for determining the field's “unchecked” state.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function labelOn ( $callback )
@@ -51,6 +56,7 @@ class PopoverToggle extends Field implements Fields
 	 * Set the callback to be used for determining the field's “checked” state.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function labelOff ( $callback )
@@ -64,6 +70,7 @@ class PopoverToggle extends Field implements Fields
 	 * Set the callback to be used for determining the field's  value returned when checked.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function returnValue ( $callback )

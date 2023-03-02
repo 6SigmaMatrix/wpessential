@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\WpCli;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class WpCliINit
 {
 	public static function constructor ()

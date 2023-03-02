@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Controls\Group;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Controls_Manager;
 use Elementor\Utils;
 use TCI_UET\Classes\TCI_Utils;

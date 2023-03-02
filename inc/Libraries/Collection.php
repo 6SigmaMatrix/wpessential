@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Libraries;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use ArrayAccess;
 use ArrayIterator;
 use CachingIterator;

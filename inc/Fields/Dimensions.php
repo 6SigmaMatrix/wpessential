@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Dimensions extends Field implements Fields
@@ -24,6 +28,7 @@ class Dimensions extends Field implements Fields
 	 * Set the callback to be used for determining the field's to show the available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom', 'left' ].
 	 *
 	 * @param array $callback
+	 *
 	 * @return $this
 	 */
 	public function allowed_dimensions ( array $callback )

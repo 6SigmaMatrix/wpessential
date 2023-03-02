@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use JsonSerializable;
 use WPEssential\Plugins\Implement\Arrayable;
 use WPEssential\Plugins\Loader;
@@ -409,6 +413,7 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	 * Create a new element.
 	 *
 	 * @param mixed ...$arguments
+	 *
 	 * @return static
 	 */
 	public static function make ( ...$arguments )

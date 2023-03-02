@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Builders\Elementor\Utility\Base;
 use WPEssential\Plugins\Fields\Number;
 use WPEssential\Plugins\Implement\Shortcodes;
@@ -26,7 +30,7 @@ class Post extends Base implements Shortcodes
 	 *
 	 * @return array Widget keywords.
 	 * @access public
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @public
 	 */
 	public function set_keywords ()
@@ -39,7 +43,7 @@ class Post extends Base implements Shortcodes
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_controls ()
@@ -67,7 +71,7 @@ class Post extends Base implements Shortcodes
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function render ()

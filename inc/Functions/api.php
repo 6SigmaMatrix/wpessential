@@ -1,5 +1,9 @@
 <?php
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Api\WordPress\Stats;
 
 if ( ! function_exists( 'wpe_wp_stats_api_array' ) ) {

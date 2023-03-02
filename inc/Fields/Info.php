@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Info extends Field implements Fields
@@ -59,6 +63,7 @@ class Info extends Field implements Fields
 	 * Set the type of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _type ( $callback )
@@ -71,6 +76,7 @@ class Info extends Field implements Fields
 	 * Set the alignment of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _align ( $callback )
@@ -83,6 +89,7 @@ class Info extends Field implements Fields
 	 * Set the closable of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _closable ( $callback )
@@ -95,6 +102,7 @@ class Info extends Field implements Fields
 	 * Set the close text of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _close_text ( $callback )
@@ -107,6 +115,7 @@ class Info extends Field implements Fields
 	 * Set the show icon of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _show_icon ( $callback )
@@ -119,6 +128,7 @@ class Info extends Field implements Fields
 	 * Set the effect of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _effect ( $callback )

@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Controls\Group;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Base;
 
@@ -76,6 +80,7 @@ class Posts extends Group_Control_Base
 			 * Filters the query variables for the current query.
 			 *
 			 * @param array $current_query_vars Current query variables.
+			 *
 			 * @since 1.0.0
 			 *
 			 */
@@ -168,6 +173,7 @@ class Posts extends Group_Control_Base
 		if ( 0 < $settings[ $prefix . 'offset' ] ) {
 			/**
 			 * Due to a WordPress bug, the offset will be set later, in $this->fix_query_offset()
+			 *
 			 * @see https://codex.wordpress.org/Making_Custom_Queries_using_Offset_and_Pagination
 			 */
 			$query_args[ 'offset_to_fix' ] = $settings[ $prefix . 'offset' ];

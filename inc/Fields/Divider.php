@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Divider extends Field implements Fields
@@ -38,6 +42,7 @@ class Divider extends Field implements Fields
 	 * Set the control icon.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _icon ( $callback )
@@ -50,6 +55,7 @@ class Divider extends Field implements Fields
 	 * Set the content position. left/right/center
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _content_position ( $callback )
@@ -62,6 +68,7 @@ class Divider extends Field implements Fields
 	 * Set the control direction. horizontal/vertical
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _direction ( $callback )

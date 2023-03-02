@@ -1,6 +1,11 @@
 <?php
 
 namespace WPEssential\Plugins\Utility;
+
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /**
  * Javascript Loader Class
  *

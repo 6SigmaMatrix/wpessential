@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\WPEssential;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Controls_Manager;
 use Elementor\Core\Kits\Documents\Tabs\Global_Typography;
 use Elementor\Group_Control_Text_Shadow;
@@ -33,7 +37,7 @@ class Heading extends Base implements Shortcodes
 	 *
 	 * @return array Widget keywords.
 	 * @access public
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @public
 	 */
 	public function set_keywords ()
@@ -46,7 +50,7 @@ class Heading extends Base implements Shortcodes
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_controls ()
@@ -173,7 +177,7 @@ class Heading extends Base implements Shortcodes
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function render ()

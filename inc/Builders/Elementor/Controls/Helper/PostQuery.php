@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Controls\Helper;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Widget_Base;
 
 class PostQuery
@@ -19,8 +23,8 @@ class PostQuery
 	 * Elementor_Post_Query constructor.
 	 *
 	 * @param Widget_Base $widget
-	 * @param string $group_query_name
-	 * @param array $query_args
+	 * @param string      $group_query_name
+	 * @param array       $query_args
 	 */
 	public function __construct ( $widget, $group_query_name, $query_args = [] )
 	{
@@ -97,6 +101,7 @@ class PostQuery
 			 * Filters the query variables for the current query.
 			 *
 			 * @param array $current_query_vars Current query variables.
+			 *
 			 * @since 1.0.0
 			 *
 			 */
@@ -159,7 +164,7 @@ class PostQuery
 
 	/**
 	 * @param string $key
-	 * @param mixed $value
+	 * @param mixed  $value
 	 */
 	protected function set_query_arg ( $key, $value )
 	{
@@ -215,7 +220,7 @@ class PostQuery
 	}
 
 	/**
-	 * @param string $value
+	 * @param string       $value
 	 * @param string|array $maybe_array
 	 *
 	 * @return bool
@@ -358,8 +363,9 @@ class PostQuery
 			 *
 			 * The dynamic portions of the hook name, `$widget_name` & `$query_id`, refers to the Widget name and Query ID respectively.
 			 *
-			 * @param \WP_Query $wp_query
+			 * @param \WP_Query   $wp_query
 			 * @param Widget_Base $this ->current_widget
+			 *
 			 * @since 2.1.0
 			 *
 			 */
@@ -383,7 +389,7 @@ class PostQuery
 	}
 
 	/**
-	 * @param int $found_posts
+	 * @param int       $found_posts
 	 * @param \WP_Query $query
 	 *
 	 * @return int

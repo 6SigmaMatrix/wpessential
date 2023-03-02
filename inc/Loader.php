@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Admin\Admin;
 use WPEssential\Plugins\Admin\RegisterMenus;
 use WPEssential\Plugins\Requesting\RequestingInit;

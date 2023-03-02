@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Helper;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 trait ElementRender
 {
 	public static $ALLOWED_HTML_WRAPPER_TAGS = [

@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Helper\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Fields\Choose;
 use WPEssential\Plugins\Fields\Icons;
 use WPEssential\Plugins\Fields\Select;

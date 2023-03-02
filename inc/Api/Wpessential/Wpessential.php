@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Api\Wpessential;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 abstract class Wpessential
 {
 	//protected $base_url = 'https://wpessential.org/wpe-api-json/route/';

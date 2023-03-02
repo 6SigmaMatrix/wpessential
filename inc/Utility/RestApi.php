@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Admin\License;
 
 final class RestApi
@@ -164,7 +168,7 @@ final class RestApi
 	 * Middleware to try to authenticate the user according to the
 	 * token send.
 	 *
-	 * @param  (int|bool) $user Logged User ID
+	 * @param (int|bool) $user Logged User ID
 	 *
 	 * @return mixed (int|bool)
 	 */

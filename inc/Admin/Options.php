@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Admin;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class Options
 {
 	public static function init ()

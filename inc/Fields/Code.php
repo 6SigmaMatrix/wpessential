@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Code extends Field implements Fields
@@ -31,6 +35,7 @@ class Code extends Field implements Fields
 	 * Set the callback to be used for determining the field's input type value.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function rows ( $callback )
@@ -44,6 +49,7 @@ class Code extends Field implements Fields
 	 * Set the callback to be used for determining the field's input language.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function language ( $callback )

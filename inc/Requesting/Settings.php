@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Requesting;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class Settings extends \WPEssential\Plugins\Admin\Settings
 {
 	public static function constructor ()

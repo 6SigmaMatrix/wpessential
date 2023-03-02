@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Requesting;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Api\Wpessential\Auth;
 
 final class RequestingInit

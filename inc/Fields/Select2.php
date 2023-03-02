@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Select2 extends Field implements Fields
@@ -24,6 +28,7 @@ class Select2 extends Field implements Fields
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function options ( $callback )

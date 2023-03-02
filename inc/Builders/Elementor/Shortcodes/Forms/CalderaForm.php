@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\Forms;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Fields\Select;
 
 class CalderaForm extends FormCategory
@@ -12,7 +16,7 @@ class CalderaForm extends FormCategory
 	 *
 	 * @return array Widget icon.
 	 * @access public
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @public
 	 */
 	public function set_keywords ()
@@ -25,7 +29,7 @@ class CalderaForm extends FormCategory
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_controls ()
@@ -51,7 +55,7 @@ class CalderaForm extends FormCategory
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function render ()

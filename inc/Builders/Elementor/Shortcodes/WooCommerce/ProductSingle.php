@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\WooCommerce;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Fields\Text;
 
 class ProductSingle extends WCCategory
@@ -12,7 +16,7 @@ class ProductSingle extends WCCategory
 	 *
 	 * @return array Widget keywords.
 	 * @access public
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @public
 	 */
 	public function set_keywords ()
@@ -25,7 +29,7 @@ class ProductSingle extends WCCategory
 	 *
 	 * Adds different input fields to allow the user to change and customize the widget settings.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_controls ()
@@ -53,7 +57,7 @@ class ProductSingle extends WCCategory
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function render ()

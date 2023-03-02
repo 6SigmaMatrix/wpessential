@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\WPBakery\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Builders\WPBakery\Controls\Heading;
 use WPEssential\Plugins\Builders\WPBakery\Controls\Number;
 use WPEssential\Plugins\Builders\WPBakery\Controls\Select;

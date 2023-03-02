@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Panel;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class Config
 {
 	public static function init ()

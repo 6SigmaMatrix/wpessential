@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class Kirki
 {
 	public static function constructor ()

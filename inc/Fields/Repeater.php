@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Repeater extends Field implements Fields
@@ -31,6 +35,7 @@ class Repeater extends Field implements Fields
 	 * Add the fields.
 	 *
 	 * @param array $callback
+	 *
 	 * @return Repeater
 	 */
 	public function fields ( array $callback )
@@ -44,6 +49,7 @@ class Repeater extends Field implements Fields
 	 * Add the field title.
 	 *
 	 * @param string $callback
+	 *
 	 * @return Repeater
 	 */
 	public function titleField ( string $callback )

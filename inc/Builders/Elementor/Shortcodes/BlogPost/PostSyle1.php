@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Shortcodes\BlogPost;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Skin_Base;
 use WPEssential\Plugins\Implement\Skin;
 
@@ -29,7 +33,8 @@ class PostSyle1 extends Skin_Base implements Skin
 	 *
 	 * @param $object
 	 * @param $args
-	 * @since 1.0.0
+	 *
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function register_control_view ( $object, $args )
@@ -77,7 +82,7 @@ class PostSyle1 extends Skin_Base implements Skin
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 */
 	public function render ()

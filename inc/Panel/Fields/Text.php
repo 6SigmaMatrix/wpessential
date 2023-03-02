@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Panel\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Panel\Panel;
 
 class Text extends Panel

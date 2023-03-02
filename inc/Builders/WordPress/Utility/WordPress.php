@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\ShortcodeInit;
 use WPEssential\Plugins\Loader;
 

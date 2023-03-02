@@ -3,6 +3,10 @@
  * Copyright (c) 2020. This file is copyright by WPEssential.
  */
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Libraries\Arr;
 use WPEssential\Plugins\Libraries\Collection;
 

@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Requesting;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 class AuthGuard
 {
 	public static function constructor ()

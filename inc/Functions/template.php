@@ -1,4 +1,9 @@
 <?php
+
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 add_action( 'wpe_before_loop', 'wpe_before_loop_template' );
 add_action( 'wpe_after_loop', 'wpe_after_loop_template' );
 

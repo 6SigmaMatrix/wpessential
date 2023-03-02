@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Date extends Field implements Fields
@@ -66,6 +70,7 @@ class Date extends Field implements Fields
 	 * Set the type of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _type ( $callback )
@@ -78,6 +83,7 @@ class Date extends Field implements Fields
 	 * Set The format of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _format ( $callback )
@@ -90,6 +96,7 @@ class Date extends Field implements Fields
 	 * Set the alignment of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _align ( $callback )
@@ -102,6 +109,7 @@ class Date extends Field implements Fields
 	 * Set the time arrow control of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _time_arrow_control ( $callback )
@@ -114,6 +122,7 @@ class Date extends Field implements Fields
 	 * Set the range separator of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _range_separator ( $callback )
@@ -126,6 +135,7 @@ class Date extends Field implements Fields
 	 * Set the start placeholder of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _start_placeholder ( $callback )
@@ -138,6 +148,7 @@ class Date extends Field implements Fields
 	 * Set the end placeholder of the control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _end_placeholder ( $callback )

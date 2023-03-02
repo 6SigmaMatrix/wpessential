@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Api\Wpessential;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Admin\License;
 
 final class Auth extends Wpessential

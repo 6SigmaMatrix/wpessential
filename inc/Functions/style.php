@@ -1,4 +1,9 @@
 <?php
+
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! function_exists( 'wpe_style_unites' ) ) {
 	/**
 	 * Style unites.

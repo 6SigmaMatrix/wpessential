@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\WpCli;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Utility\FileSystem;
 
 final class RegisterTheme extends WpCli

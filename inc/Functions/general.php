@@ -1,4 +1,9 @@
 <?php
+
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! function_exists( 'wpe_ajax_authorized' ) ) {
 	/**
 	 * check or verify the ajax call

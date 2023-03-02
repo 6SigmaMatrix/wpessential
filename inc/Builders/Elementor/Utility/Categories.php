@@ -2,6 +2,9 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
 
 class Categories
 {

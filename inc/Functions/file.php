@@ -1,4 +1,9 @@
 <?php
+
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( ! function_exists( 'wpe_template_dir' ) ) {
 	/**
 	 * Retrieve|Find the full location in themes and plugins.

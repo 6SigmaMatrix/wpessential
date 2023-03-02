@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Admin\ImportExport;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class WithMediaExport
 {
 	protected static $args             = [];

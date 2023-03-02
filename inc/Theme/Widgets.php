@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Theme;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 final class Widgets
 {
 	public static function constructor ()

@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\WPBakery\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Fields\Select;
 use WPEssential\Plugins\Helper\GetShortcodeBase;
 use WPEssential\Plugins\Implement\Shortcodes;
@@ -70,8 +74,9 @@ abstract class Base
 	 * it to the stage.
 	 *
 	 * @param bool $callback
+	 *
 	 * @return Base Element show settings on create.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 * @public
 	 */
@@ -88,8 +93,9 @@ abstract class Base
 	 * edit mode (it allows you to add more functionality to your shortcode in js_composer edit mode)
 	 *
 	 * @param mixed $callback
+	 *
 	 * @return string|array Element admin enqueue js.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 * @public
 	 */
@@ -106,8 +112,9 @@ abstract class Base
 	 * block in js_composer constructor mode
 	 *
 	 * @param mixed $callback
+	 *
 	 * @return string|array Element admin enqueue css.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 * @public
 	 */
@@ -123,8 +130,9 @@ abstract class Base
 	 * Retrieve Set custom backbone.js view controller for this content element.
 	 *
 	 * @param string $callback
+	 *
 	 * @return string Element js view.
-	 * @since 1.0.0
+	 * @since  1.0.0
 	 * @access public
 	 * @public
 	 */

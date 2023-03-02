@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Text extends Field implements Fields
@@ -24,6 +28,7 @@ class Text extends Field implements Fields
 	 * Set the callback to be used for determining the field's input type value.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function inputType ( $callback )

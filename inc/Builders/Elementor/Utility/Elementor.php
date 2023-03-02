@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Builders\Elementor\Utility;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use Elementor\Plugin;
 use WPEssential\Plugins\Builders\Elementor\Controls\ImageSelect;
 use WPEssential\Plugins\Implement\ShortcodeInit;

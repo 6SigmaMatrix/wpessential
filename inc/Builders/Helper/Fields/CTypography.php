@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Builders\Helper\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Fields\FontFamily;
 use WPEssential\Plugins\Fields\Slider;
 

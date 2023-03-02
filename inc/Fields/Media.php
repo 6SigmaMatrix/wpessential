@@ -2,6 +2,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Implement\Fields;
 
 class Media extends Field implements Fields
@@ -31,6 +35,7 @@ class Media extends Field implements Fields
 	 * Set the add text control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _add_text ( $callback )
@@ -48,6 +53,7 @@ class Media extends Field implements Fields
 	 * Set the add text control.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function _update_text ( $callback )

@@ -5,6 +5,10 @@
 
 namespace WPEssential\Plugins\Fields;
 
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 use WPEssential\Plugins\Builders\Helper\Editor\Beaver;
 use WPEssential\Plugins\Builders\Helper\Editor\Brizy;
 use WPEssential\Plugins\Builders\Helper\Editor\Divi;
@@ -26,6 +30,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor type.
 	 *
 	 * @param string $callback
+	 *
 	 * @return Callback
 	 */
 	public function editor ( string $callback = 'wordpress' )
@@ -39,6 +44,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor dependency.
 	 *
 	 * @param array $callback
+	 *
 	 * @return Callback
 	 */
 	public function dependent ( array $callback )
@@ -52,6 +58,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor dependency.
 	 *
 	 * @param array $callback
+	 *
 	 * @return Callback
 	 */
 	public function dependency ( array $callback )
@@ -65,6 +72,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor panel classes.
 	 *
 	 * @param string $callback
+	 *
 	 * @return Callback
 	 */
 	public function addClasses ( string $callback )
@@ -78,6 +86,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor separator.
 	 *
 	 * @param string $callback
+	 *
 	 * @return Callback
 	 */
 	public function separator ( string $callback )
@@ -91,6 +100,7 @@ abstract class Callback extends Common
 	 * Set the HTML tag name where Visual Composer will store attribute value in WPBakery Page Builder edit mode. Default: hidden input
 	 *
 	 * @param string $callback
+	 *
 	 * @return Callback
 	 */
 	public function holder ( string $callback )
@@ -104,6 +114,7 @@ abstract class Callback extends Common
 	 * Set the params within groups (tabs)
 	 *
 	 * @param string $callback
+	 *
 	 * @return Callback
 	 */
 	public function group ( string $callback )
@@ -117,6 +128,7 @@ abstract class Callback extends Common
 	 * Set the field size
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function field_size ( string $callback )
@@ -130,6 +142,7 @@ abstract class Callback extends Common
 	 * Set the value of param in WPBakery Page Builder editor
 	 *
 	 * @param bool $callback
+	 *
 	 * @return $this
 	 */
 	public function adminLabel ( bool $callback )
@@ -143,6 +156,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the editor dynamic.
 	 *
 	 * @param bool $callback
+	 *
 	 * @return $this
 	 */
 	public function dynamic ( bool $callback )
@@ -166,6 +180,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's key value.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function key ( string $callback )
@@ -179,6 +194,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's description value.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function desc ( string $callback )
@@ -192,6 +208,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's short description value.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function subtitle ( string $callback )
@@ -205,6 +222,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's placeholder value.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function placeholder ( string $callback )
@@ -218,6 +236,7 @@ abstract class Callback extends Common
 	 * Set the minimum number (only affects the spinners, the user can still type a lower value).
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function min ( $callback )
@@ -231,6 +250,7 @@ abstract class Callback extends Common
 	 * Set the maximum number (only affects the spinners, the user can still type a higher value).
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function max ( $callback )
@@ -244,6 +264,7 @@ abstract class Callback extends Common
 	 * Set the intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function step ( $callback )
@@ -257,6 +278,7 @@ abstract class Callback extends Common
 	 * The clearable of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function clearable ( $callback )
@@ -270,6 +292,7 @@ abstract class Callback extends Common
 	 * The filterable of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function filterable ( $callback )
@@ -283,6 +306,7 @@ abstract class Callback extends Common
 	 * The reserve_keyword of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function reserve_keyword ( $callback )
@@ -296,6 +320,7 @@ abstract class Callback extends Common
 	 * The multiple of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function multiple ( $callback )
@@ -309,6 +334,7 @@ abstract class Callback extends Common
 	 * The multiple limit of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function multiple_limit ( $callback )
@@ -322,6 +348,7 @@ abstract class Callback extends Common
 	 * The predefine color.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function predefine ( $callback )
@@ -335,6 +362,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's array of key => value pairs: [ 'key' => 'value', ... ].
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function options ( $callback )
@@ -348,6 +376,7 @@ abstract class Callback extends Common
 	 * The note icon of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function note_icon ( $callback )
@@ -361,6 +390,7 @@ abstract class Callback extends Common
 	 * The note title of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function note_title ( $callback )
@@ -374,6 +404,7 @@ abstract class Callback extends Common
 	 * The note description of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function note_desc ( $callback )
@@ -387,6 +418,7 @@ abstract class Callback extends Common
 	 * The word limit show of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function word_limit_show ( $callback )
@@ -400,6 +432,7 @@ abstract class Callback extends Common
 	 * The readonly of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function readonly ( $callback )
@@ -413,6 +446,7 @@ abstract class Callback extends Common
 	 * The disabled of the field.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function disabled ( $callback )
@@ -426,6 +460,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's label_block value.
 	 *
 	 * @param bool $callback
+	 *
 	 * @return $this
 	 */
 	public function labelBlock ( bool $callback )
@@ -439,6 +474,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's available CSS units like px, em, rem, %, deg and vh.
 	 *
 	 * @param array $callback
+	 *
 	 * @return $this
 	 */
 	public function sizeUnit ( array $callback )
@@ -455,6 +491,7 @@ abstract class Callback extends Common
 	 * $step (int) The intervals value that will be incremented or decremented when using the controls’ spinners.
 	 *
 	 * @param array $callback
+	 *
 	 * @return $this
 	 */
 	public function range ( array $callback )
@@ -468,6 +505,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's to display the label.
 	 *
 	 * @param bool $callback
+	 *
 	 * @return $this
 	 */
 	public function showLabel ( bool $callback )
@@ -481,6 +519,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's default value.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function default ( $callback )
@@ -494,6 +533,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's input type value.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function rows ( $callback )
@@ -507,6 +547,7 @@ abstract class Callback extends Common
 	 * Set the field type style like strictly or not.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function step_strictly ( $callback )
@@ -520,6 +561,7 @@ abstract class Callback extends Common
 	 * Set the field autocomplete option enalbe.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function autocomplete ( $callback )
@@ -533,6 +575,7 @@ abstract class Callback extends Common
 	 * Set the field controls position.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function controls_position ( $callback )
@@ -546,6 +589,7 @@ abstract class Callback extends Common
 	 * Set the field controls.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function controls ( $callback )
@@ -559,6 +603,7 @@ abstract class Callback extends Common
 	 * Set the field maxlength.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function maxlength ( $callback )
@@ -572,6 +617,7 @@ abstract class Callback extends Common
 	 * Set the field minlength.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function minlength ( $callback )
@@ -585,6 +631,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's input max row value.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function max_rows ( $callback )
@@ -598,6 +645,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's input min row value.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function min_rows ( $callback )
@@ -611,6 +659,7 @@ abstract class Callback extends Common
 	 * Set the callback to be used for determining the field's mouse hover title value.
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function mouseHoverTitle ( string $callback )
@@ -624,6 +673,7 @@ abstract class Callback extends Common
 	 * Add an array of elementor css selectors
 	 *
 	 * @param array $callback
+	 *
 	 * @return $this
 	 */
 	public function selectors ( array $callback )
@@ -637,6 +687,7 @@ abstract class Callback extends Common
 	 * Add an string of elementor css selectors
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function selector ( string $callback )
@@ -650,6 +701,7 @@ abstract class Callback extends Common
 	 * Add an array of elementor css selectors
 	 *
 	 * @param array $callback
+	 *
 	 * @return $this
 	 */
 	public function wrap_selectors ( array $callback )
@@ -663,6 +715,7 @@ abstract class Callback extends Common
 	 * Add an string of elementor css selectors
 	 *
 	 * @param string $callback
+	 *
 	 * @return $this
 	 */
 	public function wrap_selector ( string $callback )
@@ -676,6 +729,7 @@ abstract class Callback extends Common
 	 * Add responsive true or false
 	 *
 	 * @param bool $callback
+	 *
 	 * @return $this
 	 */
 	public function responsive ( bool $callback )
@@ -689,6 +743,7 @@ abstract class Callback extends Common
 	 * Add global true or false
 	 *
 	 * @param bool $callback
+	 *
 	 * @return $this
 	 */
 	public function global ( bool $callback )
