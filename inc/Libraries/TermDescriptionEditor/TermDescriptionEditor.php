@@ -10,10 +10,13 @@ class TermDescriptionEditor
 {
 	public static function constructor ()
 	{
-		add_action( 'admin_head-edit-tags.php', [ __CLASS__, 'fix_editor_style' ] );
+		add_action( 'admin_head-edit-tags.php', function ()
+		{
+			echo '<style>.quicktags-toolbar input { width: auto; }.column-description img { max-width: 100%; }.term-description-wrap #post-status-info { width: auto; }</style>';
+		} );
 		add_action( 'admin_head-edit-tags.php', [ __CLASS__, 'load_wordcount_js' ] );
 		add_action( 'admin_head-term.php', [ __CLASS__, 'load_wordcount_js' ] );
-		/* Only users with the "publish_posts" capability can use this feature */
+		/* Only users with the "publish_posts" capability can use this feature. */
 		if ( current_user_can( 'publish_posts' ) ) {
 
 			/* Remove the filters, which disallow HTML in term descriptions */
@@ -68,7 +71,7 @@ class TermDescriptionEditor
 				wp_editor( htmlspecialchars_decode( $tag->description ), 'html-tag-description', $settings );
 				self::editor_word_count();
 				?>
-				<p class="description"><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></p>
+				<p class="description"><?php _e( 'The description is not prominent by default; however, some themes may show it.', 'wpessential' ); ?></p>
 			</td>
 			<script>
 				// Remove the non-html field
@@ -106,32 +109,27 @@ class TermDescriptionEditor
 			wp_editor( '', 'html-tag-description', $settings );
 			self::editor_word_count();
 			?>
-			<p><?php esc_html_e( 'The description is not prominent by default; however, some themes may show it.' ); ?></p>
+			<p><?php _e( 'The description is not prominent by default; however, some themes may show it.', 'wpessential' ); ?></p>
 			<script>
 				// Remove the non-html field
 				jQuery( 'textarea#tag-description' ).closest( '.form-field' ).remove();
-				jQuery( function ()
+				jQuery( function ( $ )
 				{
-					jQuery( '#addtag' ).on( 'mousedown', '#submit', function ()
+					$( '#addtag' ).on( 'mousedown', '#submit', function ()
 					{
 						tinyMCE.triggerSave();
-						jQuery( document ).bind( 'ajaxSuccess.vtde_add_term', function ()
+						$( document ).bind( 'ajaxSuccess.vtde_add_term', function ()
 						{
 							if ( tinyMCE.activeEditor ) {
 								tinyMCE.activeEditor.setContent( '' );
 							}
-							jQuery( document ).unbind( 'ajaxSuccess.vtde_add_term', false );
+							$( document ).unbind( 'ajaxSuccess.vtde_add_term', false );
 						} );
 					} );
 				} );
 			</script>
 		</div>
 		<?php
-	}
-
-	public static function fix_editor_style ()
-	{
-		echo '<style>.quicktags-toolbar input { width: auto; }.column-description img { max-width: 100%; }.term-description-wrap #post-status-info { width: auto; }</style>';
 	}
 
 	public static function load_wordcount_js ()
