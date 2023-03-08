@@ -1,4 +1,8 @@
 <?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 if ( '' === wpe_sh_get_attr( $atts, 'title' ) ) {
 	return;
 }

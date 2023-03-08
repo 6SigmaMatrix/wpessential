@@ -1,4 +1,8 @@
 <?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 $default = [
 	'base'    => esc_url_raw( str_replace( 999999999, '%#%', get_pagenum_link( 999999999, false ) ) ),
 	'current' => max( 1, get_query_var( 'paged' ) ),

@@ -12,7 +12,7 @@ class Settings
 
 	public static function constructor ()
 	{
-		add_filter( 'wpe/register/admin_pages/options/theme_options/fields', [ __CLASS__, 'default' ] );
+		add_filter( 'wpe/register/admin_pages/routes_info/options/fields', [ __CLASS__, 'default' ] );
 	}
 
 	public static function default ( $options )

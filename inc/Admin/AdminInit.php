@@ -6,9 +6,10 @@ if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use Peast\Syntax\Token;
 use WPEssential\Plugins\Admin\ImportExport\WithMediaExport;
 
-final class Admin
+final class AdminInit
 {
 	public static function constructor ()
 	{
@@ -24,15 +25,8 @@ final class Admin
 
 	public static function run ()
 	{
-		Index::constructor();
-		MetaBox::constructor();
-	}
-
-	public static function health_info ()
-	{
-		$list = apply_filters( 'wpe/register/admin_pages/health_info', HealthInfo::constructor() );
-		$list = array_filter( $list );
-		return $list;
+		Pages::constructor();
+		//MetaBox::constructor();
 	}
 
 	public static function localization ( $list )
@@ -51,15 +45,16 @@ final class Admin
 		$token_verify = Auth::authorized_token( $token_info );
 		$token_verify = wpe_josn_decode( $token_verify, true );
 		if ( wpe_array_get( $token_info, 'token' ) && wpe_array_get( $token_verify, 'user' ) ) {*/
+
 		$admin_pages = [
 			'admin_pages' => [
-				'home_page'      => apply_filters( 'wpe/register/admin_pages/routes_info/redirect', [
+				'home_page'  => apply_filters( 'wpe/register/admin_pages/route/redirect', [
 					'route' => apply_filters( 'wpe/register/admin_pages/routes_info/redirect/route', [
 						'path'     => '/',
 						'redirect' => '/home'
 					] ),
 				] ),
-				'home'           => apply_filters( 'wpe/register/admin_pages/routes_info/home', [
+				'home'       => apply_filters( 'wpe/register/admin_pages/route/home', [
 					'menu_title' => __( 'Home', 'wpessential' ),
 					'page_title' => sprintf( __( '%s %s', 'wpessential' ), $time_msg, ucwords( str_replace( [ '_', '-' ], ' ', get_bloginfo( 'name' ) ) ) ),
 					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
@@ -73,7 +68,7 @@ final class Admin
 						'name'      => 'home'
 					] ),
 				] ),
-				'health'         => apply_filters( 'wpe/register/admin_pages/routes_info/health', [
+				'health'     => apply_filters( 'wpe/register/admin_pages/route/health', [
 					'menu_title' => __( 'Health', 'wpessential' ),
 					'page_title' => __( 'Health Check And Info', 'wpessential' ),
 					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
@@ -83,41 +78,12 @@ final class Admin
 						'name'      => 'health'
 					] ),
 				] ),
-				'theme_options'  => apply_filters( 'wpe/register/admin_pages/routes_info/theme_options', [
-					'menu_title' => __( 'Theme options', 'wpessential' ),
-					'page_title' => __( 'Theme Options', 'wpessential' ),
-					'page_desc'  => __( 'Theme customization options.', 'wpessential' ),
-					'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/theme_options/route', [
-						'path'      => '/theme',
-						'component' => [ 'template' => '<wpe-options></wpe-options>' ],
-						'name'      => 'theme_options'
-					] ),
-				] ),
-				'plugin_options' => apply_filters( 'wpe/register/admin_pages/routes_info/plugin_options', [
-					'menu_title' => __( 'Plugin options', 'wpessential' ),
-					'page_title' => __( 'Plugin Options', 'wpessential' ),
-					'page_desc'  => __( 'Plugin customization options.', 'wpessential' ),
-					'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/plugin_options/route', [
-						'path'      => '/plugin',
-						'component' => [ 'template' => '<wpe-options></wpe-options>' ],
-						'name'      => 'plugin_options'
-					] ),
-				] ),
-				'extensions'     => apply_filters( 'wpe/register/admin_pages/routes_info/extension_options', [
-					'menu_title' => __( 'Extension', 'wpessential' ),
-					'page_title' => __( 'WPE Extensions', 'wpessential' ),
-					'page_desc'  => __( 'Extend your WordPress experience with 58,257 plugins.', 'wpessential' ),
-					'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/extension_options/route', [
-						'path'      => '/extensions',
-						'component' => [ 'template' => '<wpe-extensions></wpe-extensions>' ],
-						'name'      => 'extensions'
-					] ),
-				] )
+				'theme'      => Theme::constructor(),
+				'plugins'    => Plugins::constructor(),
+				'extensions' => Extension::constructor(),
+				'theme_info' => wpe_theme_info(),
 			]
 		];
-		$admin_pages = apply_filters( 'wpe/register/admin_pages/routes_info', $admin_pages );
-		$admin_pages = wp_parse_args( Options::init(), $admin_pages );
-		$admin_pages = wp_parse_args( Extension::init(), $admin_pages );
 		/*} else {
 			$admin_pages = [
 				'admin_pages' => [
@@ -138,6 +104,8 @@ final class Admin
 				]
 			];
 		}*/
+		$admin_pages = apply_filters( 'wpe/register/admin_pages/routes', $admin_pages );
+
 		return wp_parse_args(
 			$admin_pages,
 			$list

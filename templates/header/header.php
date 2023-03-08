@@ -1,4 +1,8 @@
 <?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 /*
  * wpe_loader_template - 10
  * */

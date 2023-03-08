@@ -1,3 +1,8 @@
+<?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+?>
 <<?php echo apply_filters( 'wpe/comment/title/tag', 'h2' ); ?> class="wpe-comments-title <?php echo apply_filters( 'wpe/comment/title/classes', 'comments-title' ); ?>">
 <?php
 $comments_number = get_comments_number();

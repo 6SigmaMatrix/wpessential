@@ -6,8 +6,8 @@ if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use WPEssential\Plugins\Admin\Admin;
-use WPEssential\Plugins\Admin\RegisterMenus;
+use WPEssential\Plugins\Admin\AdminInit;
+use WPEssential\Plugins\Libraries\TermDescriptionEditor\TermDescriptionEditor;
 use WPEssential\Plugins\Requesting\RequestingInit;
 use WPEssential\Plugins\Theme\Setup;
 use WPEssential\Plugins\Utility\BuildersInit;
@@ -51,6 +51,7 @@ final class Loader
 		add_action( 'plugins_loaded', [ __CLASS__, 'on_plugins_loaded' ], - 1 );
 		add_action( 'init', [ __CLASS__, 'init' ], 1000 );
 		add_action( 'admin_init', [ __CLASS__, 'admin_init' ], 1000 );
+		add_action( 'wp_loaded', [ __CLASS__, 'wp_loaded' ], 1000 );
 	}
 
 	public static function load_files ()
@@ -77,7 +78,7 @@ final class Loader
 		}
 		$psr[ "WPEssential\\Theme\\{$theme_info->NameSpace}\\" ] = get_stylesheet_directory() . '/inc/';
 
-		$class_loader = require_once WPE_DIR . 'vendor/autoload.php';
+		$class_loader = require WPE_DIR . 'vendor/autoload.php';
 
 		foreach ( $psr as $prefix => $paths ) {
 			$class_loader->addPsr4( $prefix, $paths );
@@ -89,8 +90,7 @@ final class Loader
 		RestApi::constructor();
 		RegisterAssets::constructor();
 		Enqueue::constructor();
-		RegisterMenus::constructor();
-		Admin::constructor();
+		AdminInit::constructor();
 		RequestingInit::constructor();
 		ScriptLoader::constructor();
 		Setup::constructor();
@@ -127,6 +127,12 @@ final class Loader
 	public static function admin_init ()
 	{
 		do_action( 'wpessential_admin_init' );
+	}
+
+	public static function wp_loaded ()
+	{
+		do_action( 'wpessential_loaded' );
+		TermDescriptionEditor::constructor();
 	}
 }
 

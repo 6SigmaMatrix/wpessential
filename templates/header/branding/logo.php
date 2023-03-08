@@ -1,3 +1,8 @@
+<?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+?>
 <div class="wpe-logo">
 	<h1>
 		<?php

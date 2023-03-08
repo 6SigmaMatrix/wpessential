@@ -74,7 +74,7 @@ class HealthInfo
 		$list      = apply_filters( 'wpe/register/admin_pages/health_info/constants', $list );
 
 		wp_send_json_success( [
-			'title' => __( 'Constatns', 'wpessential' ),
+			'title' => __( 'Constants', 'wpessential' ),
 			'desc'  => __( 'Here are the WPEssential plugins and theme defined constasts info listed below.', 'wpessential' ),
 			'list'  => $list
 		] );

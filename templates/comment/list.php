@@ -1,5 +1,10 @@
-<?php do_action( 'wpe_before_comment_list' ); ?>
-    <<?php echo apply_filters( 'wpe/comment/list/tag', 'ol' ); ?> class="wpe-comment-list <?php echo apply_filters( 'wpe/comment/list/classes', 'comment-list' ); ?>">
+<?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+do_action( 'wpe_before_comment_list' );
+?>
+	<<?php echo apply_filters( 'wpe/comment/list/tag', 'ol' ); ?> class="wpe-comment-list <?php echo apply_filters( 'wpe/comment/list/classes', 'comment-list' ); ?>">
 <?php
 wp_list_comments(
 	apply_filters(
@@ -13,6 +18,6 @@ wp_list_comments(
 	)
 );
 ?>
-    </<?php echo apply_filters( 'wpe/comment/list/tag', 'ol' ); ?>>
+	</<?php echo apply_filters( 'wpe/comment/list/tag', 'ol' ); ?>>
 <?php
 do_action( 'wpe_after_comment_list' );

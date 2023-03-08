@@ -134,6 +134,11 @@ final class RegisterAssets
 				'dep'  => [ 'jquery' ],
 				'ver'  => self::ver(),
 			],
+			'wpessential-editor-wordcount' => [
+				'link' => WPE_URL . "assets/js/wordcount{$minify}js",
+				'dep'  => [ 'jquery', 'underscore', 'word-count' ],
+				'ver'  => self::ver( '1.0.0' ),
+			],
 		];
 		$list   = apply_filters( 'wpe/register/js', $list );
 		$list   = array_filter( $list );

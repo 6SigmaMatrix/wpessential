@@ -173,11 +173,22 @@ final class MetaBox implements Arrayable, JsonSerializable
 		return [
 			'id'       => $this->key,
 			'title'    => $this->name,
-			'callback' => [ '\\WPEssential\\Plugins\\Admin\\View', 'meta_index' ],
+			'callback' => [ __CLASS__, 'view' ],
 			'screens'  => $this->post_types,
 			'context'  => $this->context,
 			'priority' => $this->priority,
 			'meta'     => $this->controls
 		];
+	}
+
+	public static function view ()
+	{
+		?>
+		<div class="wpessential-admin wpe-container-fluid">
+			<div class="wpe-admin-page" id="wpessential-admin">
+				<wpe-options></wpe-options>
+			</div>
+		</div>
+		<?php
 	}
 }

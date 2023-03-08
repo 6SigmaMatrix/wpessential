@@ -1,4 +1,8 @@
 <?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 wp_nav_menu(
 	[
 		'theme_location'  => 'footer_menu',

@@ -1,4 +1,8 @@
 <?php
+if ( ! \defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly.
+}
+
 $comment_author    = 'Name';
 $comment_email     = 'E-Mail';
 $comment_body      = 'Comment';
