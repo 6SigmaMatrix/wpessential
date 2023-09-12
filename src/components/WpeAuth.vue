@@ -1,41 +1,41 @@
 <template>
-	<div v-loading="page_loader" class="wpe-login">
-		<el-tabs ref="tabs" class="wpe-login-wrapper" v-loading="form_loader">
-			<el-tab-pane class="wpe-options-tab">
+    <div v-loading="page_loader" class="wpe-login">
+        <el-tabs ref="tabs" v-loading="form_loader" class="wpe-login-wrapper">
+            <el-tab-pane class="wpe-options-tab">
 				<span slot="label">
 					<i class="el-icon-key"></i>
 					Login
 				</span>
-				<el-form ref="login_form" :model="login_form" :rules="login_form_rules" class="wpe-auth-form">
-					<el-form-item label="Username" prop="user">
-						<el-input type="text" v-model="login_form.user" placeholder="Username"></el-input>
-					</el-form-item>
-					<el-form-item label="Password" prop="pass">
-						<el-input type="password" v-model="login_form.pass" placeholder="********"></el-input>
-					</el-form-item>
-					<el-button type="primary" @click.prevent="authorize()">Login</el-button>
-				</el-form>
-			</el-tab-pane>
-			<el-tab-pane class="wpe-options-tab">
+                <el-form ref="login_form" :model="login_form" :rules="login_form_rules" class="wpe-auth-form">
+                    <el-form-item label="Username" prop="user">
+                        <el-input v-model="login_form.user" placeholder="Username" type="text"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Password" prop="pass">
+                        <el-input v-model="login_form.pass" placeholder="********" type="password"></el-input>
+                    </el-form-item>
+                    <el-button type="primary" @click.prevent="authorize()">Login</el-button>
+                </el-form>
+            </el-tab-pane>
+            <el-tab-pane class="wpe-options-tab">
 				<span slot="label">
 					<i class="el-icon-user"></i>
 					Register
 				</span>
-				<el-form ref="reg_form" :model="reg_form" :rules="reg_form_rules" class="wpe-auth-form">
-					<el-form-item label="Username" prop="user">
-						<el-input type="text" v-model="reg_form.user" placeholder="Username"></el-input>
-					</el-form-item>
-					<el-form-item label="Email" prop="email">
-						<el-input type="text" v-model="reg_form.email" placeholder="Username"></el-input>
-					</el-form-item>
-					<el-form-item label="Password" prop="pass">
-						<el-input type="password" v-model="reg_form.pass" placeholder="********"></el-input>
-					</el-form-item>
-					<el-button type="primary" @click.prevent="reg_user()">Register</el-button>
-				</el-form>
-			</el-tab-pane>
-		</el-tabs>
-	</div>
+                <el-form ref="reg_form" :model="reg_form" :rules="reg_form_rules" class="wpe-auth-form">
+                    <el-form-item label="Username" prop="user">
+                        <el-input v-model="reg_form.user" placeholder="Username" type="text"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Email" prop="email">
+                        <el-input v-model="reg_form.email" placeholder="Username" type="text"></el-input>
+                    </el-form-item>
+                    <el-form-item label="Password" prop="pass">
+                        <el-input v-model="reg_form.pass" placeholder="********" type="password"></el-input>
+                    </el-form-item>
+                    <el-button type="primary" @click.prevent="reg_user()">Register</el-button>
+                </el-form>
+            </el-tab-pane>
+        </el-tabs>
+    </div>
 </template>
 <script>
 
@@ -107,7 +107,8 @@ export default {
 		{
 			this.$refs.login_form.validate( ( value ) =>
 			{
-				if ( ! value ) {
+				if ( ! value )
+				{
 					return false;
 				}
 
@@ -123,14 +124,16 @@ export default {
 					success: res =>
 					{
 						this.page_loader = false;
-						if ( res.data.token ) {
+						if ( res.data.token )
+						{
 							location.reload();
 						}
 					},
 					error  : error =>
 					{
 						this.page_loader = false;
-						if ( error.responseJSON && error.responseJSON.data ) {
+						if ( error.responseJSON && error.responseJSON.data )
+						{
 							this.$alert(
 								error.responseJSON.data,
 								{
@@ -139,7 +142,8 @@ export default {
 									dangerouslyUseHTMLString: true
 								}
 							);
-						} else {
+						} else
+						{
 							this.$alert( error.status + ': ' + error.responseText, {
 								type                    : "error",
 								confirmButtonText       : "OK",
@@ -154,7 +158,8 @@ export default {
 		{
 			this.$refs.reg_form.validate( ( value ) =>
 			{
-				if ( ! value ) {
+				if ( ! value )
+				{
 					return false;
 				}
 
@@ -182,7 +187,8 @@ export default {
 					error  : error =>
 					{
 						this.page_loader = false;
-						if ( error.responseJSON && error.responseJSON.data ) {
+						if ( error.responseJSON && error.responseJSON.data )
+						{
 							this.$alert(
 								error.responseJSON.data,
 								{
@@ -191,7 +197,8 @@ export default {
 									dangerouslyUseHTMLString: true
 								}
 							);
-						} else {
+						} else
+						{
 							this.$alert( error.status + ': ' + error.responseText, {
 								type                    : "error",
 								confirmButtonText       : "OK",

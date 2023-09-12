@@ -11,22 +11,22 @@ final class Plugins
 	public static function constructor ()
 	{
 		$path            = wpe_template_dir( 'config/plugin/' );
-		$files           = glob( $path . '*.php' );
+		$files           = apply_filters( 'wpe/register/admin_pages/route/plugins/options/files', glob( $path . '*.php' ) );
 		$plugin_sections = [];
-		if ( $files && is_array( $files ) ) {
-			//$priority = 0;
+		if ( $files && \is_array( $files ) ) {
+			$priority = 0;
 			foreach ( $files as $file ) {
 				if ( file_exists( $file ) ) {
-					//$file = require $file;
-					//$order                    = wpe_array_get( $file, 'priority', $priority );
+					$file  = require $file;
+					$order = wpe_array_get( $file, 'priority', $priority );
 					//$theme_sections[ $order ] = $file;
-					$plugin_sections[] = require $file;
-					//$priority ++;
+					$plugin_sections[ $order ] = $file;
+					$priority ++;
 				}
 			}
 		}
 
-		//Settings::constructor();
+		$plugin_sections = Settings::default( $plugin_sections );
 
 		return apply_filters( 'wpe/register/admin_pages/route/plugins', [
 			'menu_title' => __( 'Plugin options', 'wpessential' ),
@@ -35,7 +35,7 @@ final class Plugins
 			'route'      => [
 				'path'      => '/plugins',
 				'component' => [ 'template' => '<wpe-options></wpe-options>' ],
-				'name'      => 'plugin_options'
+				'name'      => 'plugins'
 			],
 			'options'    => apply_filters( 'wpe/register/admin_pages/route/plugins/options', $plugin_sections ),
 		] );

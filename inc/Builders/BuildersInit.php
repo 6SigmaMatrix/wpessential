@@ -1,13 +1,13 @@
 <?php
 
-namespace WPEssential\Plugins\Utility;
+namespace WPEssential\Plugins\Builders;
 
 if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use WPEssential\Plugins\Builders\Elementor\Utility\Elementor;
-use WPEssential\Plugins\Builders\WordPress\Utility\WordPress;
+use WPEssential\Plugins\Builders\Elementor\ElementorInit;
+use WPEssential\Plugins\Builders\WordPress\WordPressInit;
 
 final class BuildersInit
 {
@@ -18,10 +18,10 @@ final class BuildersInit
 
 	private static function builders ()
 	{
-		WordPress::constructor();
+		WordPressInit::constructor();
 
 		if ( did_action( 'elementor/loaded' ) ) {
-			Elementor::constructor();
+			ElementorInit::constructor();
 		}
 	}
 }

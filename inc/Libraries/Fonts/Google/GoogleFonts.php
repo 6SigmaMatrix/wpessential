@@ -27,8 +27,6 @@ final class GoogleFonts
 	{
 		self::url();
 		self::get_list();
-
-		return $this;
 	}
 
 	private static function url ()

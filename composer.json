@@ -35,29 +35,5 @@
 		"psr-4": {
 			"WPEssential\\Plugins\\": "inc/"
 		}
-	},
-	"scripts": {
-		"test": [
-			"@phpunit",
-			"@style-check"
-		],
-		"style-check": [
-			"@phpcs",
-			"@phpstan",
-			"@phpmd"
-		],
-		"phpunit": "phpunit --verbose",
-		"phpcs": "php-cs-fixer fix -v --diff --dry-run",
-		"phpstan": "phpstan analyse --configuration phpstan.neon --level 3 src tests",
-		"phpmd": "phpmd src text /phpmd.xml",
-		"phpdoc": "php phpdoc.php"
-	},
-	"require": {
-		"wp-cli/wp-cli-bundle": "^2.5",
-		"firebase/php-jwt": "^6.2"
-	},
-	"require-dev": {
-		"vimeo/psalm": "^4.22",
-		"phpstan/phpstan": "^1.5"
 	}
 }

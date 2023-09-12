@@ -55,9 +55,9 @@ final class Pages
 		}
 	}
 
-	public static function add_menu_pages ( $page_title, $menu_title, $manage_options, $menu_slug = 'wpessential', $callback = '', $icon = '', $position = null )
+	public static function add_menu_pages ( $page_title, $menu_title, $capability, $menu_slug = 'wpessential', $callback = '', $icon_url = '', $position = null )
 	{
-		add_menu_page( $page_title, $menu_title, $manage_options, $menu_slug, $callback, $icon, $position );
+		add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $callback, $icon_url, $position );
 		do_action( 'wpe_menu_page' );
 	}
 

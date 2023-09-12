@@ -10,8 +10,7 @@ class TermDescriptionEditor
 {
 	public static function constructor ()
 	{
-		add_action( 'admin_head-edit-tags.php', function ()
-		{
+		add_action( 'admin_head-edit-tags.php', function () {
 			echo '<style>.quicktags-toolbar input { width: auto; }.column-description img { max-width: 100%; }.term-description-wrap #post-status-info { width: auto; }</style>';
 		} );
 		add_action( 'admin_head-edit-tags.php', [ __CLASS__, 'load_wordcount_js' ] );
@@ -120,7 +119,8 @@ class TermDescriptionEditor
 						tinyMCE.triggerSave();
 						$( document ).bind( 'ajaxSuccess.vtde_add_term', function ()
 						{
-							if ( tinyMCE.activeEditor ) {
+							if ( tinyMCE.activeEditor )
+							{
 								tinyMCE.activeEditor.setContent( '' );
 							}
 							$( document ).unbind( 'ajaxSuccess.vtde_add_term', false );

@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\Builders\Elementor\Utility;
+namespace WPEssential\Plugins\Builders\Elementor;
 
 if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -8,10 +8,13 @@ if ( ! \defined( 'ABSPATH' ) ) {
 
 use Elementor\Plugin;
 use WPEssential\Plugins\Builders\Elementor\Controls\ImageSelect;
+use WPEssential\Plugins\Builders\Elementor\Utility\Categories;
+use WPEssential\Plugins\Builders\Elementor\Utility\PageTemplates;
+use WPEssential\Plugins\Builders\Elementor\Utility\Tabs;
 use WPEssential\Plugins\Implement\ShortcodeInit;
 use WPEssential\Plugins\Loader;
 
-final class Elementor implements ShortcodeInit
+final class ElementorInit implements ShortcodeInit
 {
 	protected static $list;
 
@@ -154,7 +157,8 @@ final class Elementor implements ShortcodeInit
 					$term_name = self::get_term_name_with_parents( $term );
 					if ( ! empty( $request[ 'include_type' ] ) ) {
 						$text = $wp_taxonomies[ $term->taxonomy ]->labels->name . ': ' . $term_name;
-					} else {
+					}
+					else {
 						$text = $term_name;
 					}
 					$results[ $term->term_taxonomy_id ] = $text;
@@ -224,7 +228,8 @@ final class Elementor implements ShortcodeInit
 					$term_name = self::get_term_name_with_parents( $term );
 					if ( ! empty( $data[ 'include_type' ] ) ) {
 						$text = $wp_taxonomies[ $term->taxonomy ]->labels->name . ': ' . $term_name;
-					} else {
+					}
+					else {
 						$text = $term_name;
 					}
 
@@ -254,7 +259,8 @@ final class Elementor implements ShortcodeInit
 					$post_type_obj = get_post_type_object( $post->post_type );
 					if ( ! empty( $data[ 'include_type' ] ) ) {
 						$text = $post_type_obj->labels->name . ': ' . $post->post_title;
-					} else {
+					}
+					else {
 						$text = ( $post_type_obj->hierarchical ) ? self::get_post_name_with_parents( $post ) : $post->post_title;
 					}
 

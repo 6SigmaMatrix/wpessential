@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\Utility;
+namespace WPEssential\Plugins\Assets;
 
 if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
@@ -8,8 +8,15 @@ if ( ! \defined( 'ABSPATH' ) ) {
 
 final class Tgm
 {
+	const WPE_TGM_CONFIG_DIR = WPE_DIR . 'config/tgm/';
+
 	public static function constructor ()
 	{
+
+		if ( ! \defined( 'WPE_TGM' ) ) {
+			return;
+		}
+
 		require_once WPE_DIR . '/inc/Libraries/class-tgm-plugin-activation.php';
 		add_action( 'tgmpa_register', [ __CLASS__, 'plugin_list' ] );
 	}
@@ -18,9 +25,12 @@ final class Tgm
 	{
 		$plugin_list = [
 			'exmaple' => [
-				'name'               => 'TGM Example Plugin', // The plugin name.
-				'slug'               => 'tgm-example-plugin', // The plugin slug (typically the folder name).
-				'source'             => dirname( __FILE__ ) . '/lib/plugins/tgm-example-plugin.zip', // The plugin source.
+				'name'               => 'TGM Example Plugin',
+				// The plugin name.
+				'slug'               => 'tgm-example-plugin',
+				// The plugin slug (typically the folder name).
+				'source'             => self::WPE_TGM_CONFIG_DIR . 'tgm-example-plugin.zip',
+				// The plugin source.
 				'required'           => true,
 				'version'            => '1.0.0',
 				'force_activation'   => false,
@@ -38,16 +48,26 @@ final class Tgm
 	private static function config ()
 	{
 		$config = [
-			'id'           => 'wpessential',                 // Unique ID for hashing notices for multiple instances of TGMPA.
-			'default_path' => '',                      // Default absolute path to bundled plugins.
-			'menu'         => 'wpessential-install-plugins', // Menu slug.
-			'parent_slug'  => 'plugins.php',            // Parent menu slug.
-			'capability'   => 'manage_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
-			'has_notices'  => true,                    // Show admin notices or not.
-			'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
-			'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
-			'is_automatic' => false,                   // Automatically activate plugins after installation or not.
-			'message'      => '',                      // Message to output right before the plugins table.
+			'id'           => 'wpessential',
+			// Unique ID for hashing notices for multiple instances of TGMPA.
+			'default_path' => '',
+			// Default absolute path to bundled plugins.
+			'menu'         => 'wpessential-install-plugins',
+			// Menu slug.
+			'parent_slug'  => 'plugins.php',
+			// Parent menu slug.
+			'capability'   => 'manage_options',
+			// Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+			'has_notices'  => true,
+			// Show admin notices or not.
+			'dismissable'  => true,
+			// If false, a user cannot dismiss the nag message.
+			'dismiss_msg'  => '',
+			// If 'dismissable' is false, this message will be output at top of nag.
+			'is_automatic' => false,
+			// Automatically activate plugins after installation or not.
+			'message'      => '',
+			// Message to output right before the plugins table.
 
 			/*
 			'strings'      => array(

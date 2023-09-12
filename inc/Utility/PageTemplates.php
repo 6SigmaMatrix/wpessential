@@ -14,6 +14,9 @@ final class PageTemplates
 
 	public static function constructor ()
 	{
+		if ( \defined( 'WPE_REG_PAGE_TEMPLATE' ) ) {
+			return;
+		}
 		// Add a filter to the wp 4.7 version attributes metabox
 		add_filter( 'theme_page_templates', [ __CLASS__, 'add_template' ] );
 
@@ -28,6 +31,7 @@ final class PageTemplates
 		self::$templates = [];
 
 		self::$templates = apply_filters( 'wpe/register/page_attributes/templates', self::$templates );
+		add_filter( 'display_post_states', [ __CLASS__, 'template_status' ], 1000, 2 );
 	}
 
 	/**
@@ -35,13 +39,11 @@ final class PageTemplates
 	 *
 	 * @param mixed $posts_templates
 	 *
-	 * @return void
+	 * @return array
 	 */
 	public static function add_template ( $posts_templates )
 	{
-		$posts_templates = array_merge( $posts_templates, self::$templates );
-
-		return $posts_templates;
+		return wp_parse_args( $posts_templates, self::$templates );
 	}
 
 	/**
@@ -53,7 +55,6 @@ final class PageTemplates
 	 */
 	public static function view_template ( $template )
 	{
-
 		// Get global post
 		global $post;
 
@@ -92,7 +93,6 @@ final class PageTemplates
 	 */
 	public static function register_templates ( $atts )
 	{
-
 		// Create the key used for the themes cache
 		$cache_key = 'page_templates-' . md5( get_theme_root() . '/' . get_stylesheet() );
 
@@ -116,5 +116,35 @@ final class PageTemplates
 
 		return $atts;
 
+	}
+
+	/**
+	 * template_status
+	 *
+	 * @param $states
+	 * @param $post
+	 *
+	 * @return array
+	 */
+	public static function template_status ( $states, $post )
+	{
+		$template_list = apply_filters( 'wpe/register/page_attributes/templates/status', [] );
+		if ( ! empty( $template_list ) ) {
+			foreach ( $template_list as $template ) {
+				//$type = wpe_array_get( $template, 'type' );
+				$key  = wpe_array_get( $template, 'file' );
+				$name = wpe_array_get( $template, 'title' );
+				switch ( get_post_type( $post->ID ) ) {
+					case 'page':
+						$check = get_post_meta( $post->ID, '_wp_page_template', true );
+						if ( $check === $key ) {
+							$states[] = $name;
+						}
+						break;
+				}
+			}
+		}
+
+		return $states;
 	}
 }

@@ -12,56 +12,60 @@ class Settings
 
 	public static function constructor ()
 	{
-		add_filter( 'wpe/register/admin_pages/routes_info/options/fields', [ __CLASS__, 'default' ] );
+		self::get_values();
 	}
 
 	public static function default ( $options )
 	{
-		if ( is_array( $options ) && count( $options ) >= 1 ) {
-			$x = 0;
-			foreach ( $options as $fields ) {
+		if ( \is_array( $options ) && \count( $options ) >= 1 ) {
+			global $wpe_options;
+			foreach ( $options as $k => $fields ) {
 				$y = 0;
 				foreach ( $fields[ 'fields' ] as $field ) {
 					$key                                   = wpe_array_get( $field, 'id' );
-					$value                                 = wpe_array_get( self::get_values(), $key );
+					$value                                 = wpe_array_get( $wpe_options, $key );
 					self::$opt_array[ $key ]               = $value;
 					$fields[ 'fields' ][ $y ][ 'defined' ] = $value;
 					$y ++;
 				}
-				$options[ $x ] = $fields;
-				$x ++;
+				$options[ $k ] = $fields;
 			}
 		}
 
 		self::set_values();
-
+		//ksort( $options );
+		sort( $options );
 		return $options;
 	}
 
 	public static function set_values ()
 	{
-		$options = self::get_values();
-		$options = wp_parse_args( self::$opt_array, $options );
+		global $wpe_options;
+		$options = wp_parse_args( self::$opt_array, $wpe_options );
 		update_option( 'wpe_settings', $options );
 	}
 
-	public static function get_values ()
+	private static function get_values ()
 	{
-		return get_option( 'wpe_settings' );
+		global $wpe_options;
+		$wpe_options = get_option( 'wpe_settings' );
 	}
 
 	public static function get_value ( $key )
 	{
-		return wpe_array_get( self::get_values(), $key, '' );
+		global $wpe_options;
+		return wpe_array_get( $wpe_options, WPE_SETTINGS . '_' . $key, '' );
 	}
 
 	public static function save_value ( $key, $value = '' )
 	{
-		return update_option( 'wpe_settings', wp_parse_args( [ $key => $value ], self::get_values() ) );
+		global $wpe_options;
+		return update_option( 'wpe_settings', wp_parse_args( [ $key => $value ], $wpe_options ) );
 	}
 
 	public static function save_values ( $options )
 	{
-		return update_option( 'wpe_settings', wp_parse_args( $options, self::get_values() ) );
+		global $wpe_options;
+		return update_option( 'wpe_settings', wp_parse_args( $options, $wpe_options ) );
 	}
 }

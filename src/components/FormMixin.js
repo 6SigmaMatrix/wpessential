@@ -16,7 +16,8 @@ const FormMixin = {
 		},
 		value_get ( data )
 		{
-			if ( this.field !== undefined && this.field.id ) {
+			if ( this.field !== undefined && this.field.id )
+			{
 				return this.$store.state.form[ this.field.id ];
 			}
 

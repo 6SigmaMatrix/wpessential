@@ -12,14 +12,8 @@ if ( ! function_exists( 'wpe_ajax_authorized' ) ) {
 	function wpe_ajax_authorized ()
 	{
 		$checked = check_ajax_referer( WPE_NONCE, 'nonce' );
-		if ( ! $checked ) {
-			wp_send_json_error(
-				[
-					'title'   => __( 'Error.', 'wpessential' ),
-					'message' => __( 'Ajax authorization is invalid.', 'wpessential' )
-				],
-				401
-			);
+		if ( ! $checked || $checked === - 1 ) {
+			wp_send_json_error( __( 'Ajax authorization is invalid.', 'wpessential' ), 401 );
 		}
 	}
 }
@@ -499,7 +493,8 @@ if ( ! function_exists( 'wpe_get_images_sizes' ) ) {
 			foreach ( $_wp_additional_image_sizes as $name => $item ) {
 				$items[ $name ] = 'Width: ' . $item[ 'width' ] . ' Height:' . $item[ 'height' ];
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Image Size Found', 'wpessential' );
 		}
 
@@ -529,7 +524,8 @@ if ( ! function_exists( 'wpe_get_menus_location' ) ) {
 		// Build the array.
 		if ( $_wp_registered_nav_menus ) {
 			$items = wp_parse_args( $items, $_wp_registered_nav_menus );
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Image Size Found', 'wpessential' );
 		}
 
@@ -559,7 +555,8 @@ if ( ! function_exists( 'wpe_get_roles' ) ) {
 		// Build the array.
 		if ( $wp_roles ) {
 			$items = wp_parse_args( $items, $wp_roles->role_names );
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No User Role Found', 'wpessential' );
 		}
 
@@ -593,7 +590,8 @@ if ( ! function_exists( 'wpe_get_capabilities' ) ) {
 					$items[ $k ] = $v ? sprintf( '%s: %s', $k, __( 'Allowed', 'wpessential' ) ) : sprintf( '%s: %s', $k, __( 'Denied', 'wpessential' ) );
 				}
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No User Role Found', 'wpessential' );
 		}
 
@@ -625,7 +623,8 @@ if ( ! function_exists( 'wpe_get_sidebar' ) ) {
 			foreach ( $wp_registered_sidebars as $id => $sidebar ) {
 				$items[ $id ] = $sidebar[ 'name' ];
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Sidebar Found', 'wpessential' );
 		}
 

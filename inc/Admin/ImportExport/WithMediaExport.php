@@ -2,6 +2,8 @@
 
 namespace WPEssential\Plugins\Admin\ImportExport;
 
+use WPEssential\Plugins\Admin\Settings;
+
 if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
@@ -13,6 +15,10 @@ final class WithMediaExport
 
 	public static function constructor ()
 	{
+		if ( Settings::get_value( 'image_export' ) !== 'allow' ) {
+			return;
+		}
+
 		// wp-admin/export.php line 119
 		add_filter( 'export_args', [ __CLASS__, 'option_attach' ], 10, 1 );
 
@@ -38,8 +44,7 @@ final class WithMediaExport
 	{
 		?>
 		<p>
-			<input type="hidden" name="export-media-with-selected-content" value="0">
-			<label>
+			<input type="hidden" name="export-media-with-selected-content" value="0"> <label>
 				<input type="checkbox" name="export-media-with-selected-content" value="1">
 				<?php _e( 'Export media with selected content', 'wpessential' ); ?>
 			</label>
@@ -60,7 +65,7 @@ final class WithMediaExport
 	public static function export_query_filter ( $query )
 	{
 		global $wpdb;
-		if ( false === self::$export_query_run && is_string( $query ) && 0 === strpos( $query, "SELECT ID FROM {$wpdb->posts} " ) ) {
+		if ( self::$export_query_run === false && \is_string( $query ) && strpos( $query, "SELECT ID FROM {$wpdb->posts} " ) === 0 ) {
 			remove_filter( 'query', [ __CLASS__, 'export_query_filter' ], 10 );
 			self::$export_query_run = true;
 
@@ -73,7 +78,7 @@ final class WithMediaExport
 	{
 		global $wpdb;
 
-		if ( isset( self::$args[ 'content' ], self::$args[ 'export-media-with-selected-content' ] ) && 'all' !== self::$args[ 'content' ] && 'attachment' !== self::$args[ 'content' ] && self::$args[ 'export-media-with-selected-content' ] ) {
+		if ( isset( self::$args[ 'content' ], self::$args[ 'export-media-with-selected-content' ] ) && self::$args[ 'content' ] !== 'all' && self::$args[ 'content' ] !== 'attachment' && self::$args[ 'export-media-with-selected-content' ] ) {
 
 			$attachments = $wpdb->get_results( "SELECT ID, guid, post_parent FROM {$wpdb->posts} WHERE post_type = 'attachment'", OBJECT_K );
 			if ( empty( $attachments ) ) {
@@ -250,10 +255,12 @@ final class WithMediaExport
 			if ( 0 === strpos( $file, $uploads[ 'basedir' ] ) ) {
 				// Replace file location with url location.
 				$url = str_replace( $uploads[ 'basedir' ], $uploads[ 'baseurl' ], $file );
-			} elseif ( false !== strpos( $file, 'wp-content/uploads' ) ) {
+			}
+			elseif ( false !== strpos( $file, 'wp-content/uploads' ) ) {
 				// Get the directory name relative to the basedir (back compat for pre-2.7 uploads)
 				$url = trailingslashit( $uploads[ 'baseurl' ] . '/' . _wp_get_attachment_relative_path( $file ) ) . basename( $file );
-			} else {
+			}
+			else {
 				// It's a newly-uploaded file, therefore $file is relative to the basedir.
 				$url = $uploads[ 'baseurl' ] . "/$file";
 			}

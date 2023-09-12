@@ -71,14 +71,18 @@ final class DupplicatePost
 		if ( wp_verify_nonce( $nonce, WPE_NONCE . $post_id ) ) {
 			if ( current_user_can( 'manage_options' ) || current_user_can( 'edit_others_posts' ) ) {
 				self::edit_post( $post_id );
-			} elseif ( current_user_can( 'contributor' ) && $current_user_id === $post->post_author ) {
+			}
+			elseif ( current_user_can( 'contributor' ) && $current_user_id === $post->post_author ) {
 				self::edit_post( $post_id, 'pending' );
-			} elseif ( current_user_can( 'edit_posts' ) && $current_user_id === $post->post_author ) {
+			}
+			elseif ( current_user_can( 'edit_posts' ) && $current_user_id === $post->post_author ) {
 				self::edit_post( $post_id );
-			} else {
+			}
+			else {
 				wp_die( __( 'Unauthorized Access.', 'wpessential' ) );
 			}
-		} else {
+		}
+		else {
 			wp_die( __( 'Security check issue, Please try again.', 'wpessential' ) );
 		}
 	}
@@ -107,7 +111,8 @@ final class DupplicatePost
 	{
 		if ( $post_status_update === '' ) {
 			$post_status = 'draft';
-		} else {
+		}
+		else {
 			$post_status = $post_status_update;
 		}
 
@@ -153,7 +158,8 @@ final class DupplicatePost
 			}
 			wp_redirect( esc_url_raw( admin_url( 'edit.php' . $returnpage ) ) );
 			exit;
-		} else {
+		}
+		else {
 			wp_die( __( 'Error! Post creation failed, could not find original post: ', 'wpessential' ) . $post_id );
 		}
 	}

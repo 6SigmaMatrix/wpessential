@@ -16,13 +16,13 @@ final class MetaBox implements Arrayable, JsonSerializable
 	 *
 	 * @var string
 	 */
-	protected $key = '';
+	protected $key = 'wpessential_meta';
 	/**
 	 * The displayable name of the section.
 	 *
 	 * @var string
 	 */
-	protected $name = '';
+	protected $name = 'WPEssential Meta';
 	/**
 	 * Set the section priority.
 	 *
@@ -40,7 +40,7 @@ final class MetaBox implements Arrayable, JsonSerializable
 	 *
 	 * @var array
 	 */
-	protected $post_types = [];
+	protected $post_types = [ 'post' ];
 	/**
 	 * Set the context.
 	 *
@@ -77,9 +77,9 @@ final class MetaBox implements Arrayable, JsonSerializable
 	}
 
 	/**
-	 * Set the post_types.
+	 * Set the post types.
 	 *
-	 * @param $callback
+	 * @param string|array $callback
 	 *
 	 * @return MetaBox
 	 */
@@ -163,6 +163,11 @@ final class MetaBox implements Arrayable, JsonSerializable
 		return wp_parse_args( $this->prepear() );
 	}
 
+	public function init ()
+	{
+		return $this->prepear();
+	}
+
 	/**
 	 * Prepare the field's.
 	 *
@@ -170,15 +175,21 @@ final class MetaBox implements Arrayable, JsonSerializable
 	 */
 	protected function prepear ()
 	{
-		return [
-			'id'       => $this->key,
-			'title'    => $this->name,
-			'callback' => [ __CLASS__, 'view' ],
-			'screens'  => $this->post_types,
-			'context'  => $this->context,
-			'priority' => $this->priority,
-			'meta'     => $this->controls
-		];
+		$meta_controls = $this->controls;
+		$meta_title    = $this->name;
+		add_meta_box( $this->key, $this->name, [
+				__CLASS__,
+				'view'
+		], $this->post_types, $this->context, $this->priority );
+
+		add_filter( 'wpe/localization', function ( $list ) use ( $meta_controls, $meta_title ) {
+			return wp_parse_args( [
+					'meta' => wp_parse_args( $meta_controls, wpe_array_get( $list, 'meta' ) ),
+				/*'theme_info' => [
+					'Name' => $meta_title
+				],*/
+			], $list );
+		}, 14 );
 	}
 
 	public static function view ()

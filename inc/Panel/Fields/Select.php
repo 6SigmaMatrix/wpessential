@@ -11,7 +11,7 @@ use WPEssential\Plugins\Panel\Panel;
 class Select extends Panel
 {
 	/**
-	 * whether creating new items is allowed. To use this, filterable must be true.
+	 * Whether creating new items is allowed. To use this, filterable must be true.
 	 *
 	 * @var bool
 	 */
@@ -46,7 +46,7 @@ class Select extends Panel
 	protected $clearable = false;
 
 	/**
-	 * whether to collapse tags to a text when multiple selecting.
+	 * Whether to collapse tags to a text when multiple selecting.
 	 *
 	 * @var bool
 	 */
@@ -74,7 +74,7 @@ class Select extends Panel
 	protected $filter_method = '';
 
 	/**
-	 * whether Select is filterable.
+	 * Whether Select is filterable.
 	 *
 	 * @var bool
 	 */
@@ -95,14 +95,14 @@ class Select extends Panel
 	protected $icons = false;
 
 	/**
-	 * whether Select is loading data from server.
+	 * Whether Select is loading data from server.
 	 *
 	 * @var string
 	 */
 	protected $loading_text = 'Loading';
 
 	/**
-	 * whether multiple-select is activated.
+	 * Whether multiple-select is activated.
 	 *
 	 * @var bool
 	 */
@@ -137,21 +137,22 @@ class Select extends Panel
 	protected $options = [];
 
 	/**
-	 * whether to append the popper menu to body. If the positioning of the popper is wrong, you can try to set this prop to false.
+	 * Whether to append the popper menu to body. If the positioning of the popper is wrong, you can try to set this
+	 * prop to false.
 	 *
 	 * @var bool
 	 */
 	protected $popper_append_to_body = true;
 
 	/**
-	 * whether options are loaded from server.
+	 * Whether options are loaded from server.
 	 *
 	 * @var bool
 	 */
 	protected $remote = false;
 
 	/**
-	 * when multiple and filter is true, whether to reserve current keyword after selecting an option.
+	 * when multiple and filter is true, Whether to reserve current keyword after selecting an option.
 	 *
 	 * @var bool
 	 */
@@ -179,7 +180,7 @@ class Select extends Panel
 	protected $type = 'select';
 
 	/**
-	 * whether multiple-select is activated.
+	 * Whether multiple-select is activated.
 	 *
 	 * @param $callback
 	 *
@@ -235,7 +236,7 @@ class Select extends Panel
 	}
 
 	/**
-	 * whether to collapse tags to a text when multiple selecting.
+	 * Whether to collapse tags to a text when multiple selecting.
 	 *
 	 * @param $callback
 	 *
@@ -263,7 +264,7 @@ class Select extends Panel
 	}
 
 	/**
-	 * whether creating new items is allowed. To use this, filterable must be true.
+	 * Whether creating new items is allowed. To use this, filterable must be true.
 	 *
 	 * @param $callback
 	 *
@@ -291,7 +292,7 @@ class Select extends Panel
 	}
 
 	/**
-	 * whether options are loaded from server.
+	 * Whether options are loaded from server.
 	 *
 	 * @param $callback
 	 *
@@ -305,7 +306,7 @@ class Select extends Panel
 	}
 
 	/**
-	 * whether Select is loading data from server.
+	 * Whether Select is loading data from server.
 	 *
 	 * @param $callback
 	 *
@@ -347,7 +348,7 @@ class Select extends Panel
 	}
 
 	/**
-	 * when multiple and filter is true, whether to reserve current keyword after selecting an option.
+	 * when multiple and filter is true, Whether to reserve current keyword after selecting an option.
 	 *
 	 * @param $callback
 	 *
@@ -375,7 +376,8 @@ class Select extends Panel
 	}
 
 	/**
-	 * whether to append the popper menu to body. If the positioning of the popper is wrong, you can try to set this prop to false.
+	 * Whether to append the popper menu to body. If the positioning of the popper is wrong, you can try to set this
+	 * prop to false.
 	 *
 	 * @param $callback
 	 *
@@ -426,7 +428,7 @@ class Select extends Panel
 	public function args ( $callback )
 	{
 		$this->args = $callback;
-		$this->args = is_array( $this->args ) ? $this->args : [];
+		$this->args = \is_array( $this->args ) ? $this->args : [];
 
 		return $this;
 	}
@@ -536,7 +538,7 @@ class Select extends Panel
 	 */
 	private function queries ()
 	{
-		if ( $this->data && false === $this->remote ) {
+		if ( $this->data && $this->remote === false ) {
 			switch ( $this->data ) {
 				case 'posts':
 					$this->options( wpe_get_posts( $this->args ) );
@@ -606,7 +608,7 @@ class Select extends Panel
 	}
 
 	/**
-	 * whether Select is filterable.
+	 * Whether Select is filterable.
 	 *
 	 * @param $callback
 	 *

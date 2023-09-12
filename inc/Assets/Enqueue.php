@@ -1,13 +1,12 @@
 <?php
 
-namespace WPEssential\Plugins\Utility;
+namespace WPEssential\Plugins\Assets;
 
 if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Admin\Settings;
-use WPEssential\Plugins\Loader;
 use WPEssential\Plugins\Panel\Config;
 
 final class Enqueue
@@ -58,37 +57,46 @@ final class Enqueue
 	public static function backend_enqueue ( $hook )
 	{
 		global $post_type;
-
-		$post_types = Settings::get_values();
-		$post_types = wpe_array_get( $post_types, 'plugin_options.allowed_post_types' );
-
-		if ( 'post.php' === $hook || 'post-new.php' === $hook ) {
-			if ( is_array( $post_types ) && in_array( $post_type, $post_types ) ) {
-
-				$list = apply_filters( 'wpe/backend/css', [] );
-				$list = array_filter( $list );
-				if ( $list ) {
-					foreach ( $list as $style ) {
-						wp_enqueue_style( $style );
-					}
+		$post_types = Settings::get_value( 'allowed_post_types' );
+		$hook       = pathinfo( $hook );
+		$hook       = wpe_array_get( $hook, 'filename' );
+		if ( \is_array( $post_types ) && \in_array( $hook, $post_types, true ) ) {
+			$list = apply_filters( 'wpe/backend/css', [] );
+			$list = array_filter( $list );
+			if ( $list ) {
+				foreach ( $list as $style ) {
+					wp_enqueue_style( $style );
 				}
-
-				$list = apply_filters( 'wpe/backend/js', [] );
-				wp_enqueue_script( $list );
 			}
-		}
 
+			$list = apply_filters( 'wpe/backend/js', [] );
+			wp_enqueue_script( $list );
+		}
 	}
 
 	public static function admin_page_enqueue ()
 	{
-		$list = apply_filters( 'wpe/admin_page/css', [ 'google-font-poppins', 'wpessential', 'element-ui', 'element-ui-en', 'nprogress', 'wpessential-admin' ] );
+		$list = apply_filters( 'wpe/admin_page/css', [
+			'google-font-poppins',
+			'wpessential',
+			'element-ui',
+			'element-ui-en',
+			'nprogress',
+			'wpessential-admin'
+		] );
 		$list = array_filter( $list );
 		if ( $list ) {
 			wp_enqueue_style( $list );
 		}
 
-		$list = apply_filters( 'wpe/admin_page/js', [ 'vue', 'vue-router', 'vuex', 'element-ui', 'nprogress', 'wpessential-admin' ] );
+		$list = apply_filters( 'wpe/admin_page/js', [
+			'vue',
+			'vue-router',
+			'vuex',
+			'element-ui',
+			'nprogress',
+			'wpessential-admin'
+		] );
 		$list = array_filter( $list );
 		if ( $list ) {
 			wp_enqueue_script( $list );
@@ -106,6 +114,8 @@ final class Enqueue
 			'ajaxshort'      => '/wp-admin/admin-ajax.php',
 			'root'           => home_url( '/' ),
 			'ajaxurl_prefix' => WPE_AJAX_PREFIX,
+			'is_user_login'  => is_user_logged_in(),
+			'allow_register' => get_option( 'users_can_register' ),
 		];
 
 		$localization = apply_filters( 'wpe/localization', wp_parse_args( $extend, $localization ) );
@@ -133,57 +143,5 @@ final class Enqueue
 		if ( $list ) {
 			wp_enqueue_script( $list );
 		}
-	}
-
-	public static function plugins ()
-	{
-		return [
-			'names'   => [
-				'wpessential',
-				'wpessential-blog-post',
-				'wpessential-team',
-				'wpessential-portfolio',
-				'wpessential-contact',
-				'wpessential-social-kit'
-			],
-			'plugins' => [
-				'wpessential'            => [
-					'name'  => 'WPEssential',
-					'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-					'ver'   => '1.0.0',
-					'price' => '$30'
-				],
-				'wpessential-blog-post'  => [
-					'name'  => 'WPEssential Blog Post',
-					'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-					'ver'   => '1.0.0',
-					'price' => '$30'
-				],
-				'wpessential-team'       => [
-					'name'  => 'WPEssential Team',
-					'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-					'ver'   => '1.0.0',
-					'price' => '$30'
-				],
-				'wpessential-portfolio'  => [
-					'name'  => 'WPEssential Portfolio',
-					'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-					'ver'   => '1.0.0',
-					'price' => '$30'
-				],
-				'wpessential-contact'    => [
-					'name'  => 'WPEssential Contact',
-					'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-					'ver'   => '1.0.0',
-					'price' => '$30'
-				],
-				'wpessential-social-kit' => [
-					'name'  => 'WPEssential Social Kit',
-					'desc'  => 'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.',
-					'ver'   => '1.0.0',
-					'price' => '$30'
-				],
-			]
-		];
 	}
 }

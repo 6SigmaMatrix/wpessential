@@ -14,9 +14,7 @@ final class AdminInit
 	public static function constructor ()
 	{
 		self::run();
-
-		add_action( 'admin_print_scripts-toplevel_page_wpessential', function ()
-		{
+		add_action( 'admin_print_scripts-toplevel_page_wpessential', function () {
 			add_filter( 'wpe/localization', [ __CLASS__, 'localization' ], 13 );
 		}, );
 
@@ -26,7 +24,7 @@ final class AdminInit
 	public static function run ()
 	{
 		Pages::constructor();
-		//MetaBox::constructor();
+		MetaBox::constructor();
 	}
 
 	public static function localization ( $list )
@@ -34,9 +32,11 @@ final class AdminInit
 		$time = date( 'H' );
 		if ( $time >= '1' ) {
 			$time_msg = __( 'Good Morning', 'wpessential' );
-		} elseif ( $time >= '12' ) {
+		}
+		elseif ( $time >= '12' ) {
 			$time_msg = __( 'Good Afternoon', 'wpessential' );
-		} else {
+		}
+		else {
 			$time_msg = __( 'Good Evening', 'wpessential' );
 		}
 
@@ -78,11 +78,11 @@ final class AdminInit
 						'name'      => 'health'
 					] ),
 				] ),
+				'extensions' => Extension::constructor(),
 				'theme'      => Theme::constructor(),
 				'plugins'    => Plugins::constructor(),
-				'extensions' => Extension::constructor(),
-				'theme_info' => wpe_theme_info(),
-			]
+			],
+			'theme_info'  => wpe_theme_info(),
 		];
 		/*} else {
 			$admin_pages = [

@@ -53,4 +53,4 @@ return MetaBox::make( __( 'General Meta', 'wpessential' ), 'general_meta' )
 						 ] )
 						 ->toArray()
 			  ] )
-			  ->toArray();
+			  ->init();

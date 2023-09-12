@@ -1,6 +1,6 @@
 <?php
 
-namespace WPEssential\Plugins\Utility;
+namespace WPEssential\Plugins\Assets;
 
 if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.

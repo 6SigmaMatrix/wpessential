@@ -1,15 +1,16 @@
 <?php
 
-namespace WPEssential\Plugins\Builders\WordPress\Utility;
+namespace WPEssential\Plugins\Builders\WordPress;
 
 if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+use WPEssential\Plugins\Builders\WordPress\Utility\PageTemplates;
 use WPEssential\Plugins\Implement\ShortcodeInit;
 use WPEssential\Plugins\Loader;
 
-final class WordPress implements ShortcodeInit
+final class WordPressInit implements ShortcodeInit
 {
 	public static function constructor ()
 	{

@@ -63,10 +63,14 @@ const app = new Vue( {
 		},
 		append_routes ()
 		{
-			if ( this.$WPEssential.admin_pages ) {
+			if ( this.$WPEssential.admin_pages )
+			{
 				$.each( this.$WPEssential.admin_pages, ( index, route ) =>
 				{
-					this.$router.addRoutes( [ route.route ] );
+					if ( route.route && route.route.path )
+					{
+						this.$router.addRoute( route.route.path, route.route );
+					}
 				} );
 			}
 		}
