@@ -2,11 +2,12 @@
 
 namespace WPEssential\Plugins\Fields;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Implement\Fields;
+use function defined;
 
 class Media extends Field implements Fields
 {
@@ -42,7 +43,8 @@ class Media extends Field implements Fields
 	{
 		if ( ! $this->_add_text ) {
 			$this->_add_text = __( 'Add Image', 'wpessential' );
-		} else {
+		}
+		else {
 			$this->_add_text = $callback;
 		}
 
@@ -60,7 +62,8 @@ class Media extends Field implements Fields
 	{
 		if ( ! $this->_update_text ) {
 			$this->_update_text = __( 'Update Image', 'wpessential' );
-		} else {
+		}
+		else {
 			$this->_update_text = $callback;
 		}
 
@@ -111,7 +114,8 @@ class Media extends Field implements Fields
 		if ( 'Panel' === $this->editor ) {
 			$prepear               = $this->prepear();
 			$prepear[ 'settings' ] = wp_parse_args( wpe_array_get( $this->prepear(), 'settings' ), parent::toArray()[ 'settings' ] );
-		} else {
+		}
+		else {
 			$prepear = $this->prepear();
 		}
 

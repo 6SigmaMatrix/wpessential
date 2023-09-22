@@ -2,11 +2,12 @@
 
 namespace WPEssential\Plugins\Fields;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Implement\Fields;
+use function defined;
 
 class Dimensions extends Field implements Fields
 {
@@ -18,14 +19,16 @@ class Dimensions extends Field implements Fields
 	public $type = 'dimensions';
 
 	/**
-	 * Which fields to show. Available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom', 'left' ].
+	 * Which fields to show. Available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom',
+	 * 'left' ].
 	 *
 	 * @var string
 	 */
 	public $allowed_dimensions;
 
 	/**
-	 * Set the callback to be used for determining the field's to show the available values are all, horizontal, vertical or an array [ 'top', 'right', 'bottom', 'left' ].
+	 * Set the callback to be used for determining the field's to show the available values are all, horizontal,
+	 * vertical or an array [ 'top', 'right', 'bottom', 'left' ].
 	 *
 	 * @param array $callback
 	 *

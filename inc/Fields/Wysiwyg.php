@@ -2,11 +2,12 @@
 
 namespace WPEssential\Plugins\Fields;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Implement\Fields;
+use function defined;
 
 class Wysiwyg extends Field implements Fields
 {
@@ -64,7 +65,8 @@ class Wysiwyg extends Field implements Fields
 		if ( 'Panel' === $this->editor ) {
 			$prepear               = $this->prepear();
 			$prepear[ 'settings' ] = wp_parse_args( wpe_array_get( $prepear, 'settings' ), parent::toArray()[ 'settings' ] );
-		} else {
+		}
+		else {
 			$prepear = $this->prepear();
 		}
 

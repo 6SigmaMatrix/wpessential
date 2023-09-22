@@ -5,7 +5,7 @@
 
 namespace WPEssential\Plugins\Fields;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -21,10 +21,22 @@ use WPEssential\Plugins\Builders\Helper\Editor\Themify;
 use WPEssential\Plugins\Builders\Helper\Editor\VisualComposer;
 use WPEssential\Plugins\Builders\Helper\Editor\WordPress;
 use WPEssential\Plugins\Builders\Helper\Editor\WPBakery;
+use function defined;
 
 abstract class Callback extends Common
 {
-	use Beaver, Brizy, Divi, Elementor, Gutenberg, KingComposer, ShortcodesUltimate, SiteOrigin, Themify, VisualComposer, WPBakery, WordPress;
+	use Beaver;
+	use Brizy;
+	use Divi;
+	use Elementor;
+	use Gutenberg;
+	use KingComposer;
+	use ShortcodesUltimate;
+	use SiteOrigin;
+	use Themify;
+	use VisualComposer;
+	use WordPress;
+	use WPBakery;
 
 	/**
 	 * Set the callback to be used for determining the editor type.
@@ -97,7 +109,8 @@ abstract class Callback extends Common
 	}
 
 	/**
-	 * Set the HTML tag name where Visual Composer will store attribute value in WPBakery Page Builder edit mode. Default: hidden input
+	 * Set the HTML tag name where Visual Composer will store attribute value in WPBakery Page Builder edit mode.
+	 * Default: hidden input
 	 *
 	 * @param string $callback
 	 *
@@ -261,7 +274,8 @@ abstract class Callback extends Common
 	}
 
 	/**
-	 * Set the intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
+	 * Set the intervals value that will be incremented or decremented when using the controls’ spinners. Default is
+	 * empty, the value will be incremented by 1.
 	 *
 	 * @param $callback
 	 *

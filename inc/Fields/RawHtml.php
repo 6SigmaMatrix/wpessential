@@ -31,6 +31,7 @@ class RawHtml extends Field implements Fields
 	 * Set the callback to be used for determining the field's input data.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function data ( $callback )
@@ -44,6 +45,7 @@ class RawHtml extends Field implements Fields
 	 * Set the callback to be used for determining the field's content classes.
 	 *
 	 * @param $callback
+	 *
 	 * @return $this
 	 */
 	public function contentClasses ( $callback )

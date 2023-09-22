@@ -2,7 +2,9 @@
 
 namespace WPEssential\Plugins\Fields;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+use function defined;
+
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -11,13 +13,6 @@ class CTypography extends Field
 	public function __construct ( string $key = '', string $selector = '' )
 	{
 		$this->common_key = $key;
-
-		return $this;
-	}
-
-	public static function make ( ...$arguments )
-	{
-		return new static( ...$arguments );
 	}
 
 	public function typography ()
@@ -37,43 +32,48 @@ class CTypography extends Field
 		//->selectors( $this->selector );
 	}
 
+	public static function make ( ...$arguments )
+	{
+		return new static( ...$arguments );
+	}
+
 	public function font_size ()
 	{
 		return Slider::make( __( 'Size' ), "common_{$this->common_key}_font_size" )
-					 ->sizeUnit( [ 'px', 'em', 'rem', 'vw' ] )
-					 ->range( [
-						 'px' => [
-							 'min' => 1,
-							 'max' => 200,
-						 ],
-						 'vw' => [
-							 'min'  => 0.1,
-							 'max'  => 10,
-							 'step' => 0.1,
-						 ],
-					 ] )
-					 ->responsive( true );
+		             ->sizeUnit( [ 'px', 'em', 'rem', 'vw' ] )
+		             ->range( [
+			             'px' => [
+				             'min' => 1,
+				             'max' => 200,
+			             ],
+			             'vw' => [
+				             'min'  => 0.1,
+				             'max'  => 10,
+				             'step' => 0.1,
+			             ],
+		             ] )
+		             ->responsive( true );
 		//->selectors( $this->selector );
 	}
 
 	public function font_kerning ()
 	{
 		return Select::make( __( 'Kerning' ), "common_{$this->common_key}_font_kerning" )
-					 ->options( wpe_font_kerning() );
+		             ->options( wpe_font_kerning() );
 		//->selectors( $this->selector );
 	}
 
 	public function font_variant_cps ()
 	{
 		return Select::make( __( 'Variant Capitals' ), "common_{$this->common_key}_font_variant_cap" )
-					 ->options( wpe_font_variant_capitals() );
+		             ->options( wpe_font_variant_capitals() );
 		//->selectors( $this->selector );
 	}
 
 	public function font_weight ()
 	{
 		return Select::make( __( 'Weight' ), "common_{$this->common_key}_font_weight" )
-					 ->options( wpe_font_weights() );
+		             ->options( wpe_font_weights() );
 		//->selectors( $this->selector );
 	}
 }

@@ -5,13 +5,14 @@
 
 namespace WPEssential\Plugins\Fields;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use JsonSerializable;
 use WPEssential\Plugins\Implement\Arrayable;
 use WPEssential\Plugins\Loader;
+use function defined;
 
 abstract class Field extends Callback implements Arrayable, JsonSerializable
 {
@@ -79,7 +80,8 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	public $max = '';
 
 	/**
-	 * The intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty, the value will be incremented by 1.
+	 * The intervals value that will be incremented or decremented when using the controls’ spinners. Default is empty,
+	 * the value will be incremented by 1.
 	 *
 	 * @var string
 	 */
@@ -177,7 +179,8 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 	public $defaul = '';
 
 	/**
-	 * HTML tag name where Visual Composer will store attribute value in WPBakery Page Builder edit mode. Default: hidden input
+	 * HTML tag name where Visual Composer will store attribute value in WPBakery Page Builder edit mode. Default:
+	 * hidden input
 	 *
 	 * @var mixed
 	 */
@@ -405,8 +408,6 @@ abstract class Field extends Callback implements Arrayable, JsonSerializable
 		}
 
 		$this->editor( Loader::$editor );
-
-		return $this;
 	}
 
 	/**

@@ -2,11 +2,12 @@
 
 namespace WPEssential\Plugins\Fields;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Implement\Fields;
+use function defined;
 
 class Select2 extends Field implements Fields
 {
