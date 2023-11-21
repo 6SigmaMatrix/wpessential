@@ -58,7 +58,7 @@ trait SetShortcodeBase
 	 */
 	public function set_widget_icon ()
 	{
-		return "fab fa-wikipedia-w";
+		return 'fab fa-wikipedia-w';
 	}
 
 	/**
@@ -133,6 +133,19 @@ trait SetShortcodeBase
 	 * @public
 	 */
 	public function set_classes ()
+	{
+		return [];
+	}
+
+	/**
+	 * @securitySet widget script dependency
+	 *
+	 * @return array Widget classes.
+	 * @since       1.0.0
+	 * @access      public
+	 *
+	 */
+	public function set_script_depends ()
 	{
 		return [];
 	}

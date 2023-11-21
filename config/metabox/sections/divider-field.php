@@ -5,11 +5,11 @@ return [
 	'desc'       => __( 'Divider fields examples.', 'wpessential' ),
 	'note'       => [
 		'title'   => __( 'Divider', 'wpessential' ),
-		'icon'    => 'el-icon-warning',
+		'icon'    => 'warning',
 		'content' => __( 'Divider fields examples.', 'wpessential' )
 	],
-	'icon'       => 'el-icon-location',
-	'image_icon' => 'el-icon-location',
+	'icon'       => 'location',
+	'image_icon' => 'location',
 	//'priority'   => 0,
 	'fields'     => 'divider_field',
 ];

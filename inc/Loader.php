@@ -11,11 +11,13 @@ use WPEssential\Plugins\Admin\Settings;
 use WPEssential\Plugins\Assets\AssetsInit;
 use WPEssential\Plugins\Builders\BuildersInit;
 use WPEssential\Plugins\Libraries\TermDescriptionEditor\TermDescriptionEditor;
+use WPEssential\Plugins\PostTypes\PostTypesInit;
 use WPEssential\Plugins\Requesting\AuthGuard;
 use WPEssential\Plugins\Requesting\RequestingInit;
 use WPEssential\Plugins\Utility\DupplicatePost;
 use WPEssential\Plugins\Utility\Editor;
 use WPEssential\Plugins\Utility\ExtraFileSupport;
+use WPEssential\Plugins\Utility\ExtraOnPluginPage;
 use WPEssential\Plugins\Utility\PageTemplates;
 use WPEssential\Plugins\Utility\RegisterPostStatus;
 
@@ -110,6 +112,7 @@ final class Loader
 	public static function on_plugins_loaded ()
 	{
 		do_action( 'wpessential_loaded' );
+		ExtraOnPluginPage::constructor();
 		self::remove_gutenberg_hooks();
 	}
 

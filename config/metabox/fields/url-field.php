@@ -88,14 +88,14 @@ return [
 		   ->subtitle( __( 'Field Subtitle' ) )
 		   ->description( __( 'Field description' ) )
 		   ->placeholder( __( 'Field placeholder', 'wpessential' ) )
-		   ->prefix_icon( 'el-icon-plus' )
+		   ->prefix_icon( 'plus' )
 		   ->default( 'Im default value of this field' )
 		   ->toArray(),
 		Url::make( __( 'Url field with suffix icon', 'wpessential' ) )
 		   ->subtitle( __( 'Field Subtitle' ) )
 		   ->description( __( 'Field description' ) )
 		   ->placeholder( __( 'Field placeholder', 'wpessential' ) )
-		   ->suffix_icon( 'el-icon-plus' )
+		   ->suffix_icon( 'plus' )
 		   ->default( 'Im default value of this field' )
 		   ->toArray(),
 		Url::make( __( 'Url field with resize', 'wpessential' ) )

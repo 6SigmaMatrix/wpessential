@@ -1,22 +1,19 @@
 <template>
 	<div v-loading="page_loader" class="wpe-health-info">
-		<wpe-page-title v-if="$WPEssential.admin_pages && $WPEssential.admin_pages.health" :title="$WPEssential.admin_pages.health.page_title" :description="$WPEssential.admin_pages.health.page_desc"></wpe-page-title>
-		<wpe-plugins-hooks></wpe-plugins-hooks>
-		<wpe-plugins></wpe-plugins>
-		<wpe-constants></wpe-constants>
+		<WpePageTitle v-if="$ADMIN_PAGES && $ADMIN_PAGES.health" :title="$ADMIN_PAGES.health.page_title" :description="$ADMIN_PAGES.health.page_desc"></WpePageTitle>
+		<WpePluginsHooks></WpePluginsHooks>
+		<WpePlugins></WpePlugins>
+		<WpeConstants></WpeConstants>
 	</div>
 </template>
 <script>
-import WpeConstants from "./info/WpeConstants";
-import WpePlugins from "./info/WpePlugins";
-import WpePluginsHooks from "./info/WpePluginsHooks";
-import Mixin from "../wpessential-mixin";
-import WpePageTitle from "./templates/WpePageTitle";
+import WpeConstants from "./info/WpeConstants.vue";
+import WpePlugins from "./info/WpePlugins.vue";
+import WpePluginsHooks from "./info/WpePluginsHooks.vue";
+import WpePageTitle from "./templates/WpePageTitle.vue";
 
 export default {
-	mixins    : [ Mixin ],
-	components: { WpePageTitle, WpePluginsHooks, WpePlugins, WpeConstants },
-	name      : "wpe-health",
+	components : { WpePageTitle, WpePluginsHooks, WpePlugins, WpeConstants },
 	mounted ()
 	{
 		this.page_loader = false;

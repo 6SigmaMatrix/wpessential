@@ -17,7 +17,7 @@
 								<el-table :data="table_data.list" stripe style="width: 100%">
 									<el-table-column :label="td_index+': '+data_set_again.column_labels.first" prop="first"></el-table-column>
 									<el-table-column :label="td_index+': '+data_set_again.column_labels.second" prop="second">
-										<template slot-scope="scope" v-html="scope.row.second">
+										<template #default="scope">
 											<div v-html="scope.row.second"></div>
 										</template>
 									</el-table-column>
@@ -31,59 +31,59 @@
 	</section>
 </template>
 <script>
-import Mixin from '../../wpessential-mixin.js';
 
 export default {
-	mixins: [ Mixin ],
-	name  : "wpe-plugins",
 	data ()
 	{
 		return {
-			toggle_data: null,
-			table_data : []
+			toggle_data : null,
+			table_data  : []
 		};
 	},
 	mounted ()
 	{
 		this.get_data();
 	},
-	methods: {
+	methods : {
 		get_data ()
 		{
 			this.ajax_loader = true;
 			$.ajax( {
-				url    : this.$WPE_AJAX_URL,
-				type   : "POST",
-				data   : {
-					action: this.$WPE_AJAX_PREFIX + "_active_plugins",
-					nonce : this.$WPE_NONCE
+				url     : this.$WPE_AJAX_URL,
+				type    : "POST",
+				data    : {
+					action : this.$WPE_AJAX_PREFIX + "_active_plugins",
+					nonce  : this.$WPE_NONCE
 				},
-				success: ( res ) =>
+				success : ( res ) =>
 				{
 					this.toggle_data = res.data;
 					this.ajax_loader = false;
 				},
-				error  : ( res ) =>
+				error   : ( res ) =>
 				{
 					this.ajax_loader = false;
-					if ( error.status === 401 ) {
+					if ( error.status === 401 )
+					{
 						this.$alert(
 							error.responseJSON.data.message,
 							error.responseJSON.data.title,
 							{
-								type                    : "error",
-								confirmButtonText       : "Ok",
-								dangerouslyUseHTMLString: true
+								type                     : "error",
+								confirmButtonText        : "Ok",
+								dangerouslyUseHTMLString : true
 							}
 						);
-					} else {
+					}
+					else
+					{
 						this.$alert(
 							error.responseText,
 							error.status,
 							{
-								type                    : "error",
-								confirmButtonText       : "Ok",
-								dangerouslyUseHTMLString: true
+								type                     : "error",
+								confirmButtonText        : "Ok",
+								dangerouslyUseHTMLString : true
 							}
 						);
 					}

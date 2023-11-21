@@ -19,7 +19,7 @@ class Post extends Base implements Shortcodes
 	 * @since  1.0.0
 	 * @access public
 	 */
-	public function register_controls () { }
+	public function register_controls () {}
 
 	/**
 	 * Render widget output on the frontend.
@@ -41,11 +41,8 @@ class Post extends Base implements Shortcodes
 
 		$style = wpe_array_get( $atts, 'style', '1' );
 
-		$file_path = apply_filters( "wpe/shortcodes/wpessential_blog_post/template", 'wpessential-blog-post' );
-		$template  = wpe_plugin_template_load( $file_path, "style-{$style}.php" );
-
 		ob_start();
-		include $template;
+		include_once wpe_template_load( 'wpessential-blog-post/style', $style, false );
 		return ob_get_clean();
 	}
 }

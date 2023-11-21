@@ -50,7 +50,7 @@ final class Pages
 		] ) );
 		if ( ! empty( $menu_args ) ) {
 			foreach ( $menu_args as $menu ) {
-				call_user_func_array( [ __CLASS__, 'add_submenu_pages' ], $menu );
+				\call_user_func_array( [ __CLASS__, 'add_submenu_pages' ], $menu );
 			}
 		}
 	}
@@ -70,11 +70,8 @@ final class Pages
 	public static function view ()
 	{
 		?>
-		<div class="wpessential-admin wpe-container-fluid">
-			<div class="wpe-admin-page" id="wpessential-admin">
-				<wpe-navigation></wpe-navigation>
-				<router-view></router-view>
-			</div>
+		<div class="wpessential-admin wpe-container-fluid" id="wpessential-admin">
+			<App></App>
 		</div>
 		<?php
 	}

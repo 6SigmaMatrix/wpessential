@@ -6,7 +6,7 @@ if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-use WPEssential\Plugins\Fields\Select;
+use WPEssential\Plugins\Builders\Fields\Select;
 use WPEssential\Plugins\Helper\GetShortcodeBase;
 use WPEssential\Plugins\Implement\Shortcodes;
 
@@ -54,17 +54,15 @@ abstract class Base
 		);
 	}
 
-	public function register_controls ()
-	{
-	}
+	public function register_controls () {}
 
 	public function skin_controls ()
 	{
 		$opt            = Select::make( __( 'Skin', 'wpessential' ) )
-								->key( 'style' )
-								->options( $this->skin_opt )
-								->default( '0' )
-								->toArray();
+		                        ->key( 'style' )
+		                        ->options( $this->skin_opt )
+		                        ->default( '0' )
+		                        ->toArray();
 		$this->controls = wp_parse_args( $this->controls, [ $opt ] );
 	}
 

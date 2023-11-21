@@ -1,7 +1,4 @@
 <?php
-/*
- * Copyright (c) 2020. This file is copyright by WPEssential.
- */
 
 namespace WPEssential\Plugins\Helper;
 
@@ -76,7 +73,7 @@ trait ElementRender
 	 * Holds all the render attributes of the element. Used to store data like
 	 * the HTML class name and the class value, or HTML element ID name and value.
 	 *
-	 * @access private
+	 * @access public
 	 *
 	 * @var array
 	 */
@@ -110,7 +107,7 @@ trait ElementRender
 		$attributes = [];
 
 		if ( ! empty( $url_control[ 'url' ] ) ) {
-			$allowed_protocols = array_merge( wp_allowed_protocols(), [ 'skype', 'viber' ] );
+			$allowed_protocols = wp_parse_args( wp_allowed_protocols(), [ 'skype', 'viber' ] );
 
 			$attributes[ 'href' ] = esc_url( $url_control[ 'url' ], $allowed_protocols );
 		}
@@ -125,7 +122,7 @@ trait ElementRender
 
 		if ( ! empty( $url_control[ 'custom_attributes' ] ) ) {
 			// Custom URL attributes should come as a string of comma-delimited key|value pairs
-			$attributes = array_merge( $attributes, $this->parse_custom_attributes( $url_control[ 'custom_attributes' ] ) );
+			$attributes = wp_parse_args( $attributes, $this->parse_custom_attributes( $url_control[ 'custom_attributes' ] ) );
 		}
 
 		if ( $attributes ) {
@@ -165,13 +162,14 @@ trait ElementRender
 			$attr_key = $attr_key_matches[ 0 ];
 
 			// Avoid Javascript events and unescaped href.
-			if ( 'href' === $attr_key || 'on' === substr( $attr_key, 0, 2 ) ) {
+			if ( $attr_key === 'href' || str_starts_with( $attr_key, 'on' ) ) {
 				continue;
 			}
 
 			if ( isset( $attr_key_value[ 1 ] ) ) {
 				$attr_value = trim( $attr_key_value[ 1 ] );
-			} else {
+			}
+			else {
 				$attr_value = '';
 			}
 
@@ -229,12 +227,13 @@ trait ElementRender
 			$this->render_attributes[ $element ][ $key ] = [];
 		}
 
-		settype( $value, 'array' );
+		$value = (array) $value;
 
 		if ( $overwrite ) {
 			$this->render_attributes[ $element ][ $key ] = $value;
-		} else {
-			$this->render_attributes[ $element ][ $key ] = array_merge( $this->render_attributes[ $element ][ $key ], $value );
+		}
+		else {
+			$this->render_attributes[ $element ][ $key ] = wp_parse_args( $this->render_attributes[ $element ][ $key ], $value );
 		}
 
 		return $this;
@@ -277,7 +276,7 @@ trait ElementRender
 		$rendered_attributes = [];
 
 		foreach ( $attributes as $attribute_key => $attribute_values ) {
-			if ( is_array( $attribute_values ) ) {
+			if ( \is_array( $attribute_values ) ) {
 				$attribute_values = implode( ' ', $attribute_values );
 			}
 
@@ -306,6 +305,6 @@ trait ElementRender
 	 */
 	public function validate_html_tag ( $tag )
 	{
-		return in_array( strtolower( $tag ), self::$ALLOWED_HTML_WRAPPER_TAGS ) ? $tag : 'div';
+		return \in_array( strtolower( $tag ), self::$ALLOWED_HTML_WRAPPER_TAGS ) ? $tag : 'div';
 	}
 }

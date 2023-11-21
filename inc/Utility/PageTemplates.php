@@ -10,13 +10,12 @@ final class PageTemplates
 {
 	protected static $plugin_slug;
 
-	protected static $templates = [];
+	protected static $templates = [
+		'wpe-wordpress.php' => 'WPE WordPress',
+	];
 
 	public static function constructor ()
 	{
-		if ( \defined( 'WPE_REG_PAGE_TEMPLATE' ) ) {
-			return;
-		}
 		// Add a filter to the wp 4.7 version attributes metabox
 		add_filter( 'theme_page_templates', [ __CLASS__, 'add_template' ] );
 
@@ -26,11 +25,6 @@ final class PageTemplates
 		// Add a filter to the template include to determine if the page has our
 		// template assigned and return it's path
 		add_filter( 'template_include', [ __CLASS__, 'view_template' ] );
-
-		// Add your templates to this array.
-		self::$templates = [];
-
-		self::$templates = apply_filters( 'wpe/register/page_attributes/templates', self::$templates );
 		add_filter( 'display_post_states', [ __CLASS__, 'template_status' ], 1000, 2 );
 	}
 
@@ -43,7 +37,9 @@ final class PageTemplates
 	 */
 	public static function add_template ( $posts_templates )
 	{
-		return wp_parse_args( $posts_templates, self::$templates );
+		// Add your templates to this array.
+		self::$templates = apply_filters( 'wpe/register/page_attributes/templates', wp_parse_args( $posts_templates, self::$templates ) );
+		return self::$templates;
 	}
 
 	/**
@@ -68,20 +64,18 @@ final class PageTemplates
 			return $template;
 		}
 
-		$files = apply_filters( 'wpe/register/page_attributes/templates/view', [] );
-		$files = array_filter( $files );
-		if ( $files && is_array( $files ) ) {
+		$files = apply_filters( 'wpe/register/page_attributes/templates/view', [
+			wpe_template_load( 'editor-template/' . get_post_meta( $post->ID, '_wp_page_template', true ) )
+		] );
+
+		if ( ! empty( $files ) ) {
 			foreach ( $files as $file ) {
-				$file .= get_post_meta( $post->ID, '_wp_page_template', true );
-				if ( file_exists( $file ) ) {
-					return $file;
-				}
+				return $file;
 			}
 		}
 
 		// Return template
 		return $template;
-
 	}
 
 	/**
@@ -128,13 +122,14 @@ final class PageTemplates
 	 */
 	public static function template_status ( $states, $post )
 	{
-		$template_list = apply_filters( 'wpe/register/page_attributes/templates/status', [] );
+		$template_list = apply_filters( 'wpe/register/page_attributes/templates/status', [
+			'wpe-wordpress.php' => __( 'WPE WordPress', 'wpessential' ),
+		] );
+
 		if ( ! empty( $template_list ) ) {
-			foreach ( $template_list as $template ) {
-				//$type = wpe_array_get( $template, 'type' );
-				$key  = wpe_array_get( $template, 'file' );
-				$name = wpe_array_get( $template, 'title' );
+			foreach ( $template_list as $key => $name ) {
 				switch ( get_post_type( $post->ID ) ) {
+					case 'post':
 					case 'page':
 						$check = get_post_meta( $post->ID, '_wp_page_template', true );
 						if ( $check === $key ) {

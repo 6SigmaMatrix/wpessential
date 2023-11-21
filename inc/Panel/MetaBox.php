@@ -149,6 +149,7 @@ final class MetaBox implements Arrayable, JsonSerializable
 	 * @throws \JsonException
 	 */
 	public function jsonSerialize ()
+	: mixed
 	{
 		return json_encode( get_object_vars( $this ), JSON_THROW_ON_ERROR );
 	}
@@ -178,13 +179,13 @@ final class MetaBox implements Arrayable, JsonSerializable
 		$meta_controls = $this->controls;
 		$meta_title    = $this->name;
 		add_meta_box( $this->key, $this->name, [
-				__CLASS__,
-				'view'
+			__CLASS__,
+			'view'
 		], $this->post_types, $this->context, $this->priority );
 
 		add_filter( 'wpe/localization', function ( $list ) use ( $meta_controls, $meta_title ) {
 			return wp_parse_args( [
-					'meta' => wp_parse_args( $meta_controls, wpe_array_get( $list, 'meta' ) ),
+				'meta' => wp_parse_args( $meta_controls, wpe_array_get( $list, 'meta' ) ),
 				/*'theme_info' => [
 					'Name' => $meta_title
 				],*/

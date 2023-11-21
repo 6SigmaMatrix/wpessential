@@ -5,11 +5,11 @@ return [
 	'desc'       => __( 'Number fields examples.', 'wpessential' ),
 	'note'       => [
 		'title'   => __( 'Number', 'wpessential' ),
-		'icon'    => 'el-icon-warning',
+		'icon'    => 'warning',
 		'content' => __( 'Number fields examples.', 'wpessential' )
 	],
-	'icon'       => 'el-icon-location',
-	'image_icon' => 'el-icon-location',
+	'icon'       => 'location',
+	'image_icon' => 'location',
 	//'priority'   => 0,
 	'fields'     => 'number_field',
 ];

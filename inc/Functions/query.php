@@ -4,7 +4,7 @@ if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-if ( ! function_exists( 'wpe_slide_table_select' ) ) {
+if ( ! function_exists( 'wpe_get_data_from_table_select' ) ) {
 	/**
 	 * Retrieve the data from table.
 	 *
@@ -12,7 +12,7 @@ if ( ! function_exists( 'wpe_slide_table_select' ) ) {
 	 *
 	 * @return array
 	 */
-	function wpe_slide_table_select ( $table )
+	function wpe_get_data_from_table_select ( $table )
 	{
 		global $wpdb;
 
@@ -31,7 +31,7 @@ if ( ! function_exists( 'wpe_formidable_table_query' ) ) {
 	function wpe_formidable_table_query ( $is_multiselect = false )
 	{
 		// Get the posts.
-		$results = wpe_slide_table_select( 'frm_forms' );
+		$results = wpe_get_data_from_table_select( 'frm_forms' );
 
 		$items = [];
 		if ( ! $is_multiselect ) {
@@ -43,7 +43,8 @@ if ( ! function_exists( 'wpe_formidable_table_query' ) ) {
 			foreach ( $results as $result ) {
 				$items[ $result->id ] = $result->name;
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Post Found', 'wpessential' );
 		}
 
@@ -62,7 +63,7 @@ if ( ! function_exists( 'wpe_caldera_table_query' ) ) {
 	function wpe_caldera_table_query ( $is_multiselect = false )
 	{
 		// Get the posts.
-		$results = wpe_slide_table_select( 'cf_forms' );
+		$results = wpe_get_data_from_table_select( 'cf_forms' );
 
 		$items = [];
 		if ( ! $is_multiselect ) {
@@ -74,7 +75,8 @@ if ( ! function_exists( 'wpe_caldera_table_query' ) ) {
 			foreach ( $results as $result ) {
 				$items[ $result->id ] = $result->name;
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Post Found', 'wpessential' );
 		}
 
@@ -93,7 +95,7 @@ if ( ! function_exists( 'wpe_ninja_table_query' ) ) {
 	function wpe_ninja_table_query ( $is_multiselect = false )
 	{
 		// Get the posts.
-		$results = wpe_slide_table_select( 'nf3_forms' );
+		$results = wpe_get_data_from_table_select( 'nf3_forms' );
 
 		$items = [];
 		if ( ! $is_multiselect ) {
@@ -105,7 +107,8 @@ if ( ! function_exists( 'wpe_ninja_table_query' ) ) {
 			foreach ( $results as $result ) {
 				$items[ $result->id ] = $result->name;
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Post Found', 'wpessential' );
 		}
 
@@ -124,7 +127,7 @@ if ( ! function_exists( 'wpe_layer_slider_table_query' ) ) {
 	function wpe_layer_slider_table_query ( $is_multiselect = false )
 	{
 		// Get the posts.
-		$results = wpe_slide_table_select( 'layerslider' );
+		$results = wpe_get_data_from_table_select( 'layerslider' );
 
 		$items = [];
 		if ( ! $is_multiselect ) {
@@ -136,7 +139,8 @@ if ( ! function_exists( 'wpe_layer_slider_table_query' ) ) {
 			foreach ( $results as $result ) {
 				$items[ $result->id ] = $result->name;
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Post Found', 'wpessential' );
 		}
 
@@ -155,7 +159,7 @@ if ( ! function_exists( 'wpe_rev_slider_table_query' ) ) {
 	function wpe_rev_slider_table_query ( $is_multiselect = false )
 	{
 		// Get the posts.
-		$results = wpe_slide_table_select( 'revslider_sliders' );
+		$results = wpe_get_data_from_table_select( 'revslider_sliders' );
 
 		$items = [];
 		if ( ! $is_multiselect ) {
@@ -167,7 +171,8 @@ if ( ! function_exists( 'wpe_rev_slider_table_query' ) ) {
 			foreach ( $results as $result ) {
 				$items[ $result->id ] = $result->name;
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Post Found', 'wpessential' );
 		}
 
@@ -186,7 +191,7 @@ if ( ! function_exists( 'wpe_smart_slider_table_query' ) ) {
 	function wpe_smart_slider_table_query ( $is_multiselect = false )
 	{
 		// Get the posts.
-		$results = wpe_slide_table_select( 'nextend2_smartslider3_sliders' );
+		$results = wpe_get_data_from_table_select( 'nextend2_smartslider3_sliders' );
 
 		$items = [];
 		if ( ! $is_multiselect ) {
@@ -198,7 +203,8 @@ if ( ! function_exists( 'wpe_smart_slider_table_query' ) ) {
 			foreach ( $results as $result ) {
 				$items[ $result->id ] = $result->name;
 			}
-		} else {
+		}
+		else {
 			$items[ 'no' ] = __( 'No Post Found', 'wpessential' );
 		}
 

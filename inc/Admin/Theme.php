@@ -33,7 +33,7 @@ final class Theme
 			'page_desc'  => __( 'Theme customization options.', 'wpessential' ),
 			'route'      => [
 				'path'      => '/theme',
-				'component' => [ 'template' => '<wpe-options></wpe-options>' ],
+				'component' => [ 'template' => '<WpeOptions></WpeOptions>' ],
 				'name'      => 'theme'
 			],
 			'options'    => apply_filters( 'wpe/register/admin_pages/route/theme/options', $theme_sections ),

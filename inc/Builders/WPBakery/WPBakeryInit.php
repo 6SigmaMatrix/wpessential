@@ -21,10 +21,10 @@ final class WPBakeryInit implements ShortcodeInit
 		Number::constructor();
 		Heading::constructor();
 		Select::constructor();
-		self::registry_widget();
+		self::register_widget();
 	}
 
-	public static function registry_widget ( $list = '' )
+	public static function register_widget ( $list = '' )
 	{
 		Loader::editor( 'wpbakery' );
 		$elements = apply_filters( 'wpe/wpbakery/shortcodes', [] );

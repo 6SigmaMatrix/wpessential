@@ -5,9 +5,9 @@ use WPEssential\Plugins\Panel\Fields\Select;
 $section_init = WPEssential\Plugins\Panel\Section::make( __( 'WPEssential', 'wpessential' ), 'select_field' );
 $section_init->description( __( 'The is the WPEssential plugin settings. There has many options to customize the plugin.', 'wpessential' ) );
 $section_init->icon_type( 'icon' );
-$section_init->icon( 'el-icon-location' );
+$section_init->icon( 'location' );
 $section_init->note_desc( __( 'The is the WPEssential plugin settings. There has many options to customize the plugin.', 'wpessential' ) );
-$section_init->note_icon( 'el-icon-location' );
+$section_init->note_icon( 'location' );
 $section_init->note_title( 'WPEssential' );
 $section_init->priority( 10 );
 $section_init->controls( [

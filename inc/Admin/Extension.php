@@ -19,7 +19,7 @@ final class Extension
 				'component' => [ 'template' => '<wpe-extensions></wpe-extensions>' ],
 				'name'      => 'extensions'
 			],
-			'options'    => apply_filters( 'wpe/register/admin_pages/route/extensions/options', [
+			'options'    => apply_filters( 'wpe/register/admin_pages/route/extensions/list', [
 				[
 					'img'         => 'https://ps.w.org/edd-blocks/assets/icon.svg?rev=1977109',
 					'title'       => 'Easy Digital Downloads – Blocks',

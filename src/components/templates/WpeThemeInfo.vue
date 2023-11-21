@@ -14,10 +14,8 @@
 <script>
 
 export default {
-	props  : {
-		info: Object
-	},
-	name   : "wpe-theme-info",
-	methods: {}
+	props : {
+		info : Object
+	}
 };
 </script>

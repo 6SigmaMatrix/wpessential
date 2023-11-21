@@ -56,7 +56,10 @@ final class AdminInit
 				] ),
 				'home'       => apply_filters( 'wpe/register/admin_pages/route/home', [
 					'menu_title' => __( 'Home', 'wpessential' ),
-					'page_title' => sprintf( __( '%s %s', 'wpessential' ), $time_msg, ucwords( str_replace( [ '_', '-' ], ' ', get_bloginfo( 'name' ) ) ) ),
+					'page_title' => sprintf( __( '%s %s', 'wpessential' ), $time_msg, ucwords( str_replace( [
+						'_',
+						'-'
+					], ' ', get_bloginfo( 'name' ) ) ) ),
 					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
 					'ver_bag'    => [
 						'ver'   => WPE_VERSION,
@@ -64,7 +67,7 @@ final class AdminInit
 					],
 					'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/home/route', [
 						'path'      => '/home',
-						'component' => [ 'template' => '<wpe-home></wpe-home>' ],
+						'component' => [ 'template' => '<WpeHome></WpeHome>' ],
 						'name'      => 'home'
 					] ),
 				] ),
@@ -74,7 +77,7 @@ final class AdminInit
 					'page_desc'  => __( 'Health Check And Info', 'wpessential' ),
 					'route'      => apply_filters( 'wpe/register/admin_pages/routes_info/health/route', [
 						'path'      => '/health-info',
-						'component' => [ 'template' => '<wpe-health></wpe-health>' ],
+						'component' => [ 'template' => '<WpeHealth></WpeHealth>' ],
 						'name'      => 'health'
 					] ),
 				] ),

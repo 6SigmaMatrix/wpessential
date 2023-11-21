@@ -8,9 +8,14 @@ if ( ! \defined( 'ABSPATH' ) ) {
 
 use JsonSerializable;
 use WPEssential\Plugins\Implement\Arrayable;
+use WPEssential\Plugins\Panel\Helper\Icon;
+use WPEssential\Plugins\Panel\Helper\Note;
 
 final class Section implements Arrayable, JsonSerializable
 {
+	use Icon;
+	use Note;
+
 	/**
 	 * The add the filed id to database for save the data.
 	 *
@@ -29,36 +34,6 @@ final class Section implements Arrayable, JsonSerializable
 	 * @var string
 	 */
 	protected $description = '';
-	/**
-	 * Indicates if the field should be note description.
-	 *
-	 * @var string
-	 */
-	protected $note_desc = '';
-	/**
-	 * Indicates if the field should be note icon.
-	 *
-	 * @var string
-	 */
-	protected $note_icon = 'el-icon-plus';
-	/**
-	 * Indicates if the field should be note title.
-	 *
-	 * @var string
-	 */
-	protected $note_title = '';
-	/**
-	 * There are 2 type of icons in section to add like (image, icon).
-	 *
-	 * @var string
-	 */
-	protected $icon_type = 'icon';
-	/**
-	 * Get the icon path or icon.
-	 *
-	 * @var string
-	 */
-	protected $icon = '';
 	/**
 	 * Set the section priority.
 	 *
@@ -114,77 +89,6 @@ final class Section implements Arrayable, JsonSerializable
 	public function description ( $callback )
 	{
 		$this->description = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * The note icon of the field.
-	 *
-	 * @param $callback
-	 *
-	 * @return Section
-	 */
-	public function note_icon ( $callback )
-	{
-		$this->note_icon = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * The note title of the field.
-	 *
-	 * @param $callback
-	 *
-	 * @return Section
-	 */
-	public function note_title ( $callback )
-	{
-		$this->note_title = $callback;
-
-		return $this;
-	}
-
-
-	/**
-	 * The note description of the field.
-	 *
-	 * @param $callback
-	 *
-	 * @return Section
-	 */
-	public function note_desc ( $callback )
-	{
-		$this->note_desc = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * Set the icon type.
-	 *
-	 * @param $callback
-	 *
-	 * @return Section
-	 */
-	public function icon_type ( $callback )
-	{
-		$this->icon_type = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * Set the icon path or icon.
-	 *
-	 * @param $callback
-	 *
-	 * @return Section
-	 */
-	public function icon ( $callback )
-	{
-		$this->icon = $callback;
 
 		return $this;
 	}
@@ -282,7 +186,7 @@ final class Section implements Arrayable, JsonSerializable
 	{
 		return new static( ...$args );
 	}
-
+	
 	/**
 	 * Prepare the field json.
 	 *
@@ -290,6 +194,7 @@ final class Section implements Arrayable, JsonSerializable
 	 * @throws \JsonException
 	 */
 	public function jsonSerialize ()
+	: mixed
 	{
 		return json_encode( get_object_vars( $this ), JSON_THROW_ON_ERROR );
 	}
@@ -311,20 +216,23 @@ final class Section implements Arrayable, JsonSerializable
 	 */
 	protected function prepear ()
 	{
-
 		return array_filter( [
-			'id'        => $this->key,
-			'title'     => $this->name,
-			'desc'      => $this->description,
-			'note'      => array_filter( [
-				'title'   => $this->note_title,
-				'icon'    => $this->note_icon,
-				'content' => $this->note_desc
+			'id'         => $this->key,
+			'title'      => $this->name,
+			'desc'       => $this->description,
+			'note'       => array_filter( [
+				'title'      => $this->note_title,
+				'icon'       => $this->note_icon,
+				'content'    => $this->note_desc,
+				'icon_color' => $this->note_icon_color,
+				'icon_size'  => $this->note_icon_size
 			] ),
-			'icon_type' => $this->icon_type,
-			'icon'      => $this->icon,
-			'priority'  => $this->priority,
-			'fields'    => $this->controls,
+			'icon_type'  => $this->icon_type,
+			'icon'       => $this->icon,
+			'icon_color' => $this->icon_color,
+			'icon_size'  => $this->icon_size,
+			'priority'   => $this->priority,
+			'fields'     => $this->controls,
 		] );
 	}
 }

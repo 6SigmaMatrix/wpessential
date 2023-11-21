@@ -8,9 +8,14 @@ if ( ! \defined( 'ABSPATH' ) ) {
 
 use JsonSerializable;
 use WPEssential\Plugins\Implement\Arrayable;
+use WPEssential\Plugins\Panel\Helper\Icon;
+use WPEssential\Plugins\Panel\Helper\Note;
 
 abstract class Panel implements Arrayable, JsonSerializable
 {
+	use Note;
+	use Icon;
+
 	/**
 	 * Fields settings.
 	 *
@@ -72,24 +77,6 @@ abstract class Panel implements Arrayable, JsonSerializable
 	 * @var string
 	 */
 	protected $name = '';
-	/**
-	 * Indicates if the field should be note description.
-	 *
-	 * @var string
-	 */
-	protected $note_desc = '';
-	/**
-	 * Indicates if the field should be note icon.
-	 *
-	 * @var string
-	 */
-	protected $note_icon = 'el-icon-warning';
-	/**
-	 * Indicates if the field should be note title.
-	 *
-	 * @var string
-	 */
-	protected $note_title = '';
 	/**
 	 * Set the callback to be used for determining the field's placeholder value.
 	 *
@@ -221,48 +208,6 @@ abstract class Panel implements Arrayable, JsonSerializable
 	}
 
 	/**
-	 * The note icon of the field.
-	 *
-	 * @param $callback
-	 *
-	 * @return Panel
-	 */
-	public function note_icon ( $callback )
-	{
-		$this->note_icon = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * The note title of the field.
-	 *
-	 * @param $callback
-	 *
-	 * @return Panel
-	 */
-	public function note_title ( $callback )
-	{
-		$this->note_title = $callback;
-
-		return $this;
-	}
-
-	/**
-	 * The note description of the field.
-	 *
-	 * @param $callback
-	 *
-	 * @return Panel
-	 */
-	public function note_desc ( $callback )
-	{
-		$this->note_desc = $callback;
-
-		return $this;
-	}
-
-	/**
 	 * Set the callback to be used for determining the field's default value.
 	 *
 	 * @param $callback
@@ -382,9 +327,11 @@ abstract class Panel implements Arrayable, JsonSerializable
 			'type'      => $this->type,
 			'fullwidth' => $this->full_width,
 			'note'      => array_filter( [
-				'content' => $this->note_desc,
-				'icon'    => $this->note_icon,
-				'title'   => $this->note_title
+				'title'      => $this->note_title,
+				'icon'       => $this->note_icon,
+				'content'    => $this->note_desc,
+				'icon_color' => $this->note_icon_color,
+				'icon_size'  => $this->note_icon_size
 			] )
 		] );
 	}
@@ -396,6 +343,7 @@ abstract class Panel implements Arrayable, JsonSerializable
 	 * @throws \JsonException
 	 */
 	public function jsonSerialize ()
+	: mixed
 	{
 		return json_encode( get_object_vars( $this ), JSON_THROW_ON_ERROR );
 	}

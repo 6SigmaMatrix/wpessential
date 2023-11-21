@@ -4,6 +4,12 @@ if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
+if ( ! function_exists( 'wpe_template_path' ) ) {
+	function wpe_template_path ()
+	{
+		return apply_filters( 'wpe/template/path', 'wpessential/' );
+	}
+}
 if ( ! function_exists( 'wpe_template_dir' ) ) {
 	/**
 	 * Retrieve|Find the full location in themes and plugins.
@@ -48,31 +54,46 @@ if ( ! function_exists( 'wpe_template_load' ) ) {
 	 *
 	 * @return string|WP_Error The resource or WP_Error message on failure
 	 */
-	function wpe_template_load ( $path )
+	function wpe_template_load ( $slug, $name = '', $echo = true )
 	{
-		$find_in = apply_filters( 'wpe/template/load', get_theme_file_path( $path ) );
-		if ( file_exists( $find_in ) ) {
-			return $find_in;
+		$slug = str_replace( '.php', '', $slug );
+		$name = str_replace( '.php', '', $name );
+
+		if ( $name ) {
+			$template = locate_template( [
+				"{$slug}-{$name}.php",
+				wpe_template_path() . "{$slug}-{$name}.php",
+			] );
+
+			if ( ! $template ) {
+				$fallback = WPE_DIR . "templates/{$slug}-{$name}.php";
+				$template = file_exists( $fallback ) ? $fallback : '';
+			}
+
+		}
+		else {
+			// If a template file doesn't exist, look in yourtheme/slug.php and yourtheme/wpessential/slug.php.
+			$template = locate_template( [
+				"{$slug}.php",
+				wpe_template_path() . "{$slug}.php",
+			] );
+
+			if ( ! $template ) {
+				$fallback = WPE_DIR . "templates/{$slug}.php";
+				$template = file_exists( $fallback ) ? $fallback : '';
+			}
 		}
 
-		$find_in = $path;
-		if ( file_exists( $find_in ) ) {
-			return $find_in;
-		}
+		// Allow 3rd party plugins to filter template file from their plugin.
+		$template = apply_filters( 'wpe/template/load', $template, $slug, $name );
 
-		$find_in = WPE_DIR . $path;
-		if ( file_exists( $find_in ) ) {
-			return $find_in;
+		if ( ! $echo ) {
+			return $template;
 		}
-
-		$error = new WP_Error(
-			[
-				404,
-				sprintf( __( 'File %s not found' ), basename( $find_in ) ),
-				$path
-			]
-		);
-		return $error->get_error_message();
+		
+		if ( $template ) {
+			load_template( $template, false );
+		}
 	}
 }
 

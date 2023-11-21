@@ -19,9 +19,5 @@ final class BuildersInit
 	private static function builders ()
 	{
 		WordPressInit::constructor();
-
-		if ( did_action( 'elementor/loaded' ) ) {
-			ElementorInit::constructor();
-		}
 	}
 }

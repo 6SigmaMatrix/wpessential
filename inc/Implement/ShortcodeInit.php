@@ -10,5 +10,5 @@ interface ShortcodeInit
 {
 	public static function constructor ();
 
-	public static function registry_widget ( $list = '' );
+	public static function register_widget ( $list = '' );
 }

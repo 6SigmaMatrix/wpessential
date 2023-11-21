@@ -38,3 +38,7 @@ require_once WPE_DIR . 'inc/Loader.php';
 register_activation_hook( __FILE__, 'wpe_install' );
 register_deactivation_hook( __FILE__, 'wpe_unsintall' );
 WPEssential\Plugins\WpCli\WpCliINit::constructor();
+
+if ( is_admin() && wpe_array_get( $_GET, 'flush_rewrite' ) ) {
+	flush_rewrite_rules();
+}

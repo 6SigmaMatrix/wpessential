@@ -4,10 +4,10 @@
 			<div class="wpe-item-search">
 				<el-form class="wpe-item-search-form">
 					<div class="wpe-banner-title">
-						<h1>{{ $WPEssential.admin_pages.extensions.page_title }}</h1>
-						<p>{{ $WPEssential.admin_pages.extensions.page_desc }}</p>
+						<h1>{{ $ADMIN_PAGES.extensions.page_title }}</h1>
+						<p>{{ $ADMIN_PAGES.extensions.page_desc }}</p>
 					</div>
-					<el-input prefix-icon="i" clearable placeholder="Search Extenstion" suffix-icon="el-icon-search" v-model="form.item_search"></el-input>
+					<el-input prefix-icon="i" clearable placeholder="Search Extension" suffix-icon="el-icon-search" v-model="form.item_search"></el-input>
 				</el-form>
 			</div>
 		</div>
@@ -72,40 +72,23 @@
 	</div>
 </template>
 <script>
-import Mixin from "../wpessential-mixin";
-
 export default {
-	mixins: [ Mixin ],
-	name  : "wpe-extensions",
 	data ()
 	{
 		return {
-			list: [],
-			form: {
-				item_search: ''
+			list : [],
+			form : {
+				item_search : ''
 			}
 
 		};
 	},
 	mounted ()
 	{
-		this.render_tab();
-		this.render_panel();
-	},
-	methods: {
-
-		render_panel ()
+		let route_id = this.wpe_get_route_id();
+		if ( route_id && this.$ADMIN_PAGES[ route_id ] )
 		{
-			this.render_tab();
-			this.theme_info = this.$WPEssential.theme_info;
-		},
-		render_tab ()
-		{
-			let find_in = this.$WPEssential;
-			let route_id = this.wpe_get_route_id();
-			if ( route_id && find_in[ route_id ] ) {
-				this.list = find_in[ route_id ];
-			}
+			this.list = this.$ADMIN_PAGES[ route_id ].options || [];
 		}
 	}
 };

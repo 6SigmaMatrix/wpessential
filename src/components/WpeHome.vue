@@ -12,11 +12,7 @@
 	</div>
 </template>
 <script>
-import WpessentialMixin from "../wpessential-mixin";
-
 export default {
-	mixins: [ WpessentialMixin ],
-	name  : "wpe-home",
 	data ()
 	{
 		return {};

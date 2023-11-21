@@ -18,7 +18,7 @@ final class Enqueue
 		add_action( 'admin_head', [ __CLASS__, 'localization' ], 0 );
 		add_action( 'wp_enqueue_scripts', [ __CLASS__, 'frontend_enqueue' ], 11 );
 
-		add_action( 'admin_enqueue_scripts', [ __CLASS__, 'backend_enqueue' ], 1000, 1 );
+		//add_action( 'admin_enqueue_scripts', [ __CLASS__, 'backend_enqueue' ], 1000, 1 );
 
 		add_action( 'admin_print_scripts-toplevel_page_wpessential', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
 		add_action( 'admin_print_scripts-post.php', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
@@ -56,7 +56,6 @@ final class Enqueue
 
 	public static function backend_enqueue ( $hook )
 	{
-		global $post_type;
 		$post_types = Settings::get_value( 'allowed_post_types' );
 		$hook       = pathinfo( $hook );
 		$hook       = wpe_array_get( $hook, 'filename' );
@@ -79,9 +78,6 @@ final class Enqueue
 		$list = apply_filters( 'wpe/admin_page/css', [
 			'google-font-poppins',
 			'wpessential',
-			'element-ui',
-			'element-ui-en',
-			'nprogress',
 			'wpessential-admin'
 		] );
 		$list = array_filter( $list );
@@ -90,11 +86,19 @@ final class Enqueue
 		}
 
 		$list = apply_filters( 'wpe/admin_page/js', [
-			'vue',
+			/*'vue',
 			'vue-router',
 			'vuex',
-			'element-ui',
-			'nprogress',
+			'dayjs',
+			'customParseFormat',
+			'weekday',
+			'localeData',
+			'weekOfYear',
+			'weekYear',
+			'advancedFormat',
+			'quarterOfYear',
+			'antd',
+			'antd-with-locales',*/
 			'wpessential-admin'
 		] );
 		$list = array_filter( $list );

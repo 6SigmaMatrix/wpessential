@@ -5,11 +5,11 @@ return [
 	'desc'       => __( 'Select fields examples.', 'wpessential' ),
 	'note'       => [
 		'title'   => __( 'Select', 'wpessential' ),
-		'icon'    => 'el-icon-warning',
+		'icon'    => 'warning',
 		'content' => __( 'Select fields examples.', 'wpessential' )
 	],
-	'icon'       => 'el-icon-location',
-	'image_icon' => 'el-icon-location',
+	'icon'       => 'location',
+	'image_icon' => 'location',
 	//'priority'   => 0,
 	'fields'     => 'select_field',
 ];

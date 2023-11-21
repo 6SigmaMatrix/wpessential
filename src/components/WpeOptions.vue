@@ -1,6 +1,6 @@
 <template>
     <div v-loading="page_loader" class="wpe-theme-options">
-        <wpe-page-title :description="page_title.description" :title="page_title.title"></wpe-page-title>
+        <WpePageTitle :description="page_title.description" :title="page_title.title" />
         <section v-loading="form_loader">
             <el-form ref="form" :model="form" :rules="form_rules" class="wpe-options-form" v-bind="$WPE_OPT_ARGS">
                 <div v-if="show_save_button" class="theme-options-header">
@@ -11,88 +11,95 @@
                     <wpe-info :field="{description:'Save the settings before the page refresh', settings:{type:'warning', closable:0,'show-icon':true, effect:'dark'}}"></wpe-info>
                 </div>
                 <el-tabs ref="tabs" :class="collapse? 'panel-collapse':''" class="wpe-options-tabs-wrapper" tab-position="left">
-                    <el-tab-pane v-for="(tabs, index) in controls" :key="index" :class="tabs.children?'has-children':''" class="wpe-options-tab">
-                        <div slot="label" class="label">
-                            <i v-if="tabs.icon && tabs.icon_type === 'icon'" :class="tabs.icon"></i>
-                            <i v-else-if="tabs.icon" class="img-icon"> <img :src="tabs.icon" alt="icon"> </i>
-                            <span class="title">
-								{{ tabs.title }}
-								<wpe-note v-if="tabs.note" v-bind="tabs.note"></wpe-note>
-							</span>
-                        </div>
+	                <el-tab-pane v-for="(tabs, index) in controls" :key="index" :class="tabs.children?'has-children':''" class="wpe-options-tab">
+	                    <template #label>
+	                        <div class="label">
+		                        <el-icon v-if="tabs.icon && tabs.icon_type === 'icon'">
+                                    <component :is="tabs.icon" />
+                                </el-icon>
+                                <i v-else-if="tabs.icon === 'img'" class="img-icon">
+                                    <img :src="tabs.icon" alt="icon">
+                                </i>
+                                <i v-else :class="tabs.icon"></i>
+	                            <span class="title">
+									{{ tabs.title }}
+									<wpe-note v-if="tabs.note" v-bind="tabs.note"></wpe-note>
+								</span>
+	                        </div>
+	                    </template>
                         <div class="tab-title">
                             <h3>{{ tabs.title }}</h3>
                             <p>{{ tabs.desc }}</p>
                         </div>
-                        <wpe-form :fields="tabs.fields"></wpe-form>
+                        <wpe-fields :fields="tabs.fields"></wpe-fields>
                         <div v-if="tabs.children" class="wpe-options-sub-form">
                             <el-tabs class="wpe-options-tabs-wrapper children-wrapper" tab-position="left" type="border-card">
                                 <el-tab-pane v-for="(_tabs, _index) in tabs.children" :key="_index" class="wpe-options-tab children">
-                                    <div slot="label" class="label">
-                                        <i v-if="_tabs.icon && _tabs.icon_type === 'icon'" :class="_tabs.icon"></i>
-                                        <i v-else-if="_tabs.icon" class="img-icon"> <img :src="_tabs.icon" alt="icon">
-                                        </i> <span v-if="_tabs.title" slot="label" class="sub-title title">
-											{{ _tabs.title }}
-											<wpe-note v-if="_tabs.note" v-bind="_tabs.note"></wpe-note>
-										</span>
-                                    </div>
-
+	                                <template #label>
+	                                    <div class="label">
+		                                    <el-icon v-if="_tabs.icon && _tabs.icon_type === 'icon'">
+			                                    <component :is="_tabs.icon" />
+		                                    </el-icon>
+	                                        <i v-else-if="_tabs.icon === 'img'" class="img-icon">
+		                                        <img :src="_tabs.icon" alt="icon">
+	                                        </i>
+	                                        <i v-else :class="_tabs.icon"></i>
+		                                    <span v-if="_tabs.title" class="sub-title title">
+												{{ _tabs.title }}
+												<wpe-note v-if="_tabs.note" v-bind="_tabs.note"></wpe-note>
+											</span>
+	                                    </div>
+									</template>
                                     <div class="tab-title">
                                         <h3>{{ _tabs.title }}</h3>
                                         <p>{{ _tabs.desc }}</p>
                                     </div>
-                                    <wpe-form :fields="_tabs.fields"></wpe-form>
+                                    <wpe-fields :fields="_tabs.fields"></wpe-fields>
                                 </el-tab-pane>
                             </el-tabs>
                         </div>
                     </el-tab-pane>
                     <div v-if="show_save_button" class="theme-options-footer">
-                        <wpe-share v-if="$WPE_OPT_TABS_ARGS.footer_share" :icons="$WPE_OPT_TABS_ARGS.footer_share"></wpe-share>
+                        <wpe-share v-if="$WPE_SOCIAL_PROFILE" :icons="$WPE_SOCIAL_PROFILE"></wpe-share>
                         <wpe-actions></wpe-actions>
                     </div>
                 </el-tabs>
                 <div v-if="save_alert" class="wpe-settings-alert">
                     <wpe-info :field="{description:'Save the settings before the page refresh', settings:{type:'warning', closable:0,'show-icon':true, effect:'dark'}}"></wpe-info>
                 </div>
-                <el-button ref="btn" class="tab-collaps el-tabs__item" icon="el-icon-caret-left" size="mini" style="display: none" v-on:click.prevent="collapse_class">
+                <el-button ref="btn" class="tab-collaps el-tabs__item" icon="el-icon-caret-left" size="small" style="display: none" v-on:click.prevent="collapse_class">
                     Collapse menu
                 </el-button>
             </el-form>
         </section>
-        <el-backtop v-if="wpe_get_route_id()">
-            <i class="el-icon-arrow-up"></i>
-        </el-backtop>
     </div>
 </template>
 <script>
-import Mixin from '../wpessential-mixin';
-import FormMixin from './FormMixin';
-import WpeForm from "./options-controls/WpeForm";
-import WpeNote from "./options-controls/WpeNote";
-import WpeActions from "./templates/WpeActions";
-import WpePageTitle from "./templates/WpePageTitle";
-import WpeShare from "./templates/WpeShare";
-import WpeThemeInfo from "./templates/WpeThemeInfo";
-import WpeInfo from "./options-controls/WpeInfo.vue";
+import FormMixin from './FormMixin.js';
+import WpeFields from "./WpeFields.vue";
+import WpeInfo from "./controls/WpeInfo.vue";
+import WpeNote from "./controls/WpeNote.vue";
+import WpeActions from "./templates/WpeActions.vue";
+import WpePageTitle from "./templates/WpePageTitle.vue";
+import WpeShare from "./templates/WpeShare.vue";
+import WpeThemeInfo from "./templates/WpeThemeInfo.vue";
 
 export default {
-	mixins    : [ Mixin, FormMixin ],
-	name      : "wpe-theme-options",
-	components: { WpeInfo, WpePageTitle, WpeThemeInfo, WpeActions, WpeShare, WpeForm, WpeNote },
-	computed  : {},
+	mixins     : [ FormMixin ],
+	components : { WpeInfo, WpePageTitle, WpeThemeInfo, WpeActions, WpeShare, WpeFields, WpeNote },
 	data ()
 	{
 		return {
-			form_loader     : false,
-			save_alert      : false,
-			collapse        : false,
-			tabs_count      : 0,
-			controls        : {},
-			theme_info      : {},
-			show_save_button: true,
-			page_title      : {
-				title      : '',
-				description: ''
+			form_loader      : false,
+			save_alert       : false,
+			collapse         : false,
+			tabs_count       : 0,
+			controls         : {},
+			theme_info       : {},
+			show_save_button : true,
+			page_title       : {
+				title       : '',
+				description : ''
 			}
 		};
 	},
@@ -102,7 +109,7 @@ export default {
 		this.add_meta_class();
 		this.render_panel();
 	},
-	methods: {
+	methods : {
 		add_meta_class ()
 		{
 			let element = document.getElementsByClassName( "wpessential-admin" );
@@ -133,8 +140,8 @@ export default {
 			{
 				console.log( this.$WPEssential.admin_pages, this.$route.name );
 				this.page_title = {
-					title      : this.$WPEssential.admin_pages[ this.$route.name ].page_title,
-					description: this.$WPEssential.admin_pages[ this.$route.name ].page_desc
+					title       : this.$WPEssential.admin_pages[ this.$route.name ].page_title,
+					description : this.$WPEssential.admin_pages[ this.$route.name ].page_desc
 				};
 			}
 		},
@@ -166,7 +173,7 @@ export default {
 						{
 							this.wpe_error( item );
 						}
-						let data = { key: item.id, value: item.defined || '' };
+						let data = { key : item.id, value : item.defined || '' };
 						this.defined_value( data );
 					} );
 				} );

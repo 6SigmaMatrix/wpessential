@@ -172,4 +172,17 @@ trait GetShortcodeBase
 	{
 		return wp_parse_args( $this->set_classes(), [ 'wpessential' ] );
 	}
+
+	/**
+	 * Get widget script dependency
+	 *
+	 * @return array Widget classes.
+	 * @since  1.0.0
+	 * @access public
+	 *
+	 */
+	public function get_script_depends ()
+	{
+		return $this->set_script_depends();
+	}
 }

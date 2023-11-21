@@ -34,7 +34,7 @@ final class Plugins
 			'page_desc'  => __( 'Plugin customization options.', 'wpessential' ),
 			'route'      => [
 				'path'      => '/plugins',
-				'component' => [ 'template' => '<wpe-options></wpe-options>' ],
+				'component' => [ 'template' => '<WpeOptions></WpeOptions>' ],
 				'name'      => 'plugins'
 			],
 			'options'    => apply_filters( 'wpe/register/admin_pages/route/plugins/options', $plugin_sections ),

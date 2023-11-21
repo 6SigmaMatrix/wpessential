@@ -1,4 +1,6 @@
-export const store = new Vuex.Store( {
+import { createStore } from 'vuex';
+
+export const store = createStore( {
 	state    : {
 		form      : {},
 		form_rules: {

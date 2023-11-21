@@ -5,11 +5,11 @@ return [
 	'desc'       => __( 'Text fields examples.', 'wpessential' ),
 	'note'       => [
 		'title'   => __( 'Text', 'wpessential' ),
-		'icon'    => 'el-icon-warning',
+		'icon'    => 'warning',
 		'content' => __( 'Text fields examples.', 'wpessential' )
 	],
-	'icon'       => 'el-icon-location',
-	'image_icon' => 'el-icon-location',
+	'icon'       => 'location',
+	'image_icon' => 'location',
 	//'priority'   => 0,
 	'fields'     => 'text_field',
 	'children'   => [
@@ -19,11 +19,11 @@ return [
 			'desc'       => __( 'Example desc of the panel.', 'wpessential' ),
 			'note'       => [
 				'title'   => __( 'Tab', 'wpessential' ),
-				'icon'    => 'el-icon-warning',
+				'icon'    => 'warning',
 				'content' => __( 'Example desc of the panel.', 'wpessential' )
 			],
-			'icon'       => 'el-icon-location',
-			'image_icon' => 'el-icon-location',
+			'icon'       => 'location',
+			'image_icon' => 'location',
 			//'priority'   => 0,
 			'fields'     => 'tab_1_1',
 		],
@@ -33,11 +33,11 @@ return [
 			'desc'       => __( 'Example desc of the panel.', 'wpessential' ),
 			'note'       => [
 				'title'   => __( 'Tab', 'wpessential' ),
-				'icon'    => 'el-icon-warning',
+				'icon'    => 'warning',
 				'content' => __( 'Example desc of the panel.', 'wpessential' )
 			],
-			'icon'       => 'el-icon-location',
-			'image_icon' => 'el-icon-location',
+			'icon'       => 'location',
+			'image_icon' => 'location',
 			//'priority'   => 0,
 			'fields'     => 'tab_1_2',
 		]

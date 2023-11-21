@@ -131,17 +131,17 @@ if ( ! function_exists( 'wpe_font_weights' ) ) {
 			'wpe/font/weights',
 			[
 				''       => __( 'Default', 'wpessential' ),
-				'100'    => __( '100', 'wpessential' ),
-				'200'    => __( '200', 'wpessential' ),
-				'300'    => __( '300', 'wpessential' ),
-				'400'    => __( '400', 'wpessential' ),
-				'500'    => __( '500', 'wpessential' ),
-				'600'    => __( '600', 'wpessential' ),
-				'700'    => __( '700', 'wpessential' ),
-				'800'    => __( '800', 'wpessential' ),
-				'900'    => __( '900', 'wpessential' ),
-				'normal' => __( 'Normal', 'wpessential' ),
-				'bold'   => __( 'Bold', 'wpessential' ),
+				'100'    => '100 ' . _x( '(Thin)', 'Typography Control', 'wpessential' ),
+				'200'    => '200 ' . _x( '(Extra Light)', 'Typography Control', 'wpessential' ),
+				'300'    => '300 ' . _x( '(Light)', 'Typography Control', 'wpessential' ),
+				'400'    => '400 ' . _x( '(Normal)', 'Typography Control', 'wpessential' ),
+				'500'    => '500 ' . _x( '(Medium)', 'Typography Control', 'wpessential' ),
+				'600'    => '600 ' . _x( '(Semi Bold)', 'Typography Control', 'wpessential' ),
+				'700'    => '700 ' . _x( '(Bold)', 'Typography Control', 'wpessential' ),
+				'800'    => '800 ' . _x( '(Extra Bold)', 'Typography Control', 'wpessential' ),
+				'900'    => '900 ' . _x( '(Black)', 'Typography Control', 'wpessential' ),
+				'normal' => _x( 'Normal', 'Typography Control', 'wpessential' ),
+				'bold'   => _x( 'Bold', 'Typography Control', 'wpessential' ),
 			]
 		);
 	}
@@ -158,6 +158,7 @@ if ( ! function_exists( 'wpe_font_variant_capitals' ) ) {
 		return apply_filters(
 			'wpe/font/variant/caps',
 			[
+				''                => __( 'Default', 'wpessential' ),
 				'normal'          => __( 'Normal Capitals', 'wpessential' ),
 				'small-caps'      => __( 'Small Capitals', 'wpessential' ),
 				'all-small-caps'  => __( 'All Small Capitals', 'wpessential' ),
@@ -184,9 +185,73 @@ if ( ! function_exists( 'wpe_font_kerning' ) ) {
 		return apply_filters(
 			'wpe/font/kerning',
 			[
+				''       => __( 'Default', 'wpessential' ),
 				'normal' => __( 'Normal Capitals', 'wpessential' ),
 				'auto'   => __( 'Auto', 'wpessential' ),
 				'none'   => __( 'None', 'wpessential' ),
+			]
+		);
+	}
+}
+
+if ( ! function_exists( 'wpe_font_cases' ) ) {
+	/**
+	 * Font cases styles.
+	 *
+	 * @return array
+	 */
+	function wpe_font_cases ()
+	{
+		return apply_filters(
+			'wpe/font/cases',
+			[
+				''           => __( 'Default', 'wpessential' ),
+				'uppercase'  => _x( 'Uppercase', 'Typography Control', 'wpessential' ),
+				'lowercase'  => _x( 'Lowercase', 'Typography Control', 'wpessential' ),
+				'capitalize' => _x( 'Capitalize', 'Typography Control', 'wpessential' ),
+				'none'       => _x( 'Normal', 'Typography Control', 'wpessential' ),
+			]
+		);
+	}
+}
+
+if ( ! function_exists( 'wpe_font_style' ) ) {
+	/**
+	 * Font cases styles.
+	 *
+	 * @return array
+	 */
+	function wpe_font_style ()
+	{
+		return apply_filters(
+			'wpe/font/style',
+			[
+				''        => __( 'Default', 'wpessential' ),
+				'normal'  => _x( 'Normal', 'Typography Control', 'wpessential' ),
+				'italic'  => _x( 'Italic', 'Typography Control', 'wpessential' ),
+				'oblique' => _x( 'Oblique', 'Typography Control', 'wpessential' ),
+			]
+		);
+	}
+}
+
+
+if ( ! function_exists( 'wpe_font_decoration' ) ) {
+	/**
+	 * Font cases styles.
+	 *
+	 * @return array
+	 */
+	function wpe_font_decoration ()
+	{
+		return apply_filters(
+			'wpe/font/decoration',
+			[
+				''             => __( 'Default', 'wpessential' ),
+				'underline'    => _x( 'Underline', 'Typography Control', 'wpessential' ),
+				'overline'     => _x( 'Overline', 'Typography Control', 'wpessential' ),
+				'line-through' => _x( 'Line Through', 'Typography Control', 'wpessential' ),
+				'none'         => _x( 'None', 'Typography Control', 'wpessential' ),
 			]
 		);
 	}

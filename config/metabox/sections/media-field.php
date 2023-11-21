@@ -5,11 +5,11 @@ return [
 	'desc'       => __( 'Media fields examples.', 'wpessential' ),
 	'note'       => [
 		'title'   => __( 'Media', 'wpessential' ),
-		'icon'    => 'el-icon-warning',
+		'icon'    => 'warning',
 		'content' => __( 'Image select fields examples.', 'wpessential' )
 	],
-	'icon'       => 'el-icon-location',
-	'image_icon' => 'el-icon-location',
+	'icon'       => 'location',
+	'image_icon' => 'location',
 	//'priority'   => 0,
 	'fields'     => 'media_field',
 ];

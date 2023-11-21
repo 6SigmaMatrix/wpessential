@@ -19,7 +19,7 @@ class Heading extends Base implements Shortcodes
 	 * @since  1.0.0
 	 * @access public
 	 */
-	public function register_controls () { }
+	public function register_controls () {}
 
 	/**
 	 * Render widget output on the frontend.
@@ -33,19 +33,14 @@ class Heading extends Base implements Shortcodes
 	public function rendering ()
 	{
 		$atts = $this->atts;
-		$atts = wpe_gen_attr_data( $atts, true );
-
-		if ( empty( $atts ) ) {
-			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
+		if ( ! empty( $atts ) ) {
+			$atts = wpe_gen_attr_data( $atts, true );
 		}
 
 		$style = wpe_array_get( $atts, 'style', '1' );
 
-		$file_path = apply_filters( "wpe/shortcodes/wpessential_pro/template", 'wpessential' );
-		$template  = wpe_plugin_template_load( $file_path, "style-1.php" );
-
 		ob_start();
-		include $template;
+		include_once wpe_template_load( 'wpessential/heading-style', '1', false );
 		return ob_get_clean();
 	}
 }
