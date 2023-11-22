@@ -9,7 +9,7 @@ if ( ! \defined( 'ABSPATH' ) ) {
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
 use WPEssential\Plugins\Builders\WordPress\Utility\Base;
 
-class Image extends Base implements Shortcodes
+class Heading extends Base implements Shortcodes
 {
 	/**
 	 * Register widget controls.
@@ -22,7 +22,7 @@ class Image extends Base implements Shortcodes
 	public function register_controls () {}
 
 	/**
-	 * Render widget output on the frontend.a
+	 * Render widget output on the frontend.
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
@@ -33,16 +33,14 @@ class Image extends Base implements Shortcodes
 	public function rendering ()
 	{
 		$atts = $this->atts;
-		$atts = wpe_gen_attr_data( $atts, true );
-
-		if ( empty( $atts ) ) {
-			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
+		if ( ! empty( $atts ) ) {
+			$atts = wpe_gen_attr_data( $atts, true );
 		}
 
 		$style = wpe_array_get( $atts, 'style', '1' );
 
 		ob_start();
-		include_once wpe_template_load( 'wpessential/image-style', '1', false );
+		include_once wpe_template_load( 'wpessential/empty_space-style', '1', false );
 		return ob_get_clean();
 	}
 }

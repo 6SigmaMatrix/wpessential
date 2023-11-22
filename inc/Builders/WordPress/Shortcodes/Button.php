@@ -19,7 +19,8 @@ class Image extends Base implements Shortcodes
 	 * @since  1.0.0
 	 * @access public
 	 */
-	public function register_controls () {}
+	public function register_controls () {
+    }
 
 	/**
 	 * Render widget output on the frontend.a
@@ -42,7 +43,7 @@ class Image extends Base implements Shortcodes
 		$style = wpe_array_get( $atts, 'style', '1' );
 
 		ob_start();
-		include_once wpe_template_load( 'wpessential/image-style', '1', false );
+		include_once wpe_template_load( 'wpessential/button-style', '1', false );
 		return ob_get_clean();
 	}
 }
