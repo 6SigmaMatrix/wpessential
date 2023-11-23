@@ -40,7 +40,7 @@ class Heading extends Base implements Shortcodes
 		$style = wpe_array_get( $atts, 'style', '1' );
 
 		ob_start();
-		include_once wpe_template_load( 'wpessential/heading-style', '1', false );
+		include_once wpe_template_load( 'wpessential/heading-style', $style, false );
 		return ob_get_clean();
 	}
 }

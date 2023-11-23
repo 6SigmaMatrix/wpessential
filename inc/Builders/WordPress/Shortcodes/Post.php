@@ -33,11 +33,10 @@ class Post extends Base implements Shortcodes
 	public function rendering ()
 	{
 		$atts = $this->atts;
-		$atts = wpe_gen_attr_data( $atts, true );
-
-		if ( empty( $atts ) ) {
-			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
+		if ( ! empty( $atts ) ) {
+			$atts = wpe_gen_attr_data( $atts, true );
 		}
+		
 
 		$style = wpe_array_get( $atts, 'style', '1' );
 
