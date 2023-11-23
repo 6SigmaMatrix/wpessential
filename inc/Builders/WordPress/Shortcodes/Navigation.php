@@ -9,7 +9,7 @@ if ( ! \defined( 'ABSPATH' ) ) {
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
 use WPEssential\Plugins\Builders\WordPress\Utility\Base;
 
-class Heading extends Base implements Shortcodes
+class Navigation extends Base implements Shortcodes
 {
 	/**
 	 * Register widget controls.
