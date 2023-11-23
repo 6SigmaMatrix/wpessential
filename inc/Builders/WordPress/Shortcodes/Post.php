@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -14,34 +14,41 @@ class Post extends Base implements Shortcodes
 	/**
 	 * Register widget controls.
 	 *
-	 * Adds different input fields to allow the user to change and customize the widget settings.
+	 * This method adds different input fields to allow the user to change and customize the widget settings.
 	 *
 	 * @since  1.0.0
 	 * @access public
 	 */
-	public function register_controls () {}
+	public function register_controls ()
+	{
+		// TODO: Add code to register widget controls here.
+	}
 
 	/**
 	 * Render widget output on the frontend.
 	 *
-	 * Written in PHP and used to generate the final HTML.
+	 * This function generates the final HTML output for the widget on the frontend.
 	 *
-	 * @return string|void
-	 * @since  1.0.0
-	 * @access public
+	 * @return string The rendered widget output.
 	 */
 	public function rendering ()
 	{
 		$atts = $this->atts;
+
+		// Generate attribute data if attributes exist
 		if ( ! empty( $atts ) ) {
 			$atts = wpe_gen_attr_data( $atts, true );
 		}
-		
 
 		$style = wpe_array_get( $atts, 'style', '1' );
 
+		// Start output buffering
 		ob_start();
+
+		// Include template file based on style attribute
 		include_once wpe_template_load( 'wpessential-blog-post/style', $style, false );
+
+		// Return the rendered widget output
 		return ob_get_clean();
 	}
 }

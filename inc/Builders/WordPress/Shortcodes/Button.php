@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -19,8 +19,7 @@ class Button extends Base implements Shortcodes
 	 * @since  1.0.0
 	 * @access public
 	 */
-	public function register_controls () {
-    }
+	public function register_controls () {}
 
 	/**
 	 * Render widget output on the frontend.a

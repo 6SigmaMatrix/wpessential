@@ -2,13 +2,14 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Utility;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
 use WPEssential\Plugins\Helper\ElementRender;
 use WPEssential\Plugins\Helper\GetShortcodeBase;
+use function defined;
 
 abstract class Base
 {

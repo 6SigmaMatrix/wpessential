@@ -2,12 +2,13 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
 use WPEssential\Plugins\Builders\WordPress\Utility\Base;
+use function defined;
 
 class Tabs extends Base implements Shortcodes
 {

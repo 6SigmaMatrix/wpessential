@@ -2,7 +2,9 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Implement;
 
-if ( ! \defined( 'ABSPATH' ) ) {
+use function defined;
+
+if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
