@@ -160,11 +160,15 @@ trait Callback
 	 *
 	 * @return $this
 	 */
-	public function dynamic ( bool $callback, $default = '' )
+	public function dynamic ( bool $callback, $default = '', $category = [] )
 	{
 		$this->dynamic = [ 'active' => $callback ];
 		if ( $default ) {
 			$this->dynamic = wp_parse_args( $this->dynamic, [ 'default' => $default ] );
+		}
+
+		if ( ! empty( $default ) ) {
+			$this->dynamic = wp_parse_args( $this->dynamic, [ 'category' => $category ] );
 		}
 
 		return $this;
