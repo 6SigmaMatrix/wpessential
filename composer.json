@@ -1,9 +1,9 @@
 {
-	"name": "wpessential/wpessential",
-	"version": "1.0.0.00006",
-	"type": "library",
-	"description": "WPEssential is a flexible extension of WordPress. Just install the WPEssential plugin form WordPress.org and get start the WordPress theme creating. WPEssential team trying to send the best quality of work and new options or features. It is open-source and themes also page builder solution in WordPress. Create any theme, anywhere and make your way. There is no `PHP`, `CSS`, `HTML` and `Javascript` coding knowledge need.",
-	"keywords": [
+	"name" : "wpessential/wpessential",
+	"version" : "2.0",
+	"type" : "library",
+	"description" : "WPEssential serves as a versatile add-on for WordPress, offering enhanced flexibility for users. By simply installing the WPEssential plugin from WordPress.org, users can embark on creating their own WordPress themes with ease. The WPEssential team is dedicated to delivering top-notch quality work and continuously introducing new options and features. As an open-source solution, it not only facilitates theme creation but also serves as a page builder within the WordPress ecosystem. With WPEssential, users can design themes effortlessly without the need for expertise in PHP, CSS, HTML, or Javascript coding. This empowers users to unleash their creativity and customize their WordPress experience without technical barriers.",
+	"keywords" : [
 		"elementor",
 		"addons",
 		"dynamic tags",
@@ -30,10 +30,45 @@
 		"wpbakery",
 		"beta"
 	],
-	"homepage": "https://wpessential.org/",
-	"autoload": {
-		"psr-4": {
-			"WPEssential\\Plugins\\": "inc/"
+	"homepage" : "https://wpessential.org/",
+	"readme" : "README.md",
+	"license" : [
+		"LGPL-2.1-only",
+		"GPL-3.0-or-later"
+	],
+	"authors" : [
+		{
+			"name" : "WPEssential",
+			"email" : "wordpress.essential@gmail.com",
+			"homepage" : "https://wpessential.org/",
+			"role" : "Owner"
+		},
+		{
+			"name" : "6 Sigma Matrix",
+			"email" : "6sigmamatrix@gmail.com",
+			"homepage" : "https://6sigmamatrix.com/",
+			"role" : "Owner"
+		}
+	],
+	"support" : {
+		"email" : "support@wpessential.org",
+		"issues" : "https://github.com/wpessential/wpessential/issues",
+		"wiki" : "https://github.com/wpessential/wpessential/wiki",
+		"source" : "https://github.com/wpessential/wpessential.git",
+		"docs" : "https://help.6sigmamatrix.com/wpessential"
+	},
+	"funding" : [
+		{
+			"type" : "other",
+			"url" : "https://wpessential.com/donate"
+		}
+	],
+	"require" : {
+		"php" : ">=7.4"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"WPEssential\\Plugins\\" : "inc/"
 		}
 	}
 }

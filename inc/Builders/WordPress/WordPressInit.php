@@ -9,27 +9,27 @@ if ( ! \defined( 'ABSPATH' ) ) {
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Accordions;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\BreadCrumbs;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Button;
+use WPEssential\Plugins\Builders\WordPress\Shortcodes\Counter;
+use WPEssential\Plugins\Builders\WordPress\Shortcodes\Divider;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\EmptySpace;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Gallery;
+use WPEssential\Plugins\Builders\WordPress\Shortcodes\GoogleMaps;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Heading;
+use WPEssential\Plugins\Builders\WordPress\Shortcodes\Html;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Icons;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Image;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Lists;
+use WPEssential\Plugins\Builders\WordPress\Shortcodes\Modal;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Navigation;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Post;
 use WPEssential\Plugins\Builders\Wordpress\Shortcodes\Search;
 use WPEssential\Plugins\Builders\Wordpress\Shortcodes\Share;
+use WPEssential\Plugins\Builders\WordPress\Shortcodes\Shortcode;
 use WPEssential\Plugins\Builders\Wordpress\Shortcodes\Slider;
+use WPEssential\Plugins\Builders\WordPress\Shortcodes\Table;
 use WPEssential\Plugins\Builders\Wordpress\Shortcodes\Tabs;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\TextEditor;
-use WPEssential\Plugins\Builders\WordPress\Shortcodes\GoogleMaps;
 use WPEssential\Plugins\Builders\WordPress\Shortcodes\Video;
-use WPEssential\Plugins\Builders\WordPress\Shortcodes\Modal;
-use WPEssential\Plugins\Builders\WordPress\Shortcodes\Table;
-use WPEssential\Plugins\Builders\WordPress\Shortcodes\Divider;
-use WPEssential\Plugins\Builders\WordPress\Shortcodes\Counter;
-use WPEssential\Plugins\Builders\WordPress\Shortcodes\Html;
-use WPEssential\Plugins\Builders\WordPress\Shortcodes\Shortcode;
 use WPEssential\Plugins\Implement\ShortcodeInit;
 use WPEssential\Plugins\Loader;
 
@@ -62,7 +62,7 @@ final class WordPressInit implements ShortcodeInit
 			'Post'       => Post::class,
 			'Heading'    => Heading::class,
 			'Image'      => Image::class,
-			'Accordians' => Accordions::class,
+			'Accordions' => Accordions::class,
 			'BreadCrums' => BreadCrumbs::class,
 			'Button'     => Button::class,
 			'EmptySpace' => EmptySpace::class,
@@ -75,14 +75,14 @@ final class WordPressInit implements ShortcodeInit
 			'Slider'     => Slider::class,
 			'Tabs'       => Tabs::class,
 			'TextEditor' => TextEditor::class,
-			'GoogleMaps'      => GoogleMaps::class,
+			'GoogleMaps' => GoogleMaps::class,
 			'Video'      => Video::class,
 			'Modal'      => Modal::class,
 			'Table'      => Table::class,
-			'Divider'      => Divider::class,
-			'Counter'      => Counter::class,
-			'Html'      => Html::class,
-			'Shortcode'      => Shortcode::class,
+			'Divider'    => Divider::class,
+			'Counter'    => Counter::class,
+			'Html'       => Html::class,
+			'Shortcode'  => Shortcode::class,
 		] );
 
 		// Filter out any empty values
@@ -95,7 +95,9 @@ final class WordPressInit implements ShortcodeInit
 
 		// Instantiate each widget class
 		foreach ( $list as $class ) {
-			new $class();
+			if ( class_exists( $class ) ) {
+				new $class();
+			}
 		}
 	}
 }
