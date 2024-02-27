@@ -114,16 +114,15 @@ final class RegisterAssets
 			'vue'                          => [
 				'link' => WPE_URL . 'assets/js/vue.global',
 				'dep'  => [ 'jquery' ],
-				'ver'  => self::ver( '3.3.4' ),
+				'ver'  => self::ver( '3.4.19' ),
 				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
+					'in_footer' => false,
 				]
 			],
 			'vue-router'                   => [
 				'link' => WPE_URL . 'assets/js/vue-router.global',
 				'dep'  => [ 'vue' ],
-				'ver'  => self::ver( '4.2.5' ),
+				'ver'  => self::ver( '4.3.0' ),
 				'args' => [
 					'in_footer' => true,
 					'strategy'  => 'defer', // async
@@ -138,100 +137,19 @@ final class RegisterAssets
 					'strategy'  => 'defer', // async
 				]
 			],
-			'antd'                         => [
-				'link' => WPE_URL . 'assets/js/antd',
-				'dep'  => [ 'dayjs' ],
-				'ver'  => self::ver( '4.0.3' ),
+			'element-ui'                   => [
+				'link' => WPE_URL . 'assets/js/element-plus',
+				'dep'  => [ 'jquery', 'vue' ],
+				'ver'  => self::ver( '2.5.6' ),
 				'args' => [
 					'in_footer' => true,
-					'strategy'  => 'defer', // async
 				]
 			],
-			'antd-with-locales'            => [
-				'link' => WPE_URL . 'assets/js/antd-with-locales',
-				'dep'  => [ 'antd' ],
-				'ver'  => self::ver( '4.0.3' ),
+			'element-ui-en'                => [
+				'link' => WPE_URL . 'assets/js/element-ui-en',
+				'dep'  => [ 'vue' ],
+				'ver'  => self::ver( '2.15.7' ),
 				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'dayjs'                        => [
-				'link'     => WPE_URL . 'assets/js/dayjs.min.js',
-				'dep'      => [ 'vue' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'customParseFormat'            => [
-				'link'     => WPE_URL . 'assets/js/customParseFormat.min.js',
-				'dep'      => [ 'dayjs' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'weekday'                      => [
-				'link'     => WPE_URL . 'assets/js/weekday.min.js',
-				'dep'      => [ 'dayjs' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'localeData'                   => [
-				'link'     => WPE_URL . 'assets/js/localeData.min.js',
-				'dep'      => [ 'dayjs' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'weekOfYear'                   => [
-				'link'     => WPE_URL . 'assets/js/weekOfYear.min.js',
-				'dep'      => [ 'dayjs' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'weekYear'                     => [
-				'link'     => WPE_URL . 'assets/js/weekYear.min.js',
-				'dep'      => [ 'dayjs' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'advancedFormat'               => [
-				'link'     => WPE_URL . 'assets/js/advancedFormat.min.js',
-				'dep'      => [ 'dayjs' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'quarterOfYear'                => [
-				'link'     => WPE_URL . 'assets/js/quarterOfYear.min.js',
-				'dep'      => [ 'dayjs' ],
-				'ver'      => self::ver( '1.11.10' ),
-				'external' => 'yes',
-				'args'     => [
 					'in_footer' => true,
 					'strategy'  => 'defer', // async
 				]

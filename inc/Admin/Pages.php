@@ -31,7 +31,7 @@ final class Pages
 
 		if ( ! empty( $menu_args ) ) {
 			foreach ( $menu_args as $menu ) {
-				call_user_func_array( [ __CLASS__, 'add_menu_pages' ], $menu );
+				\call_user_func_array( [ __CLASS__, 'add_menu_pages' ], $menu );
 			}
 		}
 
