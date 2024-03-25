@@ -96,7 +96,7 @@ trait ElementRender
 	 * @param bool         $overwrite   Optional. Whether to overwrite existing
 	 *                                  attribute. Default is false, not to overwrite.
 	 *
-	 * @return \WPEssential\Plugins\Builders\Elementor\Utility\Base|\WPEssential\Plugins\Builders\WordPress\Utility\Base|Element_Base
+	 * @return \WPEssential\Plugins\Builders\WordPress\Utility\Base|Element_Base
 	 * @since  2.8.0
 	 * @access public
 	 *
@@ -207,7 +207,7 @@ trait ElementRender
 	 */
 	public function add_render_attribute ( $element, $key = null, $value = null, $overwrite = false )
 	{
-		if ( is_array( $element ) ) {
+		if ( \is_array( $element ) ) {
 			foreach ( $element as $element_key => $attributes ) {
 				$this->add_render_attribute( $element_key, $attributes, null, $overwrite );
 			}
@@ -215,7 +215,7 @@ trait ElementRender
 			return $this;
 		}
 
-		if ( is_array( $key ) ) {
+		if ( \is_array( $key ) ) {
 			foreach ( $key as $attribute_key => $attributes ) {
 				$this->add_render_attribute( $element, $attribute_key, $attributes, $overwrite );
 			}
@@ -255,7 +255,7 @@ trait ElementRender
 	public function get_render_attribute_string ( $element )
 	{
 		if ( empty( $this->render_attributes[ $element ] ) ) {
-			return '';
+			echo '';
 		}
 
 		return $this->render_html_attributes( $this->render_attributes[ $element ] );

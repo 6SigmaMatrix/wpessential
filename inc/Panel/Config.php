@@ -4,7 +4,7 @@ namespace WPEssential\Plugins\Panel;
 
 use function defined;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 

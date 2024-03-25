@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -33,22 +33,8 @@ class Post extends Base implements Shortcodes
 	 */
 	public function rendering ()
 	{
-		$atts = $this->atts;
-
-		// Generate attribute data if attributes exist
-		if ( ! empty( $atts ) ) {
-			$atts = wpe_gen_attr_data( $atts, true );
-		}
-
-		$style = wpe_array_get( $atts, 'style', '1' );
-
-		// Start output buffering
-		ob_start();
-
+		$style = wpe_array_get( $this->atts, 'style', '1' );
 		// Include template file based on style attribute
-		include_once wpe_template_load( 'wpessential-blog-post/style', $style, false );
-
-		// Return the rendered widget output
-		return ob_get_clean();
+		include wpe_template_load( 'wpessential-blog-post/style', $style, false );
 	}
 }

@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins\Builders\Fields;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -17,7 +17,7 @@ class Query extends Field implements Fields
 	 * @var string
 	 */
 	public $type = 'query';
-	
+
 	/**
 	 * Prepare the field's.
 	 *

@@ -2,14 +2,13 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Utility;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
 use WPEssential\Plugins\Builders\WordPress\Implement\Shortcodes;
 use WPEssential\Plugins\Helper\ElementRender;
 use WPEssential\Plugins\Helper\GetShortcodeBase;
-use function defined;
 
 abstract class Base
 {
@@ -41,7 +40,13 @@ abstract class Base
 	public function _wpe_output ( $atts, $content = null )
 	{
 		$this->atts = apply_filters( "wpe/shortcodes/{$this->get_base_name()}_atts", $atts );
+		$this->atts = wpe_gen_attr_data( $this->atts, true );
+		if ( empty( $this->atts ) ) {
+			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
+		}
+		ob_start();
 		$this->rendering();
+		return ob_get_clean();
 	}
 
 	public function rendering () {}

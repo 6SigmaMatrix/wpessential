@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -32,17 +32,7 @@ class Video extends Base implements Shortcodes
 	 */
 	public function rendering ()
 	{
-		$atts = $this->atts;
-		$atts = wpe_gen_attr_data( $atts, true );
-
-		if ( empty( $atts ) ) {
-			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
-		}
-
-		$style = wpe_array_get( $atts, 'style', '1' );
-
-		ob_start();
-		include_once wpe_template_load( 'wpessential/video-style', $style, false );
-		return ob_get_clean();
+		$style = wpe_array_get( $this->atts, 'style', '1' );
+		include wpe_template_load( 'wpessential/video-style', $style, false );
 	}
 }

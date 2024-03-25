@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -32,17 +32,69 @@ class Image extends Base implements Shortcodes
 	 */
 	public function rendering ()
 	{
-		$atts = $this->atts;
-		$atts = wpe_gen_attr_data( $atts, true );
+		$style = wpe_array_get( $this->atts, wpe_editor_key( 'style' ), '1' );
+		include wpe_template_load( 'wpessential/image/style', $style, false );
+	}
 
-		if ( empty( $atts ) ) {
-			return __( "Please add the shortcode attributes to run the output of [{$this->get_base_name()}].", 'wpessential' );
+
+	/**
+	 * Check if the current widget has caption
+	 *
+	 * @access private
+	 *
+	 * @return bool
+	 * @since  2.3.0
+	 *
+	 */
+	private function has_caption ()
+	{
+		return ( wpe_array_get( $this->atts, 'wpe_st_caption_source' ) && wpe_array_get( $this->atts, 'wpe_st_caption_source' ) !== 'none' );
+	}
+
+	/**
+	 * Get the caption for current widget.
+	 *
+	 * @access private
+	 *
+	 * @return string
+	 * @since  2.3.0
+	 */
+	private function get_caption ()
+	{
+		$caption = '';
+		if ( wpe_array_get( $this->atts, wpe_editor_key( 'caption_source' ) ) ) {
+			switch ( wpe_array_get( $this->atts, wpe_editor_key( 'caption_source' ) ) ) {
+				case 'attachment':
+					$caption = wp_get_attachment_caption( wpe_array_get( $this->atts, wpe_editor_key( 'image.id' ) ) );
+					break;
+				case 'custom':
+					$caption = wpe_array_get( $this->atts, wpe_editor_key( 'caption' ) );
+			}
+		}
+		return $caption;
+	}
+
+	/**
+	 * Returns the image url from the data.
+	 *
+	 * @return int|array url of the image.
+	 */
+	private function get_image_url ()
+	{
+		if ( wpe_array_get( $this->atts, wpe_editor_key( 'link_to' ) ) === 'none' ) {
+			return false;
 		}
 
-		$style = wpe_array_get( $atts, 'style', '1' );
+		switch ( wpe_array_get( $this->atts, wpe_editor_key( 'link_to' ) ) ) {
+			case 'custom':
+				$img = wpe_array_get( $this->atts, wpe_editor_key( 'link' ) );
+				if ( ! wpe_array_get( $img, 'url' ) ) {
+					return false;
+				}
 
-		ob_start();
-		include_once wpe_template_load( 'wpessential/image-style', $style, false );
-		return ob_get_clean();
+				return wpe_array_get( $this->atts, $img );
+			default:
+				return [ 'url' => wpe_array_get( $this->atts, wpe_editor_key( 'image.url' ) ) ];
+		}
 	}
 }

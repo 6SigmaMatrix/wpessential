@@ -2,7 +2,7 @@
 
 namespace WPEssential\Plugins\Builders\WordPress\Shortcodes;
 
-if ( ! defined( 'ABSPATH' ) ) {
+if ( ! \defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
@@ -33,15 +33,7 @@ class Tabs extends Base implements Shortcodes
 	 */
 	public function rendering ()
 	{
-		$atts = $this->atts;
-		if ( ! empty( $atts ) ) {
-			$atts = wpe_gen_attr_data( $atts, true );
-		}
-
-		$style = wpe_array_get( $atts, 'style', '1' );
-
-		ob_start();
-		include_once wpe_template_load( 'wpessential/tabs-style', $style, false );
-		return ob_get_clean();
+		$style = wpe_array_get( $this->atts, 'style', '1' );
+		include wpe_template_load( 'wpessential/tabs-style', $style, false );
 	}
 }
