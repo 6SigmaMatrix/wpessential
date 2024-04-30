@@ -57,7 +57,7 @@ final class Loader
 		add_action( 'wp_loaded', [ __CLASS__, 'wp_loaded' ], 1000 );
 	}
 
-	public static function load_files ()
+	private static function load_files ()
 	{
 		require_once WPE_DIR . 'inc/Functions/api.php';
 		require_once WPE_DIR . 'inc/Functions/general.php';
@@ -70,7 +70,7 @@ final class Loader
 		require_once WPE_DIR . 'inc/Functions/array.php';
 	}
 
-	public static function autoload ()
+	private static function autoload ()
 	{
 		$theme_info = wpe_theme_info();
 		$psr        = [];
@@ -87,7 +87,7 @@ final class Loader
 		}
 	}
 
-	public static function start ()
+	private static function start ()
 	{
 		//RestApi::constructor();
 		AssetsInit::constructor();

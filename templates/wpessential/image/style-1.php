@@ -10,8 +10,8 @@ if ( ! wpe_array_get( $atts, wpe_editor_key( 'image.url' ) ) ) {
 }
 
 $this->add_render_attribute( 'wrapper', 'class', 'wpe-image-wrapper' );
-$this->add_render_attribute( 'wrapper_inner', 'class', [ 'wpe-image-wrapper-inner', 'wpe-image' ] );
-$this->add_render_attribute( 'span_wrapper', 'class', [ 'wpe-image-span-wrapper' ] );
+$this->add_render_attribute( 'wrapper_inner', 'class', [ 'wpe-image-wrapper-inner', 'wpe-image', 'wpe-pos-rel' ] );
+$this->add_render_attribute( 'span_wrapper', 'class', [ 'wpe-image-span-wrapper', 'wpe-w-100', 'wpe-h-100', 'wpe-pos-abs' ] );
 $has_caption = $this->has_caption();
 ?>
 <div <?php echo $this->get_render_attribute_string( 'wrapper' ); ?>>
@@ -28,6 +28,7 @@ $has_caption = $this->has_caption();
 		$_link = wpe_array_get( $atts, wpe_editor_key( 'link_to' ) );
 
 		if ( $_link !== 'none' ) {
+			$this->add_render_attribute( 'link', 'class', 'wpe-w-100' );
 			switch ( $_link ) {
 				case 'file':
 					$link = get_the_permalink( wpe_array_get( $atts, wpe_editor_key( 'image.id' ) ) );
