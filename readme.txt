@@ -1,13 +1,11 @@
 ﻿=== WPEssential ===
 Contributors: WPEssential
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ashadab59@gmail.com&lc=GB&item_name=Donate%20For%20TCI%20Ultimate%20Element%20Themes%20Plugin&currency_code=USD&no_note=0&bn=PP-DonationsBF:btn_donateCC_LG.gif:NonHostedGuest
-Tags: elementor, addons, dynamic tags, woocommerce, custom css, custom-attribues, landing-page, smart slider 3, layer slider, revolutation slider, master slider, page builder, editor, landing page, drag-and-drop, visual editor, wysiwyg, design, maintenance mode, coming soon, under construction, website builder, landing page builder, front-end builder, wpbakery
-Requires PHP: 7.3
+Tags: elementor, woocommerce, landing-page, layer slider, revolutation slider,
 Requires at least: 5.5
-Tested up to: 5.7
-WC requires at least: 4.0
-WC tested up to: 5.0
-Stable tag: 1.0.0.00009
+Tested up to: 6.5
+WC requires at least: 6.0
+Stable tag: 2.0
 License: GPL v2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,6 +13,9 @@ WPEssential is a flexible extension of WordPress. It is open-source and themes a
 
 
 == Description ==
+
+WordPress plugin for easy theme creation. No coding required. Open-source with page builder. Build themes hassle-free.
+
 WPEssential is a flexible extension of WordPress. Just install the WPEssential plugin form WordPress.org and get start the WordPress theme creating. WPEssential team trying to send the best quality of work and new options or features. It is open-source and themes also page builder solution in WordPress. Create any theme, anywhere and make your way. There is no `PHP`, `CSS`, `HTML` and `Javascript` coding knowledge need.
 
 
@@ -54,6 +55,11 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 
 == Changelog ==
+
+= 09/05/2024 2.0 =
+- PHP 8 compatibility
+- Files structure upgration
+- New functions integration
 
 = 02/07/2021 1.0.0.00009 =
 - Fix elementor builder errors.
@@ -110,4 +116,3 @@ Automatic updates should work smoothly, but we still recommend you back up your 
 
 == Upgrade Notice ==
 Please take a backup of your WordPress database, before the update. Because this time, we have so many burdon of your new work and we are not able to detecte your data missing. But on your server, we did not fond any data missing report on plugin update. Thank in advance.
-
