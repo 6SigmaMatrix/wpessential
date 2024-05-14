@@ -17,7 +17,7 @@ class Settings
 
 	public static function default ( $options )
 	{
-		if ( \is_array( $options ) && \count( $options ) >= 1 ) {
+		if ( \is_array( $options ) ) {
 			global $wpe_options;
 			foreach ( $options as $k => $fields ) {
 				$y = 0;
@@ -32,17 +32,30 @@ class Settings
 			}
 		}
 
-		self::set_values();
-		//ksort( $options );
+		self::save_values( self::$opt_array );
 		sort( $options );
 		return $options;
 	}
 
-	public static function set_values ()
+	public static function default_meta ( $options, $post_id = 0 )
 	{
-		global $wpe_options;
-		$options = wp_parse_args( self::$opt_array, $wpe_options );
-		update_option( 'wpe_settings', $options );
+		if ( $post_id && \is_array( $options ) ) {
+			foreach ( $options as $k => $fields ) {
+				$y = 0;
+				foreach ( $fields[ 'fields' ] as $field ) {
+					$key                                   = wpe_array_get( $field, 'id' );
+					$value                                 = get_post_meta( $post_id, $key, true );
+					self::$opt_array[ $key ]               = $value;
+					$fields[ 'fields' ][ $y ][ 'defined' ] = $value;
+					$y ++;
+				}
+				$options[ $k ] = $fields;
+			}
+		}
+
+		self::save_values( self::$opt_array, $post_id );
+		sort( $options );
+		return $options;
 	}
 
 	private static function get_values ()
@@ -63,8 +76,16 @@ class Settings
 		return update_option( 'wpe_settings', wp_parse_args( [ $key => $value ], $wpe_options ) );
 	}
 
-	public static function save_values ( $options )
+	public static function save_values ( $options, $post_id = 0 )
 	{
+		if ( $post_id && \is_array( $options ) ) {
+			$options = array_filter( $options );
+			foreach ( $options as $meta_key => $meta_value ) {
+				update_post_meta( $post_id, $meta_key, $meta_value );
+			}
+			return true;
+		}
+
 		global $wpe_options;
 		return update_option( 'wpe_settings', wp_parse_args( $options, $wpe_options ) );
 	}

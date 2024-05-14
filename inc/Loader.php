@@ -11,7 +11,6 @@ use WPEssential\Plugins\Admin\Settings;
 use WPEssential\Plugins\Assets\AssetsInit;
 use WPEssential\Plugins\Builders\BuildersInit;
 use WPEssential\Plugins\Libraries\TermDescriptionEditor\TermDescriptionEditor;
-use WPEssential\Plugins\PostTypes\PostTypesInit;
 use WPEssential\Plugins\Requesting\AuthGuard;
 use WPEssential\Plugins\Requesting\RequestingInit;
 use WPEssential\Plugins\Utility\DupplicatePost;

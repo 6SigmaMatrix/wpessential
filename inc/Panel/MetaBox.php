@@ -7,6 +7,7 @@ if ( ! \defined( 'ABSPATH' ) ) {
 }
 
 use JsonSerializable;
+use WPEssential\Plugins\Admin\Settings;
 use WPEssential\Plugins\Implement\Arrayable;
 
 final class MetaBox implements Arrayable, JsonSerializable
@@ -176,8 +177,26 @@ final class MetaBox implements Arrayable, JsonSerializable
 	 */
 	protected function prepear ()
 	{
+		global $post;
+		if ( ! wpe_array_get( $post, 'ID' ) ) {
+			return false;
+		}
+
 		$meta_controls = $this->controls;
-		$meta_title    = $this->name;
+
+		if ( $meta_controls && \is_array( $meta_controls ) ) {
+			$controls = [];
+			$priority = 0;
+			foreach ( $meta_controls as $control ) {
+				$order              = wpe_array_get( $control, 'priority', $priority );
+				$controls[ $order ] = $control;
+				$priority ++;
+			}
+
+			$meta_controls = Settings::default_meta( $controls, $post->ID );
+		}
+
+		$meta_title = $this->name;
 		add_meta_box( $this->key, $this->name, [
 			__CLASS__,
 			'view'
@@ -185,20 +204,25 @@ final class MetaBox implements Arrayable, JsonSerializable
 
 		add_filter( 'wpe/localization', function ( $list ) use ( $meta_controls, $meta_title ) {
 			return wp_parse_args( [
-				'meta' => wp_parse_args( $meta_controls, wpe_array_get( $list, 'meta' ) ),
-				/*'theme_info' => [
-					'Name' => $meta_title
-				],*/
+				'meta'       => wp_parse_args( $meta_controls, wpe_array_get( $list, 'meta' ) ),
+				'theme_info' => [
+					'Name'               => $meta_title,
+					'show_top_action'    => true,
+					'show_bottom_action' => true,
+				],
 			], $list );
 		}, 14 );
 	}
 
 	public static function view ()
 	{
+		global $post;
 		?>
 		<div class="wpessential-admin wpe-container-fluid">
 			<div class="wpe-admin-page" id="wpessential-admin">
-				<wpe-options></wpe-options>
+				<div class="wpe-admin-page">
+					<wpe-options :post_id="'<?php echo $post->ID; ?>'"></wpe-options>
+				</div>
 			</div>
 		</div>
 		<?php

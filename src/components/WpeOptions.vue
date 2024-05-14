@@ -1,17 +1,14 @@
 <template>
     <div v-loading="page_loader" class="wpe-theme-options">
         <WpePageTitle :description="page_title.description" :title="page_title.title" />
-        <section v-loading="form_loader">
+        <section v-loading="db_saved_loader">
             <el-form ref="form" :model="form" :rules="form_rules" class="wpe-options-form" v-bind="$WPE_OPT_ARGS">
-                <div v-if="show_save_button" class="theme-options-header">
+                <div v-if="show_top_action" class="theme-options-header">
                     <wpe-theme-info :info="theme_info"></wpe-theme-info>
-                    <wpe-actions></wpe-actions>
+                    <wpe-actions :section_id="section_id"></wpe-actions>
                 </div>
-                <div v-if="save_alert" class="wpe-settings-alert">
-                    <wpe-info :field="{description:'Save the settings before the page refresh', settings:{type:'warning', closable:0,'show-icon':true, effect:'dark'}}"></wpe-info>
-                </div>
-                <el-tabs ref="tabs" :class="collapse? 'panel-collapse':''" class="wpe-options-tabs-wrapper" tab-position="left">
-	                <el-tab-pane v-for="(tabs, index) in controls" :key="index" :class="tabs.children?'has-children':''" class="wpe-options-tab">
+                <el-tabs v-model="section_id" class="wpe-options-tabs-wrapper" tab-position="left">
+	                <el-tab-pane v-for="(tabs, index) in controls" :name="tabs.id" :key="index" :class="tabs.children?'has-children':''" class="wpe-options-tab">
 	                    <template #label>
 	                        <div class="label">
 		                        <el-icon v-if="tabs.icon && tabs.icon_type === 'icon'">
@@ -27,6 +24,9 @@
 								</span>
 	                        </div>
 	                    </template>
+		                <div v-show="db_save_alert" class="wpe-settings-alert">
+		                    <wpe-info :field="{description:'Save the settings before the page refresh', settings:{type:'warning', closable:'closable','show-icon':true, effect:'dark'}}"></wpe-info>
+		                </div>
                         <div class="tab-title">
                             <h3>{{ tabs.title }}</h3>
                             <p>{{ tabs.desc }}</p>
@@ -58,18 +58,15 @@
                                 </el-tab-pane>
                             </el-tabs>
                         </div>
+		                <div v-show="db_save_alert" class="wpe-settings-alert">
+		                    <wpe-info :field="{description:'Save the settings before the page refresh', settings:{type:'warning', closable:'closable','show-icon':true, effect:'dark'}}"></wpe-info>
+		                </div>
                     </el-tab-pane>
-                    <div v-if="show_save_button" class="theme-options-footer">
+                    <div v-if="show_bottom_action" class="theme-options-footer">
                         <wpe-share v-if="$WPE_SOCIAL_PROFILE" :icons="$WPE_SOCIAL_PROFILE"></wpe-share>
-                        <wpe-actions></wpe-actions>
+                        <wpe-actions :section_id="section_id"></wpe-actions>
                     </div>
                 </el-tabs>
-                <div v-if="save_alert" class="wpe-settings-alert">
-                    <wpe-info :field="{description:'Save the settings before the page refresh', settings:{type:'warning', closable:0,'show-icon':true, effect:'dark'}}"></wpe-info>
-                </div>
-                <el-button ref="btn" class="tab-collaps el-tabs__item" icon="el-icon-caret-left" size="small" style="display: none" v-on:click.prevent="collapse_class">
-                    Collapse menu
-                </el-button>
             </el-form>
         </section>
     </div>
@@ -85,19 +82,18 @@ import WpeShare from "./templates/WpeShare.vue";
 import WpeThemeInfo from "./templates/WpeThemeInfo.vue";
 
 export default {
+	props      : ['post_id'],
 	mixins     : [ FormMixin ],
 	components : { WpeInfo, WpePageTitle, WpeThemeInfo, WpeActions, WpeShare, WpeFields, WpeNote },
 	data ()
 	{
 		return {
-			form_loader      : false,
-			save_alert       : false,
-			collapse         : false,
-			tabs_count       : 0,
-			controls         : {},
-			theme_info       : {},
-			show_save_button : true,
-			page_title       : {
+			section_id         : '',
+			controls           : {},
+			theme_info         : {},
+			show_top_action    : false,
+			show_bottom_action : false,
+			page_title         : {
 				title       : '',
 				description : ''
 			}
@@ -108,6 +104,10 @@ export default {
 		this.page_loader = false;
 		this.add_meta_class();
 		this.render_panel();
+		if ( this.post_id )
+		{
+			this.set_db_post_id( this.post_id );
+		}
 	},
 	methods : {
 		add_meta_class ()
@@ -131,14 +131,11 @@ export default {
 		{
 			this.render_page_title();
 			this.render_tab();
-			this.insert_btn();
-			this.theme_info = this.$WPEssential.theme_info;
 		},
 		render_page_title ()
 		{
 			if ( this.$WPEssential.admin_pages && this.$route.name )
 			{
-				console.log( this.$WPEssential.admin_pages, this.$route.name );
 				this.page_title = {
 					title       : this.$WPEssential.admin_pages[ this.$route.name ].page_title,
 					description : this.$WPEssential.admin_pages[ this.$route.name ].page_desc
@@ -149,14 +146,27 @@ export default {
 		{
 			let find_in = this.$WPEssential;
 			let route_id = this.wpe_get_route_id();
-			if ( route_id && find_in.admin_pages && find_in.admin_pages[ route_id ] && find_in.admin_pages[ route_id ].options )
+			if ( route_id && find_in.admin_pages && find_in.admin_pages[ route_id ] )
 			{
-				this.controls = find_in.admin_pages[ route_id ].options;
+				let route = find_in.admin_pages[ route_id ];
+				if ( route.options )
+				{
+					this.controls = route.options;
+				}
+
+				if ( route.theme_info )
+				{
+					this.theme_info = route.theme_info;
+					this.show_top_action = route.theme_info.show_top_action;
+					this.show_bottom_action = route.theme_info.show_bottom_action;
+				}
 			}
 			if ( find_in && find_in.meta )
 			{
-				console.log( find_in );
 				this.controls = find_in.meta;
+				this.theme_info = find_in.theme_info;
+				this.show_top_action = find_in.theme_info.show_top_action;
+				this.show_bottom_action = find_in.theme_info.show_bottom_action;
 			}
 			this.render_fields();
 		},
@@ -164,9 +174,14 @@ export default {
 		{
 			if ( this.controls )
 			{
-				this.tabs_count = this.controls.length;
+				let tab_count = 1;
 				this.controls.forEach( list =>
 				{
+					if ( tab_count === 1 )
+					{
+						this.section_id = list.id;
+					}
+
 					list.fields.forEach( item =>
 					{
 						if ( item.id === 'wpe_st_image_export' )
@@ -176,22 +191,9 @@ export default {
 						let data = { key : item.id, value : item.defined || '' };
 						this.defined_value( data );
 					} );
+					tab_count ++;
 				} );
 			}
-		},
-		insert_btn ()
-		{
-			const scrollBar = this.$refs.tabs.$el.querySelector( '.el-tabs__nav' );
-			setTimeout( () =>
-				{
-					this.$refs.btn.$el.removeAttribute( 'style' );
-					scrollBar.lastChild.after( this.$refs.btn.$el );
-				}, 2000
-			);
-		},
-		collapse_class ()
-		{
-			this.collapse = ! this.collapse;
 		}
 	}
 };

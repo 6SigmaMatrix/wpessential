@@ -23,7 +23,7 @@ final class Pages
 					'capability' => 'manage_options',
 					'menu_slug'  => 'wpessential',
 					'callback'   => [ __CLASS__, 'view' ],
-					'icon_url'   => '',
+					'icon_url'   => WPE_URL.'/assets/svgs/plugin_icon.svg',
 					'position'   => 2
 				]
 			)
@@ -48,6 +48,7 @@ final class Pages
 				]
 			)
 		] ) );
+
 		if ( ! empty( $menu_args ) ) {
 			foreach ( $menu_args as $menu ) {
 				\call_user_func_array( [ __CLASS__, 'add_submenu_pages' ], $menu );

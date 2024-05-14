@@ -7,6 +7,7 @@
 		<template v-else>
 			<el-badge class="theme-name">
 				{{ info.Name }}
+				<small v-if="info.Template">(Child)</small>
 			</el-badge>
 		</template>
 	</div>

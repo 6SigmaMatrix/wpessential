@@ -82,11 +82,12 @@ final class AdminInit
 					] ),
 				] ),
 				'extensions' => Extension::constructor(),
-				'theme'      => Theme::constructor(),
 				'plugins'    => Plugins::constructor(),
-			],
-			'theme_info'  => wpe_theme_info(),
+			]
 		];
+		if ( \defined( 'WPE_THEME' ) === true ) {
+			$admin_pages[ 'admin_pages' ][ 'theme' ] = Theme::constructor();
+		}
 		/*} else {
 			$admin_pages = [
 				'admin_pages' => [

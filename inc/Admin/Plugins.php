@@ -30,7 +30,6 @@ final class Plugins
 
 		return apply_filters( 'wpe/register/admin_pages/route/plugins', [
 			'menu_title' => __( 'Plugin options', 'wpessential' ),
-			'page_title' => __( 'Plugin Options', 'wpessential' ),
 			'page_desc'  => __( 'Plugin customization options.', 'wpessential' ),
 			'route'      => [
 				'path'      => '/plugins',
@@ -38,6 +37,11 @@ final class Plugins
 				'name'      => 'plugins'
 			],
 			'options'    => apply_filters( 'wpe/register/admin_pages/route/plugins/options', $plugin_sections ),
+			'theme_info' => [
+				'show_top_action'    => true,
+				'show_bottom_action' => true,
+				'Name'               => __( 'Plugins Setting', 'wpessential' ),
+			],
 		] );
 	}
 }

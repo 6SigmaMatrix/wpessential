@@ -12,6 +12,8 @@ html {
 	box-sizing: inherit;
 }
 
+#wpe_st_general_meta > .postbox-header {display: none;}
+
 .wpe-container {
 	width: 100%;
 	padding-right: 15px;

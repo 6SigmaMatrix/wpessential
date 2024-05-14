@@ -66,94 +66,6 @@ final class RegisterAssets
 					'strategy'  => 'defer', // async
 				]
 			],
-			/*	'element-ui'                   => [
-					'link' => WPE_URL . 'assets/js/element-ui',
-					'dep'  => [ 'jquery', 'vue' ],
-					'ver'  => self::ver( '2.15.7' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-				],
-				'element-ui-en'                => [
-					'link' => WPE_URL . 'assets/js/element-ui-en',
-					'dep'  => [ 'vue' ],
-					'ver'  => self::ver( '2.15.7' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-				],*/
-			/*'vue'                          => [
-				'link' => WPE_URL . 'assets/js/vue',
-				'dep'  => [ 'jquery' ],
-				'ver'  => self::ver( '2.6.12' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'vue-router'                   => [
-				'link' => WPE_URL . 'assets/js/vue-router',
-				'dep'  => [ 'jquery', 'vue' ],
-				'ver'  => self::ver( '3.5.2' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'vuex'                         => [
-				'link' => WPE_URL . 'assets/js/vuex',
-				'dep'  => [ 'jquery', 'vue' ],
-				'ver'  => self::ver( '2.0.0' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],*/
-			'vue'                          => [
-				'link' => WPE_URL . 'assets/js/vue.global',
-				'dep'  => [ 'jquery' ],
-				'ver'  => self::ver( '3.4.19' ),
-				'args' => [
-					'in_footer' => false,
-				]
-			],
-			'vue-router'                   => [
-				'link' => WPE_URL . 'assets/js/vue-router.global',
-				'dep'  => [ 'vue' ],
-				'ver'  => self::ver( '4.3.0' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'vuex'                         => [
-				'link' => WPE_URL . 'assets/js/vuex.global',
-				'dep'  => [ 'vue' ],
-				'ver'  => self::ver( '4.1.0' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
-			'element-ui'                   => [
-				'link' => WPE_URL . 'assets/js/element-plus',
-				'dep'  => [ 'jquery', 'vue' ],
-				'ver'  => self::ver( '2.5.6' ),
-				'args' => [
-					'in_footer' => true,
-				]
-			],
-			'element-ui-en'                => [
-				'link' => WPE_URL . 'assets/js/element-ui-en',
-				'dep'  => [ 'vue' ],
-				'ver'  => self::ver( '2.15.7' ),
-				'args' => [
-					'in_footer' => true,
-					'strategy'  => 'defer', // async
-				]
-			],
 			'fancybox'                     => [
 				'link' => WPE_URL . 'assets/js/fancybox',
 				'dep'  => [ 'jquery' ],
@@ -235,8 +147,8 @@ final class RegisterAssets
 					'strategy'  => 'defer', // async
 				]
 			],
-			'vendor'                       => [
-				'link' => WPE_URL . 'assets/js/vendor',
+			'wpessential-admin'            => [
+				'link' => WPE_URL . 'assets/js/wpessential-admin',
 				'dep'  => [ 'jquery' ],
 				'ver'  => self::ver(),
 				'args' => [
@@ -244,8 +156,8 @@ final class RegisterAssets
 					'strategy'  => 'defer', // async
 				]
 			],
-			'wpessential-admin'            => [
-				'link' => WPE_URL . 'assets/js/wpessential-admin',
+			'wpessential-meta'            => [
+				'link' => WPE_URL . 'assets/js/wpessential-meta',
 				'dep'  => [ 'jquery' ],
 				'ver'  => self::ver(),
 				'args' => [

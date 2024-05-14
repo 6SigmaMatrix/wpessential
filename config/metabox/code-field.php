@@ -10,7 +10,7 @@ return MetaBox::make( __( 'General Meta', 'wpessential' ), 'general_meta' )
               ->priority( 'high' )
               ->context( 'advanced' )
               ->controls( [
-	              Section::make( __( 'Code', 'wpessential' ), 'code_field' )
+	              Section::make( __( 'Code', 'wpessential' ), 'code2_field' )
 	                     ->description( __( 'Code fields examples.', 'wpessential' ) )
 	                     ->icon_type( 'icon' )
 	                     ->icon( 'location' )

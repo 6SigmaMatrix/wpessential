@@ -18,7 +18,7 @@ final class Settings extends \WPEssential\Plugins\Admin\Settings
 	public static function save ()
 	{
 		wpe_ajax_authorized();
-		$res = self::save_values( wpe_array_get( $_POST, 'save' ) );
+		$res = self::save_values( wpe_array_get( $_POST, 'save' ), sanitize_text_field( wpe_array_get( $_POST, 'post_id' ) ) );
 		if ( $res ) {
 			wp_send_json_success(
 				[
@@ -31,7 +31,7 @@ final class Settings extends \WPEssential\Plugins\Admin\Settings
 		wp_send_json_error(
 			[
 				'title'   => __( 'Error', 'wpessential' ),
-				'message' => __( 'Settings are not saved.', 'wpessential' )
+				'message' => __( 'Please try change and save it again.', 'wpessential' )
 			],
 			401
 		);

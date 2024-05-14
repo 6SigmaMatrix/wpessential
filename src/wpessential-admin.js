@@ -15,7 +15,7 @@ import WpessentialMixin from "./wpessential-mixin.js";
 window.$ = jQuery;
 var routes = [];
 
-if ( Object.keys( WPEssential.admin_pages ).length >= 1 )
+if ( WPEssential.admin_pages && Object.keys( WPEssential.admin_pages ).length >= 1 )
 {
 	for ( const [ index, route ] of Object.entries( WPEssential.admin_pages ) )
 	{

@@ -13,7 +13,7 @@ final class Theme
 		$path           = wpe_template_dir( 'config/theme/' );
 		$files          = apply_filters( 'wpe/register/admin_pages/route/theme/options/files', glob( $path . '*.php' ) );
 		$theme_sections = [];
-		if ( $files && is_array( $files ) ) {
+		if ( $files && \is_array( $files ) ) {
 			$priority = 0;
 			foreach ( $files as $file ) {
 				if ( file_exists( $file ) ) {
@@ -29,7 +29,6 @@ final class Theme
 
 		return apply_filters( 'wpe/register/admin_pages/route/theme', [
 			'menu_title' => __( 'Theme options', 'wpessential' ),
-			'page_title' => __( 'Theme Options', 'wpessential' ),
 			'page_desc'  => __( 'Theme customization options.', 'wpessential' ),
 			'route'      => [
 				'path'      => '/theme',
@@ -37,6 +36,11 @@ final class Theme
 				'name'      => 'theme'
 			],
 			'options'    => apply_filters( 'wpe/register/admin_pages/route/theme/options', $theme_sections ),
+			'theme_info' => wp_parse_args( [
+				'show_top_action'    => true,
+				'show_bottom_action' => true,
+				'Name'               => __( 'Theme Options', 'wpessential' ),
+			], wpe_theme_info() ),
 		] );
 	}
 }

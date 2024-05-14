@@ -1,11 +1,30 @@
 const FormMixin = {
-	props: { field: Object },
+	props : { field : Object },
 	data ()
 	{
-		return { value: '' };
+		return {
+			value : ''
+		};
 	},
-	watch   : {},
-	computed: {
+	watch    : {
+		value : function ()
+		{
+			this.set_save_alert( true );
+		}
+	},
+	computed : {
+		db_post_id ()
+		{
+			return this.$store.state.post_id;
+		},
+		db_saved_loader ()
+		{
+			return this.$store.state.db_save_loader;
+		},
+		db_save_alert ()
+		{
+			return this.$store.state.db_save_alert;
+		},
 		form ()
 		{
 			return this.$store.state.form;
@@ -28,15 +47,26 @@ const FormMixin = {
 	{
 		this.value = this.value_get;
 	},
-	methods: {
+	methods : {
+		set_db_post_id ( value )
+		{
+			this.$store.commit( 'update_post_id', value );
+		},
+		set_db_loader ( value )
+		{
+			this.$store.commit( 'update_loader', value );
+		},
+		set_save_alert ( value )
+		{
+			this.$store.commit( 'update_save_alert', value );
+		},
 		set_value ( value )
 		{
-			this.$store.commit( 'update_value', { key: this.field.id, value: value } );
+			this.$store.commit( 'update_value', { key : this.field.id, value : value } );
 			this.value = value;
 		},
 		defined_value ( data )
 		{
-			this.wpe_error( data );
 			this.$store.commit( 'update_value', data );
 		}
 	}

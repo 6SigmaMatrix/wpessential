@@ -200,7 +200,7 @@ final class WithMediaExport
 		$attachment_ids = array_keys( $attachments );
 		$i              = 0;
 		do {
-			$chunk   = array_slice( $attachment_ids, $i * 1000, 1000 );
+			$chunk   = \array_slice( $attachment_ids, $i * 1000, 1000 );
 			$chunk[] = 0; // make sure that chunk is not empty
 			$q       = sprintf( "SELECT post_id, meta_key, meta_value FROM {$wpdb->postmeta} WHERE meta_key IN('_wp_attached_file', '_wp_attachment_metadata') AND post_id IN(%s)", implode( ',', $chunk ) );
 			foreach ( $wpdb->get_results( $q, ARRAY_A ) as $meta ) {
