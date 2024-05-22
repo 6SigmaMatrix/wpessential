@@ -10,17 +10,19 @@ final class Plugins
 {
 	public static function constructor ()
 	{
-		$path            = wpe_template_dir( 'config/plugin/' );
-		$files           = apply_filters( 'wpe/register/admin_pages/route/plugins/options/files', glob( $path . '*.php' ) );
-		$plugin_sections = [];
-		if ( $files && \is_array( $files ) ) {
-			$priority = 0;
+		$path             = wpe_template_dir( 'config/plugin/' );
+		$main_plugin_file = $path . 'wpessential.php';//glob( $path . '*.php' );
+		$plugin_sections  = [ require $main_plugin_file ];
+
+		$files = apply_filters( 'wpe/register/admin_pages/route/plugins/options/files', [] );
+		if ( ! empty( $files ) && \is_array( $files ) ) {
+			$priority = 1;
 			foreach ( $files as $file ) {
 				if ( file_exists( $file ) ) {
 					$file  = require $file;
 					$order = wpe_array_get( $file, 'priority', $priority );
 					//$theme_sections[ $order ] = $file;
-					$plugin_sections[ $order ] = $file;
+					$plugin_sections[ (int) $order ] = $file;
 					$priority ++;
 				}
 			}

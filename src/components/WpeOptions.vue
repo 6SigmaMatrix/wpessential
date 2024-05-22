@@ -14,7 +14,7 @@
 		                        <el-icon v-if="tabs.icon && tabs.icon_type === 'icon'">
                                     <component :is="tabs.icon" />
                                 </el-icon>
-                                <i v-else-if="tabs.icon === 'img'" class="img-icon">
+                                <i v-else-if="tabs.icon && tabs.icon_type === 'img'" class="img-icon">
                                     <img :src="tabs.icon" alt="icon">
                                 </i>
                                 <i v-else :class="tabs.icon"></i>

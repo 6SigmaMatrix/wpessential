@@ -20,13 +20,11 @@ class Settings
 		if ( \is_array( $options ) ) {
 			global $wpe_options;
 			foreach ( $options as $k => $fields ) {
-				$y = 0;
-				foreach ( $fields[ 'fields' ] as $field ) {
+				foreach ( $fields[ 'fields' ] as $y => $field ) {
 					$key                                   = wpe_array_get( $field, 'id' );
 					$value                                 = wpe_array_get( $wpe_options, $key );
-					self::$opt_array[ $key ]               = $value;
+					self::$opt_array[ (string) $key ] = $value;
 					$fields[ 'fields' ][ $y ][ 'defined' ] = $value;
-					$y ++;
 				}
 				$options[ $k ] = $fields;
 			}

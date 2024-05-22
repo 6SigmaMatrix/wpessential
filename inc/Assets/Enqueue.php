@@ -21,8 +21,8 @@ final class Enqueue
 		//add_action( 'admin_enqueue_scripts', [ __CLASS__, 'backend_enqueue' ], 1000, 1 );
 
 		add_action( 'admin_print_scripts-toplevel_page_wpessential', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
-		add_action( 'admin_print_scripts-post.php', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
-		add_action( 'admin_print_scripts-post-new.php', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
+		/*add_action( 'admin_print_scripts-post.php', [ __CLASS__, 'admin_page_enqueue' ], 1000 );
+		add_action( 'admin_print_scripts-post-new.php', [ __CLASS__, 'admin_page_enqueue' ], 1000 );*/
 
 		add_action( 'elementor/editor/after_enqueue_scripts', [ __CLASS__, 'elementor_editor_after_enqueue' ], 1000 );
 	}
@@ -86,19 +86,6 @@ final class Enqueue
 		}
 
 		$list = apply_filters( 'wpe/admin_page/js', [
-			/*'vue',
-			'vue-router',
-			'vuex',
-			'dayjs',
-			'customParseFormat',
-			'weekday',
-			'localeData',
-			'weekOfYear',
-			'weekYear',
-			'advancedFormat',
-			'quarterOfYear',
-			'antd',
-			'antd-with-locales',*/
 			'wpessential-admin'
 		] );
 		$list = array_filter( $list );
