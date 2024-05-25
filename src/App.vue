@@ -41,6 +41,19 @@ export default {
 		wpe_active_rout_check ()
 		{
 			this.active_router_link = this.$route.path
+			let menu_active = this.active_router_link.replace( '/', '' );
+			let menu_active_check = $( "#toplevel_page_wpessential a" );
+			if ( menu_active_check.length >= 1 )
+			{
+				$( "#toplevel_page_wpessential li" ).removeClass( "current" );
+				$.each( menu_active_check, ( index, item ) =>
+				{
+					if ( ( $( item ).attr( "href" ) ).includes( menu_active ) )
+					{
+						$( item ).parent().addClass( 'current' )
+					}
+				} );
+			}
 		},
 		browser_events ()
 		{
