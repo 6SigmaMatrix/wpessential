@@ -10,7 +10,7 @@ return Section::make( __( 'Media', 'wpessential' ), 'media_field' )
               ->note_desc( __( 'Media fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Media' )
-              ->priority( 10 )
+	->priority( 60 )
               ->controls( [
 	              Media::make( __( 'Media field', 'wpessential' ) )
 	                   ->subtitle( __( 'Field Subtitle' ) )

@@ -1,7 +1,3 @@
-<!--
-  - Copyright (c) 2020. This file is copyright by WPEssential.
-  -->
-
 <template>
 	<!--    <div class="wpe-input-field">
 			<el-slider @change="on_change" v-bind="attr" class="wpe-form slider" v-model="value"></el-slider>

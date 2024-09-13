@@ -10,7 +10,7 @@ return Section::make( __( 'Info', 'wpessential' ), 'info_field' )
               ->note_desc( __( 'Info fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Info' )
-              ->priority( 10 )
+	->priority( 50 )
               ->controls( [
 	              Info::make( __( 'Info field', 'wpessential' ) )
 	                  ->subtitle( __( 'Field Subtitle' ) )

@@ -10,7 +10,7 @@ return Section::make( __( 'Image Select', 'wpessential' ), 'image_select_field' 
               ->note_desc( __( 'Image select fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Image Select' )
-              ->priority( 10 )
+	->priority( 40 )
               ->controls( [
 	              ImageSelect::make( __( 'Image Select field', 'wpessential' ) )
 	                         ->subtitle( __( 'Field Subtitle' ) )

@@ -10,7 +10,7 @@ return Section::make( __( 'Textarea', 'wpessential' ), 'textarea_field' )
               ->note_desc( __( 'Textarea fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Textarea' )
-              ->priority( 10 )
+	->priority( 110 )
               ->controls( [
 	              Textarea::make( __( 'Textarea field', 'wpessential' ) )
 	                      ->subtitle( __( 'Field Subtitle' ) )

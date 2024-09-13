@@ -318,6 +318,7 @@ abstract class Panel implements Arrayable, JsonSerializable
 	 */
 	protected function panel ()
 	{
+		static $tabindex = 1;
 		return array_filter( [
 			'defined'   => $this->default,
 			'desc'      => $this->description,
@@ -332,7 +333,11 @@ abstract class Panel implements Arrayable, JsonSerializable
 				'content'    => $this->note_desc,
 				'icon_color' => $this->note_icon_color,
 				'icon_size'  => $this->note_icon_size
-			] )
+			] ),
+			'settings'  => [
+				'id'       => $this->key,
+				'tabindex' => $this->tabindex ?? $tabindex,
+			]
 		] );
 	}
 

@@ -1,7 +1,3 @@
-<!--
-  - Copyright (c) 2020. This file is copyright by WPEssential.
-  -->
-
 <template>
 	<div class="wpe-input-field">
 		<!--        <el-input @input="on_change" :name="field.id" type="url" class="wpe-form input-url" v-model="value">

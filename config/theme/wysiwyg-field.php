@@ -10,7 +10,7 @@ return Section::make( __( 'Wysiwyg Editor', 'wpessential' ), 'wysiwyg_field' )
               ->note_desc( __( 'Wysiwyg editor examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Wysiwyg Editor' )
-              ->priority( 10 )
+	->priority( 130 )
               ->controls( [
 	              Wysiwyg::make( __( 'Wysiwyg field', 'wpessential' ) )
 	                     ->subtitle( __( 'Field Subtitle' ) )

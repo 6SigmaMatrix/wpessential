@@ -10,7 +10,7 @@ return Section::make( __( 'Color', 'wpessential' ), 'color_field' )
               ->note_desc( __( 'Color fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Color' )
-              ->priority( 10 )
+	->priority( 20 )
               ->controls( [
 	              Color::make( __( 'Color field', 'wpessential' ) )
 	                   ->subtitle( __( 'Field Subtitle' ) )

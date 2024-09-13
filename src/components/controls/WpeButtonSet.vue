@@ -1,7 +1,3 @@
-<!--
-  - Copyright (c) 2020. This file is copyright by WPEssential.
-  -->
-
 <template>
 	<div class="wpe-input-field">
 		<!--        <el-radio-group @change="select_change" v-bind="attr" class="wpessential-form-button-set" v-model="value" v-if="field.options">

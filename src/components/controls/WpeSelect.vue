@@ -1,7 +1,3 @@
-<!--
-  - Copyright (c) 2020. This file is copyright by WPEssential.
-  -->
-
 <template>
 	<div class="wpe-input-field">
 		<el-select v-model="value" :loading="loading" :name="field.id" :remote-method="live_search" class="wpe-form select" v-bind="field.settings" v-on:change="set_value">

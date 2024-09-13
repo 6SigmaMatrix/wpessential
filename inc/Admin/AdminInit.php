@@ -82,6 +82,7 @@ final class AdminInit
 					] ),
 				] ),
 				'extensions' => Extension::constructor(),
+				'theme' => Theme::constructor(),
 				'plugins'    => Plugins::constructor(),
 			]
 		];

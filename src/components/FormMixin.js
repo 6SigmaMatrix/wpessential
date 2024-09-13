@@ -33,10 +33,11 @@ const FormMixin = {
 		{
 			return this.$store.state.form_rules;
 		},
-		value_get ( data )
+		value_get ()
 		{
 			if ( this.field !== undefined && this.field.id )
 			{
+				console.log( this.$store.state.form );
 				return this.$store.state.form[ this.field.id ];
 			}
 

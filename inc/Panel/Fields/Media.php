@@ -38,12 +38,7 @@ class Media extends Panel
 	 */
 	public function add_text ( $callback )
 	{
-		$this->add_text = $callback;
-		if ( ! $this->add_text ) {
-			$this->add_text = __( 'Add Image', 'wpessential' );
-		} else {
-			$this->add_text = $callback;
-		}
+		$this->add_text = $callback ?? __( 'Add Image', 'wpessential' );
 
 		return $this;
 	}
@@ -57,12 +52,7 @@ class Media extends Panel
 	 */
 	public function update_text ( $callback )
 	{
-		$this->update_text = $callback;
-		if ( ! $this->update_text ) {
-			$this->update_text = __( 'Update Image', 'wpessential' );
-		} else {
-			$this->update_text = $callback;
-		}
+		$this->update_text = $callback ?? __( 'Update Image', 'wpessential' );
 
 		return $this;
 	}

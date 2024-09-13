@@ -33,13 +33,12 @@
 	"homepage" : "https://wpessential.org/",
 	"readme" : "README.md",
 	"license" : [
-		"LGPL-2.1-only",
 		"GPL-3.0-or-later"
 	],
 	"authors" : [
 		{
 			"name" : "WPEssential",
-			"email" : "wordpress.essential@gmail.com",
+			"email" : "ceo@wpessential.org",
 			"homepage" : "https://wpessential.org/",
 			"role" : "Owner"
 		},
@@ -61,6 +60,10 @@
 		{
 			"type" : "other",
 			"url" : "https://wpessential.com/donate"
+		},
+		{
+			"type" : "paypal",
+			"url" : "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=ashadab59@gmail"
 		}
 	],
 	"require" : {

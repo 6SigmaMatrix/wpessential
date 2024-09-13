@@ -1,7 +1,3 @@
-<!--
-  - Copyright (c) 2020. This file is copyright by WPEssential.
-  -->
-
 <template>
 	<div class="wpe-input-field">
 		<el-divider class="wpe-form divider" content-position="left">

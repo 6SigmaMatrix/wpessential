@@ -10,7 +10,7 @@ return Section::make( __( 'Text', 'wpessential' ), 'text_field' )
               ->note_desc( __( 'Text fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Text' )
-              ->priority( 10 )
+	->priority( 100 )
               ->controls( [
 	              Text::make( __( 'Text field', 'wpessential' ) )
 	                  ->subtitle( __( 'Field Subtitle' ) )

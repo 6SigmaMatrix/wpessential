@@ -1,7 +1,3 @@
-<!--
-  - Copyright (c) 2020. This file is copyright by WPEssential.
-  -->
-
 <template>
 	<div class="wpe-input-field">
 		<!--        <el-checkbox-group @change="select_change" class="wpessential-form-button-group" v-model="value" v-if="field.options">

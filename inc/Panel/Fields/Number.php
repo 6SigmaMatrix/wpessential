@@ -18,13 +18,13 @@ class Number extends Text
 	/**
 	 * whether to enable the control buttons.
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $controls = true;
 	/**
 	 * Set controls-position to decide the position of control buttons. (right)
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $controls_position = '';
 	/**
@@ -55,9 +55,9 @@ class Number extends Text
 	 */
 	protected $step = '';
 	/**
-	 * The step-strictly attribute accepts a boolean. if this attribute is true, input value can only be multiple of step.
+	 * The step-strictly attribute accepts a bool. if this attribute is true, input value can only be multiple of step.
 	 *
-	 * @var boolean
+	 * @var bool
 	 */
 	protected $step_strictly = false;
 
@@ -104,7 +104,7 @@ class Number extends Text
 	}
 
 	/**
-	 * The step-strictly attribute accepts a boolean. if this attribute is true, input value can only be multiple of step.
+	 * The step-strictly attribute accepts a bool. if this attribute is true, input value can only be multiple of step.
 	 *
 	 * @param $callback
 	 *
@@ -177,10 +177,11 @@ class Number extends Text
 				'min'               => $this->min,
 				'placeholder'       => $this->placeholder,
 				'precision'         => $this->precision,
+				'readonly'       => $this->readonly,
 				'size'              => $this->size,
 				'step'              => $this->step,
 				'step-strictly'     => $this->step_strictly,
-				'tabindex'          => $this->tabindex,
+				'value-on-clear' => $this->default,
 			] )
 		];
 	}

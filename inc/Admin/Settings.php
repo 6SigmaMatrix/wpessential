@@ -24,7 +24,7 @@ class Settings
 					$key                                   = wpe_array_get( $field, 'id' );
 					$value                                 = wpe_array_get( $wpe_options, $key );
 					self::$opt_array[ (string) $key ] = $value;
-					$fields[ 'fields' ][ $y ][ 'defined' ] = $value;
+					$fields[ 'fields' ][ $y ][ 'defined' ] = $value ?? wpe_array_get( $field, 'defined', 0 );
 				}
 				$options[ $k ] = $fields;
 			}
@@ -44,7 +44,7 @@ class Settings
 					$key                                   = wpe_array_get( $field, 'id' );
 					$value                                 = get_post_meta( $post_id, $key, true );
 					self::$opt_array[ $key ]               = $value;
-					$fields[ 'fields' ][ $y ][ 'defined' ] = $value;
+					$fields[ 'fields' ][ $y ][ 'defined' ] = $value ?? wpe_array_get( $field, 'defined', 0 );
 					$y ++;
 				}
 				$options[ $k ] = $fields;

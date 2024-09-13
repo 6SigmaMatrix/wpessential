@@ -13,7 +13,7 @@ return Section::make( __( 'Select', 'wpessential' ), 'select_field' )
               ->note_desc( __( 'Select fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Select' )
-              ->priority( 10 )
+	->priority( 80 )
               ->controls( [
 	              Select::make( __( 'Select field', 'wpessential' ) )
 	                    ->subtitle( __( 'Field Subtitle' ) )

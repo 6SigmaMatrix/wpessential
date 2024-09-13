@@ -10,7 +10,7 @@ return Section::make( __( 'Number', 'wpessential' ), 'number_field' )
               ->note_desc( __( 'Number fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Number' )
-              ->priority( 10 )
+	->priority( 70 )
               ->controls( [
 	              Number::make( __( 'Number field', 'wpessential' ) )
 	                    ->subtitle( __( 'Field Subtitle' ) )

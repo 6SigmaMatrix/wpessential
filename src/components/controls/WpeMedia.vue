@@ -2,7 +2,7 @@
 	<div class="wpe-input-field">
 		<div class="wpe-form media">
 			<div v-if="value.url" class="image">
-				<el-button type="danger" icon="el-icon-close" circle v-on:click="set_value( '' )"></el-button>
+				<el-button circle icon="Close" type="danger" v-on:click="set_value( '' )"></el-button>
 				<img :src="value.url" width="150">
 			</div>
 			<el-button :id="'media_'+field.id" icon="el-icon-picture-outline" plain type="primary" v-on:click="add_media()">

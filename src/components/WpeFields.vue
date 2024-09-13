@@ -18,7 +18,8 @@
 
 <script>
 //import WpeLinkColor from "./controls/WpeLinkColor.vue";
-//import WpeToggle from "./controls/WpeToggle.vue";
+import WpeBackground from "./controls/WpeBackground.vue";
+import WpeSwitcher from "./controls/WpeSwitcher.vue";
 import WpeButtonGroup from "./controls/WpeButtonGroup.vue";
 import WpeButtonSet from "./controls/WpeButtonSet.vue";
 import WpeCode from "./controls/WpeCode.vue";
@@ -43,7 +44,7 @@ import WpeWysiwyg from "./controls/WpeWysiwyg.vue";
 export default {
 	props      : { fields : Array },
 	components : {
-		//WpeToggle,
+		WpeBackground,
 		WpeButtonGroup,
 		WpeButtonSet,
 		WpeCode,
@@ -58,6 +59,7 @@ export default {
 		WpeRadio,
 		WpeSelect,
 		WpeSlider,
+		WpeSwitcher,
 		WpeText,
 		WpeTextarea,
 		WpeTime,

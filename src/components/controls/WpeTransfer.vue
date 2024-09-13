@@ -1,7 +1,3 @@
-<!--
-  - Copyright (c) 2020. This file is copyright by WPEssential.
-  -->
-
 <template>
 	<!--    <div class="wpe-field">
 			<el-transfer @change="select_change" v-bind="attr" class="wpe-form transfer" v-model="value" :data="data"></el-transfer>

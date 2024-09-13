@@ -10,7 +10,7 @@ return Section::make( __( 'Divider', 'wpessential' ), 'divider_field' )
               ->note_desc( __( 'Divider fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Divider' )
-              ->priority( 20 )
+	->priority( 30 )
               ->controls( [
 	              Divider::make( __( 'Color field with vertical', 'wpessential' ) )
 	                     ->subtitle( __( 'Field Subtitle' ) )

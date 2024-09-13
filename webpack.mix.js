@@ -2,7 +2,7 @@ let mix = require( 'laravel-mix' );
 mix.setPublicPath( './' );
 if ( ! mix.inProduction() )
 {
-		//mix.sass( 'src/wpessential-admin.scss', 'assets/css/wpessential-admin.css' );
+	//mix.sass( 'src/wpessential-admin.scss', 'assets/css/wpessential-admin.css' );
 	mix.js( 'src/wpessential-admin.js', 'assets/js' )
 		.js( 'src/wpessential-meta.js', 'assets/js' )
 		.options( {

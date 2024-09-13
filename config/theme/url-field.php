@@ -10,7 +10,7 @@ return Section::make( __( 'Url', 'wpessential' ), 'url_field' )
               ->note_desc( __( 'Url fields examples.', 'wpessential' ) )
               ->note_icon( 'location' )
               ->note_title( 'Url' )
-              ->priority( 10 )
+	->priority( 120 )
               ->controls( [
 	              Url::make( __( 'Url field', 'wpessential' ) )
 	                 ->subtitle( __( 'Field Subtitle' ) )

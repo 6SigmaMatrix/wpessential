@@ -60,7 +60,7 @@ class Text extends Panel
 	protected $show_word_limit = false;
 
 	/**
-	 * Indicates if the field should be allowed to add the size. (small, medium, large, mini)
+	 * Indicates if the field should be allowed to add the size. ('large' | 'default' | 'small')
 	 *
 	 * @var string
 	 */
@@ -218,8 +218,7 @@ class Text extends Panel
 				'resize'          => $this->resize,
 				'show-word-limit' => $this->show_word_limit,
 				'size'            => $this->size,
-				'suffix-icon'     => $this->suffix_icon,
-				'tabindex'        => $this->tabindex
+				'suffix-icon' => $this->suffix_icon
 			] )
 		];
 	}
