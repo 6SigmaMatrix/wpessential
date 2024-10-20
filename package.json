@@ -56,6 +56,6 @@
 	"dependencies": {
 		"@element-plus/icons-vue": "^2.1.0",
 		"@vue/compiler-sfc": "^3.3.4",
-		"element-plus": "^2.3.14"
+		"element-plus": "^2.8.4"
 	}
 }
